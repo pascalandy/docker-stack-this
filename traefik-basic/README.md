@@ -15,7 +15,21 @@ docker swarm init --advertise-addr=$(hostname -i)
 ```
 
 ##### Leader | node2
-*Join node2 from the docker swarm init above*
+Join node2 to the cluster from commands docker swarm init generated. **Warning**: You need to reformat the command docker has generated for you. Put this command into one single line.
+
+BEFORE:
+```
+docker swarm join \
+    --token SWMTKN-1-58x1bngt2esj8enkr0q71bn98t3vn96cqld9ay9tbe06urvsmt-
+7ko3krnrglwj9x90lt7vsimym \
+    10.0.25.3:2377
+```
+
+AFTER:
+
+```
+docker swarm join --token SWMTKN-1-58x1bngt2esj8enkr0q71bn98t3vn96cqld9ay9tbe06urvsmt-7ko3krnrglwj9x90lt7vsimym 10.0.25.3:2377
+```
 
 ### Git clone | node1
 ```
