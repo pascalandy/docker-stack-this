@@ -11,7 +11,7 @@ services:
       - --docker.watch
       - --docker.domain=traefik
       - --web
-      - --logLevel=DEBUG
+      - "--logLevel=DEBUG"
 		networks:
       - ntw_front
       - ntw_socket
