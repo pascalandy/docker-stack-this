@@ -2,7 +2,7 @@
 
 I consider this README crystal clear. I made it blazing-ish-fast to try out. If there is anything that I could improve, please buzz me.
 
-### Why using a socketproxy
+### Why using a traefik + socketproxy?
 Listen to this: https://cl.ly/1z0Q3a0K1M15
 
 ### Create a 5 nodes cluster
@@ -24,15 +24,13 @@ done
 docker node ls
 ```
 
-##### On each nodes:**
+##### On each nodes:
 
 Optional. I always need theses :-p
 
 ```
 apk update && apk upgrade && apk add nano curl bash git
 ```
-
-##### Output
 
 Now that we feel like a rock stars, it’s time to break stuff.
 
@@ -51,6 +49,8 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 
 ### Deploy traefik & socketproxy
 
+
+```
 docker service rm socketproxy && \
 \
 docker service create \
@@ -77,8 +77,9 @@ traefik \
 --docker.swarmmode \
 --docker.endpoint=tcp://socketproxy:2375 \
 --web
+```
 
-### Deploy web apps
+###  Deploy web apps
 
 ```
 docker stack deploy who -c who.yml
@@ -88,8 +89,6 @@ docker stack deploy nginx -c nginx.yml
 
 ### See these web apps online
 Click on port 8080 from the PWD Gui. It will allow you the get the unique URL domain for this session.
-
-<img width="1252" alt="pwd" src="https://cloud.githubusercontent.com/assets/6694151/25980591/97a1307a-369d-11e7-96b7-5222dea0756d.png">
 
 ```
 http://pwd10_0_25_3-8080.host2.labs.play-with-docker.com/dashboard/#/
@@ -114,6 +113,8 @@ http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx2/
                    #__# On PWD pay attention
 ```
 
+<img width="1252" alt="pwd" src="https://cloud.githubusercontent.com/assets/6694151/25980591/97a1307a-369d-11e7-96b7-5222dea0756d.png">
+
 <img width="1247" alt="screen shot 2017-05-11 at 11 14 50 pm" src="https://cloud.githubusercontent.com/assets/6694151/25980916/e7f42c7e-369f-11e7-9890-6be8013179db.png">
 
 <img width="1257" alt="screen shot 2017-05-11 at 11 15 08 pm" src="https://cloud.githubusercontent.com/assets/6694151/25980924/efbc5da0-369f-11e7-8d05-af5f86db0ee9.png">
@@ -124,7 +125,7 @@ http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx2/
 
 <img width="1254" alt="screen shot 2017-05-11 at 11 15 43 pm" src="https://cloud.githubusercontent.com/assets/6694151/25980937/030e9e04-36a0-11e7-8063-c703e0aba0ef.png">
 
-(no screensshot for nginx2 & caddy2)
+*(no screenshot for nginx2 & caddy2)*
 
 ### Other useful commands
 
