@@ -1,5 +1,5 @@
-### Context
-I believe we need ONE common way to share Docker stacks over the open-source community. Thanks to http://labs.play-with-docker.com/ it’s now easy to do. It’s even better than locally!
+# Context
+I believe we need ONE common way to share Docker stacks over the open-source community. Thanks to **play-with-docker** it’s now easy to do. It’s even better than locally!
 
 ### Create a cluster
 Create a two nodes session on http://labs.play-with-docker.com/
