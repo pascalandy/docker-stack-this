@@ -17,8 +17,9 @@ docker stack deploy nginx1 -c nginx1.yml
 
 
 # — — — # — — — # — — — #
-docker stack rm traefik
+
 docker stack rm dockersocket
+docker stack rm traefik
 
 docker stack rm who1
 docker stack rm who2
