@@ -2,20 +2,14 @@
 
 I consider this README crystal clear. I made it blazing-ish-fast to try out. If there is anything that I could improve, please buzz me.
 
-### Create a cluster
-Create a two nodes on http://labs.play-with-docker.com/
+### Why using a socketproxy
+Listen to this: https://cl.ly/1z0Q3a0K1M15
 
-##### On each node:** (optional)
-```
-apk update && apk upgrade && apk add nano curl bash git
-```
+### Create a 5 nodes cluster
 
-##### Init our 5 nodes cluster
+On http://labs.play-with-docker.com/ create five instances.
 
-This script will create 3 leader + 2 workers
-
-1. Create five instances.
-2. Copy paste this script on node1
+Copy paste this script on `node1`. It will create 3 leaders + 2 workers.
 
 ```
 docker swarm init --advertise-addr eth0
@@ -30,25 +24,22 @@ done
 docker node ls
 ```
 
+##### On each nodes:**
+
+Optional. I always need theses :-p
+
+```
+apk update && apk upgrade && apk add nano curl bash git
+```
+
 ##### Output
 
-Now we can feel like a rock stars. Time to smash some guitars.
-
-```
-$ docker node ls
-ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
-h864xweuf9uwtvc1eu7h5pkv7     node3               Ready               Active              Reachable
-nxb74iw3oyum2ps46ksf4h5rv     node4               Ready               Active
-ponk878u9rb8zzskwifarju5a     node2               Ready               Active              Reachable
-w3jwdlb16lc64khbusgpbfd7l *   node1               Ready               Active              Leader
-wzyhhn02zl0hlw8axcjuqg269     node5               Ready               Active
-[node1] (local) root@10.0.250.3 ~
-```
+Now that we feel like a rock stars, it’s time to break stuff.
 
 ### Clone repo | node1
 ```
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-socat-edge
+cd docker-stack-this/traefik-socat
 ```
 
 ### Create network | node1
@@ -58,7 +49,7 @@ docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted nt
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 ```
 
-### Deploy traefik along Socat
+### Deploy traefik & socketproxy
 
 docker service rm socketproxy && \
 \
@@ -113,7 +104,13 @@ http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/who2/
 http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/caddy1/
                    #__# On PWD pay attention
 
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/caddy2/
+                   #__# On PWD pay attention
+                   
 http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx1/
+                   #__# On PWD pay attention
+                   
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx2/
                    #__# On PWD pay attention
 ```
 
@@ -126,6 +123,8 @@ http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx1/
 <img width="1254" alt="screen shot 2017-05-11 at 11 15 40 pm" src="https://cloud.githubusercontent.com/assets/6694151/25980932/fe0db1e2-369f-11e7-80bf-9d43725299da.png">
 
 <img width="1254" alt="screen shot 2017-05-11 at 11 15 43 pm" src="https://cloud.githubusercontent.com/assets/6694151/25980937/030e9e04-36a0-11e7-8063-c703e0aba0ef.png">
+
+(no screensshot for nginx2 & caddy2)
 
 ### Other useful commands
 
