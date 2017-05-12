@@ -3,7 +3,13 @@ version: "3.1"
 services:
   traefik:
     image: traefik:1.2.3-alpine
-    command: --web --docker --docker.swarmmode --docker.watch --docker.domain=traefik --logLevel=DEBUG
+    command: 
+			- --web 
+			- --docker 
+			- --docker.swarmmode 
+			- --docker.watch 
+			- --docker.domain=traefik 
+			- --logLevel=DEBUG
     ports:
       - "80:80"
       - "8080:8080"
@@ -15,8 +21,6 @@ services:
       - "traefik.enable=false"
     networks:
       - ntw_front
-		depends_on:
-    	- dockersocket
     deploy:
       replicas: 1
       placement:
