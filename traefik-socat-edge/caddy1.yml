@@ -7,6 +7,10 @@ services:
       - ntw_front
     deploy:
       replicas: 3
+			placement:
+        constraints: [node.role == worker]                                                   
+      restart_policy:
+        condition: on-failure
       labels:
         - "traefik.backend=caddy1"
         - "traefik.port=2015"
@@ -16,4 +20,3 @@ services:
 networks:
   ntw_front:
     external: true
-

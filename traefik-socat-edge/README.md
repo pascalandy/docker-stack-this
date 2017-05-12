@@ -60,8 +60,36 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 
 ### Deploy all
 
+docker service rm socketproxy && \
+\
+docker service create \
+--name socketproxy \
+--network ntw_socketproxy \
+--mode global \
+--mount "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock" \
+--constraint 'node.role==manager' \
+rancher/socat-docker
+
+docker service rm traefik && \
+\
+docker service create \
+--name traefik \
+--network ntw_front \
+--network ntw_socketproxy \
+--mode global \
+-p 80:80 \
+-p 443:443 \
+-p 8080:8080 \
+--constraint 'node.role==worker' \
+traefik \
+--docker \
+--docker.swarmmode \
+--docker.endpoint=tcp://socketproxy:2375 \
+--web
+
 ```
 docker stack deploy traefik -c traefik.yml
+
 docker stack deploy who1 -c who1.yml
 docker stack deploy who2 -c who2.yml
 docker stack deploy caddy1 -c caddy1.yml

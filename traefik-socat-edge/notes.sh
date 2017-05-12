@@ -1,18 +1,18 @@
 
-docker service create
+docker service create \
 --name socketproxy \
---network ntw_back \
+--network ntw_socketproxy \
 --mount "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock" \
 --constraint 'node.role==manager' \
 rancher/socat-docker
 
 
-docker service create
+docker service create \
 --name traefik \
 -p 80:80 \
 -p 8080:8080 \
 --network ntw_front \
---network ntw_back \
+--network ntw_socketproxy \
 --constraint 'node.role==worker' \
 traefik \
 --docker \
