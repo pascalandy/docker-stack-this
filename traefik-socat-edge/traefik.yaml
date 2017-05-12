@@ -1,0 +1,45 @@
+version: "3.1"
+
+services:
+  traefik:
+    image: traefik:1.2.3-alpine
+    command:
+      - --docker
+      - --docker.EndPoint=http://dockersocket:2375
+      - --docker.ExposedByDefault=false
+      - --docker.swarmmode
+      - --docker.watch
+      - --docker.domain=traefik
+      - --web
+      - --logLevel=DEBUG
+	ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /root/docker-stack-this/traefik-socat-edge/traefik/acme:/etc/traefik/acme
+      - /root/docker-stack-this/traefik-socat-edge/traefik:/traefik.toml
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - dockersocket
+    labels:
+      - "traefik.enable=false"
+	networks:
+      - ntw_front
+      - ntw_socket
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == worker]
+      restart_policy:
+        condition: on-failure
+    tty: true
+
+networks:
+  ntw_front:
+    external: true
+
+networks:
+  ntw_socket:
+    external: true

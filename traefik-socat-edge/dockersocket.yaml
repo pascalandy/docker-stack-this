@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  dockersocket:
+    image: tecnativa/docker-socket-proxy
+    # privileged: true
+    networks:
+      - ntw_socket
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CONTAINERS: 1
+      NETWORKS: 1
+      SERVICES: 1
+      SWARM: 1
+      TASKS: 1
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  ntw_socket:
+    external: true
