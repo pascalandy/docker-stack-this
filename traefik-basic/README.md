@@ -1,10 +1,9 @@
-# Context
-I believe we need one common way to share Docker stacks over the open-source community. Thanks to **play-with-docker** (PWD) it’s now easy to do. 
+# Quickly try this stack
 
-I consider this README crystal clear make this stack blazinglyi-ish fast to try out. If there is anything that I could improve here, please buzz me (see below how).  
+I consider this README crystal clear. I made it blazing-ish-fast to try out. If there is anything that I could improve, please buzz me.
 
 ### Create a cluster
-Create a two nodes session on http://labs.play-with-docker.com/
+Create a two nodes on http://labs.play-with-docker.com/
 
 ##### On each node:** (optional)
 ```
@@ -17,7 +16,7 @@ docker swarm init --advertise-addr=$(hostname -i)
 ```
 
 ##### Leader | node2
-Join node2 to the cluster from commands docker swarm init generated. **Warning**: You need to reformat the command docker has generated for you. Put this command into one single line.
+Join node2 to the cluster from command docker swarm init generated. **Warning**: You need to reformat the command docker has generated for you. Put this command into one single line.
 
 BEFORE:
 ```
@@ -54,7 +53,7 @@ docker stack deploy caddy1 -c caddy1.yml
 docker stack deploy nginx1 -c nginx1.yml
 ```
 
-### See apps online
+### See these web apps online
 Click on port 8080 from the PWD Gui. It will allow you the get the unique URL domain for this session.
 
 <img width="1252" alt="pwd" src="https://cloud.githubusercontent.com/assets/6694151/25980591/97a1307a-369d-11e7-96b7-5222dea0756d.png">
