@@ -123,6 +123,12 @@ You can check the details [here](http://firepress.org/blog/technical-challenges-
 
 I’m looking for bright and caring people to join in this journey.
 
-Enjoy!
-Pascal
+enjoy!
+ ____                     _      _              _
+|  _ \ __ _ ___  ___ __ _| |    / \   _ __   __| |_   _
+| |_) / _` / __|/ __/ _` | |   / _ \ | '_ \ / _` | | | |
+|  __/ (_| \__ \ (_| (_| | |  / ___ \| | | | (_| | |_| |
+|_|   \__,_|___/\___\__,_|_| /_/   \_\_| |_|\__,_|\__, |
+                                                  |___/
+
 
