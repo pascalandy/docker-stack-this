@@ -116,3 +116,13 @@ docker stack rm caddy1
 docker stack rm nginx1
 docker network rm ntw_front
 ```
+
+**P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang).. plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter @askpascalandy.
+
+You can check the details [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
+
+I’m looking for bright and caring people to join in this journey.
+
+Enjoy!
+Pascal
+
