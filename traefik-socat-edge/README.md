@@ -154,6 +154,7 @@ curl http://localhost/caddy1/
 
 ```
 docker stack rm traefik
+
 docker stack rm who1
 docker stack rm who2
 docker stack rm caddy1
