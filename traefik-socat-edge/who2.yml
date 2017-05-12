@@ -16,7 +16,6 @@ services:
         constraints: [node.role == worker]                                                   
       restart_policy:
         condition: on-failure
-      labels:
 
 networks:
   ntw_front:
