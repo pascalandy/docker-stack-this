@@ -58,7 +58,7 @@ docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted nt
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 ```
 
-### Deploy all
+### Deploy traefik along Socat
 
 docker service rm socketproxy && \
 \
@@ -87,12 +87,12 @@ traefik \
 --docker.endpoint=tcp://socketproxy:2375 \
 --web
 
-```
-docker stack deploy traefik -c traefik.yml
+### Deploy web apps
 
+```
 docker stack deploy who -c who.yml
-docker stack deploy caddy1 -c caddy1.yml
-docker stack deploy nginx1 -c nginx1.yml
+docker stack deploy caddy -c caddy.yml
+docker stack deploy nginx -c nginx.yml
 ```
 
 ### See these web apps online
@@ -152,11 +152,9 @@ curl http://localhost/caddy1/
 ### Scrap all
 
 ```
-docker stack rm traefik
-
 docker stack rm who
-docker stack rm caddy1
-docker stack rm nginx1
+docker stack rm caddy
+docker stack rm nginx
 
 docker network rm ntw_front
 docker network rm ntw_socketproxy
