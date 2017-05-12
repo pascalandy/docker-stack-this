@@ -25,7 +25,7 @@ services:
     networks:
       - ntw_front
       - ntw_socketproxy
-    depend_on:
+    depends_on:
       - "socketproxy"
     deploy:
       mode: global
