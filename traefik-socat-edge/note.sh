@@ -7,8 +7,8 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 docker network create --driver overlay --subnet 10.13.10.0/24 --opt encrypted ntw_back
 docker network ls
 
-docker stack deploy dockersocket -c dockersocket.yml
-docker stack deploy traefik -c traefik.yml
+docker stack deploy dockersocket -c dockersocket.yaml
+docker stack deploy traefik -c traefik.yaml
 
 
 

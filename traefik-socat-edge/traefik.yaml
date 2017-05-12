@@ -12,12 +12,14 @@ services:
       - --docker.domain=traefik
       - --web
       - --logLevel=DEBUG
-	ports:
+		networks:
+      - ntw_front
+      - ntw_socket
+    ports:
       - "80:80"
       - "443:443"
     volumes:
       - /root/traefik-config/acme/acme:/etc/traefik/acme
-      - /root/traefik-config/acme:/traefik.toml
     ports:
       - "80:80"
       - "443:443"
@@ -25,15 +27,16 @@ services:
       - dockersocket
     labels:
       - "traefik.enable=false"
-	networks:
+	  networks:
       - ntw_front
       - ntw_socket
     deploy:
-      mode: global
+    	mode: global
       placement:
-        constraints: [node.role == worker]
-      restart_policy:
-        condition: on-failure
+      	constraints:
+        	- node.role == worker
+    restart_policy:
+    	condition: on-failure
     tty: true
 
 networks:
