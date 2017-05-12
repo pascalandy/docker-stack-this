@@ -7,7 +7,7 @@ services:
       - ntw_front
     deploy:
       replicas: 3
-			placement:
+      placement:
         constraints: [node.role == worker]                                                   
       restart_policy:
         condition: on-failure
@@ -15,6 +15,22 @@ services:
         - "traefik.backend=caddy1"
         - "traefik.port=2015"
         - "traefik.frontend.rule=PathPrefixStrip:/caddy1"
+        - "traefik.docker.network=ntw_front"
+
+  caddy2:
+    image: abiosoft/caddy:0.10.2
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                                   
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=caddy2"
+        - "traefik.port=2015"
+        - "traefik.frontend.rule=PathPrefixStrip:/caddy2"
         - "traefik.docker.network=ntw_front"
 
 networks:
