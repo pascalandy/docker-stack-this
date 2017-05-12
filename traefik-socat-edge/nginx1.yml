@@ -5,17 +5,17 @@ services:
     image: nginx:1.13.0-alpine
     networks:
       - ntw_front
+    labels:
+    	- "traefik.backend=nginx1"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=PathPrefixStrip:/nginx1/"
+      - "traefik.docker.network=ntw_front"
     deploy:
       replicas: 2
       placement:
         constraints: [node.role == worker]                                                   
       restart_policy:
         condition: on-failure
-      labels:
-        - "traefik.backend=nginx1"
-        - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefixStrip:/nginx1"
-        - "traefik.docker.network=ntw_front"
 
 networks:
   ntw_front:

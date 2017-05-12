@@ -5,6 +5,11 @@ services:
     image: emilevauge/whoami
     networks:
       - ntw_front
+    labels:
+    	- "traefik.backend=who2"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=PathPrefixStrip:/who2/"
+      - "traefik.docker.network=ntw_front"
     deploy:
       replicas: 2
       placement:
@@ -12,10 +17,6 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=who2"
-        - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefixStrip:/who2"
-        - "traefik.docker.network=ntw_front"
 
 networks:
   ntw_front:
