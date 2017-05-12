@@ -16,9 +16,10 @@ services:
     networks:
       - ntw_front
     deploy:
-      replicas: 1
+      mode: global
       placement:
-        constraints: [node.role == worker]                                                   
+        constraints:
+					- node.role == worker
       restart_policy:
         condition: on-failure
       
