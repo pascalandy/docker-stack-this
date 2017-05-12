@@ -73,7 +73,7 @@ docker service create \
 tecnativa/docker-socket-proxy
 ```
 
-See the [option #2](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/option2.md)https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/README.md which use rancher/socat
+See the [option #2](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/option2.md) which use `rancher/socat`.
 
 ##### Traefik
 
