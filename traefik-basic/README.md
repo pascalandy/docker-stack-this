@@ -124,7 +124,7 @@ docker network rm ntw_front
 
 Here, I [shared the details](http://firepress.org/blog/technical-challenges-we-are-facing-now/) of the challenges I’m facing at the moment.
 
-Conternerize carefully!
+Containerize carefully!
 
 ```
  ____                     _      _              _
