@@ -6,7 +6,11 @@ services:
     networks:
       - ntw_front
     deploy:
-      replicas: 3
+      replicas: 2
+      placement:
+        constraints: [node.role == worker]                                                   
+      restart_policy:
+        condition: on-failure
       labels:
         - "traefik.backend=who2"
         - "traefik.port=80"
