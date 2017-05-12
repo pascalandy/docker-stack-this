@@ -22,4 +22,3 @@ services:
 
 networks:
   ntw_socket:
-    external: true

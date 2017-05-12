@@ -15,6 +15,7 @@ services:
       - "traefik.enable=false"
     networks:
       - ntw_front
+      - ntw_socket
     deploy:
       mode: global
       placement:
@@ -24,4 +25,3 @@ services:
       
 networks:
   ntw_front:
-    external: true
