@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  nginx1:
+    image: nginx:1.13.0-alpine
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      labels:
+        - "traefik.backend=nginx1"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefixStrip:/nginx1"
+        - "traefik.docker.network=ntw_front"
+
+networks:
+  ntw_front:
+    external: true
+
