@@ -1,5 +1,5 @@
 # Context
-I believe we need ONE common way to share Docker stacks over the open-source community. Thanks to **play-with-docker** it’s now easy to do. It’s even better than locally!
+I believe we need ONE common way to share Docker stacks over the open-source community. Thanks to **play-with-docker** (PWD) it’s now easy to do. It’s even better than locally!
 
 ### Create a cluster
 Create a two nodes session on http://labs.play-with-docker.com/
@@ -72,7 +72,7 @@ curl http://localhost/caddy1/
 ```
 
 ### See apps online
-Click on port 8080 in PWD GUI
+Click on port 8080 from the PWD Gui. It will allow you the get the unique URL domain for this session.
 
 <img width="1252" alt="pwd" src="https://cloud.githubusercontent.com/assets/6694151/25980591/97a1307a-369d-11e7-96b7-5222dea0756d.png">
 
