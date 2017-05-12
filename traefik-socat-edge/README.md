@@ -30,17 +30,32 @@ done
 docker node ls
 ```
 
-We feel like a star. Time to smash some guitars.
+##### Output
 
-### Git clone | node1
+Now we can feel like a rock stars. Time to smash some guitars.
+
+```
+$ docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
+h864xweuf9uwtvc1eu7h5pkv7     node3               Ready               Active              Reachable
+nxb74iw3oyum2ps46ksf4h5rv     node4               Ready               Active
+ponk878u9rb8zzskwifarju5a     node2               Ready               Active              Reachable
+w3jwdlb16lc64khbusgpbfd7l *   node1               Ready               Active              Leader
+wzyhhn02zl0hlw8axcjuqg269     node5               Ready               Active
+[node1] (local) root@10.0.250.3 ~
+```
+
+### Clone repo | node1
 ```
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-basic
+cd docker-stack-this/traefik-socat-edge
 ```
 
-### Create network | Leader
+### Create network | node1
 ```
-docker network create --driver overlay --subnet 10.10.10.0/24 --opt encrypted ntw_front
+docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
+
+docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 ```
 
 ### Deploy all
