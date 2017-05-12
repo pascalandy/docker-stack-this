@@ -6,7 +6,7 @@ services:
     networks:
       - ntw_front
     labels:
-    	- "traefik.backend=who1"
+      - "traefik.backend=who1"
       - "traefik.port=80"
       - "traefik.frontend.rule=PathPrefixStrip:/who1/"
       - "traefik.docker.network=ntw_front"

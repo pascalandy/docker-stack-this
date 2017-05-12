@@ -6,7 +6,7 @@ services:
     networks:
       - ntw_front
     labels:
-    	- "traefik.backend=nginx1"
+      - "traefik.backend=nginx1"
       - "traefik.port=80"
       - "traefik.frontend.rule=PathPrefixStrip:/nginx1/"
       - "traefik.docker.network=ntw_front"
