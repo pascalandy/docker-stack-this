@@ -1,6 +1,8 @@
 # Quickly try this stack
 
-I consider this README crystal clear. I made it blazing-ish-fast to try out. If there is anything that I could improve, please buzz me.
+I consider this README crystal clear. It should be quick for you to try the elements of this repo. If there is anything that I could improve, please let me know.
+
+Source: https://github.com/pascalandy/docker-stack-this
 
 ### Why using a traefik + socketproxy?
 Listen to this: https://cl.ly/1z0Q3a0K1M15
@@ -9,7 +11,7 @@ Listen to this: https://cl.ly/1z0Q3a0K1M15
 
 On http://labs.play-with-docker.com/ create five instances.
 
-Copy paste this script on `node1`. It will create 3 leaders + 2 workers.
+Copy paste this script on `node1`. This will create 3 leaders + 2 workers.
 
 ```
 docker swarm init --advertise-addr eth0
@@ -26,7 +28,7 @@ docker node ls
 
 ##### On each nodes:
 
-Optional. I always need theses :-p
+Optional but I always need theses :-p
 
 ```
 apk update && apk upgrade && apk add nano curl bash git
@@ -35,12 +37,15 @@ apk update && apk upgrade && apk add nano curl bash git
 Now that we feel like a rock stars, it’s time to break stuff.
 
 ### Clone repo | node1
+
 ```
+cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-socat
 ```
 
 ### Create network | node1
+
 ```
 docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
 
@@ -51,7 +56,7 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 
 Warning: Run option #1 **OR** option #2
 
-##### Option #1 | socketproxy
+##### Option #1 (Prefered) | socketproxy
 
 ```
 docker service rm socketproxy && \
@@ -70,7 +75,7 @@ docker service create \
 tecnativa/docker-socket-proxy
 ```
 
-##### Option #2 | socketproxy
+##### Option #2 (plan B) | socketproxy
 
 ```
 docker service rm socketproxy && \
@@ -114,7 +119,8 @@ docker stack deploy nginx -c nginx.yml
 ```
 
 ### See these web apps online
-Click on port 8080 from the PWD Gui. It will allow you the get the unique URL domain for this session.
+
+Click on port 8080 from the PWD gui. It will allow you the get the unique URL domain for this session.
 
 ```
 http://pwd10_0_25_3-8080.host2.labs.play-with-docker.com/dashboard/#/
