@@ -6,7 +6,7 @@ services:
     networks:
       - ntw_front
     deploy:
-      mode: global
+      replicas: 2
       placement:
         constraints: [node.role == worker]                                                   
       restart_policy:
