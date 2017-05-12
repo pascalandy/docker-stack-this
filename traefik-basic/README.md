@@ -34,7 +34,7 @@ docker swarm join --token SWMTKN-1-58x1bngt2esj8enkr0q71bn98t3vn96cqld9ay9tbe06u
 ### Git clone | node1
 ```
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this
+cd docker-stack-this/traefik-basic
 ```
 
 ### Create network | Leader
