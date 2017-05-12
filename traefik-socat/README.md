@@ -54,9 +54,7 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 
 ### Deploy traefik & socketproxy
 
-Warning: Run option #1 **OR** option #2
-
-##### Option #1 (Prefered) | socketproxy
+##### socketproxy
 
 ```
 docker service rm socketproxy && \
@@ -75,19 +73,7 @@ docker service create \
 tecnativa/docker-socket-proxy
 ```
 
-##### Option #2 (plan B) | socketproxy
-
-```
-docker service rm socketproxy && \
-\
-docker service create \
---name socketproxy \
---network ntw_socketproxy \
---mode global \
---mount "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock" \
---constraint 'node.role==manager' \
-rancher/socat-docker
-```
+See the [option #2](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/option2.md)https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/README.md which use rancher/socat
 
 ##### Traefik
 
