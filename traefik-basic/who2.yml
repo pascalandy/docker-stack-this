@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  who2:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      labels:
+        - "traefik.backend=who2"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefixStrip:/who2"
+        - "traefik.docker.network=ntw_front"
+
+networks:
+  ntw_front:
+    external: true
+

@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  caddy1:
+    image: abiosoft/caddy:0.10.2
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      labels:
+        - "traefik.backend=caddy1"
+        - "traefik.port=2015"
+        - "traefik.frontend.rule=PathPrefixStrip:/caddy1"
+        - "traefik.docker.network=ntw_front"
+
+networks:
+  ntw_front:
+    external: true
+
