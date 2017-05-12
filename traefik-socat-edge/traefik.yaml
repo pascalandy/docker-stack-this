@@ -3,7 +3,7 @@ version: "3.1"
 services:
   traefik:
     image: traefik:1.2.3-alpine
-    command: --web --docker --docker.swarmmode --docker.watch --docker.domain=traefik --logLevel=DEBUG
+    command: --web --docker --docker.swarmmode --docker.watch --docker.domain=traefik --Docker.EndPoint=http://dockersocket:2375 --logLevel=DEBUG
     ports:
       - "80:80"
       - "8080:8080"
