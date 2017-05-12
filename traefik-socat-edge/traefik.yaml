@@ -16,8 +16,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /root/docker-stack-this/traefik-socat-edge/traefik/acme:/etc/traefik/acme
-      - /root/docker-stack-this/traefik-socat-edge/traefik:/traefik.toml
+      - /root/traefik-config/acme/acme:/etc/traefik/acme
+      - /root/traefik-config/acme:/traefik.toml
     ports:
       - "80:80"
       - "443:443"
