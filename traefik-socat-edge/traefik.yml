@@ -37,3 +37,7 @@ services:
 networks:
   ntw_front:
     external: true
+
+networks:
+  ntw_socketproxy:
+    external: true
