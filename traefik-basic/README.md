@@ -1,6 +1,8 @@
 # Quickly try this stack
 
-I consider this README crystal clear. I made it blazing-ish-fast to try out. If there is anything that I could improve, please buzz me.
+I consider this README crystal clear. It should be quick for you to try the elements of this repo. If there is anything that I could improve, please let me know.
+
+Source: https://github.com/pascalandy/docker-stack-this
 
 ### Create a cluster
 Create a two nodes on http://labs.play-with-docker.com/
