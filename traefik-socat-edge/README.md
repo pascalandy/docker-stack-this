@@ -130,7 +130,9 @@ docker stack rm who1
 docker stack rm who2
 docker stack rm caddy1
 docker stack rm nginx1
+
 docker network rm ntw_front
+docker network rm ntw_socketproxy
 ```
 
 **P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang)… plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). I’m looking for bright and caring people to join in this journey 🌇.
