@@ -111,6 +111,23 @@ docker stack deploy caddy -c caddy.yml
 docker stack deploy nginx -c nginx.yml
 ```
 
+### Checkpoint
+
+`docker service ls` should looks like:
+
+```
+root@EJA01:~/docker-stack-this/traefik-haproxy# docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                                  PORTS
+2n1ouccsjq46        nginx_nginx2        replicated          3/3                 nginx:1.13.0-alpine
+d6sq2bkf29es        caddy_caddy2        replicated          3/3                 abiosoft/caddy:0.10.2
+glzicabhj726        who_who1            replicated          3/3                 emilevauge/whoami:latest
+jnn673qvn4fg        socketproxy         global              3/3                 tecnativa/docker-socket-proxy:latest
+jqt6kzya136p        who_who2            replicated          3/3                 emilevauge/whoami:latest
+p9wl0p0ly1ax        caddy_caddy1        replicated          3/3                 abiosoft/caddy:0.10.2
+sd7h5f3mcw7t        nginx_nginx1        replicated          3/3                 nginx:1.13.0-alpine
+xa6vwcxol81h        traefik             global              2/2                 traefik:1.2.3-alpine                   *:80->80/tcp,*:443->443/tcp,*:8080->8080/tcp
+```
+
 ### See these web apps online
 
 Click on port 8080 from the PWD gui. It will allow you the get the unique URL domain for this session.
