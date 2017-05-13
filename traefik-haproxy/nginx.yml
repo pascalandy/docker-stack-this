@@ -32,7 +32,7 @@ services:
         - "traefik.port=80"
         - "traefik.frontend.rule=PathPrefixStrip:/nginx2"
         - "traefik.docker.network=ntw_front"
-				
+
 networks:
   ntw_front:
     external: true
