@@ -41,7 +41,7 @@ Now that we feel like a rock stars, it’s time to break stuff.
 ```
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-socat
+cd docker-stack-this/traefik-haproxy
 ```
 
 ### Create network | node1
