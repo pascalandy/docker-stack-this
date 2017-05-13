@@ -85,7 +85,7 @@ docker service create \
 -p 443:443 \
 -p 8080:8080 \
 --constraint 'node.role==worker' \
-traefik \
+traefik:1.2.3-alpine \
 --docker \
 --docker.swarmmode \
 --docker.endpoint=tcp://socketproxy:2375 \
