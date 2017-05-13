@@ -92,6 +92,17 @@ traefik:1.2.3-alpine \
 --web
 ```
 
+### Checkpoint
+
+`docker service ls` should looks like:
+
+```
+root@host:~/docker-stack-this/traefik-haproxy# docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                                  PORTS
+jnn673qvn4fg        socketproxy         global              3/3                 tecnativa/docker-socket-proxy:latest
+xa6vwcxol81h        traefik             global              2/2                 traefik:1.2.3-alpine                   *:80->80/tcp,*:443->443/tcp,*:8080->8080/tcp
+```
+
 ###  Deploy web apps
 
 ```
