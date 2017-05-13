@@ -48,8 +48,8 @@ cd docker-stack-this/traefik-haproxy
 
 ```
 docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
-
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
+docker network ls
 ```
 
 ### Deploy traefik & socketproxy
@@ -57,8 +57,6 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 ##### socketproxy
 
 ```
-docker service rm socketproxy && \
-\
 docker service create \
 --name socketproxy \
 --network ntw_socketproxy \
@@ -78,8 +76,6 @@ See the [option #2](https://github.com/pascalandy/docker-stack-this/blob/master/
 ##### Traefik
 
 ```
-docker service rm traefik && \
-\
 docker service create \
 --name traefik \
 --network ntw_front \
