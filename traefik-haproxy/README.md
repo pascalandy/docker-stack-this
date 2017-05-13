@@ -116,7 +116,7 @@ docker stack deploy nginx -c nginx.yml
 `docker service ls` should looks like:
 
 ```
-root@EJA01:~/docker-stack-this/traefik-haproxy# docker service ls
+root@host:~/docker-stack-this/traefik-haproxy# docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE                                  PORTS
 2n1ouccsjq46        nginx_nginx2        replicated          3/3                 nginx:1.13.0-alpine
 d6sq2bkf29es        caddy_caddy2        replicated          3/3                 abiosoft/caddy:0.10.2
@@ -184,8 +184,8 @@ docker service logs -f traefik_traefik
 
 docker service ps traefik_traefik
 
-docker service update -d=false --replicas 5 who1_who1
-    # OLD WAY docker service scale who1_who1=5
+docker service update -d=false --replicas 5 who_who
+    # OLD WAY docker service scale who_who=5
 
 curl http://localhost:8080/api/providers
 curl http://localhost/caddy1/ 
