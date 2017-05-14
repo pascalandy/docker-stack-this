@@ -194,6 +194,9 @@ curl http://localhost/caddy1/
 ### Scrap all
 
 ```
+
+docker service rm socketproxy
+docker service rm traefik
 docker stack rm who
 docker stack rm caddy
 docker stack rm nginx
