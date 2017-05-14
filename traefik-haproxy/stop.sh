@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Add permission to make this file executable
+# chmod +x stop.sh
+
 docker service rm socketproxy
 docker service rm traefik
 

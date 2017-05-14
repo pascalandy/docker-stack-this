@@ -194,7 +194,6 @@ curl http://localhost/caddy1/
 ### Scrap all
 
 ```
-
 docker service rm socketproxy
 docker service rm traefik
 docker stack rm who
@@ -204,6 +203,23 @@ docker stack rm nginx
 docker network rm ntw_front
 docker network rm ntw_socketproxy
 ```
+
+### Magic script
+
+Now that you know how to run this, feel free to use:
+
+```
+./start.sh
+./stop.sh
+```
+
+Just make just the permission are set:
+```
+chmod +x start.sh
+chmod +x stop.sh
+```
+
+### A last word
 
 **P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang)… plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). I’m looking for bright and caring people to join in this journey 🌇.
 
