@@ -206,7 +206,7 @@ docker network rm ntw_socketproxy
 
 ### Magic script
 
-Now that you know how to run this, feel free to use:
+Now that you know how to run this, feel free to execute:
 
 ```
 ./start.sh
@@ -219,13 +219,15 @@ chmod +x start.sh
 chmod +x stop.sh
 ```
 
+Containerize carefully!
+
 ### A last word
 
 **P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang)… plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). I’m looking for bright and caring people to join in this journey 🌇.
 
 Here, I [shared the details](http://firepress.org/blog/technical-challenges-we-are-facing-now/) of the challenges I’m facing at the moment.
 
-Containerize carefully!
+Cheers!
 
 ```
  ____                     _      _              _
