@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  nginx1:
+  nginxa:
     image: nginx:1.13.0-alpine
     networks:
       - ntw_front
@@ -12,12 +12,12 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=nginx1"
-        - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefixStrip:/nginx1"
+        - "traefik.backend=nginxa"
+        - "traefik.frontend.rule=PathPrefixStrip:/nginxa"
+				- "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
-  nginx2:
+  nginxb:
     image: nginx:1.13.0-alpine
     networks:
       - ntw_front
@@ -28,9 +28,9 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=nginx2"
-        - "traefik.port=80"
-        - "traefik.frontend.rule=PathPrefixStrip:/nginx2"
+        - "traefik.backend=nginxb"
+        - "traefik.frontend.rule=PathPrefixStrip:/nginxb"
+				- "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
 networks:

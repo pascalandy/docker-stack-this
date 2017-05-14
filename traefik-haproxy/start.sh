@@ -3,9 +3,13 @@
 # Add permission to make this file executable
 # chmod +x start.sh
 
+echo; echo "create our two networks ..."
+
 docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 docker network ls | grep "ntw_"
+
+echo; echo "start our socketproxy ..."
 
 docker service create \
 --name socketproxy \
@@ -20,7 +24,7 @@ docker service create \
 -e TASKS=1 \
 tecnativa/docker-socket-proxy
 
-echo; echo
+echo; echo "start our traefik ..."
 
 docker service create \
 --name traefik \
@@ -31,18 +35,18 @@ docker service create \
 -p 443:443 \
 -p 8080:8080 \
 --constraint 'node.role==worker' \
-traefik \
+traefik:1.2.3-alpine \
 --docker \
 --docker.swarmmode \
 --docker.endpoint=tcp://socketproxy:2375 \
 --web
 
-echo; echo
+echo; echo "start our webapps ..."
 
 docker stack deploy who -c who.yml
 docker stack deploy caddy -c caddy.yml
 docker stack deploy nginx -c nginx.yml
 
-echo; echo
+echo; echo "docker service ls ..."
 
 docker service ls

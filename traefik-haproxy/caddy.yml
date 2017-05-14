@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  caddy1:
+  caddya:
     image: abiosoft/caddy:0.10.2
     networks:
       - ntw_front
@@ -12,12 +12,12 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=caddy1"
+        - "traefik.frontend.rule=PathPrefixStrip:/caddya"
+				- "traefik.backend=caddya"
         - "traefik.port=2015"
-        - "traefik.frontend.rule=PathPrefixStrip:/caddy1"
         - "traefik.docker.network=ntw_front"
 
-  caddy2:
+  caddyb:
     image: abiosoft/caddy:0.10.2
     networks:
       - ntw_front
@@ -28,9 +28,9 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=caddy2"
+	      - "traefik.frontend.rule=PathPrefixStrip:/caddyb"
+        - "traefik.backend=caddyb"
         - "traefik.port=2015"
-        - "traefik.frontend.rule=PathPrefixStrip:/caddy2"
         - "traefik.docker.network=ntw_front"
 
 networks:
