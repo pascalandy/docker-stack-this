@@ -13,7 +13,7 @@ services:
         condition: on-failure
       labels:
         - "traefik.frontend.rule=PathPrefixStrip:/caddya"
-				- "traefik.backend=caddya"
+        - "traefik.backend=caddya"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
 
@@ -28,7 +28,7 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-	      - "traefik.frontend.rule=PathPrefixStrip:/caddyb"
+        - "traefik.frontend.rule=PathPrefixStrip:/caddyb"
         - "traefik.backend=caddyb"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"

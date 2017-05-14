@@ -14,7 +14,7 @@ services:
       labels:
         - "traefik.backend=nginxa"
         - "traefik.frontend.rule=PathPrefixStrip:/nginxa"
-				- "traefik.port=80"
+        - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
   nginxb:
@@ -30,7 +30,7 @@ services:
       labels:
         - "traefik.backend=nginxb"
         - "traefik.frontend.rule=PathPrefixStrip:/nginxb"
-				- "traefik.port=80"
+        - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
 networks:

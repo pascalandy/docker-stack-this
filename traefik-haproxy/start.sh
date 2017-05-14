@@ -9,7 +9,7 @@ docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted nt
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 docker network ls | grep "ntw_"
 
-echo; echo "start our socketproxy ..."
+echo; echo "start service socketproxy ..."
 
 docker service create \
 --name socketproxy \
@@ -24,7 +24,7 @@ docker service create \
 -e TASKS=1 \
 tecnativa/docker-socket-proxy
 
-echo; echo "start our traefik ..."
+echo; echo "start service traefik ..."
 
 docker service create \
 --name traefik \
@@ -41,7 +41,7 @@ traefik:1.2.3-alpine \
 --docker.endpoint=tcp://socketproxy:2375 \
 --web
 
-echo; echo "start our webapps ..."
+echo; echo "start the webapps services ..."
 
 docker stack deploy who -c who.yml
 docker stack deploy caddy -c caddy.yml

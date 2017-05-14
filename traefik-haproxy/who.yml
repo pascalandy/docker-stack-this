@@ -14,7 +14,7 @@ services:
       labels:
         - "traefik.backend=whoa"
         - "traefik.frontend.rule=PathPrefixStrip:/whoa"
-				- "traefik.port=80"
+        - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
   whob:
@@ -30,7 +30,7 @@ services:
       labels:
         - "traefik.backend=whob"
         - "traefik.frontend.rule=PathPrefixStrip:/whob"
-				- "traefik.port=80"
+        - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
 networks:
