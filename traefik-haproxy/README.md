@@ -14,6 +14,7 @@ On http://labs.play-with-docker.com/ create five instances.
 Copy paste this script on `node1`. This will create 3 leaders + 2 workers.
 
 ```
+# Create Swarm
 docker swarm init --advertise-addr eth0
 TOKEN_LEAD=$(docker swarm join-token -q manager)
 TOKEN_WORK=$(docker swarm join-token -q worker)
@@ -23,36 +24,25 @@ done
 for N in $(seq 4 5); do
   DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
 done
+\
+# List nodes
 docker node ls
-```
-
-### 1B) On each nodes:
-
-Optional but I always need theses :-p
-
-```
+\
+# Clone repo
 apk update && apk upgrade && apk add nano curl bash git
+cd /root
+git clone https://github.com/pascalandy/docker-stack-this.git
+cd docker-stack-this/traefik-haproxy
+\
+# Launch all services
+./start
 ```
 
 Now that we feel like a rock stars, it’s time to break stuff.
 
-### 1C) Clone repo | node1
-
-```
-cd /root
-git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-haproxy
-```
-
 ### 2) The magic
 
-Just execute:
-
-```
-./start.sh
-
-./stop.sh
-```
+Just execute those two commands: `./start` and `./stop`
 
 To see screen shots and each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
 
