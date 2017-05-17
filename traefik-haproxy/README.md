@@ -5,27 +5,27 @@ I consider this README crystal clear. It should be quick for you to try the elem
 **Why using a traefik + socketproxy**?
 Listen to this: https://cl.ly/1z0Q3a0K1M15
 
-### Setup
+## Setup
 
 On http://labs.play-with-docker.com/ create five instances.
 Wait about 30sec for after node5 is deploy to ensure the machines have network,
 
 Execute: `./setup`
 
-**3 things happen here**:
+This will do 3 things:
 - This will create 3 leaders + 2 workers.
 - Clone repo && cd into the right directory
 - run ./start
 
 Enjoy!
 
-### 2) Start and stop
+## 2) Start and stop
 
 Execute: `./start` and `./stop`
 
 To see screen shots and each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
 
-### A last word
+## A last word
 
 **P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang)… plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). I’m looking for bright and caring people to join in this journey 🌇.
 
