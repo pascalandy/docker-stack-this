@@ -24,27 +24,74 @@ TOKEN_LEAD=$(docker swarm join-token -q manager)
 TOKEN_WORK=$(docker swarm join-token -q worker)
 DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
 \
-for N in $(seq 2 5); do
+for N in $(seq 2 4); do
   DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
 done
-\
-# List nodes
-docker node ls
+echo && echo & sleep 1
 \
 # Clone repo
 apk update && apk upgrade && apk add nano curl bash git
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/PXC-Cluster
+echo && echo & sleep 1
+\
+# List nodes
+docker node ls
+echo && echo
+\
+# Deploy Stack
+docker stack deploy -c docker-compose.yml galera
+echo && echo
+\
+docker ps
+echo && echo
+\
+# Find the ID for galera_proxy
+ctn_NAME=galera_proxy && \
+ctnID=$(docker ps -q --filter label=com.docker.swarm.service.name=$ctn_NAME)
+echo "$ctnID"
+echo && echo "galera_proxy ID is: $ctnID"
+echo && echo
+\
+# Add nodes to our galera cluster
+docker exec -i $ctnID add_cluster_nodes.sh
+echo && echo
+\
+echo "Next define mysql password…"
+echo && echo
 ```
 
-You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
-
 ## WIP
+
+docker exec -it $ctnID mysql -uproxyuser -p
+(I’ll define password as 123123123)
+
+docker exec -it $ctnID mysql -uproxyuser -p123123123 \
+-e "SHOW DATABASES;"
+
+# — — — # — — — # — — — #
+
+ctn_NAME=galera_proxy && \
+ctnID=$(docker ps -q --filter label=com.docker.swarm.service.name=$ctn_NAME)
+echo "$ctnID"
 
 docker exec -i galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u add_cluster_nodes.sh
 
 docker exec -it galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u mysql -uproxyuser -p
+
+docker exec -it galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u mysql -uproxyuser -pMM98j290HU2vCD4f8723fZZ \
+-e "SHOW DATABASES;"
+
+docker exec -it $ctnID mysql --user=root --password=$ENV_PASS \
+
+
+docker exec -it galera_proxy mysql -uproxyuser -pMM98j290HU2vCD4f8723fZZ \
+-e "SHOW DATABASES;"
+
+galera_proxy
+
+# — — — # — — — # — — — #
 
 ## A last word
 
