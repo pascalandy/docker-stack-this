@@ -118,22 +118,22 @@ Click on port 8080 from the PWD gui. It will allow you the get the unique URL do
 http://pwd10_0_25_3-8080.host2.labs.play-with-docker.com/dashboard/#/
                    #____# On PWD pay attention
 
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/who1/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-who-a/
                    #__# On PWD pay attention
 
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/who2/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-who-b/
                    #__# On PWD pay attention
 
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/caddy1/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-caddy-a/
                    #__# On PWD pay attention
 
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/caddy2/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-caddy-b/
                    #__# On PWD pay attention
                    
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx1/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-nginx-a/
                    #__# On PWD pay attention
                    
-http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/nginx2/
+http://pwd10_0_25_3-80.host2.labs.play-with-docker.com/webapp-nginx-b/
                    #__# On PWD pay attention
 ```
 
