@@ -20,7 +20,7 @@ TOKEN_LEAD=$(docker swarm join-token -q manager)
 TOKEN_WORK=$(docker swarm join-token -q worker)
 DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
 \
-for N in $(seq 2 3 4 5); do
+for N in $(seq 2 5); do
   DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
 done
 \
