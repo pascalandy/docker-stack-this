@@ -13,13 +13,13 @@ Wait about 30sec for after node5 is deploy to ensure the machines have network,
 Execute: `./setup`
 
 This will do 3 things:
-- This will create 3 leaders + 2 workers.
+- Create 3 leaders + 2 workers.
 - Clone repo && cd into the right directory
-- run ./start
+- Execute: `./start`
 
 Enjoy!
 
-## 2) Start and stop
+## Start and stop
 
 Execute: `./start` and `./stop`
 
