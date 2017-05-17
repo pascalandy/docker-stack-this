@@ -1,48 +1,27 @@
 # Quickly try this stack
 
-I consider this README crystal clear. It should be quick for you to try the elements of this repo. If there is anything that I could improve, please let me know.
+I consider this README crystal clear. It should be quick for you to try the elements of this repo. If there is anything that I could improve, please let me know. **Source**: https://github.com/pascalandy/docker-stack-this
 
-Source: https://github.com/pascalandy/docker-stack-this
-
-### Why using a traefik + socketproxy?
+**Why using a traefik + socketproxy**?
 Listen to this: https://cl.ly/1z0Q3a0K1M15
 
-### 1A) Create a 5 nodes cluster
+### Setup
 
 On http://labs.play-with-docker.com/ create five instances.
+Wait about 30sec for after node5 is deploy to ensure the machines have network,
 
-Copy paste this script on `node1`. This will create 3 leaders + 2 workers.
+Execute: `./setup`
 
-```
-# Create Swarm
-docker swarm init --advertise-addr eth0
-TOKEN_LEAD=$(docker swarm join-token -q manager)
-TOKEN_WORK=$(docker swarm join-token -q worker)
-for N in $(seq 2 3); do
-  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
-done
-for N in $(seq 4 5); do
-  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
-done
-\
-# List nodes
-docker node ls
-\
-# Clone repo
-apk update && apk upgrade && apk add nano curl bash git
-cd /root
-git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-haproxy
-\
-# Launch all services
-./start
-```
+**3 things happen here**:
+- This will create 3 leaders + 2 workers.
+- Clone repo && cd into the right directory
+- run ./start
 
-Now that we feel like a rock stars, it’s time to break stuff.
+Enjoy!
 
-### 2) The magic
+### 2) Start and stop
 
-Just execute those two commands: `./start` and `./stop`
+Execute: `./start` and `./stop`
 
 To see screen shots and each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
 

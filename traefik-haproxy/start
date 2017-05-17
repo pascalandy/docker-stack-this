@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Add permission to make this file executable
-# chmod +x start.sh
+# Add permission to make this file executable | chmod +x start
 
 echo; echo "create our two networks ..."
 

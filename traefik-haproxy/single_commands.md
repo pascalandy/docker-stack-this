@@ -1,3 +1,33 @@
+
+### Create Swarm
+
+```
+docker swarm init --advertise-addr eth0
+TOKEN_LEAD=$(docker swarm join-token -q manager)
+TOKEN_WORK=$(docker swarm join-token -q worker)
+for N in $(seq 2 3); do
+  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
+done
+for N in $(seq 4 5); do
+  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
+done
+```
+
+###  List nodes
+
+```
+docker node ls
+```
+
+###  Clone repo
+
+```
+apk update && apk upgrade && apk add nano curl bash git
+cd /root
+git clone https://github.com/pascalandy/docker-stack-this.git
+cd docker-stack-this/traefik-haproxy
+```
+
 ### Create network | node1
 
 ```
@@ -6,9 +36,7 @@ docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted nt
 docker network ls | grep "ntw_"
 ```
 
-### Deploy traefik & socketproxy
-
-##### socketproxy
+### Deploy socketproxy
 
 ```
 docker service create \
@@ -27,7 +55,7 @@ tecnativa/docker-socket-proxy
 
 See the [option #2](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-socat/option2.md) which use `rancher/socat`.
 
-##### Traefik
+### Deploy Traefik
 
 ```
 docker service create \
