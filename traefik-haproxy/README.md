@@ -1,13 +1,12 @@
 # Quickly try this stack
 
-I consider this README crystal clear. It should be quick for you to try the elements of this repo. If there is anything that I could improve, please let me know. **Source**: https://github.com/pascalandy/docker-stack-this
+I consider this README crystal clear. It should be very quick for you to try this docker stack. If there is anything that I could improve, please let me know. **Source**: https://github.com/pascalandy/docker-stack-this
 
-**Why using a traefik + socketproxy**?
-Listen to this: https://cl.ly/1z0Q3a0K1M15
+**Why using a traefik + socketproxy**? Listen to this: https://cl.ly/1z0Q3a0K1M15
 
 ## Setup
 
-1. On http://labs.play-with-docker.com/ create five instances.
+1. Go to http://labs.play-with-docker.com/ and create five instances.
 2. Wait about 30sec after node5 is deployed to ensure the machines have a network.
 
 3. On **node1**, copy-paste:
@@ -36,6 +35,8 @@ cd docker-stack-this/traefik-haproxy
 # Launch all services
 ./start
 ```
+
+You’re up-and-running baby!
 
 ## Start and stop
 
