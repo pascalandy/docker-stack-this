@@ -32,9 +32,6 @@ apk update && apk upgrade && apk add nano curl bash git
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/PXC-Cluster
-\
-# Launch all services
-./start
 ```
 
 You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
