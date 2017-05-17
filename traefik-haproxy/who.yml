@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  whoa:
+  webapp-who-a:
     image: emilevauge/whoami
     networks:
       - ntw_front
@@ -12,12 +12,12 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=whoa"
-        - "traefik.frontend.rule=PathPrefixStrip:/whoa"
+        - "traefik.backend=webapp-who-a"
+        - "traefik.frontend.rule=PathPrefixStrip:/webapp-who-a"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
-  whob:
+  webapp-who-b:
     image: emilevauge/whoami
     networks:
       - ntw_front
@@ -28,8 +28,8 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.backend=whob"
-        - "traefik.frontend.rule=PathPrefixStrip:/whob"
+        - "traefik.backend=webapp-who-b"
+        - "traefik.frontend.rule=PathPrefixStrip:/webapp-who-b"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
 
