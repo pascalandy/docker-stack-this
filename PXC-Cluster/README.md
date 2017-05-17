@@ -65,12 +65,14 @@ echo && echo
 ## WIP
 
 docker exec -it $ctnID mysql -uproxyuser -p
-(I’ll define password as 123123123)
+(I’ll define password as 123mysql123)
 
 docker exec -it $ctnID mysql -uproxyuser -p123123123 \
 -e "SHOW DATABASES;"
 
 # — — — # — — — # — — — #
+
+## Commands to debbug stuff
 
 ctn_NAME=galera_proxy && \
 ctnID=$(docker ps -q --filter label=com.docker.swarm.service.name=$ctn_NAME)
@@ -84,7 +86,6 @@ docker exec -it galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u mysql -uproxyuser -pMM9
 -e "SHOW DATABASES;"
 
 docker exec -it $ctnID mysql --user=root --password=$ENV_PASS \
-
 
 docker exec -it galera_proxy mysql -uproxyuser -pMM98j290HU2vCD4f8723fZZ \
 -e "SHOW DATABASES;"
