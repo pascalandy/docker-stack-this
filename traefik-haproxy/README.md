@@ -10,9 +10,9 @@ Listen to this: https://cl.ly/1z0Q3a0K1M15
 1. On http://labs.play-with-docker.com/ create five instances.
 2. Wait about 30sec after node5 is deployed to ensure the machines have a network.
 
-3. Execute: `./setup`. This will do 3 things:
+3. Execute: `./setup`. This will **do 3 things**:
 - Create 3 leaders + 2 workers.
-- Clone repo && cd into the right directory
+- Clone the Git repo and cd into this directory
 - Execute: `./start`
 
 Enjoy!
