@@ -10,12 +10,32 @@ Listen to this: https://cl.ly/1z0Q3a0K1M15
 1. On http://labs.play-with-docker.com/ create five instances.
 2. Wait about 30sec after node5 is deployed to ensure the machines have a network.
 
-3. Execute: `./setup`. This will **do 3 things**:
-- Create 3 leaders + 2 workers.
-- Clone the Git repo and cd into this directory
-- Execute: `./start`
+3. Copy-paste:
 
-[Check your apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) in your browser.
+```
+# Create Swarm
+docker swarm init --advertise-addr eth0
+TOKEN_LEAD=$(docker swarm join-token -q manager)
+TOKEN_WORK=$(docker swarm join-token -q worker)
+for N in $(seq 2 3); do
+  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
+done
+for N in $(seq 4 5); do
+  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
+done
+\
+# List nodes
+docker node ls
+\
+# Clone repo
+apk update && apk upgrade && apk add nano curl bash git
+cd /root
+git clone https://github.com/pascalandy/docker-stack-this.git
+cd docker-stack-this/traefik-haproxy
+\
+# Launch all services
+./start
+```
 
 ## Start and stop
 
