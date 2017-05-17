@@ -36,7 +36,7 @@ cd docker-stack-this/traefik-haproxy
 ./start
 ```
 
-You’re up-and-running baby!
+You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
 
 ## Start and stop
 
