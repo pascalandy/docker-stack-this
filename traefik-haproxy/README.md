@@ -44,6 +44,23 @@ git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-haproxy
 ```
 
+### Magic script
+
+Just execute:
+
+```
+./start.sh
+
+./stop.sh
+```
+
+Just make just the permission are set:
+```
+chmod +x start.sh
+chmod +x stop.sh
+```
+
+
 ### Create network | node1
 
 ```
@@ -202,21 +219,6 @@ docker stack rm nginx
 
 docker network rm ntw_front
 docker network rm ntw_socketproxy
-```
-
-### Magic script
-
-Now that you know how to run this, feel free to execute:
-
-```
-./start.sh
-./stop.sh
-```
-
-Just make just the permission are set:
-```
-chmod +x start.sh
-chmod +x stop.sh
 ```
 
 Containerize carefully!
