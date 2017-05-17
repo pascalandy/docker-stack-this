@@ -64,11 +64,13 @@ echo && echo
 
 ## WIP
 
+```
 docker exec -it $ctnID mysql -uproxyuser -p
 (I’ll define password as 123mysql123)
 
 docker exec -it $ctnID mysql -uproxyuser -p123123123 \
 -e "SHOW DATABASES;"
+```
 
 # — — — # — — — # — — — #
 
