@@ -1,5 +1,7 @@
 # Quick trial of this Docker Stack
 
+*** WIP *** WIP *** WIP *** WIP *** WIP *** WIP 
+
 I consider this README crystal clear. If there is anything that I could improve, please let me know :)
 
 Project source: https://github.com/pascalandy/docker-stack-this
@@ -38,12 +40,11 @@ cd docker-stack-this/PXC-Cluster
 
 You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
 
-## Start and stop
+## WIP
 
 docker exec -i galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u add_cluster_nodes.sh
 
 docker exec -it galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u mysql -uproxyuser -p
-
 
 ## A last word
 
