@@ -31,7 +31,7 @@ docker node ls
 apk update && apk upgrade && apk add nano curl bash git
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-haproxy
+cd docker-stack-this/PXC-Cluster
 \
 # Launch all services
 ./start
