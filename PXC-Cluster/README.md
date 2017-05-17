@@ -8,6 +8,8 @@ Why using a traefik and socketproxy together? **Listen** to this: https://cl.ly/
 
 ## Setup
 
+Based on https://github.com/xinity/pxc_swarm
+
 1. Go to http://labs.play-with-docker.com/ and create five instances.
 2. Wait about 30 sec after node5 is deployed to ensure the machines have a network.
 
@@ -38,9 +40,10 @@ You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/
 
 ## Start and stop
 
-Execute: `./start` and `./stop`
+docker exec -i galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u add_cluster_nodes.sh
 
-To see screen shots of this stack and see how to run each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
+docker exec -it galera_proxy.1.mgr9h5f5c7hp6gu9lpvk6g89u mysql -uproxyuser -p
+
 
 ## A last word
 
