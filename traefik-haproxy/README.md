@@ -54,7 +54,7 @@ Just execute:
 ./stop.sh
 ```
 
-If you prefer the run each commands one by one, see single_commands.md
+If you prefer the run each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
 
 ### A last word
 
