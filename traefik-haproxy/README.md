@@ -15,7 +15,7 @@ Listen to this: https://cl.ly/1z0Q3a0K1M15
 - Clone the Git repo and cd into this directory
 - Execute: `./start`
 
-Enjoy!
+[Check your apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) in your browser.
 
 ## Start and stop
 
