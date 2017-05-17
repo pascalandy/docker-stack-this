@@ -12,12 +12,7 @@ Run this [Docker Stack](https://github.com/pascalandy/docker-stack-this/tree/mas
 
 ## Strategy
 
-You can [see](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/caddy.yml#L4), this service `webapp-caddy-a`. We will think of it as implicitly blue.
-
-What we will do, is the create a service `webapp-caddy-a-green` and ensure trafic points to it like it’s `webapp-caddy-a`.
-
-docker service 
-
+see testing.sh
 
 ## A last word
 
