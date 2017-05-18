@@ -1,0 +1,41 @@
+#
+# MariaDB Galera database services
+#
+---
+stack: galera
+version: 0.5.6
+description: MariaDB Galera Cluster
+expose: node
+
+variables:
+
+  galera_xtrabackup_password:
+    type: string
+    from:
+      vault: GALERA_XTRABACKUP_PASSWORD
+      random_string: 32
+    to:
+      vault: GALERA_XTRABACKUP_PASSWORD
+
+services:
+
+  node:
+    image: colinmollenhour/mariadb-galera-swarm
+    environment:
+      - GCOMM_MINIMUM=3
+      - LISTEN_WHEN_HEALTHY=8082
+    secrets:
+      - secret: GALERA_XTRABACKUP_PASSWORD
+        name: XTRABACKUP_PASSWORD
+        type: env
+    command: "node node"
+    stateful: true
+    volumes:
+      - mysql-data:/var/lib/mysql
+    deploy:
+      strategy: daemon
+      min_health: 0.6
+      wait_for_port: 8082
+    instances: 1
+    affinity:
+      - label==role=db-node

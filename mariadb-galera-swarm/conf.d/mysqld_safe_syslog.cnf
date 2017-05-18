@@ -1,0 +1,5 @@
+# This file is here to overwrite the file added by the core package to revert the options below
+[mysqld_safe]
+#skip_log_error
+#syslog
+

@@ -1,0 +1,28 @@
+[mysqld]
+bind-address=0.0.0.0
+binlog_format=ROW
+default-storage-engine=innodb
+
+innodb_autoinc_lock_mode=2
+
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+
+# Enable gcache recovery (requires additional disk space)
+# Not yet supported by MariaDb as of 10.1.21
+#gcache.recover=yes
+
+#wsrep_provider_options="gcache.size=2048M"
+#wsrep_slave_threads=4
+
+#wsrep_sst_method=xtrabackup
+
+#
+# xtrabackup-v2 allows for faster SST
+#
+wsrep_sst_method=xtrabackup-v2
+[sst]
+sst-syslog=-1
+progress=/tmp/mysql-console/fifo
+#inno-apply-opts="--use-memory=2G"
+#compressor="pigz --fast --processes 4"
+#decompressor="pigz --decompress"
