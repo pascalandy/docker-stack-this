@@ -4,6 +4,12 @@ I consider this README crystal clear. It should be quick for you to try the elem
 
 Source: https://github.com/pascalandy/docker-stack-this
 
+### Recommandation
+
+It’s grat to test this setup.
+
+But I recommand using this setup: https://github.com/pascalandy/docker-stack-this/tree/master/traefik-haproxy
+
 ### Create a cluster
 Create a two nodes on http://labs.play-with-docker.com/
 
