@@ -31,10 +31,55 @@ echo && echo & sleep 1
 apk update && apk upgrade && apk add nano curl bash git
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/PXC-Cluster
+cd docker-stack-this/mariadb-galera-swarm
 echo && echo & sleep 1
 \
 # List nodes
 docker node ls
 echo && echo
+\
+# Create secrets
+openssl rand -base64 32 | docker secret create xtrabackup_password -; 
+openssl rand -base64 32 | docker secret create mysql_password -;
+openssl rand -base64 32 | docker secret create mysql_root_password -;
+\
+docker stack deploy -c docker-compose.yml galera
+\
+# wait for `galera_seed` to be healthy
+while echo; do
+docker service ls
+sleep 1.5
+done
 ```
+
+When `galera_seed` is healthy:
+
+```
+docker service scale galera_node=2
+\
+# wait for both `galera_node` instances to be healthy
+while echo; do
+docker service ls
+sleep 1.5
+done
+```
+
+When `galera_node` is healthy:
+```
+docker service scale galera_seed=0
+docker service scale galera_node=3
+while echo; do
+docker service ls
+sleep 1.5
+done
+```
+
+###
+
+
+galera_node.3.rz1bx2ryy3zamxev38kuzpj9t
+
+
+
+
+
