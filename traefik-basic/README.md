@@ -6,7 +6,7 @@ Source: https://github.com/pascalandy/docker-stack-this
 
 ### Recommandation
 
-It’s grat to test this setup.
+It’s great to test this setup.
 
 But I recommand using this setup: https://github.com/pascalandy/docker-stack-this/tree/master/traefik-haproxy
 
