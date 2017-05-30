@@ -12,11 +12,11 @@ services:
     networks:
       - ntw_socketproxy
     volumes:
-      - "/var/run/docker.sock,target=/var/run/docker.sock"
+      - /var/run/docker.sock,target=/var/run/docker.sock
     deploy:
       replicas: 1
       placement:
-        constraints: [node.role == manager]                                                   
+        constraints: [node.role == manager]                                           
       restart_policy:
         condition: on-failure
 
@@ -35,7 +35,7 @@ services:
     deploy:
       mode: global
       placement:
-        constraints: [node.role == worker]                                                   
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       
