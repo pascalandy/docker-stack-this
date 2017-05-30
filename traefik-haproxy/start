@@ -11,9 +11,9 @@ docker network ls | grep "ntw_"
 echo; echo "start service socketproxy ..."
 
 docker service create \
---name socketproxy \
+--name tool-socketproxy \
 --network ntw_socketproxy \
---mode global \
+--replicas 1 \
 --mount "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock" \
 --constraint 'node.role==manager' \
 -e CONTAINERS=1 \
@@ -26,7 +26,7 @@ tecnativa/docker-socket-proxy
 echo; echo "start service traefik ..."
 
 docker service create \
---name traefik \
+--name tool-traefik \
 --network ntw_front \
 --network ntw_socketproxy \
 --mode global \
@@ -37,7 +37,7 @@ docker service create \
 traefik:1.2.3-alpine \
 --docker \
 --docker.swarmmode \
---docker.endpoint=tcp://socketproxy:2375 \
+--docker.endpoint=tcp://tool-socketproxy:2375 \
 --web
 
 echo; echo "start the webapps services ..."
