@@ -42,9 +42,9 @@ traefik:1.2.3-alpine \
 
 echo; echo "start the webapps services ..."
 
-docker stack deploy who -c who.yml
-docker stack deploy caddy -c caddy.yml
-docker stack deploy nginx -c nginx.yml
+docker stack deploy webapp -c who.yml
+docker stack deploy webapp -c caddy.yml
+docker stack deploy webapp -c nginx.yml
 
 echo; echo "docker service ls ..."
 
