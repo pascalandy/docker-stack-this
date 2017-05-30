@@ -1,0 +1,102 @@
+version: "3"
+
+services:
+  who-a:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                           
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=who-a"
+        - "traefik.frontend.rule=PathPrefixStrip:/who-a"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+
+  who-b:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                           
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=who-b"
+        - "traefik.frontend.rule=PathPrefixStrip:/who-b"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+
+  caddy-a:
+    image: abiosoft/caddy:0.10.2
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                           
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.frontend.rule=PathPrefixStrip:/caddy-a"
+        - "traefik.backend=caddy-a"
+        - "traefik.port=2015"
+        - "traefik.docker.network=ntw_front"
+
+  caddy-b:
+    image: abiosoft/caddy:0.10.2
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                           
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.frontend.rule=PathPrefixStrip:/caddy-b"
+        - "traefik.backend=caddy-b"
+        - "traefik.port=2015"
+        - "traefik.docker.network=ntw_front"
+
+  nginx-a:
+    image: nginx:1.13.0-alpine
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]                                           
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=nginx-a"
+        - "traefik.frontend.rule=PathPrefixStrip:/nginx-a"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+
+  nginx-b:
+    image: nginx:1.13.0-alpine
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role == worker]  
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=nginx-b"
+        - "traefik.frontend.rule=PathPrefixStrip:/nginx-b"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+
+networks:
+  ntw_front:
+    external: true

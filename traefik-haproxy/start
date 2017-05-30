@@ -8,8 +8,8 @@ docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted nt
 docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 docker network ls | grep "ntw_"
 
+sleep 2
 echo; echo "start service socketproxy ..."
-
 docker service create \
 --name tool-socketproxy \
 --network ntw_socketproxy \
@@ -23,8 +23,8 @@ docker service create \
 -e TASKS=1 \
 tecnativa/docker-socket-proxy
 
+sleep 2
 echo; echo "start service traefik ..."
-
 docker service create \
 --name tool-traefik \
 --network ntw_front \
@@ -41,11 +41,12 @@ traefik:1.2.3-alpine \
 --web
 
 echo; echo "start the webapps services ..."
+docker stack deploy webapp -c webapps.yml
 
-docker stack deploy webapp -c who.yml
-docker stack deploy webapp -c caddy.yml
-docker stack deploy webapp -c nginx.yml
+echo; echo "docker stack ls ..."
+sleep 2
+docker stack ls
 
 echo; echo "docker service ls ..."
-
+sleep 2
 docker service ls
