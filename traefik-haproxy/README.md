@@ -2,9 +2,11 @@
 
 I consider this README crystal clear. If there is anything that I could improve, please let me know :)
 
-Project source: https://github.com/pascalandy/docker-stack-this
-
 Why using a traefik and socketproxy together? **Listen** to this: https://cl.ly/1z0Q3a0K1M15
+
+REPO: https://github.com/pascalandy/docker-stack-this
+
+Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/_run#L37)
 
 ## Setup
 
@@ -35,7 +37,7 @@ git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-haproxy
 \
 # Launch all services
-./start
+./_run
 ```
 
 You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
@@ -48,11 +50,12 @@ To see screen shots of this stack and see how to run each commands one by one, s
 
 ## A last word
 
-**P.S.** If you have solid skills 🤓 with Docker Swarm, Bash (and the gang)… plus you would love 💚 to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). I’m looking for bright and caring people to join in this journey 🌇.
+**P.S.** If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang* and you would love to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
 
-Here, I [shared the details](http://firepress.org/blog/technical-challenges-we-are-facing-now/) of the challenges I’m facing at the moment.
+I’m looking for bright and caring people to join this [journey](http://firepress.org/blog/tag/from-the-heart/) with me.
 
-Cheers!
+Thanks in advance!
+Pascal
 
 ```
  ____                     _      _              _
