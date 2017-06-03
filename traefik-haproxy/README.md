@@ -40,9 +40,9 @@ cd docker-stack-this/traefik-haproxy
 
 You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
 
-## Start and stop
+## run and stop
 
-Execute: `./start` and `./stop`
+Execute: `./_run` and `./_stop`
 
 To see screen shots of this stack and see how to run each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
 
