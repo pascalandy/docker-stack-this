@@ -1,270 +1,37 @@
-################################################################
-# Global configuration
-################################################################
-
-# Timeout in seconds.
-# Duration to give active requests a chance to finish during hot-reloads
-#
-# Optional
-# Default: 10
-#
-# graceTimeOut = 10
-
-# Enable debug mode
-#
-# Optional
-# Default: false
-#
-# debug = true
-
-# Periodically check if a new version has been released
-#
-# Optional
-# Default: true
-#
-# checkNewVersion = false
-
-# Traefik logs file
-# If not defined, logs to stdout
-#
-# Optional
-#
-# traefikLogsFile = "log/traefik.log"
-
-# Access logs file
-#
-# Optional
-#
-# accessLogsFile = "log/access.log"
-
-# Log level
-#
-# Optional
-# Default: "ERROR"
-# Accepted values, in order of severity: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
-# Messages at and above the selected level will be logged.
-#
-# logLevel = "ERROR"
-
-# Backends throttle duration: minimum duration in seconds between 2 events from providers
-# before applying a new configuration. It avoids unnecessary reloads if multiples events
-# are sent in a short amount of time.
-#
-# Optional
-# Default: "2"
-#
-# ProvidersThrottleDuration = "5"
-
-# Controls the maximum idle (keep-alive) connections to keep per-host. If zero, DefaultMaxIdleConnsPerHost
-# from the Go standard library net/http module is used.
-# If you encounter 'too many open files' errors, you can either increase this
-# value or change the `ulimit`.
-#
-# Optional
-# Default: 200
-#
-# MaxIdleConnsPerHost = 200
-
-# If set to true invalid SSL certificates are accepted for backends.
-# Note: This disables detection of man-in-the-middle attacks so should only be used on secure backend networks.
-# Optional
-# Default: false
-#
-# InsecureSkipVerify = true
-
-# Entrypoints to be used by frontends that do not specify any entrypoint.
-# Each frontend can specify its own entrypoints.
-#
-# Optional
-# Default: ["http"]
-#
-# defaultEntryPoints = ["http", "https"]
+# defaultEntryPoints must be at the top because it should not be in any table below
 defaultEntryPoints = ["http", "https"]
 
 [web]
+# Port for the status page
 address = ":8080"
 
-# Set REST API to read-only mode
-#
-# Optional
-# ReadOnly = false
-#
-# To enable more detailed statistics
-# [web.statistics]
-#   RecentErrors = 10
-  [web.statistics]
-    RecentErrors = 10
-#
-# To enable Traefik to export internal metrics to Prometheus
-# [web.metrics.prometheus]
-#   Buckets=[0.1,0.3,1.2,5]
-#
-# To enable basic auth on the webui
-# with 2 user/pass: test:test and test2:test2
-# Passwords can be encoded in MD5, SHA1 and BCrypt: you can use htpasswd to generate those ones
-#   [web.auth.basic]
-#     users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
-# To enable digest auth on the webui
-# with 2 user/realm/pass: test:traefik:test and test2:traefik:test2
-# You can use htdigest to generate those ones
-#   [web.auth.digest]
-#     users = ["test:traefik:a2688e031edb4be6a3797f3882655c05 ", "test2:traefik:518845800f9e2bfb1f1f740ec24f074e"]
-
-
-# Entrypoints definition
-#
+# Entrypoints, http and https
 [entryPoints]
-  [entryPoints.http]
-  address = ":80"
-    # To redirect an http entrypoint to an https entrypoint (with SNI support):
-    [entryPoints.http.redirect]
-     entryPoint = "https"
-  [entryPoints.https]
-  address = ":443"
-    [entryPoints.https.tls]
 
-################################################################
-# Docker configuration backend
-################################################################
-
-# Enable Docker configuration backend
-#
-# Optional
-#
-# [docker]
-
-# Docker server endpoint. Can be a tcp or a unix socket endpoint.
-#
-# Required
-#
-# endpoint = "unix:///var/run/docker.sock"
-
-# Default domain used.
-# Can be overridden by setting the "traefik.domain" label on a container.
-#
-# Required
-#
-# domain = "ginsys.io"
-
-# Enable watch docker changes
-#
-# Optional
-#
-# watch = true
-
-# Override default configuration template. For advanced users :)
-#
-# Optional
-#
-# filename = "docker.tmpl"
-
-# Expose containers by default in traefik
-# If set to false, containers that don't have `traefik.enable=true` will be ignored
-#
-# Optional
-# Default: true
-#
-#exposedbydefault = true
-
-# Use the IP address from the binded port instead of the inner network one. For specific use-case :)
-
-#
-# Optional
-# Default: false
-#
-# usebindportip = true
-# Use Swarm Mode services as data provider
-#
-# Optional
-# Default: false
-#
-# swarmmode = true
-
-
-# Enable docker TLS connection
-#
-#  [docker.tls]
-#  ca = "/etc/ssl/ca.crt"
-#  cert = "/etc/ssl/docker.crt"
-#  key = "/etc/ssl/docker.key"
-#  insecureskipverify = true
-
-
-
-# Enable ACME (Let's Encrypt): automatic SSL
-#
-# Optional
-#
-[acme]
-
-email = "helloyou@gmail.com"
-
-# File or key used for certificates storage.
-# WARNING, if you use Traefik in Docker, you have 2 options:
-#  - create a file on your host and mount it as a volume
-#      storageFile = "acme.json"
-#      $ docker run -v "/my/host/acme.json:acme.json" traefik
-#  - mount the folder containing the file as a volume
-#      storageFile = "/etc/traefik/acme/acme.json"
-#      $ docker run -v "/my/host/acme:/etc/traefik/acme" traefik
-#
-# Required
-#
-storage = "/acme.json"
-  # or "traefik/acme/account" if using KV store
-
-# Entrypoint to proxy acme challenge/apply certificates to.
-# WARNING, must point to an entrypoint on port 443
-#
-# Required
-#
+# http should be redirected to https
+[entryPoints.http]
+address = ":80"
+[entryPoints.http.redirect]
 entryPoint = "https"
 
-# If true, display debug log messages from the acme client library
-#
-# Optional
-#
-# acmeLogging = true
-acmeLogging = true
+# https is the default
+[entryPoints.https]
+address = ":443"
+[entryPoints.https.tls]
 
-# Enable on demand certificate. This will request a certificate from Let's Encrypt during the first TLS handshake for a hostname that does not yet have a certificate.
-# WARNING, TLS handshakes will be slow when requesting a hostname certificate for the first time, this can leads to DoS attacks.
-# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
-#
-# Optional
-#
-# onDemand = true
-onDemand = true
-
-# Enable certificate generation on frontends Host rules. This will request a certificate from Let's Encrypt for each frontend with a Host rule.
-# For example, a rule Host:test1.traefik.io,test2.traefik.io will request a certificate with main domain test1.traefik.io and SAN test2.traefik.io.
-#
-# Optional
-#
-# OnHostRule = true
+# Enable ACME (Let's Encrypt): automatic SSL
+[acme]
+email = "gello@gmail.com"
+storage = "/etc/traefik/acme/acme.json"
+entryPoint = "https"
+onDemand = false
 OnHostRule = true
-
-# CA server to use
-# Uncomment the line to run on the staging let's encrypt server
-# Leave comment to go to prod
-#
-# Optional
-#
+acmeLogging=true
 caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
-# Domains list
-# You can provide SANs (alternative domains) to each main domain
-# All domains must have A/AAAA records pointing to Traefik
-# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
-# Each domain & SANs will lead to a certificate request.
-#
-# [[acme.domains]]
-#   main = "local1.com"
-#   sans = ["test1.local1.com", "test2.local1.com"]
-# [[acme.domains]]
-#   main = "local2.com"
-#   sans = ["test1.local2.com", "test2x.local2.com"]
-# [[acme.domains]]
-#   main = "local3.com"
-# [[acme.domains]]
-#   main = "local4.com"
+#[docker]
+#endpoint = "unix:///var/run/docker.sock"
+#domain = "traefik"
+#watch = true
+#exposedbydefault = false
+#swarmmode = true

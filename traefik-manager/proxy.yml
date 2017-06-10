@@ -10,15 +10,6 @@ services:
       - --docker.watch 
       - --docker.swarmmode 
       - --docker.domain=traefik
-      - --acme
-      - --acme.acmeLogging
-      - --acme.onDemand
-      - --acme.OnHostRule
-      - --acme.caServer="https://acme-staging.api.letsencrypt.org/directory"
-      - --acme.email="letsencrypt@xxxxx.net"
-      - --acme.storage="/var/run/acme.json"
-      - --acme.entrypoint="https"
-      - --DefaultEntryPoints=http,https
       - --debug=true
       - --logLevel=DEBUG
       - --InsecureSkipVerify=true
@@ -32,7 +23,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /traefik-config/acme.json:/var/run/acme.json
-      #- /traefik-config/traefik.toml:/etc/traefik/traefik.toml
+      - /traefik-config/traefik.toml:/etc/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
     deploy:
