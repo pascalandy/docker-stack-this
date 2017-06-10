@@ -1,7 +1,7 @@
 defaultEntryPoints = ["http", "https"]
 
-[web]
-address = ":8080"
+#[web]
+#address = ":8080"
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
@@ -29,7 +29,7 @@ address = ":8080"
 
 # Entrypoint to proxy acme challenge/apply certificates to.
 # WARNING, must point to an entrypoint on port 443
-entryPoint = "https"
+# entryPoint = "https"
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
@@ -49,12 +49,12 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 
 # — — — # — — — # — — — #
-#dnsProvider = "cloudflare"
+#dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
 
 	# Use a DNS based acme challenge rather than external HTTPS access, e.g. for a firewalled server
 	# Select the provider that matches the DNS domain that will host the challenge TXT record,
 	# and provide environment variables with access keys to enable setting it:
-	#  - cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
+	#  dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
