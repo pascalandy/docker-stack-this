@@ -20,4 +20,7 @@ docker stack ls
 sleep 2
 
 echo; echo "docker service ls ..."
-watch docker service ls
+docker service ls
+
+echo; echo "docker service ls ..."
+docker service logs proxy_traefik
