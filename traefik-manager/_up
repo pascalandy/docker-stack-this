@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# If needed, add permission to make this file executable | chmod +x start
+
+echo; echo "If not existing, create our two networks ..."
+
+if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
+  docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
+fi
+
+docker network ls | grep "ntw_"
+
+echo; echo "Start the stacks ..."
+docker stack deploy proxy -c proxy.yml
+sleep 2
+
+echo; echo "docker stack ls ..."
+docker stack ls
+sleep 2
+
+echo; echo "docker service ls ..."
+watch docker service ls
