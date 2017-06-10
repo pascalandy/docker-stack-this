@@ -1,60 +1,84 @@
-defaultEntryPoints = ["http", "https"]
-
-[web]
-address = ":8080"
-
-
-# — — — # — — — # — — — # — — — # — — — # — — — #
-### Option 1) Accepts request on port 80 and 443
-
-#[entryPoints]
-#   [entryPoints.http]
-#   address = ":80"
-#   [entryPoints.https]
-#   address = ":443"
-#   [entryPoints.https.tls]
-
-
-# — — — # — — — # — — — # — — — # — — — # — — — #
-### Option 2) Auto-redirect requests from port 80 to 443
-
+# Sample entrypoint configuration when using ACME
 [entryPoints]
-  [entryPoints.http]
-  address = ":80"
-    [entryPoints.http.redirect]
-      entryPoint = "https"
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
 
-# Entrypoint to proxy acme challenge/apply certificates to.
+# Enable ACME (Let's Encrypt): automatic SSL
+#
+# Optional
+#
+[acme]
+
+# Email address used for registration
+#
+# Required
+#
+email = "lavia@gmail.com"
+
+# File or key used for certificates storage.
+# WARNING, if you use Traefik in Docker, you have 2 options:
+#  - create a file on your host and mount it as a volume
+#      storageFile = "acme.json"
+#      $ docker run -v "/my/host/acme.json:acme.json" traefik
+#  - mount the folder containing the file as a volume
+#      storageFile = "/etc/traefik/acme/acme.json"
+#      $ docker run -v "/my/host/acme:/etc/traefik/acme" traefik
+#
+# Required
+#
+storageFile = "/etc/traefik/acme/acme.json"
+
+# Entrypoint to proxy acme challenge to.
 # WARNING, must point to an entrypoint on port 443
+#
+# Required
+#
 entryPoint = "https"
 
+# Enable on demand certificate. This will request a certificate from Let's Encrypt during the first TLS handshake for a hostname that does not yet have a certificate.
+# WARNING, TLS handshakes will be slow when requesting a hostname certificate for the first time, this can leads to DoS attacks.
+# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
+#
+# Optional
+#
+#onDemand = true
 
-# — — — # — — — # — — — # — — — # — — — # — — — #
-[acme]
-email = "mrjim@gmail.com"
-storageFile = "/etc/traefik/acme/acme.json"
-onDemand = true
-onHostRule = true
+# Enable certificate generation on frontends Host rules. This will request a certificate from Let's Encrypt for each frontend with a Host rule.
+# For example, a rule Host:test1.traefik.io,test2.traefik.io will request a certificate with main domain test1.traefik.io and SAN test2.traefik.io.
+#
+# Optional
+#
+# OnHostRule = true
 
-  ### ACME via letsencrypt. (Automatic Certificate Management Environment)
+# CA server to use
+# Uncomment the line to run on the staging let's encrypt server
+# Leave comment to go to prod
+#
+# Optional
+#
+# caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
-# — — — # — — — # — — — # — — — # — — — # — — — #
-#caServer = "https://acme-staging.api.letsencrypt.org/directory"
-
-  # Staging server
-
-# — — — # — — — # — — — #
-#dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
-
-	# Use a DNS based acme challenge rather than external HTTPS access, e.g. for a firewalled server
-	# Select the provider that matches the DNS domain that will host the challenge TXT record,
-	# and provide environment variables with access keys to enable setting it:
-	#  dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
-
-
-# — — — # — — — # — — — # — — — # — — — # — — — #
-# If true, display debug log messages from the acme client library, Optional
-# acmeLogging = true
+# Domains list
+# You can provide SANs (alternative domains) to each main domain
+# All domains must have A/AAAA records pointing to Traefik
+# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
+# Each domain & SANs will lead to a certificate request.
+#
+ [[acme.domains]]
+   main = "cloudwait.com"
+#  sans = ["coiffeur.oryo.space", "whoami.oryo.space"]
+# [[acme.domains]]
+#   main = "local2.com"
+#   sans = ["test1.local2.com", "test2x.local2.com"]
+# [[acme.domains]]
+#   main = "local3.com"
+# [[acme.domains]]
+#   main = "local4.com"
+#[[acme.domains]]
+#   main = "local1.com"
+#   sans = ["test1.local1.com", "test2.local1.com"]
+#[[acme.domains]]
+#   main = "local3.com"
+#[[acme.domains]]
+#   main = "local4.com"
