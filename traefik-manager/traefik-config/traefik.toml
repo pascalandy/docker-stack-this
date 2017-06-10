@@ -29,13 +29,14 @@ defaultEntryPoints = ["http", "https"]
 	################################################################
 	### Option 2) Auto-redirect requests from port 80 to 443
 	################################################################
-	[entryPoints]
-		[entryPoints.http]
-		address = ":80"
-		[entryPoints.http.redirect]
-		entryPoint = "https"
-		[entryPoints.https]
-		address = ":443"
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
 
 
 ################################################################

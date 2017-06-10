@@ -6,8 +6,10 @@ echo; echo "If not existing, create our network ..."
 
 if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
   docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
+  sleep 2
 fi
 
+echo; echo "Show network..."
 docker network ls | grep "ntw_"
 
 echo; echo "Start the stacks ..."
@@ -20,14 +22,10 @@ docker stack ls
 sleep 2
 
 echo; echo "docker service ls ..."
-docker service ls
-sleep 3
-docker service ls
-sleep 3
-docker service ls
-sleep 3
-docker service ls
-sleep 3
+docker service ls && echo && sleep 3
+docker service ls && echo && sleep 3
+docker service ls && echo && sleep 3
+docker service ls && echo && sleep 3
 
 echo; echo "docker service logs -f proxy_traefik ..."
 docker service logs -f proxy_traefik
