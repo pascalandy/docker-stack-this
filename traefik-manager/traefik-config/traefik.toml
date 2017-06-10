@@ -33,20 +33,18 @@ defaultEntryPoints = ["http", "https"]
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
-### ACME via letsencrypt. (Automatic Certificate Management Environment)
-
 [acme]
 email = "mybiz@gmail.com"
 storage = "acme.json"
 onDemand = true
 onHostRule = true
 
+  ### ACME via letsencrypt. (Automatic Certificate Management Environment)
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
-# Staging server
+#caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
-
+  # Staging server
 
 # — — — # — — — # — — — #
 #dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
