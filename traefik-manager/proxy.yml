@@ -1,8 +1,5 @@
 version: "3.1"
 
-      # Remove this line for PWD
-      #- --docker.endpoint=unix:///var/run/docker.sock
-
 services:
 
   traefik:
@@ -37,13 +34,13 @@ services:
         reservations:
           cpus: '0.10'
           memory: 50M
-#      labels:
-#        traefik.enable: "true"
-#        traefik.docker.network: ntw_front
-#        traefik.port: 8080
-#        traefik.backend.loadbalancer.sticky: "true"
-#        traefik.frontend.passHostHeader: "true"
-#        traefik.frontend.rule: PathPrefixStrip:/proxy"
+      labels:
+        traefik.enable: "true"
+        traefik.docker.network: ntw_front
+        traefik.port: 8080
+        traefik.backend.loadbalancer.sticky: "true"
+        traefik.frontend.passHostHeader: "true"
+        traefik.frontend.rule: PathPrefixStrip:/proxy"
 
   a-who:
     image: emilevauge/whoami
