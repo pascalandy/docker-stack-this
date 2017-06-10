@@ -17,6 +17,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
 
   b-who:
     image: emilevauge/whoami
@@ -33,6 +34,8 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-who"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
+				
 
   a-cad:
     image: abiosoft/caddy
@@ -49,6 +52,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
 
   b-cad:
     image: abiosoft/caddy
@@ -71,6 +75,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
 
   a-gix:
     image: nginx:alpine
@@ -93,6 +98,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
 
   b-gix:
     image: nginx:alpine
@@ -115,6 +121,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+				- "traefik.backend.loadbalancer.method=wrr"
 
 networks:
   ntw_front:
