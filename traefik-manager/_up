@@ -21,6 +21,13 @@ sleep 2
 
 echo; echo "docker service ls ..."
 docker service ls
+sleep 3
+docker service ls
+sleep 3
+docker service ls
+sleep 3
+docker service ls
+sleep 3
 
-echo; echo "docker service ls ..."
-docker service logs proxy_traefik
+echo; echo "docker service logs -f proxy_traefik ..."
+docker service logs -f proxy_traefik
