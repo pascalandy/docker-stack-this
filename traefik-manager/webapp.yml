@@ -98,7 +98,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        	- "traefik.backend.loadbalancer.method=wrr"
+        - "traefik.backend.loadbalancer.method=wrr"
 
   b-gix:
     image: nginx:alpine
