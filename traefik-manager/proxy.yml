@@ -15,7 +15,6 @@ services:
       - --docker.endpoint=unix:///var/run/docker.sock
       - --debug=true
       - --logLevel=DEBUG
-      - --configFile=/etc/traefik/traefik.toml
     ports:
       - "80:80"
       - "443:443"
@@ -24,7 +23,7 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/traefik-config/acme.json:/etc/traefik/acme/acme.json
+      - /root/traefik-config/acme.json:acme.json
       - /root/docker-stack-this/traefik-manager/traefik-config/traefik.toml:/etc/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
