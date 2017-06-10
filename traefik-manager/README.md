@@ -1,16 +1,19 @@
-# Quick trial of this Docker Stack
-
 https://github.com/pascalandy/docker-stack-this
 
-I consider this README crystal clear. If there is anything that I could improve, please let me know :)
+## Quick trial of this Docker Stack
+
+My goal is to make it freaking fast to try something via a Docker Stack setup. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
 
 Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
+## ACME
+
+ACME, is supported within this configuration and I [working on it](https://github.com/pascalandy/docker-stack-this/issues/5)!
+
 ## Setup
 
-1. Go to http://labs.play-with-docker.com/ and create **one** instance.
-2. Wait about 20 sec
-
+1. Go to http://labs.play-with-docker.com/ 
+2. Create **1** instance and wait about 20 sec
 3. On **node1**, copy-paste:
 
 ```
@@ -31,14 +34,13 @@ cd docker-stack-this/traefik-manager
 ```
 
 - `docker service ls` is refreshing automatically
-- All service are running. Good!
-- `CTRL-C` to move on
+- All service are running. Good! `CTRL-C` to quit the watch mode.
 - Click on 8080 to see Traefik dashboard
 - Click on 80
 - You see `404 page not found`.
 - It’s ok :)
 
-**Reverse proxy**
+## See our services
 
 Here is the address I see during my PWD session:
 
