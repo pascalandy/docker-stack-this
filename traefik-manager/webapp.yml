@@ -2,41 +2,6 @@ version: "3.1"
 
 services:
 
-  a-who:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.backend=a-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-who"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=wrr"
-
-  b-who:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.backend=b-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-who"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=wrr"
-
-
   a-cad:
     image: abiosoft/caddy
     networks:
@@ -52,6 +17,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-cad:
@@ -75,6 +41,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
 
   a-gix:
@@ -84,7 +51,7 @@ services:
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -98,6 +65,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-gix:
@@ -121,8 +89,45 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
 
+  a-who:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=a-who"
+        - "traefik.frontend.rule=PathPrefixStrip:/a-who"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
+        - "traefik.backend.loadbalancer.method=wrr"
+
+  b-who:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=b-who"
+        - "traefik.frontend.rule=PathPrefixStrip:/b-who"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
+        - "traefik.backend.loadbalancer.method=wrr"
+      
 networks:
   ntw_front:
     external: true

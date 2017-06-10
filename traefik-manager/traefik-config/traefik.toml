@@ -36,7 +36,7 @@ entryPoint = "https"
 ### ACME via letsencrypt. (Automatic Certificate Management Environment)
 
 [acme]
-email = "jimmy@gmail.com"
+email = "mybiz@gmail.com"
 storage = "acme.json"
 onDemand = true
 onHostRule = true
