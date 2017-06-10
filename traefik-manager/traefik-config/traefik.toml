@@ -27,6 +27,10 @@ address = ":8080"
   address = ":443"
     [entryPoints.https.tls]
 
+# Entrypoint to proxy acme challenge/apply certificates to.
+# WARNING, must point to an entrypoint on port 443
+entryPoint = "https"
+
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
 ### ACME via letsencrypt. (Automatic Certificate Management Environment)
@@ -51,7 +55,6 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 	# Select the provider that matches the DNS domain that will host the challenge TXT record,
 	# and provide environment variables with access keys to enable setting it:
 	#  - cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
-
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
