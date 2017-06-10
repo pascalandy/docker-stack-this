@@ -9,7 +9,7 @@ Traefik version is defined [here](https://github.com/pascalandy/docker-stack-thi
 ## Setup
 
 1. Go to http://labs.play-with-docker.com/ and create **one** instance.
-2. Wait about 30 sec after node5 is deployed to ensure the machines have a network.
+2. Wait about 20 sec
 
 3. On **node1**, copy-paste:
 
@@ -30,12 +30,33 @@ cd docker-stack-this/traefik-manager
 ./_up
 ```
 
-`docker service ls` is refreshing automatically
-`CTRL-C` to move on
- 
-You’re up-and-running baby.
+- `docker service ls` is refreshing automatically
+- All service are running. Good!
+- `CTRL-C` to move o
 - Click on 80
-- 
+- You see `404 page not found`.
+- It’s ok :)
+
+**Reverse proxy**
+Here is the address I see during my PWD session:
+
+```
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
+```
+
+Just point to one of our 6 containers this way:
+
+```
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-cad
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-gix
+
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-who
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-cad
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
+```
+
+You are welcome!
 
 ## up, down, restart
 

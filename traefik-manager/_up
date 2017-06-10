@@ -2,7 +2,7 @@
 
 # If needed, add permission to make this file executable | chmod +x start
 
-echo; echo "If not existing, create our two networks ..."
+echo; echo "If not existing, create our network ..."
 
 if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
   docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
