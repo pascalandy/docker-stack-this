@@ -39,6 +39,7 @@ cd docker-stack-this/traefik-manager
 - It’s ok :)
 
 **Reverse proxy**
+
 Here is the address I see during my PWD session:
 
 ```
@@ -64,7 +65,7 @@ You are welcome!
 Execute:
 - `./_run`
 - `./_stop`
-`./_restart` (typical flow when I debbug)
+- `./_restart` (typical flow when I debbug)
 
 ## A last word
 
