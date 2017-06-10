@@ -4,16 +4,15 @@ services:
 
   traefik:
     image: traefik:1.3.0-alpine
-    command: 
-      - --web 
+    command:
+      - --web
+			- --web.statistics
       - --docker 
       - --docker.watch 
       - --docker.swarmmode 
       - --docker.domain=traefik
       - --debug=true
       - --logLevel=DEBUG
-      - --InsecureSkipVerify=true
-      - --web.statistics
     ports:
       - "80:80"
       - "443:443"
