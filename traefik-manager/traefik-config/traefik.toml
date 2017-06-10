@@ -40,6 +40,7 @@ defaultEntryPoints = ["http", "https"]
 
 ################################################################
 ### letsencrypt
+### Automatic Certificate Management Environment (ACME)
 ################################################################
 [acme]
 email = "pascal@gmail.com"
@@ -80,8 +81,8 @@ entryPoint = "https"
 #[[acme.domain]]
 #main = "pascalandy.com"
 
-# Leave comment to go to prod. Optional
-#caServer = "https://acme-staging.api.letsencrypt.org/directory"
+# Staging server
+caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 # Use a DNS based acme challenge rather than external HTTPS access, e.g. for a firewalled server
 # Select the provider that matches the DNS domain that will host the challenge TXT record,
