@@ -2,7 +2,6 @@ version: "3.1"
 
 # mkdir -p /root/traefik-config && touch /root/traefik-config/acme.json && chmod 600 /root/traefik-config/acme.json
 
-
 services:
 
   traefik:
