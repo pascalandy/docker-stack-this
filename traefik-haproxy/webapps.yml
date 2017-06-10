@@ -8,7 +8,7 @@ services:
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       labels:
@@ -24,7 +24,7 @@ services:
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       labels:
@@ -34,13 +34,13 @@ services:
         - "traefik.docker.network=ntw_front"
 
   caddy-a:
-    image: abiosoft/caddy
+    image: abiosoft/caddy:0.10.2
     networks:
       - ntw_front
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       labels:
@@ -50,13 +50,13 @@ services:
         - "traefik.docker.network=ntw_front"
 
   caddy-b:
-    image: abiosoft/caddy
+    image: abiosoft/caddy:0.10.2
     networks:
       - ntw_front
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       labels:
@@ -66,13 +66,13 @@ services:
         - "traefik.docker.network=ntw_front"
 
   nginx-a:
-    image: nginx:alpine
+    image: nginx:1.13.0-alpine
     networks:
       - ntw_front
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]                                           
+        constraints: [node.role == worker]                                           
       restart_policy:
         condition: on-failure
       labels:
@@ -82,13 +82,13 @@ services:
         - "traefik.docker.network=ntw_front"
 
   nginx-b:
-    image: nginx:alpine
+    image: nginx:1.13.0-alpine
     networks:
       - ntw_front
     deploy:
       replicas: 3
       placement:
-        constraints: [node.role==manager]  
+        constraints: [node.role == worker]  
       restart_policy:
         condition: on-failure
       labels:

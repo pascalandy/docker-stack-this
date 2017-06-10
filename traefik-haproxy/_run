@@ -4,17 +4,10 @@
 
 echo; echo "create our two networks ..."
 
-if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
-  docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
-fi
-
-if [ ! "$(docker network ls --filter name=ntw_socketproxy -q)" ];then
-  docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
-fi
-
+docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
+docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_socketproxy
 docker network ls | grep "ntw_"
 
-if [ ! "$(docker service ls --filter name=tool-socketproxy -q)" ];then
 sleep 2
 echo; echo "start service socketproxy ..."
 docker service create \
@@ -29,9 +22,7 @@ docker service create \
 -e SWARM=1 \
 -e TASKS=1 \
 tecnativa/docker-socket-proxy
-fi
 
-if [ ! "$(docker service ls --filter name=tool-traefik -q)" ];then
 sleep 2
 echo; echo "start service traefik ..."
 docker service create \
@@ -42,13 +33,12 @@ docker service create \
 -p 80:80 \
 -p 443:443 \
 -p 8080:8080 \
---constraint 'node.role==manager' \
-traefik:1.3.0-alpine \
+--constraint 'node.role==worker' \
+traefik:1.2.3-alpine \
 --docker \
 --docker.swarmmode \
 --docker.endpoint=tcp://tool-socketproxy:2375 \
 --web
-fi
 
 echo; echo "start the webapps services ..."
 docker stack deploy webapp -c webapps.yml
