@@ -1,16 +1,14 @@
 # Quick trial of this Docker Stack
 
+https://github.com/pascalandy/docker-stack-this
+
 I consider this README crystal clear. If there is anything that I could improve, please let me know :)
 
-Why using a traefik and socketproxy together? **Listen** to this: https://cl.ly/1z0Q3a0K1M15
-
-REPO: https://github.com/pascalandy/docker-stack-this
-
-Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/_run#L37)
+Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
 ## Setup
 
-1. Go to http://labs.play-with-docker.com/ and create five instances.
+1. Go to http://labs.play-with-docker.com/ and create **one** instance.
 2. Wait about 30 sec after node5 is deployed to ensure the machines have a network.
 
 3. On **node1**, copy-paste:
@@ -18,14 +16,6 @@ Traefik version is defined [here](https://github.com/pascalandy/docker-stack-thi
 ```
 # Create Swarm
 docker swarm init --advertise-addr eth0
-TOKEN_LEAD=$(docker swarm join-token -q manager)
-TOKEN_WORK=$(docker swarm join-token -q worker)
-for N in $(seq 2 3); do
-  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_LEAD node1:2377
-done
-for N in $(seq 4 5); do
-  DOCKER_HOST=tcp://node$N:2375 docker swarm join --token $TOKEN_WORK node1:2377
-done
 \
 # List nodes
 docker node ls
@@ -34,19 +24,25 @@ docker node ls
 apk update && apk upgrade && apk add nano curl bash git
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
-cd docker-stack-this/traefik-haproxy
+cd docker-stack-this/traefik-manager
 \
 # Launch all services
-./_run
+./_up
 ```
 
-You’re up-and-running baby! [See your web apps](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md#see-these-web-apps-online) online.
+`docker service ls` is refreshing automatically
+`CTRL-C` to move on
+ 
+You’re up-and-running baby.
+- Click on 80
+- 
 
-## run and stop
+## up, down, restart
 
-Execute: `./_run` and `./_stop`
-
-To see screen shots of this stack and see how to run each commands one by one, see [single_commands.md](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-haproxy/single_commands.md)
+Execute:
+- `./_run`
+- `./_stop`
+`./_restart` (typical flow when I debbug)
 
 ## A last word
 

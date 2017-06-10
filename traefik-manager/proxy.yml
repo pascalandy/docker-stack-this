@@ -9,8 +9,8 @@ services:
       - --docker 
       - --docker.watch 
       - --docker.swarmmode 
-      - --docker.domain=cloudwait.com
-      - --docker.endpoint=unix:///var/run/docker.sock
+      - --docker.domain=docker
+      #- --docker.endpoint=unix:///var/run/docker.sock
       - --logLevel=DEBUG
     ports:
       - "80:80"
