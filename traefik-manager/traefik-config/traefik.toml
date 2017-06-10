@@ -27,7 +27,7 @@ entryPoint = "https"
 onDemand = false
 OnHostRule = true
 acmeLogging=true
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
+#caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 #[docker]
 #endpoint = "unix:///var/run/docker.sock"

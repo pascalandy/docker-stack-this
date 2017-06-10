@@ -1,5 +1,9 @@
 version: "3.1"
 
+# mkdir -p /root/traefik-config
+# touch /root/traefik-config/acme.json
+# touch /root/traefik-config/traefik.toml
+
 services:
 
   traefik:
@@ -10,9 +14,10 @@ services:
       - --docker.watch 
       - --docker.swarmmode 
       - --docker.domain=traefik
+      - --docker.endpoint=unix:///var/run/docker.sock
       - --debug=true
       - --logLevel=DEBUG
-      - --configFile=/var/traefik/traefik.toml
+      - --configFile=/etc/traefik/traefik.toml
     ports:
       - "80:80"
       - "443:443"
