@@ -10,7 +10,19 @@ services:
       - --docker.watch 
       - --docker.swarmmode 
       - --docker.domain=traefik
+      - --acme
+      - --acme.acmeLogging
+      - --acme.onDemand
+      - --acme.OnHostRule
+      - --acme.caServer="https://acme-staging.api.letsencrypt.org/directory"
+      - --acme.email="letsencrypt@xxxxx.net"
+      - --acme.storage="/var/run/acme.json"
+      - --acme.entrypoint="https"
+      - --DefaultEntryPoints=http,https
+      - --debug=true
       - --logLevel=DEBUG
+      - --InsecureSkipVerify=true
+      - --web.statistics
     ports:
       - "80:80"
       - "443:443"
@@ -19,6 +31,8 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /traefik-config/acme.json:/var/run/acme.json
+      #- /traefik-config/traefik.toml:/etc/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
     deploy:
@@ -33,121 +47,7 @@ services:
           memory: 128M
         reservations:
           cpus: '0.10'
-          memory: 50M
-
-  a-who:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.backend=a-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-who"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-
-  b-who:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.backend=b-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-who"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-
-  a-cad:
-    image: abiosoft/caddy
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.backend=a-cad"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
-        - "traefik.port=2015"
-        - "traefik.docker.network=ntw_front"
-
-  b-cad:
-    image: abiosoft/caddy
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 60M
-        reservations:
-          memory: 30M
-      labels:
-        - "traefik.backend=b-cad"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
-        - "traefik.port=2015"
-        - "traefik.docker.network=ntw_front"
-
-  a-gix:
-    image: nginx:alpine
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]                                           
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 5M
-      labels:
-        - "traefik.backend=a-gix"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-
-  b-gix:
-    image: nginx:alpine
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 3
-      placement:
-        constraints: [node.role==manager]  
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 5M
-      labels:
-        - "traefik.backend=b-gix"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
+          memory: 64M
 
 networks:
   ntw_front:

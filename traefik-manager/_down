@@ -4,6 +4,7 @@
 
 echo; echo "Remove stacks ..."
 docker stack rm proxy
+docker stack rm webapp
 sleep 2
 
 echo; echo "Remove network ..."

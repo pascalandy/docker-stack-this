@@ -12,6 +12,7 @@ docker network ls | grep "ntw_"
 
 echo; echo "Start the stacks ..."
 docker stack deploy proxy -c proxy.yml
+docker stack deploy webapp -c webapp.yml
 sleep 2
 
 echo; echo "docker stack ls ..."
