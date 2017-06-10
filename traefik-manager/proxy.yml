@@ -1,8 +1,7 @@
 version: "3.1"
 
-# mkdir -p /root/traefik-config
-# touch /root/traefik-config/acme.json
-# touch /root/traefik-config/traefik.toml
+# mkdir -p /root/traefik-config && touch /root/traefik-config/acme.json && chmod 600 /root/traefik-config/acme.json
+
 
 services:
 
@@ -26,7 +25,7 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/docker-stack-this/traefik-manager/traefik-config/acme.json:/etc/traefik/acme/acme.json
+      - /root/traefik-config/acme.json:/etc/traefik/acme/acme.json
       - /root/docker-stack-this/traefik-manager/traefik-config/traefik.toml:/var/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
