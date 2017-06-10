@@ -1,7 +1,7 @@
 defaultEntryPoints = ["http", "https"]
 
-#[web]
-#address = ":8080"
+[web]
+address = ":8080"
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
@@ -29,13 +29,13 @@ defaultEntryPoints = ["http", "https"]
 
 # Entrypoint to proxy acme challenge/apply certificates to.
 # WARNING, must point to an entrypoint on port 443
-# entryPoint = "https"
+entryPoint = "https"
 
 
 # — — — # — — — # — — — # — — — # — — — # — — — #
 [acme]
-email = "mybiz@gmail.com"
-storage = "acme.json"
+email = "mrjim@gmail.com"
+storageFile = "/etc/traefik/acme/acme.json"
 onDemand = true
 onHostRule = true
 
