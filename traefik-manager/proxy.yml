@@ -13,6 +13,7 @@ services:
       - --docker.domain=traefik
       - --debug=true
       - --logLevel=DEBUG
+      - --configFile=/var/traefik/traefik.toml
     ports:
       - "80:80"
       - "443:443"
