@@ -6,7 +6,7 @@ services:
     image: traefik:1.3.0-alpine
     command:
       - --web
-			- --web.statistics
+      - --web.statistics
       - --docker 
       - --docker.watch 
       - --docker.swarmmode 
