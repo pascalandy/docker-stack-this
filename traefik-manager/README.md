@@ -32,7 +32,8 @@ cd docker-stack-this/traefik-manager
 
 - `docker service ls` is refreshing automatically
 - All service are running. Good!
-- `CTRL-C` to move o
+- `CTRL-C` to move on
+- Click on 8080 to see Traefik dashboard
 - Click on 80
 - You see `404 page not found`.
 - It’s ok :)
@@ -44,7 +45,7 @@ Here is the address I see during my PWD session:
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 ```
 
-Just point to one of our 6 containers this way:
+Just point to one of your 6 containers this way:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
