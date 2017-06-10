@@ -24,14 +24,8 @@ address = ":443"
 email = "gello@gmail.com"
 storage = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
-onDemand = false
+onDemand = true
 OnHostRule = true
 acmeLogging=true
-#caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
-#[docker]
-#endpoint = "unix:///var/run/docker.sock"
-#domain = "traefik"
-#watch = true
-#exposedbydefault = false
-#swarmmode = true
+#### caServer = "https://acme-staging.api.letsencrypt.org/directory"
