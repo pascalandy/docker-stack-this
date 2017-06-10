@@ -14,7 +14,6 @@ services:
       - --docker.swarmmode 
       - --docker.domain=traefik
       - --logLevel=DEBUG
-      - --docker.endpoint=unix:///var/run/docker.sock
     ports:
       - "80:80"
       - "443:443"
