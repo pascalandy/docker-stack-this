@@ -1,0 +1,18 @@
+[acme]
+
+email = "hellomy@gmail.com"
+storage = "/etc/traefik/acme/acme.json" # or "traefik/acme/account" if using KV store
+entryPoint = "https"
+acmeLogging = true
+onDemand = true
+
+#caServer = "https://acme-staging.api.letsencrypt.org/directory"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
