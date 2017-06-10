@@ -1,5 +1,7 @@
 version: "3.1"
 
+      #- --docker.endpoint=unix:///var/run/docker.sock
+
 services:
 
   traefik:
@@ -9,8 +11,7 @@ services:
       - --docker 
       - --docker.watch 
       - --docker.swarmmode 
-      - --docker.domain=docker
-      #- --docker.endpoint=unix:///var/run/docker.sock
+      - --docker.domain=traefik
       - --logLevel=DEBUG
     ports:
       - "80:80"
@@ -20,6 +21,8 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=false"
     deploy:
       replicas: 1
       placement:
@@ -33,13 +36,13 @@ services:
         reservations:
           cpus: '0.10'
           memory: 50M
-      labels:
-        traefik.enable: "true"
-        traefik.docker.network: ntw_front
-        traefik.port: 8080
-        traefik.backend.loadbalancer.sticky: "true"
-        traefik.frontend.passHostHeader: "true"
-        traefik.frontend.rule: PathPrefixStrip:/proxy"
+#      labels:
+#        traefik.enable: "true"
+#        traefik.docker.network: ntw_front
+#        traefik.port: 8080
+#        traefik.backend.loadbalancer.sticky: "true"
+#        traefik.frontend.passHostHeader: "true"
+#        traefik.frontend.rule: PathPrefixStrip:/proxy"
 
   a-who:
     image: emilevauge/whoami
