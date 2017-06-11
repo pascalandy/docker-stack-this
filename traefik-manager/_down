@@ -4,12 +4,13 @@
 
 echo; echo "Remove stacks ..."
 docker stack rm proxy
+sleep 2
 docker stack rm webapp
 sleep 2
 
 echo; echo "Remove network ..."
 docker network rm ntw_front
-sleep 2
+sleep 5
 
 echo; echo "Clean up ..."
 docker system prune -f
