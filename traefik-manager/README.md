@@ -1,16 +1,19 @@
-# Quick trial of this Docker Stack
-
 https://github.com/pascalandy/docker-stack-this
 
-I consider this README crystal clear. If there is anything that I could improve, please let me know :)
+## Quick trial of this Docker Stack
+
+My goal is to make it freaking fast to try something via a Docker Stack setup. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
 
 Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
+## ACME
+
+ACME, is supported within this configuration and I [working on it](https://github.com/pascalandy/docker-stack-this/issues/5)!
+
 ## Setup
 
-1. Go to http://labs.play-with-docker.com/ and create **one** instance.
-2. Wait about 20 sec
-
+1. Go to http://labs.play-with-docker.com/ 
+2. Create **1** instance and wait about 20 sec
 3. On **node1**, copy-paste:
 
 ```
@@ -31,14 +34,13 @@ cd docker-stack-this/traefik-manager
 ```
 
 - `docker service ls` is refreshing automatically
-- All service are running. Good!
-- `CTRL-C` to move on
+- All service are running. Good! `CTRL-C` to quit the watch mode.
 - Click on 8080 to see Traefik dashboard
 - Click on 80
 - You see `404 page not found`.
 - It’s ok :)
 
-**Reverse proxy**
+## See our services
 
 Here is the address I see during my PWD session:
 
@@ -52,13 +54,26 @@ Just point to one of your 6 containers this way:
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-cad
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-gix
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-der
 
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-who
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-cad
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 ```
 
-You are welcome!
+**The logic is:**
+
+- instance `a` of `who` by emile 
+- instance `b` of `who` by emile
+- instance `a` of `caddy`
+- instance `b` of `caddy`
+- instance `a` of `nginx`
+- instance `b` of `nginx`
+- instance `a` of `who` by jwilder
+- instance `b` of `who` by jwilder
+
+All instances have `replicas=3`. I think this is a solid case to understand an valide how to run this reverse-proxy.
 
 ## up, down, restart
 
@@ -66,6 +81,12 @@ Execute:
 - `./_run`
 - `./_stop`
 - `./_restart` (typical flow when I debbug)
+
+This is all I got! You are welcome :)
+
+## Screenshots
+
+wip
 
 ## A last word
 
