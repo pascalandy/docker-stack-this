@@ -1,5 +1,10 @@
-On the node, run:
+about acme.json, we don't want it in the git repo.
+
+On the node where Traefik is running, run:
 
 mkdir -p /root/traefik-config && \
 touch /root/traefik-config/acme.json && \
 chmod 600 /root/traefik-config/acme.json
+
+Cheers!
+Pascal | https://twitter.com/askpascalandy

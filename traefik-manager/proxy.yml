@@ -1,6 +1,6 @@
 version: "3.1"
 
-# mkdir -p /root/traefik-config && touch /root/traefik-config/acme.json && chmod 600 /root/traefik-config/acme.json
+# Don't forget to set acme.json on the node server
 
 services:
 
@@ -44,3 +44,6 @@ services:
 networks:
   ntw_front:
     external: true
+
+#Cheers!
+#Pascal | https://twitter.com/askpascalandy
