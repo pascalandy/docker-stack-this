@@ -146,6 +146,24 @@ services:
         - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
 
+  b-der:
+    image: jwilder/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 3
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.backend=b-der"
+        - "traefik.frontend.rule=PathPrefix:/b-der"
+        - "traefik.port=8000"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.frontend.entryPoints=https"
+        - "traefik.backend.loadbalancer.method=wrr"
+
 networks:
   ntw_front:
     external: true
