@@ -140,8 +140,8 @@ services:
         condition: on-failure
       labels:
         - "traefik.backend=a-der"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-der"
-        - "traefik.port=80"
+        - "traefik.frontend.rule=PathPrefix:/a-der"
+        - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
         - "traefik.frontend.entryPoints=https"
         - "traefik.backend.loadbalancer.method=wrr"
