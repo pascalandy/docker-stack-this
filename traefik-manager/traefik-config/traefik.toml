@@ -1,13 +1,18 @@
 	# Sample entrypoint configuration when using ACME
 	
+# Entrypoints, http and https
 [entryPoints]
-  [entryPoints.http]
-  address = ":80"
-  	[entryPoints.http.redirect]
-  	entryPoint = "https"
-  		[entryPoints.https]
-  		address = ":443"
- [entryPoints.https.tls]
+
+# http should be redirected to https
+[entryPoints.http]
+address = ":80"
+[entryPoints.http.redirect]
+entryPoint = "https"
+
+# https is the default
+[entryPoints.https]
+address = ":443"
+[entryPoints.https.tls]
 
 	# Enable ACME (Let's Encrypt): automatic SSL
 [acme]
@@ -38,8 +43,8 @@ entryPoint = "https"
 	# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
 	# Each domain & SANs will lead to a certificate request.
 
- [[acme.domains]]
-   main = "cloudwait.com"
+# [[acme.domains]]
+#  main = "cloudwait.com"
 #  sans = ["client.cloudwait.com", "whoami.cloudwait.com"]
 # [[acme.domains]]
 #   main = "local2.com"
