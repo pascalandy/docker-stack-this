@@ -12,6 +12,12 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 25M
+        reservations:
+          memory: 10M
       labels:
         - "traefik.backend=a-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
@@ -33,9 +39,9 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 60M
+          memory: 25M
         reservations:
-          memory: 30M
+          memory: 10M
       labels:
         - "traefik.backend=b-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
@@ -57,9 +63,9 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
+          memory: 25M
         reservations:
-          memory: 5M
+          memory: 10M
       labels:
         - "traefik.backend=a-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
@@ -81,9 +87,9 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
+          memory: 25M
         reservations:
-          memory: 5M
+          memory: 10M
       labels:
         - "traefik.backend=b-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
@@ -102,6 +108,12 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 10M
+        reservations:
+          memory: 5M
       labels:
         - "traefik.backend=a-who"
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
@@ -120,6 +132,12 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 10M
+        reservations:
+          memory: 5M
       labels:
         - "traefik.backend=b-who"
         - "traefik.frontend.rule=PathPrefixStrip:/b-who"
@@ -138,6 +156,12 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 10M
+        reservations:
+          memory: 5M
       labels:
         - "traefik.backend=a-der"
         - "traefik.frontend.rule=PathPrefix:/a-der"
@@ -156,6 +180,12 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 10M
+        reservations:
+          memory: 5M
       labels:
         - "traefik.backend=b-der"
         - "traefik.frontend.rule=PathPrefix:/b-der"
