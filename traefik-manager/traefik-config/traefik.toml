@@ -18,12 +18,12 @@ address = ":8080"
    [entryPoints.https]
    address = ":443"
      [entryPoints.https.tls]
-       [[entryPoints.https.tls.certificates]]
-       CertFile = "/etc/traefik/traefik.crt"
-       KeyFile = "/etc/traefik/traefik.key"
-       [[entryPoints.https.tls.certificates]]
-       CertFile = "/etc/traefik/traefik.crt"
-       KeyFile = "/etc/traefik/traefik.key"
+       #[[entryPoints.https.tls.certificates]]
+       #CertFile = "/etc/traefik/traefik.crt"
+       #KeyFile = "/etc/traefik/traefik.key"
+       #[[entryPoints.https.tls.certificates]]
+       #CertFile = "/etc/traefik/traefik.crt"
+       #KeyFile = "/etc/traefik/traefik.key"
 
 	################################################################
 	# Entry Points
