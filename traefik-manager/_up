@@ -26,6 +26,8 @@ docker service ls && echo && sleep 3
 docker service ls && echo && sleep 3
 docker service ls && echo && sleep 3
 docker service ls && echo && sleep 3
+docker service ls && echo && sleep 3
+docker service ls && echo && sleep 3
 
 echo; echo "docker service logs -f proxy_traefik ..."
 docker service logs -f proxy_traefik
