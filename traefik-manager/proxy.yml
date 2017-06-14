@@ -2,10 +2,13 @@ version: "3.1"
 
 # Don't forget to set acme.json on the node
 
+#containous/traefik:f275e4ad3c0a660aa8170d0f5f709df5a9f7ebf4
+#traefik:1.3.0-alpine
+
 services:
 
   traefik:
-    image: traefik:1.3.0-alpine
+    image: containous/traefik:f275e4ad3c0a660aa8170d0f5f709df5a9f7ebf4
     command:
       - --web
       - --docker 
