@@ -1,10 +1,17 @@
 version: "3.1"
 
-# Testing
-# "traefik.frontend.headers=SSLRedirect:true"
-# "traefik.headers=SSLRedirect:true"
+# Example
+# "traefik.frontend.passHostHeader=true"
 
-# "traefik.frontend.headers.SSLRedirect=true"
+# Testing
+#1 "traefik.frontend.headers=SSLRedirect:true"
+#2 "traefik.headers=SSLRedirect:true"
+#3 "traefik.frontend.headers.SSLRedirect=true"
+#4 "traefik.headers.SSLRedirect=true"
+
+# Maybe
+# "traefik.frontend.headersSSLRedirect=true"
+# "traefik.frontend.SSLRedirectheaders=true"
 
 services:
 
