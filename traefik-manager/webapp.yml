@@ -21,10 +21,11 @@ services:
       labels:
         - "traefik.backend=a-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
-
+			
   b-cad:
     image: abiosoft/caddy
     networks:
@@ -44,6 +45,7 @@ services:
       labels:
         - "traefik.backend=b-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -67,6 +69,7 @@ services:
       labels:
         - "traefik.backend=a-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -90,6 +93,7 @@ services:
       labels:
         - "traefik.backend=b-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -113,6 +117,7 @@ services:
       labels:
         - "traefik.backend=a-who"
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -136,6 +141,7 @@ services:
       labels:
         - "traefik.backend=b-who"
         - "traefik.frontend.rule=PathPrefixStrip:/b-who"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -159,6 +165,7 @@ services:
       labels:
         - "traefik.backend=a-der"
         - "traefik.frontend.rule=PathPrefix:/a-der"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -182,6 +189,7 @@ services:
       labels:
         - "traefik.backend=b-der"
         - "traefik.frontend.rule=PathPrefix:/b-der"
+        - "traefik.frontend.headers=SSLRedirect:true"
         - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
