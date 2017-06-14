@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAIN_URL="http://cloudwait.com"
+MAIN_URL="https://cloudwait.com"
 WEBAPP=(a-gix b-gix a-cad b-cad a-who b-who a-der b-der)
 #
 NUMBER=100
