@@ -23,7 +23,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-cad:
@@ -47,7 +46,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   a-gix:
@@ -71,7 +69,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-gix:
@@ -95,7 +92,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   a-who:
@@ -119,7 +115,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-who:
@@ -143,7 +138,6 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/b-who"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   a-der:
@@ -167,7 +161,6 @@ services:
         - "traefik.frontend.rule=PathPrefix:/a-der"
         - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
   b-der:
@@ -191,7 +184,6 @@ services:
         - "traefik.frontend.rule=PathPrefix:/b-der"
         - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=https,http"
         - "traefik.backend.loadbalancer.method=wrr"
 
 networks:
