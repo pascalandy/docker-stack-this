@@ -1,51 +1,41 @@
 	# Sample entrypoint configuration when using ACME
-defaultEntryPoints = ["http", "https"]
+	
+# Entrypoints, http and https
+[entryPoints]
 
-	################################################################
-	# Web configuration backend
-	################################################################
-[web]
-address = ":8080"
+# http should be redirected to https
+[entryPoints.http]
+address = ":80"
+[entryPoints.http.redirect]
+entryPoint = "https"
 
-	################################################################
-	# Entry Points
-	################################################################
- [entryPoints]
-  [entryPoints.http]
-   address = ":80"
-     [entryPoints.http.redirect]
-       entryPoint = "https"
-   [entryPoints.https]
-   address = ":443"
-     [entryPoints.https.tls]
-       [[entryPoints.https.tls.certificates]]
-       CertFile = "/etc/traefik/traefik.crt"
-       KeyFile = "/etc/traefik/traefik.key"
-       [[entryPoints.https.tls.certificates]]
-       CertFile = "/etc/traefik/traefik.crt"
-       KeyFile = "/etc/traefik/traefik.key"
+# https is the default
+[entryPoints.https]
+address = ":443"
+[entryPoints.https.tls]
 
-	################################################################
-	# Entry Points
-	################################################################
+	# Enable ACME (Let's Encrypt): automatic SSL
 [acme]
-email = "lavida@gmail.com"
+email = "lavia@gmail.com"
 storageFile = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 
 	# Enable on demand certificate. This will request a certificate from Let's Encrypt during the first TLS handshake for a hostname that does not yet have a certificate.
 	# WARNING, TLS handshakes will be slow when requesting a hostname certificate for the first time, this can leads to DoS attacks.
 	# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
-onDemand = true
+
+#onDemand = true
 
 	# Enable certificate generation on frontends Host rules. This will request a certificate from Let's Encrypt for each frontend with a Host rule.
 	# For example, a rule Host:test1.traefik.io,test2.traefik.io will request a certificate with main domain test1.traefik.io and SAN test2.traefik.io.
-OnHostRule = true
+
+#OnHostRule = true
 
 	# CA server to use
 	# Uncomment the line to run on the staging let's encrypt server
 	# Leave comment to go to prod
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
+
+#caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 	# Domains list
 	# You can provide SANs (alternative domains) to each main domain
