@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAIN_URL="https://cloudwait.com"
+MAIN_URL="http://cloudwait.com"
 WEBAPP=(a-gix b-gix a-cad b-cad a-who b-who a-der b-der)
 #
 NUMBER=100
@@ -15,7 +15,7 @@ for ACTION in "${WEBAPP[@]}"; do
 	curl -Is --head $MAIN_URL/$ACTION | grep -F -o "HTTP/1.1 200 OK"
 
   #Show page content
-  curl $MAIN_URL/$ACTION
+  curl -v $MAIN_URL/$ACTION
 
   #Show page responsiveness average
   docker run --rm "$IMG_ab" \
