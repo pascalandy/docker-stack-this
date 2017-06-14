@@ -27,7 +27,7 @@ services:
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
-			
+        
   b-cad:
     image: abiosoft/caddy
     networks:
