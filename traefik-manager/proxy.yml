@@ -14,7 +14,8 @@ services:
       - --docker.domain=traefik
       - --docker.endpoint=unix:///var/run/docker.sock
       - --debug=true
-      - --logLevel=DEBUG
+      - --usebindportip=true
+      - --logLevel=INFO
     ports:
       - "80:80"
       - "443:443"

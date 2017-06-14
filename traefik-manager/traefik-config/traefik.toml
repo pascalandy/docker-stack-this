@@ -1,11 +1,19 @@
 # Sample entrypoint configuration when using ACME
 defaultEntryPoints = ["http", "https"]
 
+checkNewVersion = false
+traefikLogsFile = "/var/log/traefik/traefik.log"
+accessLogsFile = "/var/log/traefik/access.log"
+InsecureSkipVerify = true
+
 ################################################################
 # Web configuration backend
 ################################################################
 [web]
 address = ":8080"
+ReadOnly = true
+  #[web.auth.basic]
+  #users = ["{{ traefik_basic_auth_user }}:{{ traefik_basic_auth_password }}"]
 
 ################################################################
 # Entry Points
@@ -59,8 +67,15 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 # [[acme.domains]]
 #   main = "local2.com"
 #   sans = ["test1.local2.com", "test2x.local2.com"]
-# [[acme.domains]]
-#   main = "local3.com"
 
-#Cheers!
-#Pascal | https://twitter.com/askpascalandy
+
+################################################################
+# Work in progress
+################################################################
+
+# Redirect issue
+# - https://traefik.slack.com/?redir=%2Farchives%2FC0CDT22PJ%2Fp1497071392758916
+# - https://github.com/containous/traefik/issues/1731
+
+# Cheers!
+# Pascal https://twitter.com/askpascalandy
