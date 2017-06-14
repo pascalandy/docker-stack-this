@@ -10,8 +10,14 @@ IMG_ab="devmtl/ab-fire:2.3-0"
 for ACTION in "${WEBAPP[@]}"; do
 	echo
   echo "$MAIN_URL/$ACTION" | grep $ACTION
+  
+  #Confirm the page is responding
 	curl -Is --head $MAIN_URL/$ACTION | grep -F -o "HTTP/1.1 200 OK"
 
+  #Show page content
+  curl $MAIN_URL/$ACTION
+
+  #Show page responsiveness average
   docker run --rm "$IMG_ab" \
     ab -k -n "$NUMBER" -c "$CONCURRENT" "$MAIN_URL/$ACTION" | tail -5 | head -3
 done
