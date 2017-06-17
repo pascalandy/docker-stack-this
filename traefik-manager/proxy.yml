@@ -26,7 +26,7 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/traefik-config/acme.json:/etc/traefik/acme/acme.json
+      - /root/config/traefik/acme.json:/etc/traefik/acme/acme.json
       - /root/docker-stack-this/traefik-manager/traefik-config/traefik.toml:/etc/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
@@ -39,10 +39,10 @@ services:
       resources:
         limits:
           cpus: '0.30'
-          memory: 96M
+          memory: 72M
         reservations:
           cpus: '0.10'
-          memory: 64M
+          memory: 36M
 
 networks:
   ntw_front:
