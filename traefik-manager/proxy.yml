@@ -26,7 +26,7 @@ services:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/config/traefik/acme.json:/etc/traefik/acme/acme.json
+      - /mnt/deployGRP-DELA01/tool-data/traefik/acme.json:/etc/traefik/acme/acme.json
       - /root/docker-stack-this/traefik-manager/traefik-config/traefik.toml:/etc/traefik/traefik.toml
     labels:
       - "traefik.enable=false"
