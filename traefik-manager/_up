@@ -12,6 +12,9 @@ fi
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
 
+#
+# the file acme.json must have chomd 600 privilege
+
 echo; echo "Start the stacks ..."
 docker stack deploy proxy -c proxy.yml
 docker stack deploy webapp -c webapp.yml
