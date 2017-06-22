@@ -13,11 +13,11 @@ echo; echo "Show network..."
 docker network ls | grep "ntw_"
 
 #
-# the file acme.json must have chomd 600 privilege
+# Warning: the file acme.json must have chmod 600 privilege
 
 echo; echo "Start the stacks ..."
-docker stack deploy proxy -c proxy.yml
-docker stack deploy webapp -c webapp.yml
+docker stack deploy toolproxy -c toolproxy.yml
+docker stack deploy toolweb -c toolweb.yml
 sleep 2
 
 echo; echo "docker stack ls ..."
@@ -33,4 +33,4 @@ docker service ls && echo && sleep 3
 docker service ls && echo && sleep 3
 
 echo; echo "docker service logs -f proxy_traefik ..."
-docker service logs -f proxy_traefik
+docker service logs -f toolproxy_traefik
