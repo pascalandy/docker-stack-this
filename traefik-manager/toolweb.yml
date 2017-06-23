@@ -28,9 +28,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 8M
       labels:
         - "traefik.backend=a-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
@@ -52,9 +50,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 8M
       labels:
         - "traefik.backend=b-cad"
         - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
@@ -76,9 +72,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=a-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
@@ -100,9 +94,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=b-gix"
         - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
@@ -124,9 +116,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=a-who"
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
@@ -148,9 +138,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=b-who"
         - "traefik.frontend.rule=PathPrefixStrip:/b-who"
@@ -172,9 +160,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=a-der"
         - "traefik.frontend.rule=PathPrefix:/a-der"
@@ -196,9 +182,7 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 15M
-        reservations:
-          memory: 9M
+          memory: 7M
       labels:
         - "traefik.backend=b-der"
         - "traefik.frontend.rule=PathPrefix:/b-der"
