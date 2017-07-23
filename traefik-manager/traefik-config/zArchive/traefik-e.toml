@@ -1,0 +1,60 @@
+defaultEntryPoints = ["http", "https"]
+
+[web]
+address = ":8080"
+
+
+# — — — # — — — # — — — # — — — # — — — # — — — #
+### Option 1) Accepts request on port 80 and 443
+
+#[entryPoints]
+#   [entryPoints.http]
+#   address = ":80"
+#   [entryPoints.https]
+#   address = ":443"
+#   [entryPoints.https.tls]
+
+
+# — — — # — — — # — — — # — — — # — — — # — — — #
+### Option 2) Auto-redirect requests from port 80 to 443
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+# Entrypoint to proxy acme challenge/apply certificates to.
+# WARNING, must point to an entrypoint on port 443
+entryPoint = "https"
+
+
+# — — — # — — — # — — — # — — — # — — — # — — — #
+[acme]
+email = "mrjim@gmail.com"
+storageFile = "/etc/traefik/acme/acme.json"
+onDemand = true
+onHostRule = true
+
+  ### ACME via letsencrypt. (Automatic Certificate Management Environment)
+
+# — — — # — — — # — — — # — — — # — — — # — — — #
+#caServer = "https://acme-staging.api.letsencrypt.org/directory"
+
+  # Staging server
+
+# — — — # — — — # — — — #
+#dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
+
+	# Use a DNS based acme challenge rather than external HTTPS access, e.g. for a firewalled server
+	# Select the provider that matches the DNS domain that will host the challenge TXT record,
+	# and provide environment variables with access keys to enable setting it:
+	#  dnsProvider = cloudflare: CLOUDFLARE_EMAIL, CLOUDFLARE_API_KEY
+
+
+# — — — # — — — # — — — # — — — # — — — # — — — #
+# If true, display debug log messages from the acme client library, Optional
+# acmeLogging = true

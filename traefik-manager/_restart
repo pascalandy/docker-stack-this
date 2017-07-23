@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# I use it when I debug something :)
+# Really practical when debugging something :)
 
 ./_down
-
+# void local updates
+git checkout -- .
 git pull
-
 ./_up

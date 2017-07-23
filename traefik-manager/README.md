@@ -54,13 +54,26 @@ Just point to one of your 6 containers this way:
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-cad
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-gix
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-der
 
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-who
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-cad
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 ```
 
-You are welcome!
+**The logic is:**
+
+- instance `a` of `who` by emile 
+- instance `b` of `who` by emile
+- instance `a` of `caddy`
+- instance `b` of `caddy`
+- instance `a` of `nginx`
+- instance `b` of `nginx`
+- instance `a` of `who` by jwilder
+- instance `b` of `who` by jwilder
+
+All instances have `replicas=3`. I think this is a solid case to understand an valide how to run this reverse-proxy.
 
 ## up, down, restart
 
@@ -68,6 +81,12 @@ Execute:
 - `./_run`
 - `./_stop`
 - `./_restart` (typical flow when I debbug)
+
+This is all I got! You are welcome :)
+
+## Screenshots
+
+wip
 
 ## A last word
 
