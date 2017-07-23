@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   traefik:
-    image: traefik:1.3.3-alpine
+    image: traefik:1.3.0-alpine
     command: 
       - --web 
       - --docker 
