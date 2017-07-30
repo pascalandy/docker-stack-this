@@ -194,9 +194,6 @@ services:
 networks:
   ntw_front:
     external: true
-<<<<<<< HEAD:traefik-manager/proxy.yml
-=======
   
 #Cheers!
 #Pascal | https,http://twitter.com/askpascalandy
->>>>>>> edge-acme2:traefik-manager/toolweb.yml
