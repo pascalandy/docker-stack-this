@@ -2,7 +2,7 @@
 
 ## General consideration
 
-One of my goal here, is to create the quickest demo available on the Internet. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
+One of my goal here is to create the quickest demo available on the Internet. I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
 
 Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
