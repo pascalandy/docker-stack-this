@@ -1,5 +1,3 @@
-
-
 ## General consideration
 
 One of my goal here is to create the quickest demos available around the Docker eco-system. To do this we will use the power of **play-with-docker** and **Docker Swarm** and **Docker Stacks**.
@@ -9,17 +7,17 @@ One of my goal here is to create the quickest demos available around the Docker 
 
 https://youtu.be/w3KM8yiC4d8
 
-## Something is weird, please let me know
-
-I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
-
 ## Project source
 https://github.com/pascalandy/docker-stack-this
+
+## Something looks weird? Please let me know
+
+I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
 
 ## Traefik version 
 Find it [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
-## Ready Go!
+## Ready. Go!
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **1 instance** and wait for for the node to provision
 3. On **node1**, copy-paste:
