@@ -13,6 +13,7 @@ https://youtu.be/w3KM8yiC4d8 (90 seconds really!)
 [![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
 
 ## Project source
+
 https://github.com/pascalandy/docker-stack-this
 
 ## Something looks weird? Please let me know

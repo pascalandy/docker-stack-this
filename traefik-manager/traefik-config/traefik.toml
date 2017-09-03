@@ -63,8 +63,8 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 	# Each domain & SANs will lead to a certificate request.
 
 # [[acme.domains]]
-#  main = "cloudwait.com"
-#  sans = ["client.cloudwait.com", "whoami.cloudwait.com"]
+#  main = "example.com"
+#  sans = ["client.example.com", "whoami.example.com"]
 # [[acme.domains]]
 #   main = "local2.com"
 #   sans = ["test1.local2.com", "test2x.local2.com"]
