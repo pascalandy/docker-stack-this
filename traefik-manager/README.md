@@ -101,17 +101,15 @@ Just execute:
 - `./_stop`
 - `./_restart` (typical flow when I debbug)
 
-This is all I got! You are welcome :)
+This is all I got! Hope you enjoyed this!
 
 ## Final word
-Looking to kickstart you website (static page page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with Ghost. In short, you can try Ghost on the spot without having to sign-up!
+Looking to **kickstart you website** (static page page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with Ghost. In short, you can try Ghost on the spot without having to sign-up!
 
-**P.S.** If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang* and you would love to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
+#### P.S.
+If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang* and you would love to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
 
 I’m looking for bright and caring people to join this [journey](http://firepress.org/blog/tag/from-the-heart/) with me.
-
-Thanks in advance!
-Pascal
 
 ```
  ____                     _      _              _
@@ -122,3 +120,5 @@ Pascal
                                                   |___/
 ```
 
+Cheers!
+Pascal
