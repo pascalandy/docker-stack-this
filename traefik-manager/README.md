@@ -6,9 +6,9 @@ One of my goal here is to create the quickest demo available around the Docker e
 
 To accomplish this, we put together the power of:
 
-- **play-with-docker**
-- **Docker Stacks**
-- **Docker Swarm Mode**.
+- **play-with-docker** (#pwg)
+- **docker stacks**
+- **docker Swarm mode**
 
 I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, storage, benchmark and other cool applications we love to use in Docker. At the very moment, I’m trying to see if the [tink stack](https://github.com/influxdata/TICK-docker/issues/20) can work for my needs.
 
@@ -82,7 +82,7 @@ Per example: point to one of your 8 containers:
 
 ```
 
-# home, the IP is probably different in you pwg session
+# home, the IP is probably different in you #pwg session
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
