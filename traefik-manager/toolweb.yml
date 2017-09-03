@@ -34,7 +34,7 @@ services:
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.sticky=true"
-				
+        
   a-cad:
     image: abiosoft/caddy
     networks:
