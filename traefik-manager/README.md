@@ -7,6 +7,8 @@ One of my goal here is to create the quickest demos available around the Docker 
 ## See the demo
 [![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
 
+https://youtu.be/w3KM8yiC4d8
+
 ## Something is weird, please let me know
 
 I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
