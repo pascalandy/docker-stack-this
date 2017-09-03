@@ -2,9 +2,15 @@
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse-proxy. Once running, the proxy will give you access to 8 different webapps. I think this is a solid use-case to understand how to run this reverse-proxy.
 
 ## General consideration
-One of my goal here is to create the quickest demo available around the Docker ecosystem. To do this we will use the power of **play-with-docker** and **Docker Stacks** on top of nd **Docker Swarm Mode**.
+One of my goal here is to create the quickest demo available around the Docker ecosystem.
 
-I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, storage, benchmark and other cool applications we love to use in Docker.
+To accomplish this, we put together the power of:
+
+- **play-with-docker**
+- **Docker Stacks**
+- **Docker Swarm Mode**.
+
+I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, storage, benchmark and other cool applications we love to use in Docker. At the very moment, I’m trying to see if the [tink stack](https://github.com/influxdata/TICK-docker/issues/20) can work for my needs.
 
 ## See the demo
 
@@ -14,7 +20,7 @@ https://youtu.be/w3KM8yiC4d8 (90 seconds really!)
 
 ## Project source
 
-Via my blog - http://pascalandy.com/blog/traefik-demo-docker-stack-and-play-with-docker/ and the [Github repo](https://github.com/pascalandy/docker-stack-this).
+Original post on my blog > http://pascalandy.com/blog/traefik-demo-docker-stack-and-play-with-docker/ and the [Github repo](https://github.com/pascalandy/docker-stack-this).
 
 ## Something looks weird? Please let me know
 I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
@@ -55,20 +61,21 @@ touch /mnt/DeployGRP/tooldata/traefik/acme.json
 
 2. After a while (about 20 seconds) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
 
-3. Click on `8080` to see **Traefik dashboard**. We see all the services that run behind traefik. Great
+3. Click on `80`. You see:
 
-4. Click on `80`. You see `404 page not found`. It’s ok! Here is the address I see during my PWD session:
+![home2](https://user-images.githubusercontent.com/6694151/30007620-10aedee8-90e1-11e7-8d9f-69310e289bf0.png)
+
+4. Click on `8080` to see **Traefik dashboard**. We see all the services that run behind traefik. Great
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 ```
 
-## Access the webapps
+## Access all webapps
+Overall there is 9 webapps running in this docker stack. 
+
 To see a service just add the service name at the end of the address (ie `/a-cad`). See the section `Available services`.
 
-Here is how I define `a-cad` for the service caddy: https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolweb.yml#L34
-
-#### Available services
 **WARNING** - During your own play-with-ghost session, you will have another ip address than this one `10-0-7-3`
 
 Per example: point to one of your 8 containers:
