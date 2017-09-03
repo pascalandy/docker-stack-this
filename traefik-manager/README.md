@@ -40,22 +40,22 @@ touch /mnt/DeployGRP/tooldata/traefik/acme.json
 ./_up
 ```
 
-- `docker service ls` is refreshing automatically
-- All service are running. Good!
-- `CTRL-C` to quit the watch mode.
-- Click on 8080 to see Traefik dashboard
-- Click on 80
-- You see `404 page not found`. It’s ok :-p
+## Confirm Traefik is working
+1) `docker service ls` is refreshing automatically. We see that all service are running. If not wait a bit and do `docker service ls` till all services runs. You can `CTRL-C` to quit earlier to loops.
 
-## See our services
+2) Click on 8080 to see Traefik dashboard. We see all the services that run behind traefik. Great
 
-Here is the address I see during my PWD session:
+3) Click on 80. You see `404 page not found`. It’s ok :-p Here is the address I see during my PWD session:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 ```
 
-Just point to one of your 6 containers this way:
+## How to see our services
+
+In you #pwg session you will have another ip address. Just replace it and add the service name at the end. 
+
+Per example: point to one of your 8 containers this way:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
