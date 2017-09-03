@@ -81,6 +81,10 @@ To see a service just add the service name at the end of the address (ie `/a-cad
 Per example: point to one of your 8 containers:
 
 ```
+
+# home, the IP is probably different in you pwg session
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
+
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-cad
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-gix
