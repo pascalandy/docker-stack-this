@@ -15,6 +15,26 @@ version: "3.1"
 
 services:
 
+  home:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 8M
+      labels:
+        - "traefik.backend=home"
+        - "traefik.port=80"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.backend.loadbalancer.sticky=true"
+				
   a-cad:
     image: abiosoft/caddy
     networks:

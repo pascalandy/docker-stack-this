@@ -14,7 +14,7 @@ https://youtu.be/w3KM8yiC4d8 (90 seconds really!)
 
 ## Project source
 
-https://github.com/pascalandy/docker-stack-this
+Via my blog - http://pascalandy.com/blog/traefik-demo-docker-stack-and-play-with-docker/ and the [Github repo](https://github.com/pascalandy/docker-stack-this).
 
 ## Something looks weird? Please let me know
 I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
@@ -109,7 +109,7 @@ This is all I got! Hope you enjoyed this!
 Looking to **kickstart you website** (static page page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with Ghost. In short, you can try Ghost on the spot without having to sign-up!
 
 #### P.S.
-If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang* and you would love to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
+If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang and yo’re looking to help a startup to launch a solid project, I would love to get to know you. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
 
 I’m looking for bright and caring people to join this [journey](http://firepress.org/blog/tag/from-the-heart/) with me.
 
