@@ -1,19 +1,22 @@
-https://github.com/pascalandy/docker-stack-this
 
-## Quick trial of this Docker Stack
 
-My goal is to make it freaking fast to try something via a Docker Stack setup. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
+## General consideration
+
+My goal is the create the fastest demo humanly possible by using **play-with-docker** and a **docker stack**. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
 
 Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
+
+## Project source
+https://github.com/pascalandy/docker-stack-this
 
 ## ACME
 
 ACME, is supported within this configuration and I [working on it](https://github.com/pascalandy/docker-stack-this/issues/5)!
 
-## Setup
+## Ready Go!
 
 1. Go to http://labs.play-with-docker.com/ 
-2. Create **1** instance and wait about 20 sec
+2. Create **1 instance** and wait for for the node to provision
 3. On **node1**, copy-paste:
 
 ```
@@ -23,12 +26,11 @@ docker swarm init --advertise-addr eth0
 # List nodes
 docker node ls
 
-cd /root
-
 # Install common apps
 apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates
 
 # Clone repo
+cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-manager
 
@@ -40,12 +42,16 @@ touch /mnt/DeployGRP/tooldata/traefik/acme.json
 ./_up
 ```
 
+
 ## Confirm Traefik is working
-1) `docker service ls` is refreshing automatically. We see that all service are running. If not wait a bit and do `docker service ls` till all services runs. You can `CTRL-C` to quit earlier to loops.
 
-2) Click on 8080 to see Traefik dashboard. We see all the services that run behind traefik. Great
+1) `docker service ls` is refreshing automatically. We see that services are getting provisioned every 3 seconds via Docker swarm.
 
-3) Click on 80. You see `404 page not found`. It’s ok :-p Here is the address I see during my PWD session:
+2) After a while (about 20 seconds) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
+
+3) Click on `8080` to see **Traefik dashboard**. We see all the services that run behind traefik. Great
+
+4) Click on `80`. You see `404 page not found`. It’s ok! Here is the address I see during my PWD session:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
@@ -53,9 +59,11 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 
 ## How to see our services
 
-In you #pwg session you will have another ip address. Just replace it and add the service name at the end. 
+**WARNING** - Of course during your own  play-with-ghost session, you will have another ip address then `10-0-7-3`!
 
-Per example: point to one of your 8 containers this way:
+To see a service just add the service frontend layer7 at the end of the address (ie `/a-who`)
+
+Per example: point to one of your 8 containers:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
@@ -80,7 +88,7 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 - instance `a` of `who` by jwilder
 - instance `b` of `who` by jwilder
 
-All instances have `replicas=3`. I think this is a solid case to understand an valide how to run this reverse-proxy.
+All instances have `replicas=2`. I think this is a solid case to understand an valide how to run this reverse-proxy.
 
 ## up, down, restart
 
