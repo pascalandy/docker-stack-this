@@ -19,28 +19,33 @@ ACME, is supported within this configuration and I [working on it](https://githu
 ```
 # Create Swarm
 docker swarm init --advertise-addr eth0
-\
+
 # List nodes
 docker node ls
-\
-# Clone repo
-apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates
+
 cd /root
+
+# Install common apps
+apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates
+
+# Clone repo
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-manager
+
+# Needed to mount the volume
 mkdir -p /mnt/DeployGRP/tooldata/traefik/
 touch /mnt/DeployGRP/tooldata/traefik/acme.json
-\
+
 # Launch all services
 ./_up
 ```
 
 - `docker service ls` is refreshing automatically
-- All service are running. Good! `CTRL-C` to quit the watch mode.
+- All service are running. Good!
+- `CTRL-C` to quit the watch mode.
 - Click on 8080 to see Traefik dashboard
 - Click on 80
-- You see `404 page not found`.
-- It’s ok :)
+- You see `404 page not found`. It’s ok :-p
 
 ## See our services
 
