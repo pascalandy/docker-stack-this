@@ -74,8 +74,8 @@ Per example: point to one of your 8 containers:
 
 - **cad** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
 - **gix** = [nginx](https://hub.docker.com/_/nginx/)
-- **who** = who by who by [Émile Vauge](https://hub.docker.com/r/emilevauge/whoami/)
-- **der** = who by [jwilder](https://hub.docker.com/r/jwilder/whoami/)
+- **who** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) by Émile Vauge
+- **der** = [whoami](https://hub.docker.com/r/jwilder/whoami/) by jwilder
 
 Other things to know:
 
