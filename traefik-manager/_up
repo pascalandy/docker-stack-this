@@ -25,12 +25,12 @@ docker stack ls
 sleep 2
 
 echo; echo "Check 'docker service ls' 6 times in a row ..."
-docker service ls && echo && sleep 3
-docker service ls && echo && sleep 3
-docker service ls && echo && sleep 3
-docker service ls && echo && sleep 3
-docker service ls && echo && sleep 3
-docker service ls && echo && sleep 3
+docker service ls && echo && sleep 2
+docker service ls && echo && sleep 2
+docker service ls && echo && sleep 2
+docker service ls && echo && sleep 2
+docker service ls && echo && sleep 2
+docker service ls && echo && sleep 2
 
 echo; echo "docker service logs -f proxy_traefik ..."
 docker service logs -f toolproxy_traefik
