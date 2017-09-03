@@ -1,21 +1,19 @@
 ## General consideration
-
 One of my goal here is to create the quickest demos available around the Docker eco-system. To do this we will use the power of **play-with-docker** and **Docker Swarm** and **Docker Stacks**.
 
 ## See the demo
-[![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
-
 https://youtu.be/w3KM8yiC4d8
+
+[![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
 
 ## Project source
 https://github.com/pascalandy/docker-stack-this
 
 ## Something looks weird? Please let me know
-
 I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
 
 ## Traefik version 
-Find it [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
+Find it [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolproxy.yml#L9)
 
 ## Ready. Go!
 1. Go to http://labs.play-with-docker.com/ 
@@ -45,29 +43,25 @@ touch /mnt/DeployGRP/tooldata/traefik/acme.json
 ./_up
 ```
 
-
 ## Confirm Traefik is working
+1. `docker service ls` is refreshing automatically. We see that services are getting provisioned every 3 seconds via Docker swarm.
 
-1) `docker service ls` is refreshing automatically. We see that services are getting provisioned every 3 seconds via Docker swarm.
+2. After a while (about 20 seconds) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
 
-2) After a while (about 20 seconds) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
+3. Click on `8080` to see **Traefik dashboard**. We see all the services that run behind traefik. Great
 
-3) Click on `8080` to see **Traefik dashboard**. We see all the services that run behind traefik. Great
-
-4) Click on `80`. You see `404 page not found`. It’s ok! Here is the address I see during my PWD session:
+4. Click on `80`. You see `404 page not found`. It’s ok! Here is the address I see during my PWD session:
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 ```
 
 ## How to see our services
-
 To see a service just add the service name at the end of the address (ie `/a-cad`). See the section `Available services`.
 
 Here is how I define `a-cad` for the service caddy: https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolweb.yml#L34
 
 #### Nomenclature: 
-
 - **a** is for instance b
 - **b** is for instance b
 - **cad** = caddy (webserver made in go)
@@ -94,17 +88,12 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 I think this is a solid case to understand an valide how to run this reverse-proxy.
 
 ## up, down, restart
-
 Execute:
 - `./_run`
 - `./_stop`
 - `./_restart` (typical flow when I debbug)
 
 This is all I got! You are welcome :)
-
-## Screenshots
-
-wip
 
 ## A last word
 
