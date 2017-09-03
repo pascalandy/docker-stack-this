@@ -31,10 +31,12 @@ services:
           memory: 8M
       labels:
         - "traefik.backend=home"
+        - "traefik.frontend.rule=PathPrefixStrip:/"
+        - "traefik.headers.SSLRedirect=true"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.sticky=true"
-        
+
   a-cad:
     image: abiosoft/caddy
     networks:
@@ -56,7 +58,7 @@ services:
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
-        
+
   b-cad:
     image: abiosoft/caddy
     networks:
@@ -214,6 +216,6 @@ services:
 networks:
   ntw_front:
     external: true
-  
+
 #Cheers!
 #Pascal | https,http://twitter.com/askpascalandy
