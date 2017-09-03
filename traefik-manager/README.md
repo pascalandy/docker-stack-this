@@ -2,19 +2,22 @@
 
 ## General consideration
 
-One of my goal here is to create the quickest demo available on the Internet. I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
+One of my goal here is to create the quickest demos available around the Docker eco-system. To do this we will use the power of **play-with-docker** and **Docker Swarm** and **Docker Stacks**.
 
-Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
+## See the demo
+[![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
+
+## Something is weird, please let me know
+
+I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
 
 ## Project source
 https://github.com/pascalandy/docker-stack-this
 
-## ACME
-
-ACME, is supported within this configuration and I [working on it](https://github.com/pascalandy/docker-stack-this/issues/5)!
+## Traefik version 
+Find it [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
 ## Ready Go!
-
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **1 instance** and wait for for the node to provision
 3. On **node1**, copy-paste:
