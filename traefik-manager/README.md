@@ -1,7 +1,5 @@
 ## What is this?
-Traefik is a powerful layer 7 reverse-proxy. Once running, the proxy will give you access to 8 different webapps.
-
-I think this is a solid case to understand how to run this reverse-proxy and it’s power.
+Traefik is a powerful layer 7 reverse-proxy. Once running, the proxy will give you access to 8 different webapps. I think this is a solid use-case to understand how to run this reverse-proxy.
 
 ## General consideration
 One of my goal here is to create the quickest demo available around the Docker ecosystem. To do this we will use the power of **play-with-docker** and **Docker Stacks** on top of nd **Docker Swarm Mode**.
@@ -10,7 +8,7 @@ I hope the community will use this repo as a base project to demo other stuff li
 
 ## See the demo
 
-https://youtu.be/w3KM8yiC4d8
+https://youtu.be/w3KM8yiC4d8 (90 seconds really!)
 
 [![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
 
