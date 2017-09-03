@@ -1,8 +1,14 @@
+## What is this?
+Traefik is a powerful layer 7 reverse-proxy. Once running, the proxy will give you access to 8 different webapps.
+
+I think this is a solid case to understand how to run this reverse-proxy and it’s power.
+
 ## General consideration
-One of my goal here is to create the quickest demos available around the Docker eco-system. To do this we will use the power of **play-with-docker** and **Docker Swarm** and **Docker Stacks**.
+One of my goal here is to create the quickest demo available around the Docker ecosystem. To do this we will use the power of **play-with-docker** and **Docker Stacks** on top of nd **Docker Swarm Mode**.
+
+I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, storage, benchmark and other cool applications we love to use in Docker.
 
 ## See the demo
-I think this is a solid case to understand how to run this reverse-proxy and it’s power.
 
 https://youtu.be/w3KM8yiC4d8
 
@@ -58,29 +64,15 @@ touch /mnt/DeployGRP/tooldata/traefik/acme.json
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 ```
 
-## How to see our services
+## Access the webapps
 To see a service just add the service name at the end of the address (ie `/a-cad`). See the section `Available services`.
 
 Here is how I define `a-cad` for the service caddy: https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolweb.yml#L34
 
-Each instances have `replicas=2`.
+#### Available services
+**WARNING** - During your own play-with-ghost session, you will have another ip address than this one `10-0-7-3`
 
-**WARNING** - Of course during your own play-with-ghost session, you will have another ip address than `10-0-7-3`
-
-## Available services
 Per example: point to one of your 8 containers:
-
-#### Web apps details:
-
-- **cad** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
-- **gix** = [nginx](https://hub.docker.com/_/nginx/)
-- **who** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) by Émile Vauge
-- **der** = [whoami](https://hub.docker.com/r/jwilder/whoami/) by jwilder
-
-Other things to know:
-
-- `a` and `b` are two independant instances of the same app
-- All 8 services have a `replica=2`
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
@@ -94,7 +86,18 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 ```
 
-## up, down, restart
+#### Web apps details:
+- **cad** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
+- **gix** = [nginx](https://hub.docker.com/_/nginx/)
+- **who** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) by Émile Vauge
+- **der** = [whoami](https://hub.docker.com/r/jwilder/whoami/) by jwilder
+
+Other things to know:
+
+- `a` and `b` are two independant instances of the same app
+- All 8 services have a `replica=2`
+
+## Commands
 Just execute:
 
 - `./_run`
