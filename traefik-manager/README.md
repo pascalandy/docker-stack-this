@@ -2,6 +2,8 @@
 One of my goal here is to create the quickest demos available around the Docker eco-system. To do this we will use the power of **play-with-docker** and **Docker Swarm** and **Docker Stacks**.
 
 ## See the demo
+I think this is a solid case to understand how to run this reverse-proxy and it’s power.
+
 https://youtu.be/w3KM8yiC4d8
 
 [![screen shot 2017-09-03 at 5 29 09 pm](https://user-images.githubusercontent.com/6694151/30006739-a068532a-90cd-11e7-98b8-444bc9a5d8d7.jpg)](https://youtu.be/w3KM8yiC4d8)
@@ -61,17 +63,24 @@ To see a service just add the service name at the end of the address (ie `/a-cad
 
 Here is how I define `a-cad` for the service caddy: https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolweb.yml#L34
 
-#### Nomenclature: 
-- **a** is for instance b
-- **b** is for instance b
-- **cad** = caddy (webserver made in go)
-
 Each instances have `replicas=2`.
 
 **WARNING** - Of course during your own play-with-ghost session, you will have another ip address than `10-0-7-3`
 
 ## Available services
 Per example: point to one of your 8 containers:
+
+#### Web apps details:
+
+- **cad** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
+- **gix** = [nginx](https://hub.docker.com/_/nginx/)
+- **who** = who by who by [Émile Vauge](https://hub.docker.com/r/emilevauge/whoami/)
+- **der** = who by [jwilder](https://hub.docker.com/r/jwilder/whoami/)
+
+Other things to know:
+
+- `a` and `b` are two independant instances of the same app
+- All 8 services have a `replica=2`
 
 ```
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/a-who
@@ -85,17 +94,17 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 ```
 
-I think this is a solid case to understand an valide how to run this reverse-proxy.
-
 ## up, down, restart
-Execute:
+Just execute:
+
 - `./_run`
 - `./_stop`
 - `./_restart` (typical flow when I debbug)
 
 This is all I got! You are welcome :)
 
-## A last word
+## Final word
+Looking to kickstart you website (static page page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with Ghost. In short, you can try Ghost on the spot without having to sign-up!
 
 **P.S.** If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang* and you would love to help a startup to launch 🔥 a solid project, I would love to get to know you 🍻. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
 
