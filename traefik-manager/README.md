@@ -2,7 +2,7 @@
 
 ## General consideration
 
-My goal is the create the fastest demo humanly possible by using **play-with-docker** and a **docker stack**. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
+One of my goal here, is to create the quickest demo available on the Internet. I consider this README crystal clear. If there is anything that I could improve, please let me know. 
 
 Traefik version is defined [here](https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/proxy.yml#L6)
 
@@ -59,10 +59,21 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 
 ## How to see our services
 
-**WARNING** - Of course during your own  play-with-ghost session, you will have another ip address then `10-0-7-3`!
+To see a service just add the service name at the end of the address (ie `/a-cad`). See the section `Available services`.
 
-To see a service just add the service frontend layer7 at the end of the address (ie `/a-who`)
+Here is how I define `a-cad` for the service caddy: https://github.com/pascalandy/docker-stack-this/blob/master/traefik-manager/toolweb.yml#L34
 
+#### Nomenclature: 
+
+- **a** is for instance b
+- **b** is for instance b
+- **cad** = caddy (webserver made in go)
+
+Each instances have `replicas=2`.
+
+**WARNING** - Of course during your own play-with-ghost session, you will have another ip address than `10-0-7-3`
+
+## Available services
 Per example: point to one of your 8 containers:
 
 ```
@@ -77,18 +88,7 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-gix
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/b-der
 ```
 
-**The logic is:**
-
-- instance `a` of `who` by emile 
-- instance `b` of `who` by emile
-- instance `a` of `caddy`
-- instance `b` of `caddy`
-- instance `a` of `nginx`
-- instance `b` of `nginx`
-- instance `a` of `who` by jwilder
-- instance `b` of `who` by jwilder
-
-All instances have `replicas=2`. I think this is a solid case to understand an valide how to run this reverse-proxy.
+I think this is a solid case to understand an valide how to run this reverse-proxy.
 
 ## up, down, restart
 
