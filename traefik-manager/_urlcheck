@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAIN_URL="https://cloudwait.com"
+MAIN_URL="http://pwd10-0-7-3-80.host1.labs.play-with-docker.com"
 WEBAPP=(a-gix b-gix a-cad b-cad a-who b-who a-der b-der)
 #
 NUMBER=100

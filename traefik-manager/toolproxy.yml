@@ -3,19 +3,23 @@ version: "3.1"
 # pre-Requirement
 # Don't forget to set acme.json on the node
 
+# Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
+  # https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
+
 services:
 
   traefik:
     image: traefik:v1.4.0-rc1
     command:
-      - --web
-      - --docker 
-      - --docker.watch 
-      - --docker.swarmmode 
-      - --docker.domain=traefik
+      - --docker
+      - --docker.swarmmode=true
+      - --docker.domain=docker.localhost
+      - --docker.watch=true
+      - --docker.exposedbydefault=true
       - --docker.endpoint=unix:///var/run/docker.sock
       - --debug=true
-      - --logLevel=DEBUG
+      - --logLevel=ERROR
+      - --web
     ports:
       - "80:80"
       - "443:443"
