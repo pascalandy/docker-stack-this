@@ -19,7 +19,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      #- "8080:8080"
+      - "8080:8080"
     networks:
       - ntw_front
     volumes:
@@ -36,11 +36,11 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.30'
-          memory: 72M
+          cpus: '0.50'
+          memory: 128M
         reservations:
           cpus: '0.10'
-          memory: 36M
+          memory: 64M
 
 networks:
   ntw_front:
