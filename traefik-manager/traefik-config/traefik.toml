@@ -46,11 +46,9 @@ onDemand = true
 OnHostRule = true
 acmeLogging = true
 
-	# PROD | Must be comment to go in prod
+# PROD | Must be comment to go in prod
 caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
-#[file]
-#watch = true
 
 ################################################################
 # Comments
