@@ -117,6 +117,17 @@ Just execute:
 
 This is all I got! Hope you enjoyed this!
 
+## DEV vs PROD
+This is **NOT prod ready**
+
+To the best of my knowledge, over `/docker-stack-this/traefik-manager/traefik-config/traefik.toml` update these values:
+
+- traefik_basic_auth_user + password
+- /etc/traefik/demoselfsign.crt
+- /etc/traefik/demoselfsign.key
+- lavida@gmail.com
+- caServer
+
 ## Final word
 Looking to **kickstart you website** (static page page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with Ghost. In short, you can try Ghost on the spot without having to sign-up!
 
