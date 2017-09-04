@@ -48,8 +48,8 @@ cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-manager
 
-# use this branch while developping features
-git checkout 1.01; sleep 1;
+# If developping in a branch...
+# git checkout 1.01; sleep 1;
 
 # Needed to mount the volume
 mkdir -p /mnt/DeployGRP/tooldata/traefik/
