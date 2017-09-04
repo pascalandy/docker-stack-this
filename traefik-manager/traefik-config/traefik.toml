@@ -18,8 +18,7 @@ ReadOnly = true
 ################################################################
 # Entry Points
 ################################################################
- 
-[entryPoints]
+ [entryPoints]
 	[entryPoints.http]
   address = ":80"
   compress = true
@@ -36,13 +35,11 @@ ReadOnly = true
 ################################################################
 # Retry Configuration
 ################################################################
-
 [retry]
   attempts = 3
 
 ################################################################
-# Entry Points
-# ACME (Let's Encrypt) configuration¶
+# Entry Points | ACME (Let's Encrypt) configuration¶
 ################################################################
 [acme]
 email = "lavida@gmail.com"
@@ -69,10 +66,6 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 	# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
 	# Each domain & SANs will lead to a certificate request.
 
-# [[acme.domains]]
-#  main = "jimexample.com"
-# [[acme.domains]]
-#  main = "rogerexample.com"
 # [[acme.domains]]
 #   main = "suzyexample.com"
 #   sans = ["test1.suzyexample.com", "test2.suzyexample.com"]

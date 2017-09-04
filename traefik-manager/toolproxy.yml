@@ -17,8 +17,8 @@ services:
       - --docker.watch=true
       - --docker.exposedbydefault=true
       - --docker.endpoint=unix:///var/run/docker.sock
-      - --debug=true
-      - --logLevel=ERROR
+      - --debug=false
+      - --logLevel=WARN
       - --web
     ports:
       - "80:80"
