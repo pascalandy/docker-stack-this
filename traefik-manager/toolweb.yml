@@ -18,7 +18,7 @@ services:
           memory: 8M
       labels:
         - "traefik.backend=home"
-        - "traefik.frontend.rule=Host:/"
+        - "traefik.frontend.rule=PathPrefix:/"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
