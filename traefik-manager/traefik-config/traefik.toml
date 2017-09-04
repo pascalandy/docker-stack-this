@@ -43,7 +43,7 @@ ReadOnly = true
 ################################################################
 [acme]
 email = "lavida@gmail.com"
-storageFile = "/etc/traefik/acme/acme.json"
+ACME.Storage = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 
 	# Enable on demand certificate. This will request a certificate from Let's Encrypt during the first TLS handshake for a hostname that does not yet have a certificate.
