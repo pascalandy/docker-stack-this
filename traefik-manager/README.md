@@ -120,6 +120,8 @@ This is all I got! Hope you enjoyed this!
 ## DEV vs PROD
 This is **NOT prod ready**
 
+What is do is that is use `traefik-private.toml` (which is outside of this repo) with prod data and overide `traefik.toml` file just after I cloned the repo. 
+
 To the best of my knowledge, over `/docker-stack-this/traefik-manager/traefik-config/traefik.toml` update these values:
 
 - traefik_basic_auth_user + password

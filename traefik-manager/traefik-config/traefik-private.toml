@@ -1,0 +1,83 @@
+# Sample entrypoint configuration when using ACME
+defaultEntryPoints = ["http", "https"]
+
+#checkNewVersion = false
+#traefikLogsFile = "/var/log/traefik/traefik.log"
+#accessLogsFile = "/var/log/traefik/access.log"
+#InsecureSkipVerify = true
+
+################################################################
+# Web configuration backend
+################################################################
+[web]
+address = ":8080"
+ReadOnly = true
+  #[web.auth.basic]
+  #users = ["{{ traefik_basic_auth_user }}:{{ traefik_basic_auth_password }}"]
+
+################################################################
+# Entry Points
+################################################################
+ [entryPoints]
+	[entryPoints.http]
+  address = ":80"
+  compress = true
+  	#[entryPoints.http.redirect]
+    	#entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  	[entryPoints.https.tls]
+       [[entryPoints.https.tls.certificates]]
+       CertFile = "/etc/traefik/demoselfsign.crt"
+       KeyFile = "/etc/traefik/demoselfsign.key"
+
+
+################################################################
+# Retry Configuration
+################################################################
+[retry]
+  attempts = 3
+
+################################################################
+# Entry Points | ACME (Let's Encrypt) configuration¶
+################################################################
+[acme]
+email = "lavida@gmail.com"
+Storage = "/etc/traefik/acme/acme.json"
+entryPoint = "https"
+
+	# Enable on demand certificate. This will request a certificate from Let's Encrypt during the first TLS handshake for a hostname that does not yet have a certificate.
+	# WARNING, TLS handshakes will be slow when requesting a hostname certificate for the first time, this can leads to DoS attacks.
+	# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
+onDemand = true
+
+	# Enable certificate generation on frontends Host rules. This will request a certificate from Let's Encrypt for each frontend with a Host rule.
+	# For example, a rule Host:test1.traefik.io,test2.traefik.io will request a certificate with main domain test1.traefik.io and SAN test2.traefik.io.
+OnHostRule = true
+
+	# CA server to use
+	# Uncomment the line to run on the staging let's encrypt server
+	# Leave comment to go to prod
+caServer = "https://acme-staging.api.letsencrypt.org/directory"
+
+	# Domains list
+	# You can provide SANs (alternative domains) to each main domain
+	# All domains must have A/AAAA records pointing to Traefik
+	# WARNING, Take note that Let's Encrypt have rate limiting: https://letsencrypt.org/docs/rate-limits
+	# Each domain & SANs will lead to a certificate request.
+
+# [[acme.domains]]
+#   main = "suzyexample.com"
+#   sans = ["test1.suzyexample.com", "test2.suzyexample.com"]
+
+
+################################################################
+# Work in progress
+################################################################
+
+# Redirect issue
+# - https://traefik.slack.com/?redir=%2Farchives%2FC0CDT22PJ%2Fp1497071392758916
+# - https://github.com/containous/traefik/issues/1731
+
+# Cheers!
+# Pascal https://twitter.com/askpascalandy
