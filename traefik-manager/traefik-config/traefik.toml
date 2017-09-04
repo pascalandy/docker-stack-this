@@ -18,9 +18,9 @@ defaultEntryPoints = ["http", "https"]
       [entryPoints.https]
       address = ":443"
         [entryPoints.https.tls]
-        #[[entryPoints.https.tls.certificates]]
-        #CertFile = "/etc/traefik/dummy1.crt"
-        #KeyFile = "/etc/traefik/dummy1.key"
+        [[entryPoints.https.tls.certificates]]
+        CertFile = "/etc/traefik/dummy1.crt"
+        KeyFile = "/etc/traefik/dummy1.key"
 
 
 ################################################################
