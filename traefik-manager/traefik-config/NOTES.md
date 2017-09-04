@@ -3,8 +3,7 @@
 ### Self-Signed Certificate
 
 ```
-openssl req \
--nodes -newkey rsa:4096 -keyout dummy1.key -out dummy1.csr -subj "/C=NL/ST=Zuid Holland/L=Rotterdam/O=Sparkling Network/OU=IT Department/CN=zxc.qwe.org";
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
 ```
 
 ### user: dummy1
