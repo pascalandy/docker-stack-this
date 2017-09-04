@@ -21,7 +21,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
@@ -44,7 +44,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
@@ -90,7 +90,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
@@ -136,7 +136,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip:/a-who"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
@@ -182,7 +182,7 @@ services:
         - "traefik.frontend.rule=PathPrefix:/a-der"
         - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 

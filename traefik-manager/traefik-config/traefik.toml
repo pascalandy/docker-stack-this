@@ -28,12 +28,10 @@ ReadOnly = true
   [entryPoints.https]
   address = ":443"
   	[entryPoints.https.tls]
-       #[[entryPoints.https.tls.certificates]]
-       #CertFile = "/etc/traefik/traefik.crt"
-       #KeyFile = "/etc/traefik/traefik.key"
-       #[[entryPoints.https.tls.certificates]]
-       #CertFile = "/etc/traefik/traefik.crt"
-       #KeyFile = "/etc/traefik/traefik.key"
+       [[entryPoints.https.tls.certificates]]
+       CertFile = "/etc/traefik/demoselfsign.crt"
+       KeyFile = "/etc/traefik/demoselfsign.key"
+
 
 ################################################################
 # Retry Configuration

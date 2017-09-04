@@ -51,6 +51,7 @@ cd docker-stack-this/traefik-manager
 # Needed to mount the volume
 mkdir -p /mnt/DeployGRP/tooldata/traefik/
 touch /mnt/DeployGRP/tooldata/traefik/acme.json
+chmod 600 /mnt/DeployGRP/tooldata/traefik/acme.json
 
 # Launch all services
 ./_up
