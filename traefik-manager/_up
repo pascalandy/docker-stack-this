@@ -30,8 +30,7 @@ MIN=1
 MAX=10
 for ACTION in $(seq $MIN $MAX); do
   echo "docker service ls | #$ACTION"
-	docker service ls && echo && sleep 2
-	fct_count2
+	docker service ls && echo && sleep 2;
 done
 
 echo; echo "docker service logs -f proxy_traefik ..."
