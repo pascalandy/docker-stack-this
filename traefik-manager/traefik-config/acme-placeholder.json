@@ -1,4 +1,4 @@
-about acme.json, we don't want it in the git repo.
+# we don't want acme.json in the git repo.
 
 On the node where Traefik is running, run:
 
