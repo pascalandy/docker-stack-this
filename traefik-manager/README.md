@@ -47,6 +47,7 @@ apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificat
 cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-manager
+git branch 1.01
 
 # Needed to mount the volume
 mkdir -p /mnt/DeployGRP/tooldata/traefik/
