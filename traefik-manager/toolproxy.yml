@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.2"
 
 # pre-Requirement
 # Don't forget to set acme.json on the node
@@ -17,7 +17,7 @@ services:
       - --docker.watch=true
       - --docker.exposedbydefault=true
       - --docker.endpoint=unix:///var/run/docker.sock
-      - --debug=false
+      - --debug=true
       - --logLevel=ERROR
       - --web
     ports:

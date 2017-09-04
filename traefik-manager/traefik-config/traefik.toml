@@ -22,6 +22,7 @@ ReadOnly = true
 [entryPoints]
 	[entryPoints.http]
   address = ":80"
+  compress = true
   	#[entryPoints.http.redirect]
     	#entryPoint = "https"
   [entryPoints.https]
@@ -35,7 +36,15 @@ ReadOnly = true
        #KeyFile = "/etc/traefik/traefik.key"
 
 ################################################################
+# Retry Configuration
+################################################################
+
+[retry]
+  attempts = 3
+
+################################################################
 # Entry Points
+# ACME (Let's Encrypt) configuration¶
 ################################################################
 [acme]
 email = "lavida@gmail.com"
@@ -63,11 +72,12 @@ caServer = "https://acme-staging.api.letsencrypt.org/directory"
 	# Each domain & SANs will lead to a certificate request.
 
 # [[acme.domains]]
-#  main = "example.com"
-#  sans = ["client.example.com", "whoami.example.com"]
+#  main = "jimexample.com"
 # [[acme.domains]]
-#   main = "local2.com"
-#   sans = ["test1.local2.com", "test2x.local2.com"]
+#  main = "rogerexample.com"
+# [[acme.domains]]
+#   main = "suzyexample.com"
+#   sans = ["test1.suzyexample.com", "test2.suzyexample.com"]
 
 
 ################################################################
