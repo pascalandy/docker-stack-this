@@ -1,4 +1,8 @@
 
+# similar issues
+https://github.com/containous/traefik/issues/2024
+https://github.com/containous/traefik/issues/1957
+
 defaultEntryPoints = ["http","https"]
 [entryPoints]
   [entryPoints.http]

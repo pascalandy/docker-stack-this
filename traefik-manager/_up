@@ -24,14 +24,15 @@ echo; echo "docker stack ls ..."
 docker stack ls
 sleep 2
 
-echo; echo "Check 'docker service ls' 7 times in a row ..."; echo
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
-docker service ls && echo && sleep 2
+echo; echo;
+
+MIN=1
+MAX=10
+for ACTION in $(seq $MIN $MAX); do
+  echo "docker service ls | #$ACTION"
+	docker service ls && echo && sleep 2
+	fct_count2
+done
 
 echo; echo "docker service logs -f proxy_traefik ..."
 docker service logs -f toolproxy_traefik
