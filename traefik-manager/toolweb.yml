@@ -3,7 +3,7 @@ version: "3.2"
 services:
 
   home:
-    image: emilevauge/whoami
+    image: abiosoft/caddy
     networks:
       - ntw_front
     deploy:
@@ -18,14 +18,14 @@ services:
           memory: 8M
       labels:
         - "traefik.backend=home"
-        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.frontend.rule=Path:/home"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
-  a-cad:
+  who1:
     image: abiosoft/caddy
     networks:
       - ntw_front
@@ -37,41 +37,18 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.10'
-          memory: 8M
+          cpus: '0.20'
+          memory: 12M
       labels:
-        - "traefik.backend=a-cad"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-cad"
+        - "traefik.backend=who1"
+        - "traefik.frontend.rule=PathPrefixStrip:/who1"
         - "traefik.port=2015"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
-  b-cad:
-    image: abiosoft/caddy
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 8M
-      labels:
-        - "traefik.backend=b-cad"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-cad"
-        - "traefik.port=2015"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=20"
-
-  a-gix:
+  who2:
     image: nginx:alpine
     networks:
       - ntw_front
@@ -83,41 +60,18 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.10'
-          memory: 7M
+          cpus: '0.20'
+          memory: 12M
       labels:
-        - "traefik.backend=a-gix"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-gix"
+        - "traefik.backend=who2"
+        - "traefik.frontend.rule=PathPrefixStrip:/who2"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
-  b-gix:
-    image: nginx:alpine
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]  
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 7M
-      labels:
-        - "traefik.backend=b-gix"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-gix"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=20"
-
-  a-who:
+  who3:
     image: emilevauge/whoami
     networks:
       - ntw_front
@@ -129,18 +83,18 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.10'
+          cpus: '0.20'
           memory: 7M
       labels:
-        - "traefik.backend=a-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/a-who"
+        - "traefik.backend=who3"
+        - "traefik.frontend.rule=PathPrefixStrip:/who3"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
 
-  b-who:
+  who4:
     image: emilevauge/whoami
     networks:
       - ntw_front
@@ -152,62 +106,16 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.10'
+          cpus: '0.20'
           memory: 7M
       labels:
-        - "traefik.backend=b-who"
-        - "traefik.frontend.rule=PathPrefixStrip:/b-who"
+        - "traefik.backend=who4"
+        - "traefik.frontend.rule=PathPrefixStrip:/who4"
         - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=20"
-
-  a-der:
-    image: jwilder/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 7M
-      labels:
-        - "traefik.backend=a-der"
-        - "traefik.frontend.rule=PathPrefix:/a-der"
-        - "traefik.port=8000"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.weight=10"
-
-  b-der:
-    image: jwilder/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 7M
-      labels:
-        - "traefik.backend=b-der"
-        - "traefik.frontend.rule=PathPrefix:/b-der"
-        - "traefik.port=8000"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=20"
 
 networks:
   ntw_front:

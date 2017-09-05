@@ -1,9 +1,10 @@
 # Tools
 
-### Self-Signed Certificate
-
+### Generate a Self-Signed Certificate
 ```
-openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+openssl req \
+-newkey rsa:2048 -nodes -keyout demoselfsign.key \
+-x509 -days 9999 -out demoselfsign.crt
 ```
 
 ### user: dummy1

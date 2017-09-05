@@ -48,8 +48,9 @@ cd /root
 git clone https://github.com/pascalandy/docker-stack-this.git
 cd docker-stack-this/traefik-manager
 
-# If developping in a branch...
-# git checkout 1.01; sleep 1;
+# Master should be stable
+# but if working in a branch...
+git checkout 1.03; sleep 1;
 
 # Needed to mount the volume
 mkdir -p /mnt/DeployGRP/tooldata/traefik/
@@ -61,9 +62,9 @@ chmod 600 /mnt/DeployGRP/tooldata/traefik/acme.json
 ```
 
 ## Confirm Traefik is working
-1. `docker service ls` is refreshing automatically. We see that services are getting provisioned every 3 seconds via Docker swarm.
+1. `docker service ls` is refreshing automatically for about 12 sec.
 
-2. After a while (about 20 seconds) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
+2. After a while (about 20 sec) we see the logs from Traefik. Do `CTRL-C` and return to terminal’s prompt.
 
 3. Click on `80`. You see:
 

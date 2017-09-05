@@ -30,8 +30,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/DeployGRP/tooldata/traefik/acme.json:/etc/traefik/acme/acme.json
       - /root/docker-stack-this/traefik-manager/traefik-config/traefik.toml:/etc/traefik/traefik.toml
-      - /root/docker-stack-this/traefik-manager/traefik-config/dummykey.pem:/ssl/cert/dummykey.pem
-      - /root/docker-stack-this/traefik-manager/traefik-config/dummycertificate.pem:/ssl/cert/dummycertificate.pem
+      - /root/docker-stack-this/traefik-manager/traefik-config/demoselfsign.crt:/etc/traefik/demoselfsign.crt
+      - /root/docker-stack-this/traefik-manager/traefik-config/demoselfsign.key:/etc/traefik/demoselfsign.key
     labels:
       - "traefik.enable=false"
     deploy:
