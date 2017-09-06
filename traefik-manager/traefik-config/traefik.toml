@@ -28,6 +28,7 @@ ReadOnly = true
   address = ":443"
   	[entryPoints.https.tls]
        [[entryPoints.https.tls.certificates]]
+	   #PROD values to update
        CertFile = "/etc/traefik/demoselfsign.crt"
        KeyFile = "/etc/traefik/demoselfsign.key"
 
@@ -42,6 +43,7 @@ ReadOnly = true
 # Entry Points | ACME (Let's Encrypt) configuration¶
 ################################################################
 [acme]
+#PROD value to update
 email = "lavida@gmail.com"
 storage = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
@@ -49,6 +51,7 @@ onDemand = true
 OnHostRule = true
 acmeLogging = true
 
+#PROD value to update
 caServer = "https://acme-staging.api.letsencrypt.org/directory"
 	# CA server to use
 	# Uncomment the line to run on the staging let's encrypt server

@@ -14,11 +14,11 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.10'
-          memory: 8M
+          cpus: '0.20'
+          memory: 12M
       labels:
         - "traefik.backend=home"
-        - "traefik.frontend.rule=Path:/home"
+        - "traefik.frontend.rule=Host:mydummysite.tk"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"
@@ -121,6 +121,7 @@ networks:
   ntw_front:
     external: true
 
+
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 
 #wrr: Weighted Round Robin
@@ -132,8 +133,7 @@ networks:
 # Testing
 #1 "traefik.frontend.headers=SSLRedirect:true"
 #2 "traefik.headers=SSLRedirect:true"
-#3 "traefik.frontend.headers.SSLRedirect=true"
-#4 "traefik.headers.SSLRedirect=true"
+#3 "traefik.headers.SSLRedirect=true"
 
 # Idea
 # "traefik.frontend.headersSSLRedirect=true"
