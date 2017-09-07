@@ -1,9 +1,11 @@
 #!/bin/sh
 
 # Really practical when debugging something :)
-
 ./_down
+
 # void local updates
 git checkout -- .
+
 git pull
+
 ./_up

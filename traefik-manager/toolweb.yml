@@ -2,29 +2,31 @@ version: "3.2"
 
 services:
 
-  home:
-    image: abiosoft/caddy
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 12M
-      labels:
-        - "traefik.backend=home"
-        - "traefik.frontend.rule=Host:mydummysite.tk"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=wrr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=10"
-
+  #home:
+  #  image: abiosoft/caddy
+  #  networks:
+  #    - ntw_front
+  #  deploy:
+  #    replicas: 2
+  #    placement:
+  #      constraints: [node.role==manager]
+  #    restart_policy:
+  #      condition: on-failure
+  #    resources:
+  #      limits:
+  #        cpus: '0.20'
+  #        memory: 12M
+  #    labels:
+  #      - "traefik.backend=home"
+  #      - "traefik.frontend.rule=Host:mydummysite.tk"
+  #      - "traefik.port=80"
+  #      - "traefik.docker.network=ntw_front"
+  #      - "traefik.backend.loadbalancer.method=wrr"
+  #      - "traefik.backend.loadbalancer.swarm=true"
+  #      - "traefik.weight=10"
+  #
+  # Above use your own domain mydummysite.tk
+  
   who1:
     image: abiosoft/caddy
     networks:
@@ -88,29 +90,6 @@ services:
       labels:
         - "traefik.backend=who3"
         - "traefik.frontend.rule=PathPrefixStrip:/who3"
-        - "traefik.port=80"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.backend.loadbalancer.method=wrr"
-        - "traefik.backend.loadbalancer.swarm=true"
-        - "traefik.weight=10"
-
-  who4:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 7M
-      labels:
-        - "traefik.backend=who4"
-        - "traefik.frontend.rule=PathPrefixStrip:/who4"
         - "traefik.port=80"
         - "traefik.docker.network=ntw_front"
         - "traefik.backend.loadbalancer.method=wrr"

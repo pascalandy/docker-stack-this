@@ -1,5 +1,8 @@
 # traefik-manager (Monorepo)
 
+### Version 1.05
+Simplifing the setup
+
 ### Version 1.02
 minor changes
 

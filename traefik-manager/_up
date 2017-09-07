@@ -30,7 +30,7 @@ echo; echo "docker stack ls ..."
 docker stack ls;
 echo; echo ; sleep 2
 
-# Check services deployment
+# Check services deployment in real time
 MIN=1
 MAX=8
 for ACTION in $(seq $MIN $MAX); do
@@ -43,4 +43,5 @@ echo; echo ; sleep 2
 # Check traefik logs
 echo "docker service logs -f proxy_traefik ..."
 docker service logs -f toolproxy_traefik
-echo; echo ; sleep 2
+
+echo; echo ; sleep 2;

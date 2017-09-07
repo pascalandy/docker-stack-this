@@ -11,7 +11,7 @@ defaultEntryPoints = ["http", "https"]
 ################################################################
 [web]
 address = ":8080"
-ReadOnly = true
+  #ReadOnly = true
   #[web.auth.basic]
   #users = ["{{ traefik_basic_auth_user }}:{{ traefik_basic_auth_password }}"]
 
@@ -27,24 +27,24 @@ ReadOnly = true
   [entryPoints.https]
   address = ":443"
   	[entryPoints.https.tls]
-       [[entryPoints.https.tls.certificates]]
-	   #PROD values to update
-       CertFile = "/etc/traefik/demoselfsign.crt"
-       KeyFile = "/etc/traefik/demoselfsign.key"
+       #[[entryPoints.https.tls.certificates]]
+       #CertFile = "/etc/traefik/demoselfsign.crt"
+       #KeyFile = "/etc/traefik/demoselfsign.key"
 
 
 ################################################################
 # Retry Configuration
 ################################################################
-[retry]
-  attempts = 3
+#[retry]
+#  attempts = 3
 
 ################################################################
 # Entry Points | ACME (Let's Encrypt) configuration¶
 ################################################################
 [acme]
 #PROD value to update
-email = "lavida@gmail.com"
+email = "dummyuser8u3ghs6@gmail.com"
+
 storage = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 onDemand = true
