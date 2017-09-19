@@ -1,0 +1,5 @@
+[entryPoints]
+  [entryPoints.exthttp]
+  address = ":8080"
+  [entryPoints.exthttps]
+  address = ":8443"

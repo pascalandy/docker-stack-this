@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  helloworld:
+    image: muresan/node-helloworld:${TAG:-1.0}
+    deploy:
+      labels:
+        traefik.port: "3000"
+        traefik.protocol: "http"
+        traefik.backend.loadbalancer.sticky: "true"
+        traefik.backend.loadbalancer.swarm: "false"
+        traefik.docker.network: "lb_int_proxy"
+        traefik.backend: "hw_int"
+        traefik.frontend.rule: "Host:hw-int.test"
+        traefik.frontend.entryPoints: inthttp
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 2s
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - lb_int_proxy
+    
+networks:
+  lb_int_proxy:
+    external: true

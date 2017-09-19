@@ -1,0 +1,18 @@
+defaultEntryPoints = ["http", "https"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+        CertFile = "/etc/traefik/ssl/mycert.pem"
+        KeyFile = "/etc/traefik/ssl/mycert.key"
+[docker]
+domain = "docker.local"
+watch = true
+
+[web]
+address = ":8080"

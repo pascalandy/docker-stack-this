@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  sleep:
+    image: alpine
+    deploy:
+      mode: global
+    command: sleep 30d
+    networks:
+      - ext_proxy
+      - int_proxy
+
+
+networks:
+  int_proxy:
+    driver: overlay
+    driver_opts:
+      encrypted: ""
+  ext_proxy:
+    driver: overlay
+    driver_opts:
+      encrypted: ""

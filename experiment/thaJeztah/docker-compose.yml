@@ -1,0 +1,9 @@
+version: "3.2"
+services:
+  foo:
+    image: nginx:alpine
+    labels:
+      - containerlabel=containerlabel
+    deploy:
+      labels:
+        - servicelabel=servicelabel

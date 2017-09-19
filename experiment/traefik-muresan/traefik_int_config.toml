@@ -1,0 +1,5 @@
+[entryPoints]
+  [entryPoints.inthttp]
+  address = ":80"
+  [entryPoints.inthttps]
+  address = ":443"

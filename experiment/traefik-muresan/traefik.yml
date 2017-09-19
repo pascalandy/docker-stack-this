@@ -1,0 +1,69 @@
+version: '3.3'
+
+services:
+  traefik_int:
+    image: traefik:1.3-alpine
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - lb_int_proxy
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8888:8888"
+    command: 
+      - --docker
+      - --docker.swarmmode
+      - --docker.domain=traefik
+      - --docker.watch
+      - --web
+      - --web.address=:8888
+      - --configFile=/etc/traefik_int_config.toml
+    configs:
+      - source: traefik_int_config.toml
+        target: /etc/traefik_int_config.toml
+  traefik_ext:
+    image: traefik:1.3-alpine
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - lb_ext_proxy
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9999:9999"
+    command:
+      - --docker
+      - --docker.swarmmode
+      - --docker.domain=traefik
+      - --docker.watch
+      - --web
+      - --web.address=:9999
+      - --configFile=/etc/traefik_ext_config.toml
+    configs:
+      - source: traefik_ext_config.toml
+        target: /etc/traefik_ext_config.toml
+
+
+configs:
+  traefik_int_config.toml:
+    file: ./traefik_int_config.toml
+  traefik_ext_config.toml:
+    file: ./traefik_ext_config.toml
+
+
+networks:
+  lb_int_proxy:
+    external: true
+  lb_ext_proxy:
+    external: true
