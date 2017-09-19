@@ -32,7 +32,7 @@ echo; echo ; sleep 2
 
 # Check services deployment in real time
 MIN=1
-MAX=8
+MAX=3
 for ACTION in $(seq $MIN $MAX); do
   echo
   echo "docker service ls | Check $ACTION" of $MAX; echo;
