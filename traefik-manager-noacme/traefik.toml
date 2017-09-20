@@ -1,0 +1,12 @@
+
+defaultEntryPoints = ["http"]
+
+[web]
+address = ":8080"
+  #[web.auth.basic]
+  #users = ["{{ traefik_basic_auth_user }}:{{ traefik_basic_auth_password }}"]
+
+ [entryPoints]
+	[entryPoints.http]
+  address = ":80"
+  compress = true

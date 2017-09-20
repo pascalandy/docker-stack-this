@@ -1,0 +1,51 @@
+version: "3.1"
+
+services:
+
+  traefik:
+    image: traefik:1.4.0-rc3
+    command: |-
+      - --docker
+      - --docker.swarmmode=true
+      - --docker.domain=traefik
+      - --docker.watch=true
+      - --docker.exposedbydefault=false
+      - --docker.endpoint=unix:///var/run/docker.sock
+      - --debug=true
+      - --logLevel=DEBUG
+      - --web
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - ntw_front
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/docker-stack-this/traefik-manager-noacme/traefik.toml:/etc/traefik/traefik.toml
+      #- no acme
+    deploy:
+      labels:
+      - "traefik.enable=false"
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 64M
+
+networks:
+  ntw_front:
+    external: true
+
+
+# Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
+# https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
+#
+# Pascal | https://twitter.com/askpascalandy
+#

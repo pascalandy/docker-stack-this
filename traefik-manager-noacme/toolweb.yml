@@ -1,0 +1,126 @@
+version: "3.1"
+
+services:
+
+  #home:
+  #  image: abiosoft/caddy
+  #  networks:
+  #    - ntw_front
+  #  deploy:
+  #    replicas: 2
+  #    placement:
+  #      constraints: [node.role==manager]
+  #    restart_policy:
+  #      condition: on-failure
+  #    resources:
+  #      limits:
+  #        cpus: '0.20'
+  #        memory: 12M
+  #    labels:
+  #      - "traefik.backend=home"
+  #      - "traefik.frontend.rule=Host:mydummysite.tk"
+  #      - "traefik.port=80"
+  #      - "traefik.enable=true"
+  #      - "traefik.frontend.entryPoints=http"
+  #      - "traefik.docker.network=ntw_front"
+  #      - "traefik.weight=10"
+
+  # Above replace mydummysite.tk with your domain
+  
+  who1:
+    image: abiosoft/caddy
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 2
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 12M
+      labels:
+        - "traefik.backend=who1"
+        - "traefik.frontend.rule=PathPrefixStrip:/who1"
+        - "traefik.port=2015"
+        - "traefik.enable=true"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.weight=10"
+
+  who2:
+    image: nginx:alpine
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 2
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 12M
+      labels:
+        - "traefik.backend=who2"
+        - "traefik.frontend.rule=PathPrefixStrip:/who2"
+        - "traefik.port=80"
+        - "traefik.enable=true"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.weight=10"
+
+  who3:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 7M
+      labels:
+        - "traefik.backend=who3"
+        - "traefik.frontend.rule=PathPrefixStrip:/who3"
+        - "traefik.port=80"
+        - "traefik.enable=true"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.weight=10"
+
+# "traefik.enable=false" = Traefik ignores this container
+  who4:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 7M
+      labels:
+        - "traefik.enable=false"
+
+networks:
+  ntw_front:
+    external: true
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### 
+
+#Cheers!
+#Pascal | https,http://twitter.com/askpascalandy
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ###
