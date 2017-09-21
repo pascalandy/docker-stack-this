@@ -2,7 +2,7 @@
 defaultEntryPoints = ["http"]
 
 [web]
-address = ":8080"
+address = ":9090"
   [web.auth.basic]
   users = ["admin:$apr1$aGu4aUu3$zp1DJDhVjtrNY49psnM7r0"]
   # plain password is: 0eb0f01DHb57d7124fb98g

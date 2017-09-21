@@ -20,17 +20,13 @@ set -o nounset
 # Functions
 ###############################################################################
 
-echo; echo "Remove stacks ..."
-docker stack rm toolproxy || true; sleep 1;
+docker run --rm -ti \
+  --name=ctop \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  quay.io/vektorlab/ctop:latest
 
-docker stack rm toolweb || true; sleep 1;
-
-docker stack rm toolwordpress || true; sleep 1;
-
-docker stack rm toolportainer || true; sleep 1;
-
-#echo; echo "Remove network ..."
-#docker network rm ntw_front
-
-#echo; echo "Clean up ..."
-#docker system prune -f
+#
+# by Pascal Andy 2017-09-20_21h37
+# https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#

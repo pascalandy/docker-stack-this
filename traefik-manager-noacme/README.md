@@ -1,5 +1,13 @@
 ## General Considerations
-This project will run Traefik, WordPress, Nginx, Caddy and whoami containers in one commands (git clone included). Powerfull stuff folks :)
+This project will run 
+- Traefik
+- WordPress
+- Portainer
+- Nginx
+- Caddy
+- Whoami
+
+containers in one commands copy paste. You can’t beat that for a demo!
 
 #### What’s special about this directory
 It doesn’t use ACME. I decided to create this as I still have issues about in `traefik-manager`. 
@@ -27,14 +35,17 @@ git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
 # If you prefer to use a branch...
-git checkout 1.11;
+git checkout 1.12;
 
 # Go to the actual project
 cd traefik-manager-noacme;
+echo; pwd; echo; ls -AlhF; echo; du -sh *; echo; du -sh;
+sleep 2;
 
 # Make script executable
 chmod +x /runup;
 chmod +x /rundown;
+chmod +x /runctop;
 
 # Launch all services
 ./runup;
@@ -65,14 +76,18 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who3
 - **who1** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
 - **who2** = [nginx](https://hub.docker.com/_/nginx/)
 - **who3** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) 
+- **portainer** = [portainer](https://hub.docker.com/r/portainer/portainer//)
 
 #### All commands
 In the active path, just execute those bash-scripts:
 
 - `./runup`
 - `./rundown`
+- `./runctop`
 
-See for yourself that Wordpress keeps the data even after you did  shutdown the containers.
+See for yourself that Wordpress data is persistent even after shutting down the containers.
+
+Bonus! **ctop** runs as a simple docker run :)
 
 ## What is Traefik?
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.

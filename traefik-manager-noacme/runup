@@ -15,9 +15,6 @@ set -o errtrace
 # Do not allow use of undefined vars. Use ${VAR:-} to use an undefined VAR
 set -o nounset
 
-# If needed, add permission to make this file executable | chmod +x start
-# Warning: the file acme.json must have chmod 600 privilege
-
 
 ###############################################################################
 # Functions
