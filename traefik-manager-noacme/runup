@@ -74,3 +74,7 @@ echo; echo ; sleep 2
 # See Traefik logs
 echo "docker service logs -f proxy_traefik ..."
 docker service logs -f toolproxy_traefik
+
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#

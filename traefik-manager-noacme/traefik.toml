@@ -12,8 +12,6 @@ address = ":9090"
   address = ":80"
   compress = true
 
-#
-# by Pascal Andy 2017-09-20_21h37
-# https://twitter.com/askpascalandy
+# by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this
 #

@@ -2,32 +2,6 @@ version: "3.1"
 
 services:
 
-  #home:
-  #  image: abiosoft/caddy
-  #  networks:
-  #    - ntw_front
-  #  deploy:
-  #    replicas: 2
-  #    placement:
-  #      constraints: [node.role==manager]
-  #    restart_policy:
-  #      condition: on-failure
-  #    resources:
-  #      limits:
-  #        cpus: '0.20'
-  #        memory: 12M
-  #    labels:
-  #      - "traefik.backend=home"
-  #      - "traefik.frontend.rule=Host:mydummysite.tk"
-  #      - "traefik.port=80"
-  #      - "traefik.enable=true"
-  #      - "traefik.backend.loadbalancer.method=drr"
-  #      - "traefik.frontend.entryPoints=http"
-  #      - "traefik.docker.network=ntw_front"
-  #      - "traefik.weight=10"
-
-  # Above replace mydummysite.tk with your domain
-  
   who1:
     image: abiosoft/caddy
     networks:
@@ -42,7 +16,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 12M
+          memory: 18M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
       labels:
         - "traefik.backend=who1"
         - "traefik.frontend.rule=PathPrefixStrip:/who1"
@@ -67,7 +44,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 12M
+          memory: 18M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
       labels:
         - "traefik.backend=who2"
         - "traefik.frontend.rule=PathPrefixStrip:/who2"
@@ -92,7 +72,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 7M
+          memory: 18M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
       labels:
         - "traefik.backend=who3"
         - "traefik.frontend.rule=PathPrefixStrip:/who3"
@@ -118,14 +101,17 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 7M
+          memory: 18M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
 
 networks:
   ntw_front:
     external: true
 
+# With a real domain name you will need "traefik.frontend.rule=Host:mydummysite.tk"
 #
-# by Pascal Andy 2017-09-20_21h37
-# https://twitter.com/askpascalandy
+# by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this
 #

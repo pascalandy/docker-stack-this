@@ -50,7 +50,6 @@ networks:
 # Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
 # https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
 #
-# by Pascal Andy 2017-09-20_21h37
-# https://twitter.com/askpascalandy
+# by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this
 #

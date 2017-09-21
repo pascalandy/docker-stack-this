@@ -34,3 +34,7 @@ docker stack rm toolportainer || true; sleep 1;
 
 #echo; echo "Clean up ..."
 #docker system prune -f
+
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#
