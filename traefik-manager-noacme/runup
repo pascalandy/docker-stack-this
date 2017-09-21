@@ -24,11 +24,11 @@ set -o nounset
 ###############################################################################
 
 # Stop
-echo; echo "Remove stacks (due diligence)"
+echo; echo "If existing, remove stacks: "
 ./rundown
 
 # Create Network
-echo; echo "If not existing, create our network ..."
+echo; echo "If not existing, create our network: "
 
 if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
   docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
@@ -37,15 +37,27 @@ fi
 
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
+echo; echo; sleep 2
 
-#Stack
-echo; echo "Start the stacks ..."; echo; echo 
+# The Stack
+echo "Start the stacks ..."; echo; echo;
+
 # traefik
 docker stack deploy toolproxy -c toolproxy.yml
-echo; echo ; sleep 2
+echo; echo; sleep 2
+
 # webapps
 docker stack deploy toolweb -c toolweb.yml
-echo; echo ; sleep 2
+echo; echo; sleep 2
+
+# wordpress
+docker stack deploy toolwordpress -c toolwordpress.yml
+echo; echo; sleep 2
+
+# portainer
+docker stack deploy toolportainer -c toolportainer.yml
+echo; echo; sleep 2
+
 
 # List
 echo; echo "docker stack ls ..."
@@ -54,7 +66,7 @@ echo; echo ; sleep 2
 
 # Follow deployment in real time
 MIN=1
-MAX=3
+MAX=10
 for ACTION in $(seq $MIN $MAX); do
   echo
   echo "docker service ls | Check $ACTION" of $MAX; echo;

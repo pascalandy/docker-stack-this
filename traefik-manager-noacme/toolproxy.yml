@@ -16,36 +16,41 @@ services:
       - --web
     ports:
       - "80:80"
-      - "8080:8080"
+      - "9090:8080"
     networks:
       - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/docker-stack-this/traefik-manager-noacme/traefik.toml:/etc/traefik/traefik.toml
-      #- no acme
     deploy:
       labels:
       - "traefik.enable=false"
+      mode: replicated
       replicas: 1
+      update_config:
+        delay: 2s
       placement:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
       resources:
         limits:
-          cpus: '0.50'
-          memory: 128M
+          cpus: '0.33'
+          memory: 96M
         reservations:
-          cpus: '0.10'
+          cpus: '0.05'
           memory: 64M
 
 networks:
   ntw_front:
     external: true
 
-
+# no acme
+#
 # Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
 # https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
 #
-# Pascal | https://twitter.com/askpascalandy
+# by Pascal Andy 2017-09-20_21h37
+# https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
 #

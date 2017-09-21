@@ -1,0 +1,68 @@
+version: "3.1"
+ 
+services:
+
+  db:
+    image: mysql:5.7
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - ntw_front
+    environment:
+      MYSQL_ROOT_PASSWORD: ckRxZEF96nUIi0GYoGVHlNy4SgmplG9a
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: uo9jC1utjVnwxNeUC5kmY5h2ALqO9nHO
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+      placement:
+        constraints: [node.role==manager]
+      update_config:
+        delay: 2s
+      labels:
+        - "traefik.backend=wordpress"
+        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.port=80"
+        - "traefik.enable=true"
+        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.weight=10"
+        - "traefik.backend.loadbalancer.sticky=true"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - ntw_front
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_PASSWORD: ckRxZEF96nUIi0GYoGVHlNy4SgmplG9a
+
+networks:
+  ntw_front:
+    external: true
+ 
+volumes:
+  db_data:
+  wordpress_data:
+
+# demo users: test / 9JMG6riG5XFkgNU
+# Inspired from: https://boxboat.com/2017/08/03/deploy-web-app-docker-swarm-sticky-sessions/
+#
+# by Pascal Andy 2017-09-20_21h37
+# https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#

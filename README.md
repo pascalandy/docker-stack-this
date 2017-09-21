@@ -1,8 +1,16 @@
 # Context
 
-I believe we need one common way to share Docker stacks over the open-source community. Thanks to **play-with-docker** (PWD) it’s now easy to do.
+One of my goals here is to create the **easiest** and **quickest** demo available around the Docker ecosystem. I really wished I had this when I started (while back docker-compose was called fig). Please enjoy this gift.
 
-Let’s see if I can give the example. Just navigate the directories!
+I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, Volume and Storage, Dbs, Benchmark tools and other cool applications we love to use in Docker.
+
+To accomplish this, we put together the power of:
+
+- play-with-docker (#pwg)
+- **docker Swarm mode
+- docker stacks
+
+Let’s see if I can give the example. To **start**, just navigate the directories!
 
 ---
 
@@ -116,3 +124,15 @@ Here are a few things you can do that will increase the likelihood of your pull 
 [pr]: https://github.com/pages-themes/cayman/compare
 [style]: http://ben.balter.com/jekyll-style-guide/
 [code-of-conduct]: CODE_OF_CONDUCT.md
+
+—
+
+## MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Copyright (c) 2017 Pascal Andy 

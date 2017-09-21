@@ -33,6 +33,7 @@ services:
     networks:
       - ntw_front
     deploy:
+      mode: replicated
       replicas: 2
       placement:
         constraints: [node.role==manager]
@@ -57,6 +58,7 @@ services:
     networks:
       - ntw_front
     deploy:
+      mode: replicated
       replicas: 2
       placement:
         constraints: [node.role==manager]
@@ -81,7 +83,8 @@ services:
     networks:
       - ntw_front
     deploy:
-      replicas: 1
+      mode: replicated
+      replicas: 2
       placement:
         constraints: [node.role==manager]
       restart_policy:
@@ -100,13 +103,14 @@ services:
         - "traefik.docker.network=ntw_front"
         - "traefik.weight=10"
 
-# "traefik.enable=false" = Traefik ignores this container
+# Traefik ignores this container
   who4:
     image: emilevauge/whoami
     networks:
       - ntw_front
     deploy:
-      replicas: 1
+      mode: replicated
+      replicas: 2
       placement:
         constraints: [node.role==manager]
       restart_policy:
@@ -115,16 +119,13 @@ services:
         limits:
           cpus: '0.20'
           memory: 7M
-      labels:
-        - "traefik.enable=false"
 
 networks:
   ntw_front:
     external: true
 
-### ### ### ### ### ### ### ### ### ### ### ### ### ### 
-
-#Cheers!
-#Pascal | https,http://twitter.com/askpascalandy
-
-### ### ### ### ### ### ### ### ### ### ### ### ### ###
+#
+# by Pascal Andy 2017-09-20_21h37
+# https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#
