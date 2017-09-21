@@ -1,20 +1,21 @@
 ## General Considerations
-This project will run 
+This project will run:
+
 - Traefik
-- WordPress
 - Portainer
+- WordPress
 - Nginx
 - Caddy
 - Whoami
 
-containers in one commands copy paste. You can’t beat that for a demo!
+containers in one copy paste command. You can’t beat that for a demo!
 
 #### What’s special about this directory
-It doesn’t use ACME. I decided to create this as I still have issues about in `traefik-manager`. 
+This stack does not use ACME (TLS). This project is stable.
 
-This project is stable.
+I decided to work on this as I still have issues in the project `traefik-manager`. 
 
-## Deploy!
+## Time to deploy
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **one instance** and wait for the node to provision
 3. On **node1**, copy paste:
@@ -35,7 +36,7 @@ git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
 # If you prefer to use a branch...
-git checkout 1.12;
+git checkout 1.13;
 
 # Go to the actual project
 cd traefik-manager-noacme;
@@ -43,9 +44,9 @@ echo; pwd; echo; ls -AlhF; echo; du -sh *; echo; du -sh;
 sleep 2;
 
 # Make script executable
-chmod +x /runup;
-chmod +x /rundown;
-chmod +x /runctop;
+chmod +x runup;
+chmod +x rundown;
+chmod +x runctop;
 
 # Launch all services
 ./runup;
@@ -60,23 +61,24 @@ chmod +x /runctop;
 
 4. Click on `80`. We have access to Wordpress (stateful).
 
-5. At the end of the URL generate by play-with-ghost on port 80, add `who1` or `/who2` or `/who3`.
+5. At the end of the URL generate by play-with-ghost on port 80, add `who1/` or `/who2/` or `/who3/` or `/portainer/`.
 
 ```
-# home, the IP is probably different in you #pwg session
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
-
-http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who1
-http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who2
-http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who3
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who1/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who2/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who3/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 ```
+
+**WARNING**! Portainer absolutly needs a slash `/` at the end of the path. There is something to tweak with Traefik Labels in order for it to accept the proxy the request without the slash `/` at the end.
 
 #### Web apps details:
 - **/** = [wordpress](https://hub.docker.com/_/wordpress/)
 - **who1** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
 - **who2** = [nginx](https://hub.docker.com/_/nginx/)
 - **who3** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) 
-- **portainer** = [portainer](https://hub.docker.com/r/portainer/portainer//)
+- **portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
 
 #### All commands
 In the active path, just execute those bash-scripts:
@@ -98,7 +100,7 @@ In `toolproxy.yml` look for something like `traefik:1.4.0-rc3`.
 ## What’s missing to make this stack perfect?
 - Secure traefik dashboard
 - Use SSL endpoints (ACME)
-- There is a glitch with portainer. (work-in-progress)
+- Fix the trailing `/` at the end of Portainer
 
 ## Something looks weird? Please let me know
 I consider this README crystal clear. If there is anything that I could improve, please let me know via an issue.
