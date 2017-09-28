@@ -8,9 +8,9 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
+      replicas: 6
+      #placement:
+      #  constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -36,9 +36,9 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
+      replicas: 6
+      #placement:
+      #  constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -64,9 +64,9 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
+      replicas: 6
+      #placement:
+      #  constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -85,26 +85,6 @@ services:
         - "traefik.frontend.entryPoints=http"
         - "traefik.docker.network=ntw_front"
         - "traefik.weight=10"
-
-# Traefik ignores this container
-  who4:
-    image: emilevauge/whoami
-    networks:
-      - ntw_front
-    deploy:
-      mode: replicated
-      replicas: 2
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 18M
-        reservations:
-          cpus: '0.05'
-          memory: 9M
 
 networks:
   ntw_front:

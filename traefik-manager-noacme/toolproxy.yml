@@ -16,7 +16,7 @@ services:
       - --web
     ports:
       - "80:80"
-      - "9090:8080"
+      - "8181:8080"
     networks:
       - ntw_front
     volumes:

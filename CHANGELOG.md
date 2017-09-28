@@ -1,6 +1,14 @@
 
 
 
+
+
+# 1.15
+
+**Project**: `traefik-manager-noacme`
+
+- added wordpress & mysql stack
+
 # 1.14
 
 **Project**: `traefik-manager-noacme`

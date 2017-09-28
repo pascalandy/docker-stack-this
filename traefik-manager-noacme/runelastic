@@ -13,6 +13,8 @@ set -o nounset
 # Functions
 ###############################################################################
 
+# wip https://github.com/elastic/examples/tree/master/Miscellaneous/docker/full_stack_example
+
 # Stop
 echo; echo "If existing, remove stacks: "
 ./rundown

@@ -19,7 +19,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - ntw_front
+      - ntw_back
     environment:
       MYSQL_ROOT_PASSWORD: ckRxZEF96nUIi0GYoGVHlNy4SgmplG9a
       MYSQL_DATABASE: wordpress
@@ -61,12 +61,15 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - ntw_front
+      - ntw_back
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: ckRxZEF96nUIi0GYoGVHlNy4SgmplG9a
 
 networks:
   ntw_front:
+    external: true
+  ntw_back:
     external: true
  
 volumes:

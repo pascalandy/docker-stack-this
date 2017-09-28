@@ -1,0 +1,67 @@
+###############################################################################
+## Entry points
+# ~~~~~
+defaultEntryPoints = ["http", "https"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [[entryPoints.https.tls.certificates]]
+    CertFile = "/etc/ssl/xxxx.io.crt"
+    KeyFile = "/etc/ssl/xxxx.io.key"
+  [[entryPoints.https.tls.certificates]]
+    CertFile = "/etc/ssl/yyyy.ski.crt"
+    KeyFile = "/etc/ssl/yyyy.ski.key"
+
+
+[web]
+
+# Web administration port
+address = ":8080"
+
+# Set REST API to read-only mode
+ReadOnly = true
+
+# Authentication
+# https://websistent.com/tools/htdigest-generator-tool/
+[web.auth.digest]
+users = [
+  "xxxx:traefik:xxxxx"
+]
+
+
+[docker]
+
+# Docker server endpoint. Can be a tcp or a unix socket endpoint.
+endpoint = "unix:///var/run/docker.sock"
+
+# Default domain used.
+# Can be overridden by setting the "traefik.domain" label on a container.
+domain = "xxxx.io"
+
+# Enable watch docker changes
+watch = true
+
+# Expose containers by default in traefik
+# If set to false, containers that don't have `traefik.enable=true` will be ignored
+exposedbydefault = false
+
+# Use Swarm Mode services as data provider
+swarmmode = true
+
+
+[healthcheck]
+
+# Set the default health check interval. Will only be effective if health check
+# paths are defined. Given provider-specific support, the value may be
+# overridden on a per-backend basis.
+# Can be provided in a format supported by [time.ParseDuration](https://golang.org/pkg/time/#ParseDuration) or as raw
+# values (digits). If no units are provided, the value is parsed assuming
+# seconds
+interval = "15s"
+
+
+[accessLog]

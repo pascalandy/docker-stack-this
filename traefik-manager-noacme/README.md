@@ -1,5 +1,5 @@
 ## General Considerations
-This project will run:
+This project will run those services in just one copy paste command:
 
 - Traefik
 - Portainer
@@ -8,7 +8,7 @@ This project will run:
 - Caddy
 - Whoami
 
-services in one copy paste command. You can’t beat that for a demo!
+You can’t beat this for a demo!
 
 #### What’s special about this directory
 This stack does not use ACME (TLS). This project is stable.
@@ -51,6 +51,8 @@ chmod +x runctop;
 # Launch all services
 ./runup;
 ```
+
+This is it!!! Now it’s time to…
 
 ## Confirm that Traefik and the gang are running
 1. The script `runup` run `docker service ls` at few times automatically to show you the status of the stacks.
