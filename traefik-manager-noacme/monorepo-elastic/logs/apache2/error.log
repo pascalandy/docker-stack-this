@@ -1,0 +1,22 @@
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.18.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 17 13:23:18.612777 2017] [mpm_event:notice] [pid 1:tid 140158091962240] AH00489: Apache/2.4.20 (Unix) configured -- resuming normal operations
+[Thu Aug 17 13:23:18.613422 2017] [mpm_event:info] [pid 1:tid 140158091962240] AH00490: Server built: Jun  7 2016 17:55:26
+[Thu Aug 17 13:23:18.613647 2017] [core:notice] [pid 1:tid 140158091962240] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 17 13:24:40.844457 2017] [core:info] [pid 1:tid 140158091962240] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Thu Aug 17 13:24:40.844687 2017] [mpm_event:notice] [pid 1:tid 140158091962240] AH00491: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.18.0.3. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 17 13:25:01.239421 2017] [mpm_event:notice] [pid 1:tid 139873144821632] AH00489: Apache/2.4.20 (Unix) configured -- resuming normal operations
+[Thu Aug 17 13:25:01.240336 2017] [mpm_event:info] [pid 1:tid 139873144821632] AH00490: Server built: Jun  7 2016 17:55:26
+[Thu Aug 17 13:25:01.240541 2017] [core:notice] [pid 1:tid 139873144821632] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 17 15:00:09.546992 2017] [core:info] [pid 1:tid 139873144821632] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Thu Aug 17 15:00:09.547244 2017] [mpm_event:notice] [pid 1:tid 139873144821632] AH00491: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.18.0.3. Set the 'ServerName' directive globally to suppress this message
+[Fri Aug 18 11:17:41.285086 2017] [mpm_event:notice] [pid 1:tid 139745262589824] AH00489: Apache/2.4.20 (Unix) configured -- resuming normal operations
+[Fri Aug 18 11:17:41.285454 2017] [mpm_event:info] [pid 1:tid 139745262589824] AH00490: Server built: Jun  7 2016 17:55:26
+[Fri Aug 18 11:17:41.285613 2017] [core:notice] [pid 1:tid 139745262589824] AH00094: Command line: 'httpd -D FOREGROUND'
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
+[Fri Aug 18 12:23:04.291337 2017] [mpm_event:notice] [pid 1:tid 140456946308992] AH00489: Apache/2.4.20 (Unix) configured -- resuming normal operations
+[Fri Aug 18 12:23:04.293417 2017] [mpm_event:info] [pid 1:tid 140456946308992] AH00490: Server built: Jun  7 2016 17:55:26
+[Fri Aug 18 12:23:04.293724 2017] [core:notice] [pid 1:tid 140456946308992] AH00094: Command line: 'httpd -D FOREGROUND'
+[Fri Aug 18 12:58:01.017080 2017] [core:info] [pid 1:tid 140456946308992] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Fri Aug 18 12:58:01.017398 2017] [mpm_event:notice] [pid 1:tid 140456946308992] AH00491: caught SIGTERM, shutting down

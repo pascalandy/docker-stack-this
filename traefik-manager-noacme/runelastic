@@ -17,7 +17,7 @@ set -o nounset
 
 # Stop
 echo; echo "If existing, remove stacks: "
-./rundown
+#./run
 
 # Create Network
 echo; echo "If not existing, create our network: "
@@ -32,57 +32,27 @@ if [ ! "$(docker network ls --filter name=ntw_back -q)" ];then
   sleep 2
 fi
 
+# see existing network
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
 echo; echo; sleep 2
 
 # The Stack
 echo "Start the stacks ..."; echo; echo;
+cd /root/docker-stack-this/traefik-manager-noacme/monorepo-elastic
 
-# traefik
-docker stack deploy toolproxy -c toolproxy.yml
-echo; echo; sleep 2
-
-# webapps
-docker stack deploy toolweb -c toolweb.yml
-echo; echo; sleep 2
-
-# wordpress
-docker stack deploy toolwordpress -c toolwordpress.yml
-echo; echo; sleep 2
-
-# portainer
-docker stack deploy toolportainer -c toolportainer.yml
-echo; echo; sleep 2
-
+# elastic stack
+docker-compose -f docker-compose-linux.yml up
+echo; echo;
 
 # List
 echo; echo "docker stack ls ..."
 docker stack ls;
 echo; echo ; sleep 2
 
-
 # Follow deployment in real time
 watch docker service ls
 echo; echo;
-
-    #MIN=1
-    #MAX=10
-    #for ACTION in $(seq $MIN $MAX); do
-    #  echo
-    #  echo "docker service ls | Check $ACTION" of $MAX; echo;
-    #	docker service ls && echo && sleep 2;
-    #done
-    #echo; echo ; sleep 2
-
-
-# See Traefik logs
-echo "To see Traefik logs type: ";
-sleep 1;
-echo "docker service logs -f toolproxy_traefik";
-echo; 
-sleep 1;
-echo;
 
 # by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this

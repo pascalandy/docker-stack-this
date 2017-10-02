@@ -8,7 +8,7 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 6
+      replicas: 2
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
@@ -16,7 +16,7 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 18M
+          memory: 9M
         reservations:
           cpus: '0.05'
           memory: 9M
@@ -36,7 +36,7 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 6
+      replicas: 2
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
@@ -44,7 +44,7 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 18M
+          memory: 9M
         reservations:
           cpus: '0.05'
           memory: 9M
@@ -64,7 +64,7 @@ services:
       - ntw_front
     deploy:
       mode: replicated
-      replicas: 6
+      replicas: 2
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
@@ -72,7 +72,7 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 18M
+          memory: 9M
         reservations:
           cpus: '0.05'
           memory: 9M

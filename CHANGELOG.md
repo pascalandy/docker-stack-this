@@ -2,6 +2,11 @@
 
 
 
+# 1.16
+
+**Project**: `traefik-manager-noacme`
+
+- minor changes
 
 # 1.15
 

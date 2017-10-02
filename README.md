@@ -12,6 +12,10 @@ To accomplish this, we put together the power of:
 
 Let’s see if I can give the example. To **start**, just navigate the directories!
 
+### Progress
+
+See CHANGELOG.md
+
 ---
 
 # Contributor Covenant Code of Conduct
