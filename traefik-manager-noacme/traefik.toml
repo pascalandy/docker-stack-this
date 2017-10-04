@@ -1,5 +1,7 @@
+debug = true
+logLevel = "DEBUG"
 
-defaultEntryPoints = ["http"]
+defaultEntryPoints = ["https","http"]
 
 [web]
 address = ":9090"
@@ -11,6 +13,11 @@ address = ":9090"
 	[entryPoints.http]
   address = ":80"
   compress = true
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+watch = true
+exposedbydefault = false
 
 # by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this

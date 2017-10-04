@@ -1,6 +1,0 @@
-- module: nginx
-  metricsets: ["stubstatus"]
-  enabled: true
-  period: 10s
-  hosts: ["http://nginx"]
-  server_status_path: "server-status"

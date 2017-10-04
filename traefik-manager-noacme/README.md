@@ -24,9 +24,6 @@ I decided to work on this as I still have issues in the project `traefik-manager
 # Create Swarm
 docker swarm init --advertise-addr eth0;
 
-# List nodes
-docker node ls;
-
 # Install common apps
 apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates;
 
@@ -35,18 +32,21 @@ cd /root;
 git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
-# If you prefer to use a branch...
-git checkout 1.16;
+# Bypass if you are looking for the stable stack  
+# else select a branch
+git checkout 1.17;
 
 # Go to the actual project
 cd traefik-manager-noacme;
 echo; pwd; echo; ls -AlhF; echo; du -sh *; echo; du -sh;
-sleep 2;
 
 # Make script executable
 chmod +x runup;
 chmod +x rundown;
 chmod +x runctop;
+
+# List nodes
+docker node ls;
 
 # Launch all services
 ./runup;
@@ -70,18 +70,20 @@ This is it!!! Now it’s time to…
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who1/
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who2/
-http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who3/
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/wordpress/
 ```
 
 **WARNING**! Portainer absolutly needs a slash `/` at the end of the path. There is something to tweak with Traefik Labels in order for it to accept the proxy the request without the slash `/` at the end.
 
 #### Web apps details:
-- **/** = [wordpress](https://hub.docker.com/_/wordpress/)
-- **who1** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
-- **who2** = [nginx](https://hub.docker.com/_/nginx/)
-- **who3** = [whoami](https://hub.docker.com/r/emilevauge/whoami/) 
+- **/** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
+- **who1/** = [nginx](https://hub.docker.com/_/nginx/)
+- **who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
 - **portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
+- **wordpress/** = [wordpress](https://hub.docker.com/_/wordpress/)
+
+Warning, there is an [issue](https://github.com/pascalandy/docker-stack-this/issues/8) about wordpress.
 
 #### All commands
 In the active path, just execute those bash-scripts:

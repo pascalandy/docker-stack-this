@@ -2,10 +2,12 @@ version: "3.1"
 
 services:
 
-  who1:
+  home:
     image: abiosoft/caddy
     networks:
       - ntw_front
+    volumes:
+      - ./www/home/srv/:/srv/
     deploy:
       mode: replicated
       replicas: 2
@@ -13,6 +15,38 @@ services:
       #  constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 9M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
+      labels:
+        - "traefik.backend=home"
+        - "traefik.frontend.rule=PathPrefixStrip:/"
+        - "traefik.port=2015"
+        - "traefik.enable=true"
+        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.docker.network=ntw_front"
+        - "traefik.weight=10"
+
+  who1:
+    image: nginx:alpine
+    networks:
+      - ntw_front
+    volumes:
+      - ./www/who1/html/:/usr/share/nginx/html/
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.20'
@@ -23,34 +57,6 @@ services:
       labels:
         - "traefik.backend=who1"
         - "traefik.frontend.rule=PathPrefixStrip:/who1"
-        - "traefik.port=2015"
-        - "traefik.enable=true"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.frontend.entryPoints=http"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.weight=10"
-
-  who2:
-    image: nginx:alpine
-    networks:
-      - ntw_front
-    deploy:
-      mode: replicated
-      replicas: 2
-      #placement:
-      #  constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 9M
-        reservations:
-          cpus: '0.05'
-          memory: 9M
-      labels:
-        - "traefik.backend=who2"
-        - "traefik.frontend.rule=PathPrefixStrip:/who2"
         - "traefik.port=80"
         - "traefik.enable=true"
         - "traefik.backend.loadbalancer.method=drr"
@@ -58,7 +64,7 @@ services:
         - "traefik.docker.network=ntw_front"
         - "traefik.weight=10"
 
-  who3:
+  who2:
     image: emilevauge/whoami
     networks:
       - ntw_front
@@ -69,6 +75,7 @@ services:
       #  constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.20'
@@ -77,8 +84,8 @@ services:
           cpus: '0.05'
           memory: 9M
       labels:
-        - "traefik.backend=who3"
-        - "traefik.frontend.rule=PathPrefixStrip:/who3"
+        - "traefik.backend=who2"
+        - "traefik.frontend.rule=PathPrefixStrip:/who2"
         - "traefik.port=80"
         - "traefik.enable=true"
         - "traefik.backend.loadbalancer.method=drr"

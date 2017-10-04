@@ -1,12 +1,20 @@
 
 
 
+# 1.17
+
+- using traefik 1.4.0-rc4
+- when we click on button `80` a static page is now rendering
+- added cute pages
+- remove elk and elastic directories
+- open an issue regarding wordpress
 
 # 1.16
 
 **Project**: `traefik-manager-noacme`
 
 - minor changes
+- test elastic stack. drop as it’s too complicated for me
 
 # 1.15
 

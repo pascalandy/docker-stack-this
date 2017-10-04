@@ -10,7 +10,8 @@ To accomplish this, we put together the power of:
 - **docker Swarm mode
 - docker stacks
 
-Let’s see if I can give the example. To **start**, just navigate the directories!
+### Start here
+This is a monorepo or small projects per directory if you prefer. Just navigate the directories! I’m actively updating `traefik-manager-noacme`.
 
 ### Progress
 

@@ -3,16 +3,11 @@ version: "3.1"
 services:
 
   traefik:
-    image: traefik:1.4.0-rc3
+    image: traefik:1.4.0-rc4
     command: |-
       - --docker
       - --docker.swarmmode=true
       - --docker.domain=traefik
-      - --docker.watch=true
-      - --docker.exposedbydefault=false
-      - --docker.endpoint=unix:///var/run/docker.sock
-      - --debug=true
-      - --logLevel=DEBUG
       - --web
     ports:
       - "80:80"
@@ -33,6 +28,7 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.33'

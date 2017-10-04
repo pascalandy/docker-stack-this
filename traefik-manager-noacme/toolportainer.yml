@@ -15,6 +15,7 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.33'

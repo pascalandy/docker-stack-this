@@ -8,7 +8,7 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-        max_attempts: 3
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.33'
@@ -32,17 +32,17 @@ services:
     image: wordpress:latest
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
-        max_attempts: 3
+        max_attempts: 5
       placement:
         constraints: [node.role==manager]
       update_config:
         delay: 2s
       labels:
         - "traefik.backend=wordpress"
-        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.frontend.rule=PathPrefixStrip:/wordpress"
         - "traefik.port=80"
         - "traefik.enable=true"
         - "traefik.backend.loadbalancer.method=drr"

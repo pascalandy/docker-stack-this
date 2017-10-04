@@ -1,3 +1,0 @@
-server.port: 127.0.0.1:5601
-elasticsearch.url: "http://elasticsearch:9200"
-server.name: "full-stack-example"

@@ -1,6 +1,0 @@
-- module: apache
-  metricsets: ["status"]
-  enabled: true
-  period: 10s
-  hosts: ["http://apache2"]
-  server_status_path: "server-status"
