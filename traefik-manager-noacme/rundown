@@ -10,13 +10,13 @@ set -o nounset
 ###############################################################################
 
 echo; echo "Remove stacks ..."
-docker stack rm toolproxy || true; sleep 1;
+docker stack rm proxfic || true; echo; sleep 1;
 
-docker stack rm toolweb || true; sleep 1;
+docker stack rm proxweb || true; echo; sleep 1;
 
-docker stack rm toolwordpress || true; sleep 1;
+docker stack rm proxpress || true; echo; sleep 1;
 
-docker stack rm toolportainer || true; sleep 1;
+docker stack rm proxymon || true; echo; sleep 1;
 
 #echo; echo "Remove network ..."
 #docker network rm ntw_front
