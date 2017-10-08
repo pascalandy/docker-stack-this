@@ -23,7 +23,7 @@ git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
 # Select a branch 
-git checkout 1.18;
+# git checkout 1.18;
 
 # Go to the actual project
 cd traefik-manager-noacme; echo; pwd; echo; ls -AlhF;
