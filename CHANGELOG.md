@@ -1,6 +1,11 @@
 
 
 
+# 1.18
+
+- rename stacks
+- simplify the readme experience
+
 # 1.17
 
 - using traefik 1.4.0-rc4
