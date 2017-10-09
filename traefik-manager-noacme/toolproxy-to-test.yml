@@ -1,5 +1,7 @@
 version: "3.3"
 
+#https://github.com/containous/traefik/issues/766#issuecomment-335208880
+
 networks:
   traefik-pub:
     external: true
