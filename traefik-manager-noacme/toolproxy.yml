@@ -1,51 +1,77 @@
-version: "3.1"
+version: "3.3"
 
-services:
-
-  traefik:
-    image: traefik:1.4.0-rc4
-    command: |-
-      - --docker
-      - --docker.swarmmode=true
-      - --docker.domain=traefik
-      - --web
-    ports:
-      - "80:80"
-      - "8181:8080"
-    networks:
-      - ntw_front
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /root/docker-stack-this/traefik-manager-noacme/traefik.toml:/etc/traefik/traefik.toml
-    deploy:
-      labels:
-      - "traefik.enable=false"
-      mode: replicated
-      replicas: 1
-      update_config:
-        delay: 2s
-      placement:
-        constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-      resources:
-        limits:
-          cpus: '0.33'
-          memory: 96M
-        reservations:
-          cpus: '0.05'
-          memory: 64M
+#bvis
+#https://github.com/containous/traefik/issues/766#issuecomment-335208880
 
 networks:
   ntw_front:
     external: true
 
-# no acme
-#
-# Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
-# https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
-#
-# by Pascal Andy | # https://twitter.com/askpascalandy
-# https://github.com/pascalandy/docker-stack-this
-#
+volumes:
+  traefik-pub: {}
+
+services:
+  docker-proxy:
+    image: rancher/socat-docker
+    networks:
+      - ntw_front
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.10'
+          memory: 8M
+
+  traefik-pub:
+    image: traefik:1.3.8-alpine
+    networks:
+      - ntw_front
+    ports:
+      - mode: ingress
+        target: 80
+        published: 80
+      - mode: ingress
+        target: 443
+        published: 443
+      - "8080:8080"
+    volumes:
+      - traefik-pub:/etc/traefik/acme
+    command: --docker \
+      --docker.swarmmode \
+      --docker.endpoint=tcp://docker-proxy:2375 \
+      --docker.domain='${CLUSTER_PUBLIC_DOMAIN}' \
+      --docker.watch \
+      --entryPoints='Name:https Address::443 TLS' \
+      --entryPoints='Name:http Address::80' \
+      --web
+      #--acme.entrypoint=https \
+      #--acme=true \
+      #--acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
+      #--acme.email=${ACME_EMAIL} \
+      #--acme.ondemand=true \
+      #--acme.onhostrule=true \
+      #--acme.storage=/etc/traefik/acme/acme.json \
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.33'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 64M
