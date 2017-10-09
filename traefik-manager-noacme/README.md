@@ -12,7 +12,7 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami, 
 
 ```
 # Create Swarm
-docker swarm init --advertise-addr eth0; docker node ls;
+docker swarm init --advertise-addr $(hostname -i); docker node ls;
 
 # Install common apps
 apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates;

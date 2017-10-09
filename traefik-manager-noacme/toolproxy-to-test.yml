@@ -1,0 +1,75 @@
+version: "3.3"
+
+networks:
+  traefik-pub:
+    external: true
+
+volumes:
+  traefik-pub:
+    driver: ${VOLUME_DRIVER}
+
+services:
+  docker-proxy:
+    image: rancher/socat-docker
+    networks:
+      - traefik-pub
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 8M
+        reservations:
+          cpus: '0.10'
+          memory: 8M
+
+  traefik-pub:
+    image: traefik:v1.3.2-alpine
+    networks:
+      - traefik-pub
+    ports:
+      - mode: ingress
+        target: 80
+        published: 80
+      - mode: ingress
+        target: 443
+        published: 443
+      - "8080:8080"
+    volumes:
+      - traefik-pub:/etc/traefik/acme
+    command: --docker \
+      --docker.swarmmode \
+      --docker.endpoint=tcp://docker-proxy:2375 \
+      --docker.domain='${CLUSTER_PUBLIC_DOMAIN}' \
+      --docker.watch \
+      --entryPoints='Name:https Address::443 TLS' \
+      --entryPoints='Name:http Address::80' \
+      --acme.entrypoint=https \
+      --acme=true \
+      --acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
+      --acme.email=${ACME_EMAIL} \
+      --acme.ondemand=true \
+      --acme.onhostrule=true \
+      --acme.storage=/etc/traefik/acme/acme.json \
+      --web
+    deploy:
+      mode: replicated
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '2'
+          memory: 100M
+        reservations:
+          cpus: '0.10'
+          memory: 100M
