@@ -1,20 +1,20 @@
 version: "3.3"
 
+#bvis
 #https://github.com/containous/traefik/issues/766#issuecomment-335208880
 
 networks:
-  traefik-pub:
+  ntw_front:
     external: true
 
 volumes:
-  traefik-pub:
-    driver: ${VOLUME_DRIVER}
+  traefik-pub: {}
 
 services:
   docker-proxy:
     image: rancher/socat-docker
     networks:
-      - traefik-pub
+      - ntw_front
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
@@ -25,16 +25,16 @@ services:
           - node.role == manager
       resources:
         limits:
-          cpus: '0.10'
-          memory: 8M
+          cpus: '0.20'
+          memory: 16M
         reservations:
           cpus: '0.10'
           memory: 8M
 
   traefik-pub:
-    image: traefik:v1.3.2-alpine
+    image: traefik:1.3.8-alpine
     networks:
-      - traefik-pub
+      - ntw_front
     ports:
       - mode: ingress
         target: 80
@@ -62,7 +62,7 @@ services:
       --web
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -70,8 +70,8 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: '2'
-          memory: 100M
+          cpus: '0.33'
+          memory: 128M
         reservations:
           cpus: '0.10'
-          memory: 100M
+          memory: 64M
