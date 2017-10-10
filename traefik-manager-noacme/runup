@@ -34,20 +34,20 @@ echo; echo; sleep 2
 echo "Start the stacks ..."; echo; echo;
 
 # traefik
-docker stack deploy proxfic -c toolproxy.yml
+docker stack deploy toolproxy -c toolproxy.yml
 echo; echo; sleep 2
 
 # webapps
-docker stack deploy proxweb -c toolweb.yml
-echo; echo; sleep 2
-
-# wordpress
-docker stack deploy proxpress -c toolwordpress.yml
+docker stack deploy toolweb -c toolweb.yml
 echo; echo; sleep 2
 
 # portainer
-docker stack deploy proxymon -c toolportainer.yml
+docker stack deploy toolmonitor -c toolportainer.yml
 echo; echo; sleep 2
+
+# wordpress
+#docker stack deploy proxpress -c toolwordpress.yml
+#echo; echo; sleep 2
 
 
 # List

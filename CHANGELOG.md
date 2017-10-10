@@ -1,5 +1,20 @@
 
 
+# 1.19
+
+**Project**: `traefik-manager-noacme`
+
+- Use socat to access Docker API
+- Traefik do not need a traefik.toml :)
+- Traefik do not need to mount any volumes!
+- clean up older file into DIR z-archive
+
+# 1.18
+
+**Project**: `traefik-manager-noacme`
+
+- rename stacks
+- simplify the readme experience
 
 # 1.18
 
@@ -7,6 +22,8 @@
 - simplify the readme experience
 
 # 1.17
+
+**Project**: `traefik-manager-noacme`
 
 - using traefik 1.4.0-rc4
 - when we click on button `80` a static page is now rendering
