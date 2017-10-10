@@ -5,9 +5,11 @@
 **Project**: `traefik-manager-noacme`
 
 - Use socat to access Docker API
+- Use the stable version traefik:1.3.8-alpine
 - Traefik do not need a traefik.toml :)
 - Traefik do not need to mount any volumes!
 - clean up older file into DIR z-archive
+- Removed WordPress and Mysql
 
 # 1.18
 

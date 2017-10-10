@@ -1,5 +1,5 @@
 ## Introduction
-This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami, WordPress) in one simple copy-paste command.
+This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command.
 
 #### Anything special about this mono repo?
 - This stack does not use ACME (TLS).
@@ -22,9 +22,7 @@ apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificat
 cd /root;
 git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
-
-# Select a branch 
-git checkout 1.19;
+git checkout master;
 
 # Go to the actual project
 cd traefik-manager-noacme; echo; pwd; echo; ls -AlhF;
@@ -36,7 +34,32 @@ chmod +x runup; chmod +x rundown; chmod +x runctop;
 ./runup;
 ```
 
-This is it!!! Now it’s time to…
+This is it! Once it’s deploy you will see: 
+
+#### Three stacks
+
+```
+docker stack ls
+
+NAME                SERVICES
+toolmonitor         1
+toolproxy           2
+toolweb             3
+```
+
+#### Six services
+
+```
+docker service ls
+
+ID                  NAME                    MODE                REPLICAS            IMAGE                        PORTS
+858q0bumq9cy        toolmonitor_portainer   replicated          1/1                 portainer/portainer:1.14.2
+h6f5oii6crmd        toolproxy_socat         replicated          1/1                 devmtl/socatproxy:1.0A
+g2ah7f98utqh        toolproxy_traefik       replicated          1/1                 traefik:1.3.8-alpine         *:80->80/tcp,*:8181->8080/tcp
+n36xdpo0kfyc        toolweb_home            replicated          2/2                 abiosoft/caddy:latest
+lip8o4293f49        toolweb_who1            replicated          2/2                 nginx:alpine
+ldz6uwbfc8mg        toolweb_who2            replicated          2/2                 emilevauge/whoami:latest
+```
 
 ## Confirm that Traefik and the gang are running
 1. The script `runup` does the hard work for us.
@@ -59,25 +82,19 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 
 #### Web apps details:
 - **/** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
-- **who1/** = [nginx](https://hub.docker.com/_/nginx/)
-- **who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
-- **portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
+- **/who1/** = [nginx](https://hub.docker.com/_/nginx/)
+- **/who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
+- **/portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
 
-There is an [issue](https://github.com/pascalandy/docker-stack-this/issues/8) about wordpress.
-
-- **wordpress/** = [wordpress](https://hub.docker.com/_/wordpress/)
-
-#### All commands
+## All commands
 In the active path, just execute those bash-scripts:
 
 - `./runup`
 - `./rundown`
 - `./runctop`
+- `./runctop` 
 
-See for yourself that Wordpress data is persistent even after shutting down services.
-
-#### Bonus
-`runctop` runs as a simple docker run to see the memory consumed by each services.
+`./runctop` is not a stack but a simple docker run to see the memory consumed by each containers.
 
 #### What is Traefik?
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.
