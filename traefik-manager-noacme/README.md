@@ -1,9 +1,10 @@
 ## Introduction
-This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami, WordPress) in one simple copy-paste command:
+This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami, WordPress) in one simple copy-paste command.
 
 #### Anything special about this mono repo?
 - This stack does not use ACME (TLS).
-- I decided to work on this as I still have issues in the project `traefik-manager` which use ACME. 
+- I decided to work on this as I still have issues in the project `traefik-manager` which use ACME.
+- See the [CHANGELOG.md](https://github.com/pascalandy/docker-stack-this/blob/master/CHANGELOG.md) at the root of this project.
 
 ## Time to deploy
 1. Go to http://labs.play-with-docker.com/ 
@@ -23,7 +24,7 @@ git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
 # Select a branch 
-# git checkout 1.18;
+git checkout 1.19;
 
 # Go to the actual project
 cd traefik-manager-noacme; echo; pwd; echo; ls -AlhF;
@@ -61,9 +62,10 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 - **who1/** = [nginx](https://hub.docker.com/_/nginx/)
 - **who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
 - **portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
-- **wordpress/** = [wordpress](https://hub.docker.com/_/wordpress/)
 
 There is an [issue](https://github.com/pascalandy/docker-stack-this/issues/8) about wordpress.
+
+- **wordpress/** = [wordpress](https://hub.docker.com/_/wordpress/)
 
 #### All commands
 In the active path, just execute those bash-scripts:

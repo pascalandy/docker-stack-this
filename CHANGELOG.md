@@ -16,11 +16,6 @@
 - rename stacks
 - simplify the readme experience
 
-# 1.18
-
-- rename stacks
-- simplify the readme experience
-
 # 1.17
 
 **Project**: `traefik-manager-noacme`
