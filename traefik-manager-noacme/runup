@@ -21,11 +21,6 @@ if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
   sleep 2
 fi
 
-if [ ! "$(docker network ls --filter name=ntw_back -q)" ];then
-  docker network create --driver overlay --subnet 10.12.10.0/24 --opt encrypted ntw_back
-  sleep 2
-fi
-
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
 echo; echo; sleep 2

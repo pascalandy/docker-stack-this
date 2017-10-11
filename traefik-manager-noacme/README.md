@@ -92,7 +92,6 @@ In the active path, just execute those bash-scripts:
 - `./runup`
 - `./rundown`
 - `./runctop`
-- `./runctop` 
 
 `./runctop` is not a stack but a simple docker run to see the memory consumed by each containers.
 
@@ -100,7 +99,7 @@ In the active path, just execute those bash-scripts:
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.
 
 #### Traefik version 
-In `toolproxy.yml` look for something like `traefik:1.4.0-rc3`.
+In `toolproxy.yml` look for something like `traefik:1.3.8-alpine`.
 
 ## Backlog
 
