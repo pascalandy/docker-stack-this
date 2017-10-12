@@ -1,3 +1,4 @@
+# Create Swarm
 docker swarm init --advertise-addr $(hostname -i); docker node ls;
 
 # Install common apps
@@ -8,7 +9,7 @@ cd /root;
 git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
-git checkout 1.22;
+git checkout 1.23;
 
 # Go to the actual project
 cd traefik-consul; echo; pwd; echo; ls -AlhF;

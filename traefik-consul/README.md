@@ -19,7 +19,7 @@ cd /root;
 git clone https://github.com/pascalandy/docker-stack-this.git;
 cd docker-stack-this;
 
-git checkout 1.22;
+git checkout master;
 
 # Go to the actual project
 cd traefik-consul; echo; pwd; echo; ls -AlhF;
