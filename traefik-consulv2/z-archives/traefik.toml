@@ -1,0 +1,24 @@
+debug = true
+logLevel = "DEBUG"
+
+defaultEntryPoints = ["https","http"]
+
+#[web]
+#address = ":9090"
+#  [web.auth.basic]
+#  users = ["admin:$apr1$aGu4aUu3$zp1DJDhVjtrNY49psnM7r0"]
+   # plain password is: 0eb0f01DHb57d7124fb98g
+  
+ [entryPoints]
+	[entryPoints.http]
+  address = ":80"
+  compress = true
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+watch = true
+exposedbydefault = false
+
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#

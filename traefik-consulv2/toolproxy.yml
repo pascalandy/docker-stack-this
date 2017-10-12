@@ -1,0 +1,123 @@
+version: "3.3"
+
+networks:
+  ntw_front:
+    external: true
+
+volumes:
+  traefik-pub: {}
+
+services:
+  socat:
+    image: devmtl/socatproxy:1.0A
+    networks:
+      - ntw_front
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.10'
+          memory: 8M
+      labels:
+        - "traefik.enable=false"
+
+  consul:
+    image: consul
+    networks:
+      - ntw_front
+    command: consul agent -server -dev -client=0.0.0.0 -ui -bootstrap -log-level warn
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.33'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 64M
+      labels:
+        - "traefik.enable=false"
+
+  reverse-proxy:
+    image: traefik:1.3.8-alpine
+    networks:
+      - ntw_front
+    command: traefik --consulcatalog.endpoint=consul:8500 \
+      --docker \
+      --docker.swarmmode=true \
+      --docker.endpoint=tcp://socat:2375 \
+      --docker.domain=traefik \
+      --docker.watch=true \
+      --docker.exposedbydefault=true \
+      --entryPoints='Name:http' \
+      --debug=true \
+      --logLevel=WARN \
+      --web
+    ports:
+      - mode: ingress
+        target: 80
+        published: 80
+      - "8181:8080"
+    depends_on:
+      - consul
+    links:
+      - consul
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.33'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 64M
+      labels:
+        - "traefik.enable=false"
+
+  registrator:
+    depends_on:
+      - consul
+    image: gliderlabs/registrator:master
+    networks:
+      - ntw_front
+    command: -internal consul://consul:8500
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    links:
+      - consul
+
+# no acme
+#
+# Inspired by https://github.com/containous/traefik/issues/766#issuecomment-335208880
+#
+# Log options: "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"
+# https://github.com/containous/traefik/commit/af9b63eaed828f1d548f404fc8b486dd592184e9
+#
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#
