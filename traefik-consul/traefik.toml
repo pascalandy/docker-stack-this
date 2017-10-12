@@ -1,0 +1,54 @@
+################################################################
+# Consul Catalog configuration backend
+################################################################
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+# Enable web configuration backend
+[web]
+
+# Web administration port
+#
+# Required
+#
+address = ":8080"
+
+# Enable Consul Catalog configuration backend
+[consulCatalog]
+
+# Consul server endpoint
+#
+# Required
+#
+endpoint = "127.0.0.1:8500"
+
+# Default domain used.
+#
+# Optional
+#
+domain = "consul.localhost"
+
+# Expose Consul catalog services by default in traefik
+#
+# Optional
+#
+exposedByDefault = false
+
+# Prefix for Consul catalog tags
+#
+# Optional
+#
+prefix = "traefik"
+
+# Default frontEnd Rule for Consul services
+#
+# The format is a Go Template with:
+# - ".ServiceName", ".Domain" and ".Attributes" available
+# - "getTag(name, tags, defaultValue)", "hasTag(name, tags)" and "getAttribute(name, tags, defaultValue)" functions are available
+# - "getAttribute(...)" function uses prefixed tag names based on "prefix" value
+#
+# Optional
+#
+#frontEndRule = "Host:{{.ServiceName}}.{{Domain}}"
