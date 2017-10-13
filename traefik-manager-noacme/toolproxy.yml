@@ -31,7 +31,7 @@ services:
         - "traefik.enable=false"
 
   traefik:
-    image: devmtl/traefikfire:edge_2017-10-12_23H21
+    image: devmtl/traefikfire:edge_2017-10-12_23H25
     networks:
       - ntw_front
     ports:
