@@ -54,8 +54,10 @@ services:
       --debug=true \
       --logLevel=WARN \
       --web \
+      --web.metrics \
       --web.metrics.prometheus \
-      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
+      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
+      --web.address=:8181
       #--acme.entrypoint=https \
       #--acme=true \
       #--acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
