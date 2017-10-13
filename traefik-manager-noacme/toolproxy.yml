@@ -53,7 +53,9 @@ services:
       --entryPoints='Name:http' \
       --debug=true \
       --logLevel=WARN \
-      --web
+      --web \
+      --web.metrics.prometheus \
+      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
       #--acme.entrypoint=https \
       #--acme=true \
       #--acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
