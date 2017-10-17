@@ -1,4 +1,17 @@
 
+# 1.23
+- Using my traefik image
+- trying traefik 1.4
+
+# 1.22
+- tried traefik with consul, but it’s a fail
+
+# 1.21
+- readme updates
+- minor stuff
+
+# 1.20
+- readme updates
 
 # 1.19
 
