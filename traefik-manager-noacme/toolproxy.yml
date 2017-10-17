@@ -30,8 +30,6 @@ services:
 
   traefik:
     image: traefik:1.4.0-alpine
-    depends_on:
-      - socat
     networks:
       - ntw_front
     ports:
