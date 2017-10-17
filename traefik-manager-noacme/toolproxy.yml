@@ -30,8 +30,10 @@ services:
       labels:
         - "traefik.enable=false"
 
+  #devmtl/traefikfire:1.3.8A
+
   traefik:
-    image: devmtl/traefikfire:1.3.8A
+    image: traefik:1.4.0-alpine
     networks:
       - ntw_front
     ports:
