@@ -14,7 +14,7 @@ services:
       - mode: ingress
         target: 80
         published: 80
-      - mode: ingress
+      - mode: host
         target: 8080
         published: 8181
     volumes:
