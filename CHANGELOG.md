@@ -1,7 +1,21 @@
 
+
+# 1.24
+
+**Impact monorepo**: `traefik_stack1`
+
+- Running Traefik 1.4.0
+- optimised socat (no bash)
+- `traefik_stack1` is based on `traefik-manager-noacme`
+- Minor readme
+
+---
+
 # 1.23
 
 **Impact monorepo**: `traefik-manager-noacme`
+
+I screwd up my squash merge… Sorry for the mess in the master branch.
 
 - Explicite visibility of toolproxy-alone.yml + toolproxy-withsocat.yml
 - using toolproxy-withsocat.yml by default

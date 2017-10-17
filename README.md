@@ -7,11 +7,13 @@ I hope the community will use this repo as a base project to demo other stuff li
 To accomplish this, we put together the power of:
 
 - play-with-docker (#pwg)
-- **docker Swarm mode
+- docker Swarm mode
 - docker stacks
 
 ### Start here
-This is a monorepo or small projects per directory if you prefer. Just navigate the directories! I’m actively updating `traefik-manager-noacme`.
+This is a monorepo or small projects per directory if you prefer. Just navigate the directories! 
+
+The most solid stack is: `traefik-manager-noacme`.
 
 ### Progress
 
