@@ -2,6 +2,7 @@
 # 1.23
 - Using my traefik image
 - trying traefik 1.4
+- RM socat
 
 # 1.22
 - tried traefik with consul, but it’s a fail
