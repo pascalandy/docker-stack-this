@@ -12,11 +12,11 @@ services:
       - ntw_front
     ports:
       - mode: ingress
-        target: 80
         published: 80
+        target: 80
       - mode: host
-        target: 8080
         published: 8181
+        target: 8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --docker \
@@ -34,8 +34,9 @@ services:
       --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
       --web.address=:8181
     deploy:
-      labels:
-      - "traefik.enable=false"
+      # If you don't want to access the dashboard
+      #labels:
+      #- "traefik.enable=false"
       mode: replicated
       replicas: 1
       update_config:
