@@ -37,7 +37,7 @@ services:
         published: 80
         target: 80
       - mode: host
-        published: 8181
+        published: 8080
         target: 8080
     command: --docker \
       --docker.watch \
@@ -52,7 +52,7 @@ services:
       --web.metrics \
       --web.metrics.prometheus \
       --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
-      --web.address=:8181
+      --web.address=:8080
     deploy:
       #labels:
       #- "traefik.enable=false"
