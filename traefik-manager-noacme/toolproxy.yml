@@ -11,7 +11,7 @@ services:
     networks:
       - ntw_front
     ports:
-      - mode: ingress
+      - mode: host
         target: 80
         published: 80
       #- mode: ingress
