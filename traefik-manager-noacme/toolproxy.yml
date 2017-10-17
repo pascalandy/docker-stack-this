@@ -14,7 +14,9 @@ services:
       - mode: ingress
         target: 80
         published: 80
-      - 8181:8080
+      - mode: host
+        target: 8080
+        published: 8181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --docker \

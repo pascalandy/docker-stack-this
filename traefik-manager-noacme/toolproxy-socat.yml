@@ -39,8 +39,6 @@ services:
       - mode: host
         target: 8080
         published: 8181
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     command: --docker \
       --docker.watch \
       --docker.swarmmode \
