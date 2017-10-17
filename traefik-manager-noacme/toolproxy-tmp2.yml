@@ -6,32 +6,8 @@ networks:
 
 services:
 
-  socat:
-    image: devmtl/socatproxy:1.0A
-    networks:
-      - ntw_front
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 16M
-        reservations:
-          cpus: '0.10'
-          memory: 8M
-      labels:
-        - "traefik.enable=false"
-
   traefik:
-    image: traefik:1.4.0-alpine
-    depend_on:
-      - socat
+    image: devmtl/traefikfire:1.3.8A
     networks:
       - ntw_front
     ports:
@@ -54,11 +30,11 @@ services:
       --entryPoints='Name:http' \
       --debug=true \
       --logLevel=WARN \
-      --web \
-      --web.metrics \
-      --web.metrics.prometheus \
-      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
-      --web.address=:8181
+      --web
+      #--web.metrics \
+      #--web.metrics.prometheus \
+      #--web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
+      #--web.address=:8181
       #--acme.entrypoint=https \
       #--acme=true \
       #--acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
@@ -67,22 +43,24 @@ services:
       #--acme.onhostrule=true \
       #--acme.storage=/etc/traefik/acme/acme.json \
     deploy:
+      labels:
+      - "traefik.enable=false"
       mode: replicated
       replicas: 1
       update_config:
-        parallelism: 1
-        delay: 10s
+        delay: 2s
+      placement:
+        constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.33'
           memory: 128M
         reservations:
-          cpus: '0.10'
+          cpus: '0.05'
           memory: 64M
-      labels:
-        - "traefik.enable=false"
 
 #devmtl/traefikfire:1.3.8A
 #--docker.endpoint=unix:///var/run/docker.sock \
