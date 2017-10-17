@@ -6,47 +6,27 @@ networks:
 
 services:
 
-  socat:
-    image: devmtl/socatproxy:1.0A
-    networks:
-      - ntw_front
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 16M
-        reservations:
-          cpus: '0.10'
-          memory: 8M
-      labels:
-        - "traefik.enable=false"
-
   traefik:
-    image: traefik:1.4.0-alpine
+    image: devmtl/traefikfire:1.3.8A
     networks:
       - ntw_front
     ports:
       - mode: ingress
         target: 80
         published: 80
-      - mode: host
-        target: 8080
-        published: 8181
+      #- mode: ingress
+      #  target: 443
+      #  published: 443
+      - "8181:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      #- traefik-pub:/etc/traefik/acme
     command: --docker \
       --docker.swarmmode \
-      --docker.endpoint=tcp://socat:2375 \
+      --docker.endpoint=unix:///var/run/docker.sock \
       --docker.domain=traefik \
       --docker.watch \
-      --docker.exposedbydefault=false \
+      --docker.exposedbydefault=true \
       --entryPoints='Name:http' \
       --debug=true \
       --logLevel=WARN \
@@ -64,27 +44,29 @@ services:
       #--acme.storage=/etc/traefik/acme/acme.json \
     deploy:
       labels:
-        - "traefik.enable=false"
+      - "traefik.enable=false"
       mode: replicated
       replicas: 1
       update_config:
-        parallelism: 1
-        delay: 10s
+        delay: 2s
+      placement:
+        constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
+        max_attempts: 5
       resources:
         limits:
           cpus: '0.33'
           memory: 128M
         reservations:
-          cpus: '0.10'
+          cpus: '0.05'
           memory: 64M
 
 #devmtl/traefikfire:1.3.8A
+#traefik:1.4.0-alpine
+
 #--docker.endpoint=unix:///var/run/docker.sock \
 #--docker.endpoint=tcp://socat:2375 \
-
-#- traefik-pub:/etc/traefik/acme
 
 # no acme
 #

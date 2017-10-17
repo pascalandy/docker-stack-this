@@ -63,6 +63,8 @@ services:
           memory: 64M
 
 #devmtl/traefikfire:1.3.8A
+#traefik:1.4.0-alpine
+
 #--docker.endpoint=unix:///var/run/docker.sock \
 #--docker.endpoint=tcp://socat:2375 \
 
