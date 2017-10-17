@@ -38,27 +38,25 @@ services:
       - mode: ingress
         target: 80
         published: 80
-      #- mode: ingress
-      #  target: 443
-      #  published: 443
-      - "8181:8080"
+      - mode: host
+        target: 8080
+        published: 8181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      #- traefik-pub:/etc/traefik/acme
     command: --docker \
       --docker.swarmmode \
       --docker.endpoint=tcp://socat:2375 \
       --docker.domain=traefik \
       --docker.watch \
-      --docker.exposedbydefault=true \
+      --docker.exposedbydefault=false \
       --entryPoints='Name:http' \
       --debug=true \
       --logLevel=WARN \
-      --web \
-      --web.metrics \
-      --web.metrics.prometheus \
-      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
-      --web.address=:8181
+      --web
+      #--web.metrics \
+      #--web.metrics.prometheus \
+      #--web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
+      #--web.address=:8181
       #--acme.entrypoint=https \
       #--acme=true \
       #--acme.domains='${CLUSTER_PUBLIC_DOMAIN}' \
@@ -87,6 +85,8 @@ services:
 #devmtl/traefikfire:1.3.8A
 #--docker.endpoint=unix:///var/run/docker.sock \
 #--docker.endpoint=tcp://socat:2375 \
+
+#- traefik-pub:/etc/traefik/acme
 
 # no acme
 #
