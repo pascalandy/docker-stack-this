@@ -17,3 +17,24 @@ chmod +x runup; chmod +x rundown; chmod +x runctop;
 
 # Run the stack
 ./runup;
+
+
+# — — — # — — — # — — — #=
+
+docker swarm init --advertise-addr $(hostname -i); docker node ls;
+
+# Install common apps
+apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates;
+
+# Clone repo
+cd /root;
+git clone https://github.com/chmod666org/traefik-stack.git
+cd traefik-stack;
+
+# Run the stack
+if [ ! "$(docker network ls --filter name=traefik-net -q)" ];then
+  docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted traefik-net
+  sleep 2
+fi
+
+DOMAIN=domain.com docker stack deploy --compose-file traefik.yml traefik
