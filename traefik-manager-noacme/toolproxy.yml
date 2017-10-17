@@ -47,7 +47,7 @@ services:
       #- traefik-pub:/etc/traefik/acme
     command: --docker \
       --docker.swarmmode \
-      --docker.endpoint=unix:///var/run/docker.sock \
+      --docker.endpoint=tcp://socat:2375 \
       --docker.domain=traefik \
       --docker.watch \
       --docker.exposedbydefault=true \
