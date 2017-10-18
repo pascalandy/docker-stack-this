@@ -1,4 +1,9 @@
 
+# 1.25
+
+**Impact monorepo**: `traefik_stack1`
+
+- Clean up the README at the root
 
 # 1.24
 
