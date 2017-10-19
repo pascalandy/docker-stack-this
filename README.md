@@ -4,7 +4,7 @@ The main goal is to create the **easiest** and **quickest** docker stack availab
 
 This is a monorepo (or an aggregation of mini-projects). Just navigate the directories! 
 
-**Start here** — The most solid stack at the moment is: [traefik_stack1](./traefik_stack1).
+**Start here** — The most interesting stack at the moment is: [traefik_stack1](./traefik_stack1)
 
 ## Build on top of it
 
