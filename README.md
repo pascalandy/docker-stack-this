@@ -18,7 +18,8 @@ This is a monorepo or an aggregation of mini-projects if you prefer. Just naviga
 
 **Quick links**
   
-- [Changelog](./CHANGELOG.md)
-- [Licence](./LICENCE.md)
-- [Conduct of Code](./CODE_OF_CONDUCT.md)
+- [CHANGELOG](./CHANGELOG.md)
+- [LICENCE](./LICENCE.md)
+- [CONTRIBUTING](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md)
 - [Twitter](https://twitter.com/askpascalandy)
