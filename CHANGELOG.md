@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.26
+
+**Impact monorepo**: `traefik_stack1`
+
+- wip
+
 ## 1.25
 
 **Impact monorepo**: `traefik_stack1`
