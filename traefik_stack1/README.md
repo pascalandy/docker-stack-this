@@ -1,13 +1,12 @@
 ## Introduction
-This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command.
+This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
 #### Anything special about this mono repo?
 - This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
 - I still have issues in the project `traefik-manager` which use ACME.
 - If you don’t want to use socat, see `traefik-manager-noacme`
-- See the [CHANGELOG.md](https://github.com/pascalandy/docker-stack-this/blob/master/CHANGELOG.md) at the root of this project.
 
-## Time to deploy
+## Launching the Docker stack
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **one instance** and wait for the node to provision
 3. On **node1**, copy paste:
