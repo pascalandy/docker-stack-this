@@ -106,7 +106,7 @@ Here is what’s missing to make this stack perfect?
 - Fix the need to use a trailing slash `/` at the end of Portainer service
 
 ## Something is off? Please let me know.
-I consider this README crystal clear. If there is anything that I could improve, please [let me know via an issue](https://github.com/pascalandy/docker-stack-this/issues).
+I consider this README crystal clear. If there is anything that I could improve, please let me know and make sure to review the [contributing doc](././CONTRIBUTING.md).
 
 ## Shameless promotion :-p
 Looking to **kick-start your website** (static page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with **Ghost**. In short, you can try Ghost on the spot without having to sign up! Just use the dummy email & password provided.
