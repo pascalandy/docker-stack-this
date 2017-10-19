@@ -1,11 +1,13 @@
 
-# 1.25
+# Changelog
+
+## 1.25
 
 **Impact monorepo**: `traefik_stack1`
 
 - Clean up the README at the root
 
-# 1.24
+## 1.24
 
 **Impact monorepo**: `traefik_stack1`
 
@@ -16,7 +18,7 @@
 
 ---
 
-# 1.23
+## 1.23
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -31,7 +33,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.22
+## 1.22
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -39,7 +41,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.21
+## 1.21
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -48,7 +50,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.20
+## 1.20
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -56,7 +58,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.19
+## 1.19
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -69,7 +71,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.18
+## 1.18
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -78,7 +80,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.17
+## 1.17
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -90,7 +92,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.16
+## 1.16
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -99,7 +101,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.15
+## 1.15
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -107,7 +109,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.14
+## 1.14
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -116,7 +118,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.13
+## 1.13
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -125,7 +127,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.12
+## 1.12
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -134,7 +136,7 @@ I screwd up my squash merge… Sorry for the mess in the master branch.
 
 ---
 
-# 1.11
+## 1.11
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -144,14 +146,14 @@ Issue opened: https://github.com/portainer/portainer-compose/issues/12
 
 ---
 
-# 1.10
+## 1.10
 **Impact monorepo**: `traefik-manager-noacme`
 
 - minor changes
 
 ---
 
-# 1.09
+## 1.09
 
 **Impact monorepo**: `traefik-manager-noacme`
 
@@ -159,7 +161,7 @@ Issue opened: https://github.com/portainer/portainer-compose/issues/12
 
 ---
 
-# 1.08
+## 1.08
 
 Add projects into DIR exploration
 
