@@ -15,7 +15,7 @@
 # Optional
 # Default: false
 #
-# debug = true
+debug = true
 
 # Periodically check if a new version has been released
 #
@@ -44,7 +44,8 @@ accessLogsFile = "/dev/stdout"
 # Optional
 # Default: "ERROR"
 #
-# logLevel = "ERROR"
+logLevel = "WARN"
+
 
 # Backends throttle duration: minimum duration in seconds between 2 events from providers
 # before applying a new configuration. It avoids unnecessary reloads if multiples events
