@@ -1,6 +1,9 @@
 - NOT STABLE!
 - WIP 2017-10-26_07h53
 
+based on https://boxboat.com/2017/10/10/managing-multiple-microservices-with-traefik-in-docker-swarm/
+
+
 ## Introduction
 This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
