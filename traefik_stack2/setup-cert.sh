@@ -13,7 +13,7 @@ certdir="tls"
 host="localhost"
 
 # create tls dir
-mkdir "$certdir"
+#mkdir "$certdir"
 
 # setup a CA key
 if [ ! -f "$certdir/ca-key.pem" ]; then
