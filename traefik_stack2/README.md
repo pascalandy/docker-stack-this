@@ -1,100 +1,130 @@
-# Traefik TLS and Swarm Mode Example
-This example shows the configuration for Traefik under Docker Swarm Mode with
-TLS termination, http to https redirection, and multiple containers mapped
-with your choice of frontend rules.
+- NOT STABLE!
+- WIP 2017-10-26_07h53
 
-## TLS Setup
-For this example a self-signed TLS certificate is created in the tls folder.
-It's generated with the `setup-cert.sh` script using openssl.
+## Introduction
+This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
-## Network Setup
-For networking, containers need to attach to the proxy network. This is defined
-externally with the `setup-network.sh` script.
+#### Anything special about this mono repo?
+- This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
+- I still have issues in the project `traefik-manager` which use ACME.
+- If you don’t want to use socat, see `traefik-manager-noacme`
 
-## Traefik Config
-The following traefik.toml was used (excluding comment lines):
+## Launching the Docker stack
+1. Go to http://labs.play-with-docker.com/ 
+2. Create **one instance** and wait for thethe node to provision
+3. On **node1**, copy paste:
 
 ```
-accessLogsFile = "/dev/stdout"
-defaultEntryPoints = ["https"]
-[entryPoints]
-  [entryPoints.http]
-  address = ":80"
-  [entryPoints.https]
-  address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
-      CertFile = "/run/secrets/cert.pem"
-      KeyFile = "/run/secrets/key.pem"
-[web]
-address = ":8080"
-[docker]
-endpoint = "unix:///var/run/docker.sock"
-domain = "localhost"
-watch = true
-swarmmode = true
-exposedbydefault = false
+# Create Swarm
+docker swarm init --advertise-addr $(hostname -i); docker node ls;
+# Install common apps
+apk update && apk upgrade && apk add nano curl bash git wget unzip openssl ca-certificates;
+# Clone repo
+cd /root;
+git clone https://github.com/pascalandy/docker-stack-this.git;
+cd docker-stack-this;
+# Choose branch
+git checkout 1.27;
+# Go to the actual project
+cd traefik_stack2; echo; pwd; echo; ls -AlhF;
+# Run the stack
+./runup.sh;
 ```
 
-The traefik.toml comments give more details on the configuration options, in
-brief, the above options have the following results:
-- accessLogsFile: This redirects the access logs to stdout where they appear 
-  in `docker service logs`.
-- defaultEntryPoints: This defaults containers to https only.
-- entryPoints: This configures an http listener on port 80 and an https 
-  listener on port 443 with the certificate in the secrets folder.
-- web: This sets up a dashboard on port 8080 to see the current configuration.
-- docker endpoint: This uses the docker socket to monitor the swarm manager
-  for changes to running swarm services.
-- docker watch: watches the above endpoint for changes.
-- docker swarmmode: watches swarm services instead of docker containers
-- docker exposedbydefault: disables behavior of exposing every service, only
-  exposes those with `traefik.enable=true`.
+This is it! Once it’s deploy you will see: 
 
-## Stack Definition for Traefik
-The docker-compose.traefik.yml defines Traefik's swarm mode stack. It is 
-configured to run on a swarm manager so it has access to read the swarm service
-state via the docker.sock mount. Traefik is published on ports 80, 443, and
-8080 using the swarm ingress so you can connect to any docker node on these
-ports.
+#### Three stacks
 
-The common network "proxy" is used and defined as external. You could instead
-configure traefik to connect to multiple networks for different applications
-so those applications could not talk to each other, only to traefik.
+```
+docker stack ls
 
-### Configs and Secrets
-The use of configs and secrets avoids volumes that are local to the host with
-the TLS certs and traefik.toml file saved. At present, these are immutable, so
-making a change requires that you give that config a new name and redeploying
-the stack to perform a rolling update of that change. As a benefit, should
-the service migrate to another node, the configuration and/or secrets will
-automatically move with it.
+NAME                SERVICES
+toolmonitor         1
+toolproxy           2
+toolweb             3
+```
 
-### Redirect workaround
-The PathPrefixStrip rule is not properly redirected from http to https due to
-[issue 1957](https://github.com/containous/traefik/issues/1957). The workaround
-is to spin up an nginx container with a single rule to redirect anything on
-http to https and make that the only rule on traefik's http frontend. This
-could have also been a standalone container outside of traeifk.
+#### Six services
 
-## Stack Definition for Backends
-Each of the web services, or in this case web servers, that you run behind 
-the traefik proxy is referred to as a backend. These are configured to run on
-a common network with traefik, "proxy", and with a set of labels on the service
-(not the container) that traefik uses to dynamically update its configuration.
+```
+docker service ls
 
-The labels we are using for traefik are:
-- traefik.frontend.endPoints: The defaults to https in the traefik.toml, but
-  can be overridden, e.g. the nginx http to https redirect.
-- traefik.frontend.rule: This rule must be matched for traefik to send a
-  request to this backend. Traefik has default priorities that may be
-  overridden to handle multiple matching rules.
-- traefik.docker.network: If your container is connected to multiple networks,
-  this is required to be set to the network in common with traefik. Otherwise
-  traefik may configure the proxy for an IP it is unable to reach.
-- traefik.port: This is the port inside the container. Note that we did not
-  need to publish or expose this port, traefik connects directly over the
-  "proxy" network, but needs to know which port to connect to.
-- traefik.enable: This is needed when we do not expose every service by
-  default. If set to "true", traefik will proxy for this service.
+ID                  NAME                    MODE                REPLICAS            IMAGE                        PORTS
+858q0bumq9cy        toolmonitor_portainer   replicated          1/1                 portainer/portainer:1.14.2
+h6f5oii6crmd        toolproxy_socat         replicated          1/1                 devmtl/socatproxy:1.0A
+g2ah7f98utqh        toolproxy_traefik       replicated          1/1                 traefik:1.3.8-alpine         *:80->80/tcp,*:8181->8080/tcp
+n36xdpo0kfyc        toolweb_home            replicated          2/2                 abiosoft/caddy:latest
+lip8o4293f49        toolweb_who1            replicated          2/2                 nginx:alpine
+ldz6uwbfc8mg        toolweb_who2            replicated          2/2                 emilevauge/whoami:latest
+```
 
+## Confirm that Traefik and the gang are running
+1. The script `runup` does the hard work for us.
+
+2. When you see that all services are deployed, click on `80` to see a static landing page.
+
+![screen](https://user-images.githubusercontent.com/6694151/31318199-57e7e88a-ac1c-11e7-86a4-61a6172ac7be.png)
+
+3. From the same URL generated by play-with-docker, in the address bar of your browser, add `/who1/` or `/who2/` or `/portainer/` to access other services.
+
+#### Example
+```
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who1/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who2/
+http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
+```
+
+**WARNING**! Portainer requires a slash `/` at the end of the path. There is something to tweak with Traefik Labels in order for it to accept the proxy the request without the slash `/` at the end.
+
+#### Web apps details:
+- **/** = [caddy](https://hub.docker.com/r/abiosoft/caddy/)
+- **/who1/** = [nginx](https://hub.docker.com/_/nginx/)
+- **/who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
+- **/portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
+
+## All commands
+In the active path, just execute those bash-scripts:
+
+- `./runup`
+- `./rundown`
+- `./runctop`
+
+`./runctop` is not a stack but a simple docker run to see the memory consumed by each containers.
+
+#### What is Traefik?
+[Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.
+
+#### Traefik version 
+In `toolproxy.yml` look for something like `traefik:1.3.8-alpine`.
+
+## Backlog
+
+Here is what’s missing to make this stack perfect?
+ 
+- Secure traefik dashboard
+- Use SSL endpoints (ACME)
+- Fix the need to use a trailing slash `/` at the end of Portainer service
+
+## Something is off? Please let me know.
+I consider this README crystal clear. If there is anything that I could improve, please let me know and make sure to review the [contributing doc](../CONTRIBUTING.md).
+
+## Shameless promotion :-p
+Looking to **kick-start your website** (static page + a CMS) ? Take a look at [play-with-ghost](http://play-with-ghost.com/) (another project I shared). It allows you to see and edit websites made with **Ghost**. In short, you can try Ghost on the spot without having to sign up! Just use the dummy email & password provided.
+
+## Wanna help?
+If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang and you’re looking to help a startup to launch a solid project, I would love to get to know you. Buzz me 👋 on Twitter [@askpascalandy](https://twitter.com/askpascalandy). You can see the things that are done and the things we have to do [here](http://firepress.org/blog/technical-challenges-we-are-facing-now/).
+
+I’m looking for bright and caring people to join this [journey](http://firepress.org/blog/tag/from-the-heart/) with me.
+
+```
+ ____                     _      _              _
+|  _ \ __ _ ___  ___ __ _| |    / \   _ __   __| |_   _
+| |_) / _` / __|/ __/ _` | |   / _ \ | '_ \ / _` | | | |
+|  __/ (_| \__ \ (_| (_| | |  / ___ \| | | | (_| | |_| |
+|_|   \__,_|___/\___\__,_|_| /_/   \_\_| |_|\__,_|\__, |
+                                                  |___/
+```
+
+Cheers!
+Pascal
