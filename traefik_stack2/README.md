@@ -18,7 +18,7 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ```
 
-ENV_BRANCH=1.28
+ENV_BRANCH=1.30
 ENV_MONOREPO=traefik_stack2
 
 # Setup alpine node + Create Docker Swarm

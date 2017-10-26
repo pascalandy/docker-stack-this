@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   home:
-    image: abiosoft/caddy
+    image: abiosoft/caddy:0.10.10
     networks:
       - ntw_front
     volumes:
@@ -24,17 +24,15 @@ services:
           cpus: '0.05'
           memory: 9M
       labels:
-        - "traefik.backend=home"
-        - "traefik.frontend.rule=PathPrefixStrip:/"
-        - "traefik.port=2015"
-        - "traefik.enable=true"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.frontend.entryPoints=http"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.weight=10"
+      - "traefik.frontend.rule=PathPrefixStrip:/"
+      - "traefik.port=2015"
+      - "traefik.enable=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.weight=10"
 
   who1:
-    image: nginx:alpine
+    image: nginx:1.13-alpine
     networks:
       - ntw_front
     volumes:
@@ -55,14 +53,12 @@ services:
           cpus: '0.05'
           memory: 9M
       labels:
-        - "traefik.backend=who1"
-        - "traefik.frontend.rule=PathPrefixStrip:/who1"
-        - "traefik.port=80"
-        - "traefik.enable=true"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.frontend.entryPoints=http"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.weight=10"
+      - "traefik.frontend.rule=PathPrefixStrip:/who1"
+      - "traefik.port=80"
+      - "traefik.enable=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.weight=10"
 
   who2:
     image: emilevauge/whoami
@@ -84,14 +80,12 @@ services:
           cpus: '0.05'
           memory: 9M
       labels:
-        - "traefik.backend=who2"
-        - "traefik.frontend.rule=PathPrefixStrip:/who2"
-        - "traefik.port=80"
-        - "traefik.enable=true"
-        - "traefik.backend.loadbalancer.method=drr"
-        - "traefik.frontend.entryPoints=http"
-        - "traefik.docker.network=ntw_front"
-        - "traefik.weight=10"
+      - "traefik.frontend.rule=PathPrefixStrip:/who2"
+      - "traefik.port=80"
+      - "traefik.enable=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.weight=10"
 
 networks:
   ntw_front:

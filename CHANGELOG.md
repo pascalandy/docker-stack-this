@@ -1,6 +1,24 @@
 
 # Changelog
 
+## 1.30
+
+**Impact monorepo**: `traefik_stack1`
+
+- remove backend. The idea is that because swarm assigns name like caddy.1 maybe it’s why I have random issues when I update my service in prod.
+
+## 1.29
+
+**Impact monorepo**: `traefik_stack2`
+
+- Mostly readme updates
+
+## 1.28
+
+**Impact monorepo**: `traefik_stack2`
+
+- provision pwg host via a script which will be universal for all monorepo
+
 ## 1.27
 
 **Impact monorepo**: `traefik_stack2`
