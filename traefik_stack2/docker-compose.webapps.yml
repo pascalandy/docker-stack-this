@@ -38,4 +38,15 @@ services:
       - traefik.docker.network=proxy
       - traefik.port=2015
       - traefik.enable=true
+  caddyroot:
+    image: abiosoft/caddy:0.10.10
+    networks:
+    - proxy
+    deploy:
+      replicas: 2
+      labels:
+      - traefik.frontend.rule=Path:/
+      - traefik.docker.network=proxy
+      - traefik.port=2015
+      - traefik.enable=true
 

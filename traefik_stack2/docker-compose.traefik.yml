@@ -18,8 +18,9 @@ secrets:
     file: ./tls/key.pem
 
 services:
+
   traefik:
-    image: traefik:1.4
+    image: traefik:1.4.1
     deploy:
       replicas: 2
       placement:
@@ -55,8 +56,9 @@ services:
       target: key.pem
       uid: "0"
       mode: 400
+
   nginx_redirect:
-    image: nginx:1.13
+    image: nginx:1.13-alpine
     networks:
     - proxy
     deploy:
@@ -71,4 +73,3 @@ services:
     - source: nginx_conf
       target: /etc/nginx/conf.d/default.conf
       mode: 444
-
