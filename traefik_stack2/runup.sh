@@ -15,7 +15,7 @@ set -o nounset
 
 ./start-traefik.sh
 
-./start-traefik.sh
+./start-webapps.sh
 
 
 # List
