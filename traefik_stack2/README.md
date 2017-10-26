@@ -21,8 +21,10 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 # Setup alpine node + Create Docker Swarm
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
+sleep 5 && \
 
 # Choose branch
+
 git checkout 1.28 && \
 # Go to the actual project
 cd traefik_stack2 && \

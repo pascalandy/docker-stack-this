@@ -22,4 +22,4 @@ cd /root && \
 git clone https://github.com/pascalandy/docker-stack-this.git && \
 cd docker-stack-this && \
 
-echo "Time to choose your mono repo: ";
+echo; echo "Time to choose your mono repo: "; echo;
