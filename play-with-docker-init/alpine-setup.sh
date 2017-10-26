@@ -15,7 +15,7 @@ echo "America/New_York" > /etc/timezone && \
 apk del tzdata && \
 
 # clean up
-rm -rf /var/cache/apk/*
+rm -rf /var/cache/apk/* && sleep 1 && \
 
 # Clone repo
 cd /root && \
