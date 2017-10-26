@@ -8,7 +8,7 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ## Launching the Docker stack
 1. Go to http://labs.play-with-docker.com/ 
-2. Create **one instance** and wait for the node to provision
+2. Create **one instance** and wait for thethe node to provision
 3. On **node1**, copy paste:
 
 ```
