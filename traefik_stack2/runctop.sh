@@ -9,5 +9,12 @@ set -o nounset
 # Functions
 ###############################################################################
 
-docker stack deploy -c docker-compose.traefik.yml traefik
+docker run --rm -ti \
+  --name=ctop \
+  --memory="18m" \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  quay.io/vektorlab/ctop:latest
 
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this
+#

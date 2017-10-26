@@ -15,6 +15,7 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 3. On **node1**, copy paste:
 
 ```
+
 # Create Swarm
 docker swarm init --advertise-addr $(hostname -i); docker node ls;
 # Install common apps
@@ -29,6 +30,7 @@ git checkout 1.27;
 cd traefik_stack2; echo; pwd; echo; ls -AlhF;
 # Run the stack
 ./runup.sh;
+
 ```
 
 This is it! Once it’s deploy you will see: 
