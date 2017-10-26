@@ -1,8 +1,7 @@
-- NOT STABLE!
-- WIP 2017-10-26_07h53
+- IS STABLE
+- WIP 2017-10-26_09h28
 
 based on https://boxboat.com/2017/10/10/managing-multiple-microservices-with-traefik-in-docker-swarm/
-
 
 ## Introduction
 This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
@@ -19,17 +18,15 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ```
 
+ENV_BRANCH=1.28
+ENV_MONOREPO=traefik_stack2
+
 # Setup alpine node + Create Docker Swarm
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
 sleep 5 && \
 
-# Choose branch
-
-git checkout 1.28 && \
-# Go to the actual project
-cd traefik_stack2 && \
-
-# Run the stack
+git checkout "$ENV_BRANCH" && \
+cd "$ENV_MONOREPO" && \
 ./runup.sh;
 
 ```

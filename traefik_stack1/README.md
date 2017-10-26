@@ -12,22 +12,18 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 3. On **node1**, copy paste:
 
 ```
-# Create Swarm
-docker swarm init --advertise-addr $(hostname -i); docker node ls;
-# Install common apps
-apk update && apk upgrade && apk add nano curl bash git wget unzip ca-certificates;
-# Clone repo
-cd /root;
-git clone https://github.com/pascalandy/docker-stack-this.git;
-cd docker-stack-this;
-# Choose branch
-git checkout master;
-# Go to the actual project
-cd traefik_stack1; echo; pwd; echo; ls -AlhF;
-# Make scripts executable
-chmod +x runup; chmod +x rundown; chmod +x runctop;
-# Run the stack
-./runup;
+
+ENV_BRANCH=1.29
+ENV_MONOREPO=traefik_stack1
+
+# Setup alpine node + Create Docker Swarm
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
+sleep 5 && \
+
+git checkout "$ENV_BRANCH" && \
+cd "$ENV_MONOREPO" && \
+./runup.sh;
+
 ```
 
 This is it! Once it’s deploy you will see: 
@@ -58,7 +54,7 @@ ldz6uwbfc8mg        toolweb_who2            replicated          2/2             
 ```
 
 ## Confirm that Traefik and the gang are running
-1. The script `runup` does the hard work for us.
+1. The script `runup.sh` does the hard work for us.
 
 2. When you see that all services are deployed, click on `80` to see a static landing page.
 
@@ -85,11 +81,11 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 ## All commands
 In the active path, just execute those bash-scripts:
 
-- `./runup`
-- `./rundown`
-- `./runctop`
+- `./runup.sh`
+- `./rundown.sh`
+- `./runctop.sh`
 
-`./runctop` is not a stack but a simple docker run to see the memory consumed by each containers.
+`./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each containers.
 
 #### What is Traefik?
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.

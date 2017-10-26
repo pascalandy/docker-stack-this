@@ -35,12 +35,14 @@ services:
   traefik:
     image: devmtl/traefikfire:1.4.0A
     ports:
-      - mode: ingress
-        published: 80
-        target: 80
-      - mode: host
-        published: 8080
-        target: 8080
+    - target: 80
+      protocol: tcp
+      published: 80
+      mode: ingress
+    - target: 8080
+      protocol: tcp
+      published: 8080
+      mode: ingress
     networks:
       - ntw_front
     configs:

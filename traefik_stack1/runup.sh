@@ -11,7 +11,7 @@ set -o nounset
 
 # Stop
 echo; echo "If existing, remove stacks: "
-./rundown
+./rundown.sh
 
 # Create Network
 echo; echo "If not existing, create our network: "
