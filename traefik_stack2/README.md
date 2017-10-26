@@ -19,18 +19,14 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ```
 
-# Create Swarm
-docker swarm init --advertise-addr $(hostname -i); docker node ls;
-# Install common apps
-apk update && apk upgrade && apk add nano curl bash git wget unzip openssl ca-certificates;
-# Clone repo
-cd /root;
-git clone https://github.com/pascalandy/docker-stack-this.git;
-cd docker-stack-this;
+# Setup alpine node + Create Docker Swarm
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
+
 # Choose branch
-git checkout 1.27;
+git checkout 1.28 && \
 # Go to the actual project
-cd traefik_stack2; echo; pwd; echo; ls -AlhF;
+cd traefik_stack2 && \
+
 # Run the stack
 ./runup.sh;
 
