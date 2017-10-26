@@ -39,7 +39,7 @@ echo; echo ; sleep 2
 
 # See Traefik logs
 echo "To see Traefik logs type: "; sleep 1;
-echo "docker service logs -f traefik_traefik"; echo; sleep 1;
+echo "  docker service logs -f traefik_traefik"; echo; sleep 1;
 
 # by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this
