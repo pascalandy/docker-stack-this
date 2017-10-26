@@ -1,6 +1,13 @@
 
 # Changelog
 
+## 1.27
+
+**Impact monorepo**: `traefik_stack2`
+
+- adding new monorepo `traefik_stack2`
+- working on `play-with-docker-init`
+
 ## 1.26
 
 **Impact monorepo**: `traefik_stack1`
