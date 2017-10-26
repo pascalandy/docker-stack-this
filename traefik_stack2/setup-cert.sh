@@ -4,6 +4,9 @@
 certdir="tls"
 host="localhost"
 
+# create tls dir
+mkdir "$certdir"
+
 # setup a CA key
 if [ ! -f "$certdir/ca-key.pem" ]; then
   openssl genrsa -out "${certdir}/ca-key.pem" 4096
@@ -24,7 +27,7 @@ fi
 extfile="${certdir}/extfile"
 openssl req -subj "/CN=${host}" -new -key "${certdir}/key.pem" \
    -out "${certdir}/${host}.csr"
-echo "subjectAltName = IP:127.0.0.1,DNS:localhost" >${extfile}
+echo "subjectAltName = IP:0.0.0.0,DNS:localhost" >${extfile}
 
 # create the host cert
 openssl x509 -req -days 365 \

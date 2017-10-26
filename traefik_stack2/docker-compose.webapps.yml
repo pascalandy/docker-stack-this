@@ -6,7 +6,7 @@ networks:
 
 services:
   nginx:
-    image: nginx:1.13
+    image: nginx:1.13-alpine
     networks:
     - proxy
     deploy:
@@ -28,7 +28,7 @@ services:
       - traefik.port=80
       - traefik.enable=true
   caddy:
-    image: abiosoft/caddy:0.10.7
+    image: abiosoft/caddy:0.10.10
     networks:
     - proxy
     deploy:
