@@ -9,6 +9,8 @@ set -o nounset
 # Functions
 ###############################################################################
 
+echo; echo;
+
 docker run --rm -ti \
   --name=ctop \
   --memory="18m" \

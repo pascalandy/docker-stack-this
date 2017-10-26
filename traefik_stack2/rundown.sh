@@ -9,9 +9,13 @@ set -o nounset
 # Functions
 ### ### ### ### ### ### ### ### ### ### ###
 
-echo; echo "Remove stacks ..."
+echo; echo;
+echo "Remove stacks ..."
+
+echo; echo;
 docker stack rm traefik || true; echo; sleep 1;
 
+echo; echo;
 docker stack rm webapps || true; echo; sleep 1;
 
 #echo; echo "Remove network ..."
