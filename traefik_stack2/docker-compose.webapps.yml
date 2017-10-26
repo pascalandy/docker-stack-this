@@ -1,0 +1,41 @@
+version: '3.3'
+
+networks:
+  proxy:
+    external: true
+
+services:
+  nginx:
+    image: nginx:1.13
+    networks:
+    - proxy
+    deploy:
+      replicas: 2
+      labels:
+      - traefik.frontend.rule=PathPrefixStrip:/nginx
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+  apache:
+    image: httpd:2.4
+    networks:
+    - proxy
+    deploy:
+      replicas: 2
+      labels:
+      - traefik.frontend.rule=PathPrefixStrip:/apache
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+  caddy:
+    image: abiosoft/caddy:0.10.7
+    networks:
+    - proxy
+    deploy:
+      replicas: 2
+      labels:
+      - traefik.frontend.rule=PathPrefixStrip:/caddy
+      - traefik.docker.network=proxy
+      - traefik.port=2015
+      - traefik.enable=true
+

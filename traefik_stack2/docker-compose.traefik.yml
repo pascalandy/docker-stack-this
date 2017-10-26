@@ -1,0 +1,74 @@
+version: '3.3'
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+configs:
+  traefik_toml_v2:
+    file: ./traefik.toml
+  nginx_conf:
+    file: ./nginx-redirect.conf
+
+secrets:
+  traefik_cert:
+    file: ./tls/cert.pem
+  traefik_key:
+    file: ./tls/key.pem
+
+services:
+  traefik:
+    image: traefik:1.4
+    deploy:
+      replicas: 2
+      placement:
+        constraints:
+        - node.role == manager
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+    - proxy
+    ports:
+    - target: 80
+      protocol: tcp
+      published: 80
+      mode: ingress
+    - target: 443
+      protocol: tcp
+      published: 443
+      mode: ingress
+    - target: 8080
+      protocol: tcp
+      published: 8080
+      mode: ingress
+    configs:
+    - source: traefik_toml_v2
+      target: /etc/traefik/traefik.toml
+      mode: 444
+    secrets:
+    - source: traefik_cert
+      target: cert.pem
+      uid: "0"
+      mode: 400
+    - source: traefik_key
+      target: key.pem
+      uid: "0"
+      mode: 400
+  nginx_redirect:
+    image: nginx:1.13
+    networks:
+    - proxy
+    deploy:
+      replicas: 2
+      labels:
+      - traefik.frontend.entryPoints=http
+      - traefik.frontend.rule=PathPrefix:/
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+    configs:
+    - source: nginx_conf
+      target: /etc/nginx/conf.d/default.conf
+      mode: 444
+
