@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.31
+
+**Impact monorepo**: `traefik_stack1`
+
+- update to IMG traefikfire:1.4.1
+
 ## 1.30
 
 **Impact monorepo**: `traefik_stack1`

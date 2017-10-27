@@ -33,7 +33,7 @@ services:
         - "traefik.enable=false"
 
   traefik:
-    image: traefik:1.4.1
+    image: devmtl/traefikfire:1.4.1A
     ports:
     - target: 80
       protocol: tcp
