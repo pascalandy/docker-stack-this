@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   portainer:
-    image: portainer/portainer:1.15.0
+    image: portainer/portainer:1.15.2
     networks:
       - ntw_front
     volumes:

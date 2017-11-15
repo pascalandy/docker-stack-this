@@ -84,7 +84,7 @@ services:
       - "traefik.port=80"
       - "traefik.enable=true"
       - "traefik.docker.network=ntw_front"
-      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.backend.loadbalancer.swarm=true"
       - "traefik.weight=10"
 
 networks:

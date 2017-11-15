@@ -1,3 +1,10 @@
+- WIP 2017-11-03_23h55
+
+**based on**:
+- https://github.com/mlabouardy/alb-gohttp://www.blog.labouardy.com/docker-swarm-networking-and-dynamic-reverse-proxy/
+- https://github.com/mlabouardy/alb-go
+
+
 ## Introduction
 This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
@@ -14,11 +21,11 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 ```
 
 ENV_BRANCH=1.32
-ENV_MONOREPO=traefik_stack1
+ENV_MONOREPO=traefik_stack3
 
 # Setup alpine node + Create Docker Swarm
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
-echo; echo "The host is setup"; echo; echo; sleep 2 && \
+sleep 5 && \
 
 git checkout "$ENV_BRANCH" && \
 cd "$ENV_MONOREPO" && \
@@ -54,7 +61,7 @@ ldz6uwbfc8mg        toolweb_who2            replicated          2/2             
 ```
 
 ## Confirm that Traefik and the gang are running
-1. The script `runup.sh` does the hard work for us.
+1. The script `runup` does the hard work for us.
 
 2. When you see that all services are deployed, click on `80` to see a static landing page.
 
@@ -81,11 +88,11 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 ## All commands
 In the active path, just execute those bash-scripts:
 
-- `./runup.sh`
-- `./rundown.sh`
-- `./runctop.sh`
+- `./runup`
+- `./rundown`
+- `./runctop`
 
-`./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each containers.
+`./runctop` is not a stack but a simple docker run to see the memory consumed by each containers.
 
 #### What is Traefik?
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.

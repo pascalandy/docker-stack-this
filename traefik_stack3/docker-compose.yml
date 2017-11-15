@@ -1,0 +1,58 @@
+version: "3.3"
+ 
+services:
+  traefik:
+    image: devmtl/traefikfire:1.4.3B
+    ports:
+      - 80:80
+      - 8080:8080
+    networks:
+      - traefik-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    configs:
+      - source: traefik-config
+        target: /etc/traefik/traefik.toml
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+ 
+  books:
+    image: mlabouardy/books-api
+    networks:
+      - traefik-net
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.port=5000"
+        - "traefik.frontend.rule=Path:/books"
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-net"
+ 
+
+
+
+  movies:
+    image: mlabouardy/movies-api
+    networks:
+      - traefik-net
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.port=5000"
+        - "traefik.frontend.rule=Path:/movies"
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-net"
+ 
+networks:
+  traefik-net:
+    driver: overlay
+ 
+configs:
+  traefik-config:
+    file: config.toml

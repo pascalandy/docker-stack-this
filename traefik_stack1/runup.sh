@@ -16,9 +16,13 @@ echo; echo "If existing, remove stacks: "
 # Create Network
 echo; echo "If not existing, create our network: "
 
-if [ ! "$(docker network ls --filter name=ntw_front -q)" ];then
-  docker network create --driver overlay --subnet 10.11.10.0/24 --opt encrypted ntw_front
-  sleep 2
+NTW_FRONT=ntw_front
+
+if [ ! "$(docker network ls --filter name=$NTW_FRONT -q)" ]; then
+    docker network create --driver overlay --attachable --opt encrypted "$NTW_FRONT"
+    echo "Network: $NTW_FRONT was created."
+else
+    echo "Network: $NTW_FRONT already exist."
 fi
 
 echo; echo "Show network..."
