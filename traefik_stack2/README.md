@@ -23,8 +23,6 @@ ENV_MONOREPO=traefik_stack2
 
 # Setup alpine node + Create Docker Swarm
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
-sleep 5 && \
-
 git checkout "$ENV_BRANCH" && \
 cd "$ENV_MONOREPO" && \
 ./runup.sh;

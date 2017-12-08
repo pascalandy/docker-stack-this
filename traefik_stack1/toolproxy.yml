@@ -32,8 +32,13 @@ services:
       labels:
         - "traefik.enable=false"
 
+# recent images:
+# devmtl/traefikfire:1.4.3B
+# traefik:1.5.0-rc2-alpine
+# traefik:1.4.5-alpine
+
   traefik:
-    image: devmtl/traefikfire:1.4.3B
+    image: devmtl/traefikfire:1.4.5A
     ports:
     - target: 80
       protocol: tcp

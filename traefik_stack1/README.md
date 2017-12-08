@@ -13,20 +13,19 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ```
 
-ENV_BRANCH=1.32
+ENV_BRANCH=1.33
 ENV_MONOREPO=traefik_stack1
 
 # Setup alpine node + Create Docker Swarm
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && \
-echo; echo "The host is setup"; echo; echo; sleep 2 && \
 
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && sleep 2 && \
 git checkout "$ENV_BRANCH" && \
 cd "$ENV_MONOREPO" && \
 ./runup.sh;
 
 ```
 
-This is it! Once it’s deploy you will see: 
+This is it! Once deployed, you will see: 
 
 #### Three stacks
 
@@ -45,18 +44,18 @@ toolweb             3
 docker service ls
 
 ID                  NAME                    MODE                REPLICAS            IMAGE                        PORTS
-858q0bumq9cy        toolmonitor_portainer   replicated          1/1                 portainer/portainer:1.14.2
-h6f5oii6crmd        toolproxy_socat         replicated          1/1                 devmtl/socatproxy:1.0A
-g2ah7f98utqh        toolproxy_traefik       replicated          1/1                 traefik:1.3.8-alpine         *:80->80/tcp,*:8181->8080/tcp
-n36xdpo0kfyc        toolweb_home            replicated          2/2                 abiosoft/caddy:latest
-lip8o4293f49        toolweb_who1            replicated          2/2                 nginx:alpine
-ldz6uwbfc8mg        toolweb_who2            replicated          2/2                 emilevauge/whoami:latest
+tvyos6h2ctg8        toolmonitor_portainer   replicated          1/1                 portainer/portainer:1.15.2
+x0dzf3v6arwx        toolproxy_socat         replicated          1/1                 devmtl/socatproxy:1.0B
+911t1dv9xmh3        toolproxy_traefik       replicated          1/1                 devmtl/traefikfire:1.4.3B    *:80->80/tcp,*:8080->8080/tcp
+ss2xfhrrnm4n        toolweb_home            replicated          2/2                 abiosoft/caddy:0.10.10
+wd57j2wjoi4y        toolweb_who1            replicated          2/2                 nginx:1.13-alpine
+bfk5rco6avbh        toolweb_who2            replicated          2/2                 emilevauge/whoami:latest
 ```
 
 ## Confirm that Traefik and the gang are running
-1. The script `runup.sh` does the hard work for us.
+1. The script `runup.sh` did the hard work for us.
 
-2. When you see that all services are deployed, click on `80` to see a static landing page.
+2. When you see that all services are deployed, click on `80` to see the static landing page.
 
 ![screen](https://user-images.githubusercontent.com/6694151/31318199-57e7e88a-ac1c-11e7-86a4-61a6172ac7be.png)
 
@@ -78,7 +77,7 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 - **/who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
 - **/portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer//)
 
-## All commands
+#### All commands
 In the active path, just execute those bash-scripts:
 
 - `./runup.sh`
@@ -87,21 +86,22 @@ In the active path, just execute those bash-scripts:
 
 `./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each containers.
 
-#### What is Traefik?
+## What is Traefik?
 [Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.
 
 #### Traefik version 
-In `toolproxy.yml` look for something like `traefik:1.3.8-alpine`.
+In `toolproxy.yml` look for something like `traefik:1.4.2`.
+
+In some mono-repo I **my own traefik image**. Feel free to use the official images. It will not break anything.
 
 ## Backlog
-
 Here is what’s missing to make this stack perfect?
  
 - Secure traefik dashboard
 - Use SSL endpoints (ACME)
 - Fix the need to use a trailing slash `/` at the end of Portainer service
 
-## Something is off? Please let me know.
+#### Something is off? Please let me know.
 I consider this README crystal clear. If there is anything that I could improve, please let me know and make sure to review the [contributing doc](../CONTRIBUTING.md).
 
 ## Shameless promotion :-p

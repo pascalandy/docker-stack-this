@@ -1,0 +1,81 @@
+networks:
+    traefik_net:
+      driver: overlay
+      attachable: true
+      driver_opts:
+           com.docker.network.enable_ipv6: "false"
+      ipam:
+          driver: default
+          config:
+            - subnet: 172.16.238.0/24
+
+configs:
+  traefik_config:
+    file: ./configs/traefik.toml
+
+services:
+  traefik:
+    image: traefik
+    hostname: traefik.labz.roks
+    configs:
+      - source: traefik_config
+        target: /etc/traefik/traefik.toml
+    deploy:
+      endpoint_mode: vip
+      mode: replicated
+      replicas: 1
+      update_config:
+        delay: 2s
+      placement:
+        constraints: [ node.role == manager ]
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.10'
+          memory: 64M
+      labels:
+             - "traefik.enable=true"
+             - "traefik.logLevel=DEBUG"
+             - "traefik.frontend.rule=Host:traefik.labz.roks"
+             - "traefik.port=8080"
+             - "traefik.backend=traefik"
+             - "traefik.passHostHeader=true"
+             - "traefik.frontend.entryPoints=http"
+             - "traefik.backend.loadbalancer.method=wrr"
+             - "traefik.backend.loadbalancer.swarm=true"
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+    ports:
+      - "80:80"
+    networks:
+      - traefik_net
+whoami:
+    image: emilevauge/whoami
+    deploy:
+      endpoint_mode: dnsrr
+      mode: replicated
+      replicas: 2
+      placement:
+          constraints: [ node.role == worker ]
+      labels:
+             - "traefik.enable=true"
+             - "traefik.logLevel=DEBUG"
+             - "traefik.frontend.rule=Host:whoami.labz.roks"
+             - "traefik.port=80"
+             - "traefik.backend=whoami"
+             - "traefik.passHostHeader=true"
+             - "traefik.frontend.entryPoints=http"
+             - "traefik.backend.loadbalancer.swarm=true"
+             - "traefik.backend.loadbalancer.method=drr"
+    networks:
+      - traefik_net

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script is made to be run on a fresh play-with-docker node
+# This script is made to run on a fresh play-with-docker node
 
 # install common apps
 apk update && apk upgrade                                           && \
@@ -18,8 +18,9 @@ rm -rf /var/cache/apk/* && sleep 1                                  && \
 docker swarm init --advertise-addr $(hostname -i)                   && \
 
 # Clone repo
-cd /root && \
+cd /root                                                            && \
 git clone https://github.com/pascalandy/docker-stack-this.git       && \
 cd docker-stack-this                                                && \
 
-echo; echo "Time to select the mono repo: "; echo; echo             ;
+echo; echo "The host is setup"                                      && \
+echo; "Time to select the mono repo: "; echo                        ;
