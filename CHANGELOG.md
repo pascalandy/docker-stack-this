@@ -1,6 +1,25 @@
 
 # Changelog
 
+**monorepo** `traefik_stack1` is the most recent and stable directory to use.
+
+—
+
+## 1.34
+
+wip 2017-12-08_11h06
+
+## 1.33
+
+**Impact monorepo**: `traefik_stack1`
+
+- update to traefik 1.4.5. Testing the bug that is ruining my life since months! https://github.com/containous/traefik/issues/2402#issuecomment-350257657
+- Tried nextcloud but I drop the project
+
+## 1.32
+
+- working on traefik_stack3 but it’s not stable
+
 ## 1.31
 
 **Impact monorepo**: `traefik_stack1`
