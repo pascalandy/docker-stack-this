@@ -1,6 +1,11 @@
+
+
 ## Introduction
 This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
+**based on**:
+- https://jmaitrehenry.ca/2017/12/15/using-traefik-with-docker-swarm-and-consul-as-your-load-balancer/
+- 
 #### Anything special about this mono repo?
 - This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
 - I still have issues in the project `traefik-manager` which use ACME.
@@ -13,11 +18,11 @@ This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) 
 
 ```
 ENV_BRANCH=1.34
-ENV_MONOREPO=traefik_stack1
+ENV_MONOREPO=traefik_stack4
 
 # Setup alpine node and docker swarm
 
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && sleep 2 && \
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/1.34/play-with-docker-init/alpine-setup-swarm-is-set.sh) && sleep 1 && \
 git checkout "$ENV_BRANCH" && \
 cd "$ENV_MONOREPO" && \
 ./runup.sh;
