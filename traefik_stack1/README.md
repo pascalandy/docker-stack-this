@@ -1,3 +1,5 @@
+WARNING: Please see `traefik_stack5`, as it has the latest udpates.
+
 ## Introduction
 This project will run those services (Traefik, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 

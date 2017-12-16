@@ -10,11 +10,11 @@ To accomplish this, we put together the power of :
 - Docker Swarm mode
 - Docker stacks
 
-This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
-
 ## Start here
 
-The most interesting stack at the moment is: [traefik_stack1](./traefik_stack1)
+The most interesting stack at the moment is: [traefik_stack5](./traefik_stack5)
+
+This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
 
 **Quick links**
   
