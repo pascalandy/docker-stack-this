@@ -5,9 +5,23 @@
 
 —
 
+## 1.36
+
+**Impact monorepo**: `traefik_stack5`
+
+Update to traefik:1.5.0-rc3-alpine
+
+## 1.35
+
+**Impact monorepo**: `traefik_stack5`
+
+moving to main project to stack5
+
 ## 1.34
 
-wip 2017-12-08_11h06
+**Impact monorepo**: `traefik_stack4`
+
+Testing stack4 but it’s a fail
 
 ## 1.33
 
