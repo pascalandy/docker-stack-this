@@ -1,6 +1,28 @@
 
 # Changelog
 
+## bump to 1.40
+
+commit 6cf1b34611244463f32ac766b4454c2b45df61f4
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:14:05 2018 -0400
+
+    update to nginx 1.13.10-alpine
+
+commit c74ec8c17ed5af89abf7813224ed55e30b9445c8
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:13:46 2018 -0400
+
+    update to caddy 0.10.11
+
+commit b8378ab294f8da5ac6c50e4efbccd8461ca97299
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:11:02 2018 -0400
+
+    readme update
+
+Signed-off-by: Pascal Andy <pascal@firepress.org>
+
 ## bump to 1.38
 
 commit 8753f097247200e666355c2e4f6d8df83b6f093b
