@@ -3,6 +3,38 @@
 
 ## bump to 1.38
 
+commit 8753f097247200e666355c2e4f6d8df83b6f093b
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:08:04 2018 -0400
+
+    chagelog update
+
+commit f25551c5fa6f2a8eace9d4d25d369457829dcc3c
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:02:50 2018 -0400
+
+    update README
+
+commit 9c0ca9b2674e6993c6746930055dbab96bf5281c
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Mar 22 22:01:34 2018 -0400
+
+    update traefik 1.5.4-alpine AND portainer 1.16.4
+
+commit b2f19135c8308d60e8422795298c985156189313
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Sat Mar 3 11:17:40 2018 -0500
+
+    bump to portainer 1.16.3
+
+commit d483009ec5693ed2bf814ca8e06df84ec3676a7c
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Mon Feb 26 22:31:08 2018 -0500
+
+    upgrade to 1.5.2
+
+Signed-off-by: Pascal Andy <pascal@firepress.org>
+
 ## bump to 1.37
 
 commit 4afb9e0818135eb649b94d43655f59526018a446
