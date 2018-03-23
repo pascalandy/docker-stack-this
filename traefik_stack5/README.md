@@ -11,7 +11,7 @@ This docker stack will run many services (Traefik, Socat, Portainer, Nginx, Cadd
 3. On **node1**, copy paste:
 
 ```
-ENV_BRANCH=1.38
+ENV_BRANCH=1.39
 ENV_MONOREPO=traefik_stack5
 
 # Setup alpine node and docker swarm

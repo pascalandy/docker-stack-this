@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   home:
-    image: abiosoft/caddy:0.10.10
+    image: abiosoft/caddy:0.10.11
     networks:
       - ntw_front
     volumes:
@@ -36,7 +36,7 @@ services:
       - "traefik.backend.loadbalancer.method=drr"
 
   who1:
-    image: nginx:1.13.7-alpine
+    image: nginx:1.13.10-alpine
     networks:
       - ntw_front
     volumes:
