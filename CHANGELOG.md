@@ -1,9 +1,41 @@
 
 # Changelog
 
-**monorepo** `traefik_stack1` is the most recent and stable directory to use.
+## bump to 1.38
 
-—
+## bump to 1.37
+
+commit 4afb9e0818135eb649b94d43655f59526018a446
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Feb 1 22:50:52 2018 -0500
+
+    portainer update 1.16.1
+
+commit 5154e9ce060159f3c663dc4812b6bb1ac623dc6e
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Thu Feb 1 22:44:22 2018 -0500
+
+    update to traefik 1.5.1-alpine
+
+commit 42137064cb24055599aae9171721a488b3f8b957
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Sun Jan 14 22:10:52 2018 -0500
+
+    PASSED testing traefik 1.5.0-rc4
+
+commit aae7d5ebc3a96d3a4336fc34c1ced371c5199ba0
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Sun Jan 14 22:08:16 2018 -0500
+
+    testing traefik 1.5.0-rc4 /02
+
+commit fa2d386b281bdc61d9b20ea81021baa0109cf7d7
+Author: Pascal Andy <pascal@firepress.org>
+Date:   Sun Jan 14 22:05:28 2018 -0500
+
+    testing traefik 1.5.0-rc4 /01
+
+Signed-off-by: Pascal Andy <pascal@firepress.org>
 
 ## 1.36
 

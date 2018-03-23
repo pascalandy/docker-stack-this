@@ -38,7 +38,7 @@ services:
 # traefik:1.4.5-alpine
 
   traefik:
-    image: traefik:1.5.1-alpine
+    image: traefik:1.5.4-alpine
     ports:
     - target: 80
       protocol: tcp
