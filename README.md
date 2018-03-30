@@ -2,8 +2,8 @@
 
 The main goal is to create the **easiest** and **quickest** docker stack available around the **Docker Swarm ecosystem**. I really wished I had this when I started (while back when docker-compose was called fig).
 
-- First, launch a session on play-with-docker
-- Launch a stack like 'traefik_stack5`. Copy-paste this:
+- First, launch a session on [play-with-docker](https://labs.play-with-docker.com/)
+- Launch a stack like 'traefik_stack5`. Copy-paste this and see the magic:
 
 ```
 ENV_BRANCH=1.39
