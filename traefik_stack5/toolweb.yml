@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   home:
-    image: abiosoft/caddy:0.10.11
+    image: abiosoft/caddy:0.10.12
     networks:
       - ntw_front
     volumes:
