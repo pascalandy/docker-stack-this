@@ -8,7 +8,7 @@ services:
     image: wordpress:4.9.4
     restart: always
     volumes:
-      - ./wp-content:/var/www/html/wp-content 
+      - ./wp-content:/var/www/html/wp-content
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: p4ssw0rd!
@@ -45,7 +45,7 @@ services:
     image: mysql:5.7
     restart: always
     volumes:
-       - ./wp-content/data/msql:/var/lib/mysql
+       - ./wp-content/data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
     networks:
