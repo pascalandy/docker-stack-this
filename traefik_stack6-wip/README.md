@@ -1,3 +1,7 @@
+## ⚠️ Warning
+
+Wordpress is not running properly at this point.
+
 ## Introduction
 This docker stack will run many services (Traefik, Socat, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
