@@ -25,6 +25,7 @@ else
     echo "Network: $NTW_FRONT already exist."
 fi
 
+# Show networks
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
 echo; echo; sleep 2
