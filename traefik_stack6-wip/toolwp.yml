@@ -1,16 +1,16 @@
-version: "3.1"
+version: '3.1'
 
 services:
 
   wordpress:
     depends_on:
       - db
-    image: wordpress:4.9.4
-    volumes:
-      - ./html:/var/www/html
+    image: wordpress:latest
+    restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_PASSWORD: p4ssw0rd!
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
     networks:
       - ntw_front
     deploy:
@@ -29,7 +29,7 @@ services:
           cpus: '0.10'
           memory: 200M
       labels:
-      - "traefik.frontend.rule=PathPrefixStrip:/blog/"
+      - "traefik.frontend.rule=PathPrefixStrip:/blog"
       - "traefik.backend=wordpress"
       - "traefik.port=80"
       - "traefik.weight=10"
@@ -42,50 +42,21 @@ services:
 
   db:
     image: mysql:5.7
-    restart: always
     volumes:
-       - ./html/db/mysql:/var/lib/mysql
+      - db_data:/var/lib/mysql
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: p4ssw0rd!
-    networks:
-      - ntw_front
-      # shoud use ntw_back
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  networks:
+    - ntw_front
+    # shoud use ntw_back
 
-  phpmyadmin:
-    depends_on:
-      - db
-    image: phpmyadmin/phpmyadmin:4.7.9-1
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: p4ssw0rd!
-    networks:
-      - ntw_front
-    deploy:
-      mode: replicated
-      replicas: 1
-      #placement:
-      #  constraints: [node.role==manager]
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 100M
-        reservations:
-          cpus: '0.05'
-          memory: 50M
-      labels:
-      - "traefik.frontend.rule=PathPrefixStrip:/phpmyadmin"
-      - "traefik.backend=phpmyadmin"
-      - "traefik.port=8080"
-      - "traefik.weight=10"
-      - "traefik.enable=true"
-      - "traefik.passHostHeader=true"
-      - "traefik.docker.network=ntw_front"
-      - "traefik.frontend.entryPoints=http"
-      - "traefik.backend.loadbalancer.swarm=true"
-      - "traefik.backend.loadbalancer.method=drr"
+volumes:
+    db_data:
+
 networks:
   ntw_front:
     external: true
