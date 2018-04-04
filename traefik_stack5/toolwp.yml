@@ -30,16 +30,16 @@ services:
           cpus: '0.10'
           memory: 200M
       labels:
-      - "traefik.frontend.rule=PathPrefixStrip:/blog"
+      - "traefik.frontend.rule=PathPrefixStrip:/blog/"
       - "traefik.backend=wordpress"
       - "traefik.port=80"
       - "traefik.weight=10"
       - "traefik.enable=true"
-      - "traefik.passHostHeader=true"
+      - "traefik.frontend.passHostHeader=true"
       - "traefik.docker.network=ntw_front"
       - "traefik.frontend.entryPoints=http"
       - "traefik.backend.loadbalancer.swarm=true"
-      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.backend.loadbalancer.stickiness=true"
 
   db:
     image: mysql:5.7
