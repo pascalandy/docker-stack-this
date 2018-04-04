@@ -41,12 +41,12 @@ docker stack deploy toolweb -c toolweb.yml
 echo; echo; sleep 2
 
 # portainer
-docker stack deploy toolmonitor -c toolportainer.yml
+docker stack deploy toolportainer -c toolportainer.yml
 echo; echo; sleep 2
 
 # wordpress
-#docker stack deploy proxpress -c toolwordpress.yml
-#echo; echo; sleep 2
+docker stack deploy toolwp -c toolwp.yml
+echo; echo; sleep 2
 
 
 # List
