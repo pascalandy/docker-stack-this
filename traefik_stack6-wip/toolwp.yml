@@ -50,8 +50,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-  networks:
-    - ntw_front
+    networks:
+      - ntw_front
     # shoud use ntw_back
 
 volumes:
