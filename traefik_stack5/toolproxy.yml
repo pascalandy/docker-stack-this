@@ -33,9 +33,7 @@ services:
         - "traefik.enable=false"
 
 # recent images:
-# devmtl/traefikfire:1.4.3B
-# traefik:1.5.0-rc2-alpine
-# traefik:1.4.5-alpine
+# traefik:1.5.4-alpine
 
   traefik:
     image: traefik:1.5.4-alpine
@@ -94,4 +92,3 @@ services:
 
 # by Pascal Andy | # https://twitter.com/askpascalandy
 # https://github.com/pascalandy/docker-stack-this
-#
