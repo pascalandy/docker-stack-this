@@ -16,7 +16,7 @@ docker stack rm toolweb || true; echo; sleep 1;
 
 docker stack rm toolmonitor || true; echo; sleep 1;
 
-# docker stack rm toolwp || true; echo; sleep 1;
+docker stack rm toolwp || true; echo; sleep 1;
 
 
 #docker stack rm proxpress || true; echo; sleep 1;
