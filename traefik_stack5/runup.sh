@@ -44,13 +44,9 @@ echo; echo; sleep 2
 docker stack deploy toolportainer -c toolportainer.yml
 echo; echo; sleep 2
 
-# the system is path is at ./docker-stack5
-_MYSQL_DIR="$(pwd)/wp-content/data/mysql"
-mkdir -p "$_MYSQL_DIR"
-
 # wordpress
     # the system is path is at ./docker-stack5
-_MYSQL_DIR="$(pwd)/wp-content/data/mysql"
+_MYSQL_DIR="$(pwd)/html/db/msql"
 mkdir -p "$_MYSQL_DIR"
 
 docker stack deploy toolwp -c toolwp.yml
