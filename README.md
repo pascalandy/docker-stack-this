@@ -6,7 +6,7 @@ The main goal is to create the **easiest** and **quickest** docker stack availab
 - Launch a stack like 'traefik_stack5`. Copy-paste this and see the magic:
 
 ```
-ENV_BRANCH=1.39
+ENV_BRANCH=1.41
 ENV_MONOREPO=traefik_stack5
 
 # Setup alpine node and docker swarm
