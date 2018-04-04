@@ -1,6 +1,10 @@
 
 # Changelog
 
+## bump to 1.41
+
+caddy 0.10.12
+
 ## bump to 1.40
 
 commit 6cf1b34611244463f32ac766b4454c2b45df61f4
