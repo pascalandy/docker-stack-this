@@ -46,7 +46,7 @@ echo; echo; sleep 2
 
 # wordpress
     # the system is path is at ./docker-stack5
-_MYSQL_DIR="$(pwd)/html/db/msql"
+_MYSQL_DIR="$(pwd)/html/db/mysql"
 mkdir -p "$_MYSQL_DIR"
 
 docker stack deploy toolwp -c toolwp.yml
