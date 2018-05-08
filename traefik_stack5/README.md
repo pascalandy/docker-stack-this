@@ -152,14 +152,14 @@ If you have solid skills 🤓 with Docker Swarm, Linux bash and the gang and you
 
 I’m looking for bright and caring people to join this [journey](http://firepress.org/blog/tag/from-the-heart/) with me.
 
-[```
+```
  ____                     _      _              _
 |  _ \ __ _ ___  ___ __ _| |    / \   _ __   __| |_   _
 | |_) / _` / __|/ __/ _` | |   / _ \ | '_ \ / _` | | | |
 |  __/ (_| \__ \ (_| (_| | |  / ___ \| | | | (_| | |_| |
 |_|   \__,_|___/\___\__,_|_| /_/   \_\_| |_|\__,_|\__, |
                                                   |___/
-```](http://firepress.org/blog/tag/from-the-heart/) with me.
+```
 
 Cheers!
 Pascal
