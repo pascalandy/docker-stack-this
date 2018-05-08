@@ -2,13 +2,7 @@
 
 This docker stack will run many services (Traefik, Socat, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
-#### Anything special about this mono repo?
-
-- This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
-- If you don’t want to use socat, checkout the monorepo `traefik-manager-noacme`
-
-
-## Launching the Docker stack
+## Start here
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **one instance*. Wait for the node to provision
 3. On **node1**, copy paste:
@@ -77,6 +71,11 @@ The container for the first URL is actually named `home`.
 - **/portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer/)
 
 Portainer requires a slash `/` at the end of the path. There is something to tweak with Traefik Labels in order for it to accept the proxy the request without the slash `/` at the end.
+
+#### Anything special about this mono repo?
+
+- This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
+- If you don’t want to use socat, checkout the monorepo `traefik-manager-noacme`
 
 
 ## Screenshots
