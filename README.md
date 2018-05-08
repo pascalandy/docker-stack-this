@@ -17,14 +17,6 @@ The most complete stack at the moment is: [traefik_stack5](./traefik_stack5)
 
 This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
 
-**Quick links**
-  
-- [CHANGELOG](./CHANGELOG.md)
-- [LICENCE](./LICENCE.md)
-- [CONTRIBUTING](./CONTRIBUTING.md)
-- [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md)
-- [My Twitter](https://twitter.com/askpascalandy)
-
 
 ## Contributing
 
@@ -35,6 +27,14 @@ Thanks to the power of communities, this is where `1 + 1 = 3`.
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
+
+**Quick links**
+  
+- [CHANGELOG](./CHANGELOG.md)
+- [LICENCE](./LICENCE.md)
+- [CONTRIBUTING](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md)
+- [My Twitter](https://twitter.com/askpascalandy)
 
 
 ## License & Sources
