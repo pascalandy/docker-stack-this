@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   home:
-    image: devmtl/caddyfire:0.10.12-A
+    image: abiosoft/caddy:0.10.14
     networks:
       - ntw_front
     volumes:
