@@ -25,6 +25,7 @@ else
     echo "Network: $NTW_FRONT already exist."
 fi
 
+# Show networks
 echo; echo "Show network..."
 docker network ls | grep "ntw_"
 echo; echo; sleep 2
@@ -45,12 +46,8 @@ docker stack deploy toolportainer -c toolportainer.yml
 echo; echo; sleep 2
 
 # wordpress
-    # the system is path is at ./docker-stack5
-#_MYSQL_DIR="$(pwd)/html/db/mysql"
-#mkdir -p "$_MYSQL_DIR"
-
-#docker stack deploy toolwp -c toolwp.yml
-#echo; echo; sleep 2
+docker stack deploy toolwp -c toolwp.yml
+echo; echo; sleep 2
 
 
 # List

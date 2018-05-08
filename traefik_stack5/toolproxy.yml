@@ -33,10 +33,10 @@ services:
         - "traefik.enable=false"
 
 # recent images:
-# traefik:1.5.4-alpine
+# traefik:1.6.0-alpine
 
   traefik:
-    image: traefik:1.5.4-alpine
+    image: traefik:1.6.0-alpine
     ports:
     - target: 80
       protocol: tcp
