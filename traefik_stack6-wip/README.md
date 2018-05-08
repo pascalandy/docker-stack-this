@@ -1,5 +1,6 @@
 ## ⚠️ Warning
 
+`traefik_stack6-wip` is not stable.
 Wordpress is not running properly at this point.
 
 ## Introduction
