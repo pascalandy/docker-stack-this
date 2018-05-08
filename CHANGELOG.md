@@ -1,6 +1,34 @@
 
 # Changelog
 
+## 1.42
+
+- update to traefik 1.6.0
+- update to nginx 1.13.12
+- update caddy to 1.10.14
+- update README
+- well tested on https://labs.play-with-docker.com/
+
+b66611b4 READme update
+eb492fef READme update
+98a54757 READme update
+55cb5a1b READme update
+1408365b READme update
+93a1d91f READme update
+3c587c58 bump to caddy:0.10.14
+4c614091 bump to caddy:0.10.14
+60081cf7 bump to nginx:1.13.12-alpine
+f3be35c4 READme update
+653be7b7 bump to traefik:1.6.0-alpine
+d2449e7f READme up
+4aa41bdf wip WordPress /f
+4510e87e wip WordPress /e
+1aa0500c wip WordPress /d
+25e0ed76 wip WordPress /c
+d4956c4a wip WordPress /b
+26fd5d72 wip WordPress
+ac3b2856 minor updates
+
 ## bump to 1.41
 
 - caddy 0.10.12
