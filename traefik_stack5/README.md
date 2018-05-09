@@ -13,7 +13,7 @@ ENV_MONOREPO=traefik_stack5
 
 # Setup alpine + docker swarm and run the docker stack
 
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh) && sleep 2 && \
+curl -sSL https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-init/alpine-setup.sh > alpine-setup.sh && sleep 2 && \
 git checkout "$ENV_BRANCH" && \
 cd "$ENV_MONOREPO" && \
 ./runup.sh;
