@@ -100,7 +100,7 @@ services:
       - "traefik.backend.loadbalancer.method=drr"
 
   who3:
-    image: bitnami/nginx:1.14.0
+    image: bitnami/nginx:latest
     networks:
       - ntw_front
     volumes:
