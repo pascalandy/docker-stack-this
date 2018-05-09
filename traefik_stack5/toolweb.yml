@@ -99,40 +99,38 @@ services:
       - "traefik.backend.loadbalancer.swarm=true"
       - "traefik.backend.loadbalancer.method=drr"
 
-  # https://github.com/bitnami/bitnami-docker-nginx/issues/100
-  
-  # who3:
-  #   image: bitnami/nginx:1.14.0
-  #   networks:
-  #     - ntw_front
-  #   volumes:
-  #     - ./www/who3/html/:/usr/share/nginx/html/
-  #   deploy:
-  #     mode: replicated
-  #     replicas: 2
-  #     #placement:
-  #     #  constraints: [node.role==manager]
-  #     restart_policy:
-  #       condition: on-failure
-  #       max_attempts: 5
-  #     resources:
-  #       limits:
-  #         cpus: '0.20'
-  #         memory: 9M
-  #       reservations:
-  #         cpus: '0.05'
-  #         memory: 9M
-  #     labels:
-  #     - "traefik.frontend.rule=PathPrefixStrip:/who3"
-  #     - "traefik.backend=who3"
-  #     - "traefik.port=80"
-  #     - "traefik.weight=10"
-  #     - "traefik.enable=true"
-  #     - "traefik.passHostHeader=true"
-  #     - "traefik.docker.network=ntw_front"
-  #     - "traefik.frontend.entryPoints=http"
-  #     - "traefik.backend.loadbalancer.swarm=true"
-  #     - "traefik.backend.loadbalancer.method=drr"
+  who3:
+    image: bitnami/nginx:1.14.0
+    networks:
+      - ntw_front
+    volumes:
+      - ./www/who3/html/:/usr/share/nginx/html/
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 9M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
+      labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/who3"
+      - "traefik.backend=who3"
+      - "traefik.port=8080"
+      - "traefik.weight=10"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend.loadbalancer.swarm=true"
+      - "traefik.backend.loadbalancer.method=drr"
 
 networks:
   ntw_front:
