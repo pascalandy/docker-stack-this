@@ -1,6 +1,20 @@
 
 # Changelog
 
+## 1.44
+
+- we still use portainer 1.16.5
+	- 2541361e portainer 1.17.1 is not stable
+- 58e236ed portainer major refactoring /C
+- could not run caddy 0.11.0
+	- 3f7608a1 rollback caddy:0.10.14
+- 2c5bd542 bump to portainer:1.17.1
+- 19a757d0 bump to traefik:1.6.2-alpine
+
+## 1.43
+
+could not work under branch 1.43 weird …
+
 ## 1.42
 
 - update to traefik 1.6.0
