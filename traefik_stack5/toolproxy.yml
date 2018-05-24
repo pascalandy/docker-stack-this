@@ -36,7 +36,7 @@ services:
 # traefik:1.6.0-alpine
 
   traefik:
-    image: traefik:1.6.0-alpine
+    image: traefik:1.6.2-alpine
     ports:
     - target: 80
       protocol: tcp
