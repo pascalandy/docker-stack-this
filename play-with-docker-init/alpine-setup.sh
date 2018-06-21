@@ -3,9 +3,9 @@
 # This script is made to run on a fresh play-with-docker node
 
 # install common apps
-apk update && apk upgrade                                           && \
-apk add nano bash git curl wget unzip                               \
-    openssl tar tzdata ca-certificates                              && \
+apk update && apk upgrade && apk add --no-cache                     \
+    nano bash git curl wget unzip openssl tar tzdata                \
+    ca-certificates                                                 && \
 
 # set local time
 cp /usr/share/zoneinfo/America/New_York /etc/localtime              && \
@@ -15,7 +15,7 @@ apk del tzdata                                                      && \
 # clean up
 rm -rf /var/cache/apk/* && sleep 1                                  && \
 
-# create Swarm
+# create Swarm manager
 docker swarm init --advertise-addr $(hostname -i)                   && \
 
 # Clone repo

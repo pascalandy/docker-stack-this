@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 1.45
+- 60dc878c bump to traefik 1.6.4
+
 ## 1.44
 
 - we still use portainer 1.16.5

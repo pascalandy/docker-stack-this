@@ -1,0 +1,109 @@
+version: "3.1"
+
+services:
+
+  home:
+    image: abiosoft/caddy:0.10.14
+    networks:
+      - ntw_front
+    volumes:
+      - ./www/home/srv/:/srv/
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 9M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
+      labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/"
+      - "traefik.backend=home"
+      - "traefik.port=2015"
+      - "traefik.weight=10"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend.loadbalancer.swarm=true"
+      - "traefik.backend.loadbalancer.method=drr"
+
+  who1:
+    image: abiosoft/caddy:0.10.14
+    networks:
+      - ntw_front
+    volumes:
+      - ./www/who1/srv/:/srv/
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 9M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
+      labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/who1"
+      - "traefik.backend=who1"
+      - "traefik.port=80"
+      - "traefik.weight=10"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend.loadbalancer.swarm=true"
+      - "traefik.backend.loadbalancer.method=drr"
+
+  who2:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 9M
+        reservations:
+          cpus: '0.05'
+          memory: 9M
+      labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/who2"
+      - "traefik.backend=who2"
+      - "traefik.port=80"
+      - "traefik.weight=10"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend.loadbalancer.swarm=true"
+      - "traefik.backend.loadbalancer.method=drr"
+
+networks:
+  ntw_front:
+    external: true
+
+# With a real domain name you will need "traefik.frontend.rule=Host:mydummysite.tk"
+#
+# by Pascal Andy | # https://twitter.com/askpascalandy
+# https://github.com/pascalandy/docker-stack-this

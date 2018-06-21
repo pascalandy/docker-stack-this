@@ -1,0 +1,22 @@
+defaultEntryPoints = ["http"]
+
+[entryPoints]
+ [entryPoints.http]
+ address = ":80"
+# compress = false
+#   [entryPoints.http.redirect]
+#      entryPoint = "https"
+#  [entryPoints.https]
+#  address = ":443"
+#    [entryPoints.https.tls]
+#      [[entryPoints.https.tls.certificates]]
+#      CertFile = "/etc/traefik/domain.com.cert"
+#      KeyFile = "/etc/traefik/domain.com.key"
+
+#[acme]
+#email = jean-michel@domain.com"
+#storage = "/etc/traefik/acme.json"
+#entryPoint = "https"
+#onDemand = true
+#OnHostRule = true
+#acmeLogging = true
