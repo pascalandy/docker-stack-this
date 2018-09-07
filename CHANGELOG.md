@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.47
+- bump to traefik 1.6.6
+
+## 1.47
+- bump to traefik 1.6.5
+
 ## 1.45
 - 60dc878c bump to traefik 1.6.4
 
