@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 1.48
+- Fix trailing ‘/‘ issue for portainer
+
 ## 1.47
 - bump to traefik 1.6.6
 
