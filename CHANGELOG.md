@@ -1,6 +1,10 @@
 
 # Changelog
 
+## 1.50
+- added bash-template (best practices)
+- cleaning the project
+
 ## 1.49
 - update to traefik 1.7.5
 - rebuild socatproxy from alpine:3.8
