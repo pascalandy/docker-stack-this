@@ -16,17 +16,11 @@ docker stack rm toolweb || true; echo; sleep 1;
 
 docker stack rm toolmonitor || true; echo; sleep 1;
 
-# docker stack rm toolwp || true; echo; sleep 1;
-
-
-#docker stack rm proxpress || true; echo; sleep 1;
-
 #echo; echo "Remove network ..."
 #docker network rm ntw_front
 
 #echo; echo "Clean up ..."
 #docker system prune -f
 
-# by Pascal Andy | # https://twitter.com/askpascalandy
+# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this
-#

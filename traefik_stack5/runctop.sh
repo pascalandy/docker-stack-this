@@ -15,6 +15,5 @@ docker run --rm -ti \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   quay.io/vektorlab/ctop:latest
 
-# by Pascal Andy | # https://twitter.com/askpascalandy
+# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this
-#

@@ -1,6 +1,13 @@
 
 # Changelog
 
+## 1.49
+- update to traefik 1.7.5
+- rebuild socatproxy from alpine:3.8
+- Add a ntw_proxy network
+- various code cleaning
+- removed DIR traefik_stack6-wip
+
 ## 1.48
 - Fix trailing ‘/‘ issue for portainer
 

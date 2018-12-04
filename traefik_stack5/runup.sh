@@ -16,13 +16,22 @@ echo; echo "If existing, remove stacks: "
 # Create Network
 echo; echo "If not existing, create our network: "
 
-NTW_FRONT=ntw_front
+NTW_FRONT="ntw_front"
 
-if [ ! "$(docker network ls --filter name=$NTW_FRONT -q)" ]; then
-    docker network create --driver overlay --attachable --opt encrypted "$NTW_FRONT"
-    echo "Network: $NTW_FRONT was created."
+if [ ! "$(docker network ls --filter name=${NTW_FRONT} -q)" ]; then
+    docker network create --driver overlay --attachable --opt encrypted "${NTW_FRONT}"
+    echo "Network: ${NTW_FRONT} was created."
 else
-    echo "Network: $NTW_FRONT already exist."
+    echo "Network: ${NTW_FRONT} already exist."
+fi
+
+NTW_PROXY="ntw_proxy"
+
+if [ ! "$(docker network ls --filter name=${NTW_PROXY} -q)" ]; then
+    docker network create --driver overlay --attachable --opt encrypted "${NTW_PROXY}"
+    echo "Network: ${NTW_PROXY} was created."
+else
+    echo "Network: ${NTW_PROXY} already exist."
 fi
 
 echo; echo "Show network..."
@@ -37,7 +46,7 @@ docker stack deploy toolproxy -c toolproxy.yml
 echo; echo; sleep 2
 
 # webapps
-docker stack deploy toolweb -c toolweb.yml
+docker stack deploy toolwebapp -c toolwebapp.yml
 echo; echo; sleep 2
 
 # portainer
@@ -63,11 +72,11 @@ echo; echo ; sleep 2
 #watch docker service ls
 echo; echo;
 
-MIN=1
-MAX=8
-for ACTION in $(seq $MIN $MAX); do
+MIN="1"
+MAX="8"
+for ACTION in $(seq ${MIN} ${MAX}); do
   echo
-  echo "docker service ls | Check $ACTION" of $MAX; echo;
+  echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
   docker service ls && echo && sleep 2;
 done
 echo; echo ; sleep 2
@@ -76,5 +85,5 @@ echo; echo ; sleep 2
 echo "To see Traefik logs type: "; sleep 1;
 echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
 
-# by Pascal Andy | # https://twitter.com/askpascalandy
+# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this

@@ -3,7 +3,7 @@ version: "3.1"
 services:
 
   home:
-    image: devmtl/caddyfire:0.10.12-A
+    image: devmtl/caddyfire:0.11.1-B
     networks:
       - ntw_front
     volumes:
@@ -36,7 +36,7 @@ services:
       - "traefik.backend.loadbalancer.method=drr"
 
   who1:
-    image: nginx:1.13.10-alpine
+    image: nginx:1.13.12-alpine
     networks:
       - ntw_front
     volumes:
@@ -105,5 +105,5 @@ networks:
 
 # With a real domain name you will need "traefik.frontend.rule=Host:mydummysite.tk"
 #
-# by Pascal Andy | # https://twitter.com/askpascalandy
+# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this

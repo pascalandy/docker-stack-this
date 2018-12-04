@@ -3,6 +3,8 @@ version: '3.3'
 networks:
   ntw_front:
     external: true
+  ntw_proxy:
+    external: true
 
 configs:
   traefik.toml:
@@ -11,9 +13,10 @@ configs:
 services:
 
   socat:
-    image: devmtl/socatproxy:1.0B
+    image: devmtl/socatproxy:1.1
     networks:
       - ntw_front
+      - ntw_proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
@@ -33,11 +36,15 @@ services:
         - "traefik.enable=false"
 
   traefik:
-    image: traefik:1.6.6-alpine
+    image: traefik:1.7.5-alpine
     ports:
     - target: 80
       protocol: tcp
       published: 80
+      mode: ingress
+    - target: 443
+      protocol: tcp
+      published: 443
       mode: ingress
     - target: 8080
       protocol: tcp
@@ -45,6 +52,7 @@ services:
       mode: ingress
     networks:
       - ntw_front
+      - ntw_proxy
     configs:
       - source: traefik.toml
         target: /etc/traefik/traefik.toml
@@ -87,5 +95,5 @@ services:
         - "traefik.backend.loadbalancer.swarm=true"
 
 
-# by Pascal Andy | # https://twitter.com/askpascalandy
+# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this
