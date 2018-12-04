@@ -81,7 +81,8 @@ function main() {
 function goto_myscript() {
 
 # play-with-docker is ready
-docker run --rm devmtl/figlet:1.0 play-with-docker is ready!; echo;
+docker run --rm devmtl/figlet:1.0 play-with-docker is ready; echo;
+docker run --rm devmtl/figlet:1.0 Lauching docker stack!; sleep 4; echo;
 
 # Stop
 echo; echo "If existing, remove stacks: "
