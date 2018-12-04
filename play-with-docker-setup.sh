@@ -24,6 +24,4 @@ cd /root                                                            && \
 git clone https://github.com/pascalandy/docker-stack-this.git       && \
 cd docker-stack-this                                                && \
 echo                                                                && \
-echo "Your play-with-docker setup is ready!"                        && \
-echo "Time to select a monorepo (ie traefik_stack5) "               && \
-echo                                                                ;
+docker run --rm ${FIGLET_DOCKER_IMG} Your play-with-docker setup is ready!; echo;
