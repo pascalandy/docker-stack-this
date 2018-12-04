@@ -1,10 +1,13 @@
-FROM alpine 3.6
+FROM alpine:3.8 
 
-RUN apk add --no-cache socat bash && \
-    rm -rf /var/cache/apk/*
+RUN apk update && apk upgrade && \
+    apk add --no-cache socat tini && \
+    rm -rf /var/cache/apk/* /tmp*
 
 COPY ./run.sh /
 
 RUN chmod +x /run.sh
 
-CMD ["/run.sh"]
+ENTRYPOINT [ "/sbin/tini", "--" ]
+
+CMD [ "/run.sh" ]
