@@ -86,3 +86,6 @@ function goto_myscript() {
 
 # --- Entrypoint
 main "$@"
+
+# by Pascal Andy | https://pascalandy.com/
+# https://github.com/pascalandy/bash-script-template
