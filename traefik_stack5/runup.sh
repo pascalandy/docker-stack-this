@@ -80,6 +80,9 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
+# play-with-docker is ready
+docker run --rm devmtl/figlet:1.0 play-with-docker is ready!; echo;
+
 # Stop
 echo; echo "If existing, remove stacks: "
 ./rundown.sh
@@ -132,7 +135,6 @@ echo; echo; sleep 2
 #docker stack deploy toolwp -c toolwp.yml
 #echo; echo; sleep 2
 
-
 # List
 echo; echo "docker stack ls ..."
 docker stack ls;
@@ -155,6 +157,9 @@ echo; echo ; sleep 2
 # See Traefik logs
 echo "To see Traefik logs type: "; sleep 1;
 echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
+
+# play-with-docker is ready
+docker run --rm devmtl/figlet:1.0 Lets play!; echo;
 
 }
 

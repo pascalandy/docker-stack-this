@@ -23,5 +23,4 @@ echo                                                                && \
 cd /root                                                            && \
 git clone https://github.com/pascalandy/docker-stack-this.git       && \
 cd docker-stack-this                                                && \
-echo                                                                && \
-docker run --rm devmtl/figlet:1.0 play-with-docker is ready!; echo;
+echo;
