@@ -1,4 +1,4 @@
-version: "3.1"
+version: '3.3'
 
 services:
 
@@ -19,10 +19,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 9M
+          memory: 20M
         reservations:
-          cpus: '0.05'
-          memory: 9M
+          cpus: '0.20'
+          memory: 8M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.backend=home"
@@ -52,10 +52,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 9M
+          memory: 20M
         reservations:
           cpus: '0.05'
-          memory: 9M
+          memory: 8M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/who1"
       - "traefik.backend=who1"
@@ -83,10 +83,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 9M
+          memory: 20M
         reservations:
           cpus: '0.05'
-          memory: 9M
+          memory: 8M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/who2"
       - "traefik.backend=who2"
