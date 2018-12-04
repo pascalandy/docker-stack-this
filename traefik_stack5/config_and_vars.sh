@@ -17,4 +17,5 @@ set -o pipefail         # Use last non-zero exit code in a pipeline
 # Define variables for the whole project
 # USE CAPITAL VARS to indicate this VAR comes from outside
 
+# Not used in docker-compose at the moment
 readonly TRAEFIK_IMG="traefik:1.7.5-alpine"
