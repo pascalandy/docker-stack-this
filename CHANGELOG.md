@@ -1,8 +1,11 @@
 
 # Changelog
 
+## 1.53
+- wip
+
 ## 1.52
-wip
+- fixed minimum memory requirement from 1M to 4M
 
 ## 1.51
 - update memory defaults

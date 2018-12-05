@@ -31,7 +31,7 @@ services:
           memory: 8M
         reservations:
           cpus: '0.10'
-          memory: 1M
+          memory: 4M
       labels:
         - "traefik.enable=false"
 

@@ -86,7 +86,7 @@ services:
           memory: 8M
         reservations:
           cpus: '0.05'
-          memory: 1M
+          memory: 4M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/who2"
       - "traefik.backend=who2"
