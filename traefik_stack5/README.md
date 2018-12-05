@@ -8,16 +8,32 @@ This docker stack will run many services (Traefik, Socat, Portainer, Nginx, Cadd
 2. Create *one instance*. Wait for the node to provision
 3. Copy-paste:
 
+#### STABLE setup (recommanded)
+
 ```
 # --- Setup the stack ---
-ENV_STABLE_BRANCH="1.52"
-ENV_EDGE_BRANCH="1.53"
+ENV_STABLE_BRANCH="master"
 ENV_MONOREPO="traefik_stack5"
 
 # --- Setup the stack ---
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
 sleep 2 && \
 git checkout "$ENV_STABLE_BRANCH" && \
+cd "$ENV_MONOREPO" && \
+./runup.sh;
+```
+
+#### EDGE setup (not recommanded)
+
+```
+# --- Setup the stack ---
+ENV_EDGE_BRANCH="1.53"
+ENV_MONOREPO="traefik_stack5"
+
+# --- Setup the stack ---
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
+sleep 2 && \
+git checkout "$ENV_EDGE_BRANCH" && \
 cd "$ENV_MONOREPO" && \
 ./runup.sh;
 ```
@@ -88,9 +104,9 @@ Portainer requires a slash `/` at the end of the path. There is something to twe
 ![docker-stack-this-stack5_13](https://user-images.githubusercontent.com/6694151/34073737-76e1d998-e26e-11e7-8b7c-c619e91adadd.jpg)
 ![docker-stack-this-stack5_14](https://user-images.githubusercontent.com/6694151/34073738-76f163ae-e26e-11e7-86d7-27ea62ae3284.jpg)
 ![docker-stack-this-stack5_15](https://user-images.githubusercontent.com/6694151/34073739-77006d4a-e26e-11e7-8f2e-cbd4268ea403.jpg)
-![docker-stack-this-stack5_16](https://user-images.githubusercontent.com/6694151/34073740-770d66c6-e26e-11e7-8af8-434c3dd19780.jpg)
-![docker-stack-this-stack5_17](https://user-images.githubusercontent.com/6694151/34073741-771a3cc0-e26e-11e7-89cd-b31027506baf.jpg)
-![docker-stack-this-stack5_18](https://user-images.githubusercontent.com/6694151/34073742-7728b430-e26e-11e7-87a2-5e5375a24cfd.jpg)
+![docker-stack-this-stack5_16](https://user-images.githubusercontent.com/6694151/49540846-158f4700-f89f-11e8-8e14-ceca2ff2b910.jpg)
+
+![docker-stack-this-stack5_17](https://user-images.githubusercontent.com/6694151/49540848-1922ce00-f89f-11e8-9fdc-b6fce70825c8.jpg)
 
 
 ## All commands

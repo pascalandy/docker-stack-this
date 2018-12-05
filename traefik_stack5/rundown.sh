@@ -80,12 +80,12 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-echo; echo "Remove stacks ..."
-docker stack rm toolproxy || true; echo; sleep 1;
+echo; echo "Remove stacks ()if exsiting"
+docker stack rm toolproxy || true; sleep 1;
 
-docker stack rm toolweb || true; echo; sleep 1;
+docker stack rm toolweb || true; sleep 1;
 
-docker stack rm toolmonitor || true; echo; sleep 1;
+docker stack rm toolgui || true; sleep 1;
 
 #echo; echo "Remove network ..."
 #docker network rm ntw_front

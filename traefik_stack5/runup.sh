@@ -81,8 +81,7 @@ function main() {
 function goto_myscript() {
 
 # play-with-docker is ready
-docker run --rm devmtl/figlet:1.0 play-with-docker is ready; echo;
-docker run --rm devmtl/figlet:1.0 Lauching docker stack!; sleep 4; echo;
+docker run --rm devmtl/figlet:1.0 lauching stacks; sleep 2; echo;
 
 # Stop
 echo; echo "If existing, remove stacks: "
@@ -118,15 +117,16 @@ echo "Start the stacks ..."; echo; echo;
 
 # traefik
 docker stack deploy toolproxy -c toolproxy.yml
-echo; echo; sleep 2
+echo; sleep 1;
 
 # webapps
 docker stack deploy toolwebapp -c toolwebapp.yml
-echo; echo; sleep 2
+echo; sleep 1;
 
-# portainer
-docker stack deploy toolportainer -c toolportainer.yml
-echo; echo; sleep 2
+    # testing as there is now an official stack
+    # https://portainer.readthedocs.io/en/stable/deployment.html#inside-a-swarm-cluster
+docker stack deploy toolgui -c toolportainer.yml
+echo; sleep 1;
 
 # wordpress
     # the system is path is at ./docker-stack5
@@ -134,7 +134,7 @@ echo; echo; sleep 2
 #mkdir -p "$_MYSQL_DIR"
 
 #docker stack deploy toolwp -c toolwp.yml
-#echo; echo; sleep 2
+echo; sleep 1;
 
 # List
 echo; echo "docker stack ls ..."
@@ -160,7 +160,7 @@ echo "To see Traefik logs type: "; sleep 1;
 echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
 
 # play-with-docker is ready
-docker run --rm devmtl/figlet:1.0 Lets play!; echo;
+docker run --rm devmtl/figlet:1.0 Your turn; echo;
 
 }
 

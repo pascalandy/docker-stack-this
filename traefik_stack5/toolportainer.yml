@@ -1,13 +1,18 @@
-version: '3.3'
+version: '3.2'
 
 services:
 
   portainer:
-    image: portainer/portainer:1.16.5
+    image: portainer/portainer
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    #managed by Traefik
+    #ports:
+    #  - "9000:9000"
+    volumes:
+      - portainer_data:/data
     networks:
       - ntw_front
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - default
     deploy:
       mode: replicated
       replicas: 1
@@ -15,36 +20,50 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
-        max_attempts: 5
       resources:
         limits:
-          cpus: '0.33'
-          memory: 20M
+          cpus: '0.20'
+          memory: 48M
         reservations:
-          cpus: '0.05'
-          memory: 10M
+          memory: 4M
       labels:
-        - "traefik.frontend.rule=PathPrefixStrip:/portainer"
         - "traefik.backend=portainer"
+        - "traefik.frontend.rule=PathPrefixStrip:/portainer"
         - "traefik.port=9000"
-        - "traefik.weight=10"
         - "traefik.enable=true"
-        - "traefik.passHostHeader=true"
         - "traefik.docker.network=ntw_front"
-        - "traefik.frontend.entryPoints=http"
+        - "traefik.weight=10"
         - "traefik.backend.loadbalancer.swarm=true"
         - "traefik.backend.loadbalancer.method=drr"
-        # https://github.com/containous/traefik/issues/563#issuecomment-421360934
+        ## Bug fix / https://github.com/containous/traefik/issues/563#issuecomment-421360934
         - "traefik.frontend.redirect.regex=^(.*)/portainer$$"
         - "traefik.frontend.redirect.replacement=$$1/portainer/"
         - "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"
 
+  agent:
+    image: portainer/agent
+    environment:
+      AGENT_CLUSTER_ADDR: tasks.agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - default
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 48M
+        reservations:
+          memory: 4M
+
 networks:
   ntw_front:
     external: true
+  default:
+    driver: overlay
 
-# potential setup https://github.com/portainer/portainer/issues/461
-# Inspired from https://github.com/portainer/portainer-compose/blob/master/docker-stack.yml
-
-# by Pascal Andy | https://pascalandy.com/
-# https://github.com/pascalandy/docker-stack-this
+volumes:
+  portainer_data:
