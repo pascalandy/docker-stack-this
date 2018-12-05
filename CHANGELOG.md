@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.52
+wip
+
+## 1.51
+- update memory defaults
+
 ## 1.50
 - added bash-template (best practices)
 - cleaning the project
