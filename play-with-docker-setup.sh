@@ -13,7 +13,7 @@ echo "America/New_York" > /etc/timezone                             && \
 apk del tzdata                                                      && \
 
 # On play-with-docker, clean up
-rm -rf /var/cache/apk/* && sleep 1                                  && \
+rm -rf /var/cache/apk/* /tmp* && sleep 1                            && \
 
 # On play-with-docker, create Swarm manager
 docker swarm init --advertise-addr $(hostname -i)                   && \

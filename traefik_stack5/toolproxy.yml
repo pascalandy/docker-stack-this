@@ -28,10 +28,10 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 16M
+          memory: 8M
         reservations:
           cpus: '0.10'
-          memory: 8M
+          memory: 1M
       labels:
         - "traefik.enable=false"
 
@@ -80,10 +80,10 @@ services:
       resources:
         limits:
           cpus: '0.33'
-          memory: 128M
+          memory: 96M
         reservations:
           cpus: '0.05'
-          memory: 64M
+          memory: 48M
       labels:
         - "traefik.backend=traefik"
         - "traefik.enable=true"

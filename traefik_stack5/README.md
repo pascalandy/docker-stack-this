@@ -2,14 +2,15 @@
 
 This docker stack will run many services (Traefik, Socat, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
+
 ## Start here
 1. Go to http://labs.play-with-docker.com/ 
-2. Create **one instance*. Wait for the node to provision
-3. On **node1**, copy paste:
+2. Create *one instance*. Wait for the node to provision
+3. Copy-paste:
 
 ```
 ENV_STABLE_BRANCH="1.50"
-ENV_EDGE_BRANCH="1.50"
+ENV_EDGE_BRANCH="1.51"
 ENV_MONOREPO="traefik_stack5"
 
 # setup the stack
@@ -21,7 +22,7 @@ cd "$ENV_MONOREPO" && \
 ./runup.sh;
 ```
 
-The script `runup.sh` will do the hard work for us :) Once deployed, you will see: 
+The script `runup.sh` will do the hard and deplo the stacks for us. Once deployed, you will see: 
 
 
 #### See your stacks
@@ -107,7 +108,7 @@ In the active path, just execute those bash-scripts:
 
 
 #### Traefik version 
-In `toolproxy.yml` look for something like `traefik:1.5.0`.
+In `toolproxy.yml` look for something like `traefik:1.7.4`.
 
 In some mono-repo I **my own traefik image**. Feel free to use the official images. It will not break anything.
 
