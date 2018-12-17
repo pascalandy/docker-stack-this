@@ -1,11 +1,14 @@
 
 # Changelog
 
+## 1.55
+- traefik is now using Authentification
+
 ## 1.54
-d2b3a5fa readme udpate
-bump to caddy 0.11.1
-bump to traefik 1.7.6
-remove static files for webapps
+- d2b3a5fa readme udpate
+- bump to caddy 0.11.1
+- bump to traefik 1.7.6
+- remove static files for webapps
 
 ## 1.53
 - Added portainer with its agent

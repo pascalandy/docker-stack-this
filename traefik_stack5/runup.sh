@@ -81,7 +81,7 @@ function main() {
 function goto_myscript() {
 
     # play-with-docker is ready
-    docker run --rm devmtl/figlet:1.0 lauching stacks; sleep 2; echo;
+    docker run --rm devmtl/figlet:1.0 Lauching stacks; sleep 2; echo;
 
     # Stop
     echo; echo "If existing, remove stacks: "
@@ -113,6 +113,7 @@ function goto_myscript() {
     echo "Start the stacks ...";
 
     # traefik
+    chmod 600 ./configs/acme.json
     docker stack deploy toolproxy -c toolproxy.yml;
     echo; sleep 1;
 

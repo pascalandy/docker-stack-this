@@ -53,6 +53,8 @@ services:
     networks:
       - ntw_front
       - ntw_proxy
+    volumes:
+      - ./configs/acme.json:/acme.json
     configs:
       - source: traefik.toml
         target: /etc/traefik/traefik.toml
@@ -63,7 +65,6 @@ services:
       --docker.watch \
       --debug=true \
       --logLevel=WARN \
-      --web \
       --web.metrics.prometheus \
       --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
       --web.address=:8080
@@ -89,10 +90,6 @@ services:
         - "traefik.enable=true"
         - "traefik.logLevel=DEBUG"
         - "traefik.port=8080"
-        - "traefik.passHostHeader=true"
-        - "traefik.frontend.entryPoints=http"
-        - "traefik.backend.loadbalancer.method=wrr"
-        - "traefik.backend.loadbalancer.swarm=true"
 
 
 # by Pascal Andy | https://pascalandy.com/
