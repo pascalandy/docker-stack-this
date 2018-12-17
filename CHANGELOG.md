@@ -1,8 +1,14 @@
 
 # Changelog
 
+## 1.54
+d2b3a5fa readme udpate
+bump to caddy 0.11.1
+bump to traefik 1.7.6
+remove static files for webapps
+
 ## 1.53
-- wip
+- Added portainer with its agent
 
 ## 1.52
 - fixed minimum memory requirement from 1M to 4M

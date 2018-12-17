@@ -1,28 +1,33 @@
-version: '3.3'
+version: '3.7'
+
+networks:
+  ntw_front:
+    external: true
 
 services:
 
   home:
-    image: devmtl/caddyfire:0.11.1-B
+    image: abiosoft/caddy:0.11.1-no-stats
     networks:
       - ntw_front
-    volumes:
-      - ./www/home/srv/:/srv/
+    #volumes:
+        # this path is different on YOUR stack
+      #- /root/docker-stack-this/traefik_stack5/www/home/srv:/srv
     deploy:
       mode: replicated
       replicas: 2
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
-        condition: on-failure
-        max_attempts: 5
+        condition: any
+        max_attempts: 10
       resources:
         limits:
           cpus: '0.20'
-          memory: 18M
+          memory: 16M
         reservations:
           cpus: '0.20'
-          memory: 6M
+          memory: 4M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.backend=home"
@@ -36,26 +41,27 @@ services:
       - "traefik.backend.loadbalancer.method=drr"
 
   who1:
-    image: nginx:1.13.12-alpine
+    image: nginx:1.15-alpine
     networks:
       - ntw_front
-    volumes:
-      - ./www/who1/html/:/usr/share/nginx/html/
+    #volumes:
+        # this path is different on YOUR stack
+      #- /root/docker-stack-this/traefik_stack5/www/who1/srv:/srv
     deploy:
       mode: replicated
       replicas: 2
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
-        condition: on-failure
-        max_attempts: 5
+        condition: any
+        max_attempts: 10
       resources:
         limits:
           cpus: '0.20'
-          memory: 18M
+          memory: 16M
         reservations:
           cpus: '0.05'
-          memory: 6M
+          memory: 4M
       labels:
       - "traefik.frontend.rule=PathPrefixStrip:/who1"
       - "traefik.backend=who1"
@@ -78,8 +84,8 @@ services:
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
-        condition: on-failure
-        max_attempts: 5
+        condition: any
+        max_attempts: 10
       resources:
         limits:
           cpus: '0.20'
@@ -99,10 +105,37 @@ services:
       - "traefik.backend.loadbalancer.swarm=true"
       - "traefik.backend.loadbalancer.method=drr"
 
-networks:
-  ntw_front:
-    external: true
-
+  who3:
+    image: emilevauge/whoami
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      #placement:
+      #  constraints: [node.role==manager]
+      restart_policy:
+        condition: any
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - "traefik.frontend.rule=PathPrefixStrip:/who3"
+      - "traefik.backend=who3"
+      - "traefik.port=80"
+      - "traefik.weight=10"
+      - "traefik.enable=true"
+      - "traefik.passHostHeader=true"
+      - "traefik.docker.network=ntw_front"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend.loadbalancer.swarm=true"
+      - "traefik.backend.loadbalancer.method=drr"
+      
 # With a real domain name you will need "traefik.frontend.rule=Host:mydummysite.tk"
 #
 # by Pascal Andy | https://pascalandy.com/
