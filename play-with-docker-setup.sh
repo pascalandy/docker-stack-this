@@ -21,6 +21,6 @@ docker swarm init --advertise-addr $(hostname -i)                       && \
 # On play-with-docker, clone repo
 echo                                                                    && \
 cd /root                                                                && \
-git clone https://github.com/pascalandy/docker-stack-this.git --depth 1 && \
+git clone https://github.com/pascalandy/docker-stack-this.git           && \
 cd docker-stack-this                                                    && \
 echo;
