@@ -1,34 +1,25 @@
+## Start here
+
+The most solid stack can be found under: [traefik_stack5](./traefik_stack5)
+
+This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
+
 ## What is this?
 
-The main goal is to create the **easiest** and **quickest** docker stack available around the **Docker Swarm ecosystem**. I really wished I had this when I started (while back when docker-compose was called fig).
+The primary goal is to create the **easiest** and **quickest** docker stack available around the **Docker Swarm ecosystem**. I wished I had this when I started (while back when docker-compose was called fig).
 
 I hope the community will use this repo as a base project to demo other stuff like CMS, Log, Monitoring, Volume and Storage, Dbs, Benchmark tools and other cool applications we love to use in Docker.
 
-To accomplish this, we put together the power of :
+To accomplish this, we use the power of :
 
 - play-with-docker (#pwg)
 - Docker Swarm mode
 - Docker stacks
 
 
-## Start here
-
-The most complete stack at the moment is: [traefik_stack5](./traefik_stack5)
-
-This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
-
-**Quick links**
-  
-- [CHANGELOG](./CHANGELOG.md)
-- [LICENCE](./LICENCE.md)
-- [CONTRIBUTING](./CONTRIBUTING.md)
-- [CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md)
-- [My Twitter](https://twitter.com/askpascalandy)
-
-
 ## Contributing
 
-Thanks to the power of communities, this is where `1 + 1 = 3`.
+The power of communities pull request and forks means that `1 + 1 = 3`. Help me make this repo a better one!
 
 1. Fork it
 2. Create your feature branch: `git checkout -b my-new-feature`
@@ -36,15 +27,33 @@ Thanks to the power of communities, this is where `1 + 1 = 3`.
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
-
-## License & Sources
-
-- View the **GNU** license information at https://github.com/pascalandy/GNU-GENERAL-PUBLIC-LICENSE
-- This Git repo is available at https://github.com/pascalandy/docker-stack-this
+Need help? Check this post: [Contributing to our Github project](https://pascalandy.com/blog/contributing-to-our-github-project/). Also, by contributing you agree to the [Contributor Code of Conduct on GitHub](https://pascalandy.com/blog/contributor-code-of-conduct-on-github/).
 
 
-## Author
+## Copyright
 
-In the world of OSS (open source software) most people refer themselves as maintainers. The thing is… I hate this expression. It feels heavy and not fun. I much prefer author.
+- This git repo is under the **GNU V3** license. [Find it here](https://github.com/pascalandy/GNU-GENERAL-PUBLIC-LICENSE/blob/master/LICENSE.md).
 
-Shared by [Pascal Andy](https://pascalandy.com/blog/now/). Find me on [Twitter](https://twitter.com/askpascalandy).
+
+## Sources
+
+- This Git repo is available at [https://github.com/pascalandy/docker-stack-this](https://github.com/pascalandy/docker-stack-this)
+
+
+## Keep in touch
+
+```
+ ____                     _      _              _
+|  _ \ __ _ ___  ___ __ _| |    / \   _ __   __| |_   _
+| |_) / _` / __|/ __/ _` | |   / _ \ | '_ \ / _` | | | |
+|  __/ (_| \__ \ (_| (_| | |  / ___ \| | | | (_| | |_| |
+|_|   \__,_|___/\___\__,_|_| /_/   \_\_| |_|\__,_|\__, |
+                                                  |___/
+```
+
+- My [« now page »](https://pascalandy.com/blog/now/)
+- Follow me on [Twitter](https://twitter.com/askpascalandy)
+
+P.S. As you might see, I’m not a native English speaker. If something sounds funny, please let me know.  Just [open an issue](https://github.com/firepress-org/ghostfire/issues). Thank you!
+
+Cheers!

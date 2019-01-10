@@ -1,5 +1,11 @@
 
-# Changelog
+# CHANGELOG.md
+
+## 1.56
+- bump to traefik 1.7.7
+- better log management on all services
+- better README
+- better comments within compose files
 
 ## 1.55
 - traefik is now using Authentification

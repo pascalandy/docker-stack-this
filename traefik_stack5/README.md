@@ -1,13 +1,13 @@
 ## Introduction
 
-This docker stack will run many services (Traefik (with Authentification), Socat, Portainer, Nginx, Caddy, Whoami) in one simple copy-paste command. Please also refer the the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
+This docker stack will run many services (Traefik (with auth), Socat, Portainer, Nginx, Caddy, Whoami) in a straightforward copy-paste command. Please also refer the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
 ## Start here
 1. Go to http://labs.play-with-docker.com/ 
 2. Create *one instance*. Wait for the node to provision
 3. Copy-paste:
 
-## Stable setup (recommanded)
+## Stable setup (recommended)
 
 ```
 echo "CONFIGURE ENV_VAR" && \
@@ -88,17 +88,25 @@ http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/who3/
 http://pwd10-0-7-3-80.host1.labs.play-with-docker.com/portainer/
 ```
 
-The container for the first URL is actually named `home`.
+The container for the first URL is named `home`.
 
 
 #### Web apps details:
 - **/** = [caddy](https://github.com/pascalandy/caddy-securityheader)
-- **/who1/** = [caddy](https://github.com/pascalandy/caddy-securityheader)
-- **/who2/** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
+- **/who1** = [caddy](https://github.com/pascalandy/caddy-securityheader)
+- **/who2** = [whoami](https://hub.docker.com/r/emilevauge/whoami/)
 - **/portainer/** = [portainer](https://hub.docker.com/r/portainer/portainer/)
 
+For /who1 and /who2 you will see the container's Ids (5fe91baf7a3a & 78a0c7287df1) in this example
 
-## How to acces Traefik
+```
+$ docker ps | grep whoami
+5fe91baf7a3a        emilevauge/whoami:latest         "/whoamI"                About a minute ago   Up About a minute   80/tcp                      toolwebapp_who3.1.9zk09prm85gnl0ieuuncynhxh
+78a0c7287df1        emilevauge/whoami:latest         "/whoamI"                About a minute ago   Up About a minute   80/tcp                      toolwebapp_who2.1.wj7vf83ag91ft7jgdy3gwejp4
+```
+
+
+## How to access Traefik
 
 ![traefik](https://user-images.githubusercontent.com/6694151/50121682-86334d80-0227-11e9-8f25-93dd8714d306.jpg)
 
@@ -125,18 +133,18 @@ Insert this string in your `.configs/traefik.toml`.
 
 #### What is Traefik?
 
-[Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a solid use cases to understand how this reverse-proxy works.
+[Traefik](https://docs.traefik.io/configuration/backends/docker/) is a powerful layer 7 reverse proxy. Once running, the proxy will give you access to many web apps. I think this is a substantial use case to understand how this reverse-proxy works.
 
 #### Traefik version 
 
 In `toolproxy.yml` look for something like `traefik:1.7.6`.
 
-In some mono-repo I **my own traefik image**. Feel free to use the official images. It will not break anything.
+In some mono-repo, I **my own traefik image**. Feel free to use the official images. It will not break anything.
 
 #### Other stuff to know?
 
-- This stack does not use ACME (https://). ACME is a pain while developping … reaching limits, etc.
-- If you don’t want to use socat, checkout the monorepo `traefik-manager-noacme`
+- This stack does not use ACME (https://). ACME is a pain while developing … reaching limits, etc.
+- If you don’t want to use socat, check out the monorepo `traefik-manager-noacme`
 
 ## Screenshots
 
@@ -156,39 +164,8 @@ In the active path, just execute those bash-scripts:
 - `./rundown.sh`
 - `./runctop.sh`
 
-**Bonus!** `./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each containers.
+**Bonus!** `./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each container.
 
 ## ToDo
  
 - Use SSL endpoints (ACME)
-
-## Contributing
-
-Thanks to the power of communities, this is where `1 + 1 = 3`.
-
-1. Fork it
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
-
-
-## License & Sources
-
-- View the **GNU** license information at https://github.com/pascalandy/GNU-GENERAL-PUBLIC-LICENSE
-- This Git repo is available at https://github.com/pascalandy/docker-stack-this
-
-## Keep in touch
-
-```
- ____                     _      _              _
-|  _ \ __ _ ___  ___ __ _| |    / \   _ __   __| |_   _
-| |_) / _` / __|/ __/ _` | |   / _ \ | '_ \ / _` | | | |
-|  __/ (_| \__ \ (_| (_| | |  / ___ \| | | | (_| | |_| |
-|_|   \__,_|___/\___\__,_|_| /_/   \_\_| |_|\__,_|\__, |
-                                                  |___/
-```
-
-- Pascal Andy’s [« now page »](https://pascalandy.com/blog/now/)
-- Follow me on [Twitter](https://twitter.com/askpascalandy)
-- Find more Ghost Themes on [play-with-ghost.com](https://play-with-ghost.com/)
