@@ -1,5 +1,11 @@
 version: '3.7'
 
+x-default-opts: 
+  &default-opts
+  logging:
+    options:
+      max-size: "1m" 
+
 networks:
   ntw_front:
     external: true
@@ -13,6 +19,7 @@ configs:
 services:
 
   socat:
+    <<: *default-opts
     image: devmtl/socatproxy:1.1
     networks:
       - ntw_front
@@ -36,7 +43,8 @@ services:
         - "traefik.enable=false"
 
   traefik:
-    image: traefik:1.7.6-alpine
+    <<: *default-opts
+    image: traefik:1.7.7-alpine
     ports:
     - target: 80
       protocol: tcp
@@ -91,6 +99,4 @@ services:
         - "traefik.logLevel=DEBUG"
         - "traefik.port=8080"
 
-
-# by Pascal Andy | https://pascalandy.com/
 # https://github.com/pascalandy/docker-stack-this

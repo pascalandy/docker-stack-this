@@ -29,6 +29,8 @@ services:
           cpus: '0.20'
           memory: 4M
       labels:
+      # With a real domain name you would 
+      # "traefik.frontend.rule=Host:mydummysite.tk"
       - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.backend=home"
       - "traefik.port=2015"
@@ -135,8 +137,5 @@ services:
       - "traefik.frontend.entryPoints=http"
       - "traefik.backend.loadbalancer.swarm=true"
       - "traefik.backend.loadbalancer.method=drr"
-      
-# With a real domain name you will need "traefik.frontend.rule=Host:mydummysite.tk"
-#
-# by Pascal Andy | https://pascalandy.com/
+
 # https://github.com/pascalandy/docker-stack-this

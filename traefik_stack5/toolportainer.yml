@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.7'
 
 services:
 
@@ -12,7 +12,7 @@ services:
       - portainer_data:/data
     networks:
       - ntw_front
-      - default
+      - portainer
     deploy:
       mode: replicated
       replicas: 1
@@ -47,7 +47,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - default
+      - portainer
     deploy:
       mode: global
       restart_policy:
@@ -62,7 +62,7 @@ services:
 networks:
   ntw_front:
     external: true
-  default:
+  portainer:
     driver: overlay
 
 volumes:
