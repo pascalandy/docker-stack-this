@@ -4,7 +4,7 @@ x-default-opts:
   &default-opts
   logging:
     options:
-      max-size: "1m" 
+      max-size: "10m" 
 
 networks:
   ntw_front:
@@ -32,6 +32,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+      restart_policy:
+        condition: on-failure
       resources:
         limits:
           cpus: '0.20'

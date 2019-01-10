@@ -1,8 +1,24 @@
 version: '3.7'
 
+x-default-opts: 
+  &default-opts
+  logging:
+    options:
+      max-size: "10m" 
+
+networks:
+  ntw_front:
+    external: true
+  portainer:
+    driver: overlay
+
+volumes:
+  portainer_data:
+
 services:
 
   portainer:
+    <<: *default-opts
     image: portainer/portainer
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     #managed by Traefik
@@ -41,6 +57,7 @@ services:
         - "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"
 
   agent:
+    <<: *default-opts
     image: portainer/agent
     environment:
       AGENT_CLUSTER_ADDR: tasks.agent
@@ -59,11 +76,4 @@ services:
         reservations:
           memory: 4M
 
-networks:
-  ntw_front:
-    external: true
-  portainer:
-    driver: overlay
-
-volumes:
-  portainer_data:
+# https://github.com/pascalandy/docker-stack-this
