@@ -1,6 +1,12 @@
 
 # CHANGELOG.md
 
+## 2.00
+- bump to traefik 1.7.8
+
+p.s. I bump to a major version because in my DevOps set up it makes sense. But there is nothing major regarding this particular repo.
+
+
 ## 1.56
 - bump to traefik 1.7.7
 - better log management on all services
