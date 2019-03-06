@@ -11,7 +11,8 @@ GOPATH=${HOME}/go
 
 # The tag must be ready to push on git remote
 #
-cd ${HOME}/Documents/Github/firepress-org/${my_repo} && \
+cd ${HOME}/Documents/Github/github_pascalandy/docker-stack-this && \
+
 git push --tags && \
 
 # Find the latest tag
