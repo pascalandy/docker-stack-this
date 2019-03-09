@@ -16,7 +16,7 @@ apk del tzdata                                                          && \
 rm -rf /var/cache/apk/* /tmp* && sleep 1                                && \
 
 # On play-with-docker, create Swarm manager
-docker swarm init --advertise-addr $(hostname -i)                       && \
+# docker swarm init --advertise-addr $(hostname -i)                     && \
 
 # On play-with-docker, clone repo
 echo                                                                    && \
