@@ -20,7 +20,7 @@ services:
 
   socat:
     <<: *default-opts
-    image: devmtl/socatproxy:1.1
+    image: devmtl/socatproxy:1.2
     networks:
       - ntw_front
       - ntw_proxy
