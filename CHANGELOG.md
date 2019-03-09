@@ -20,11 +20,12 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 # Releases
 
 
-## 2.0.2
+## 2.02
 ### ⚡️ Updates
+- 0aee933a readme update
+- 02df3144 update to socatproxy:1.2
 
-
-## 2.0.1
+## 2.01
 ### ⚡️ Updates
 - 639050dd Update to Traefik 1.7.9
 - Added a script to push release easily
