@@ -46,7 +46,7 @@ services:
 
   traefik:
     <<: *default-opts
-    image: traefik:1.7.9-alpine
+    image: traefik:1.7.12-alpine
     ports:
     - target: 80
       protocol: tcp
