@@ -1,6 +1,9 @@
 ## Start here
 
-The most solid stack can be found under: [traefik_stack5](./traefik_stack5)
+- The most solid stack can be found under: [traefik_stack5](./traefik_stack5)
+
+#### Work in progress
+- [traefik_stack6](./traefik_stack6) is not stable at the moment
 
 This project is a **monorepo** (or an aggregation of mini-projects). Just navigate the directories! 
 
