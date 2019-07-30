@@ -12,7 +12,7 @@ This docker stack will run many services (Traefik (with auth), Socat, Portainer,
 ```
 echo "CONFIGURE ENV_VAR" && \
 ENV_STABLE_BRANCH="master";
-ENV_MONOREPO="traefik_stack5";
+ENV_MONOREPO="traefik_stack6";
 
 echo "Setup the stack" && \
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
@@ -28,8 +28,8 @@ cd "$ENV_MONOREPO" && \
 
 ```
 echo "CONFIGURE ENV_VAR" && \
-ENV_EDGE_BRANCH="2.02";
-ENV_MONOREPO="traefik_stack5";
+ENV_EDGE_BRANCH="edge";
+ENV_MONOREPO="traefik_stack6";
 
 echo "Setup the stack" && \
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
