@@ -19,6 +19,17 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+## 2.10
+### ⚡️ Updates
+3dcdedcd Cleaner instructions readme
+e37ee076 better UX when script in running
+14814568 Update to caddy 1.0.1
+
+## 2.04
+### ⚡️ Updates
+- 2effb463 bump to abiosoft/caddy:0.11.5-no-stats
+- 17120080 update base image to alpine:3.9
+- 777cb4a1 bump to traefik:1.7.12-alpine
 
 ## 2.03
 ### ⚡️ Updates
