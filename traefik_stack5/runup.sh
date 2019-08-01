@@ -91,7 +91,7 @@ function goto_myscript() {
     ./rundown.sh
 
     clear;
-    message_is="If not existing, create network: "
+    message_is="If not existing, create networks"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     this_net="ntw_front"
@@ -111,13 +111,13 @@ function goto_myscript() {
         fi
     echo;
 
-    message_is="Show network: "
+    message_is="Show networks"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     docker network ls | grep "ntw_" && echo && sleep 2;
 
     clear;
-    message_is="Launch stacks "
+    message_is="Launch stacks"
     docker run --rm devmtl/figlet:1.0 ${message_is} sleep 2 && echo;
 
     # traefik
