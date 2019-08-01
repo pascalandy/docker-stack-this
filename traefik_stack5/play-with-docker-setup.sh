@@ -4,16 +4,10 @@
 
 # On play-with-docker, install common apps
 apk update && apk upgrade && apk add --no-cache                         \
-    nano bash git curl wget unzip openssl tar tzdata                    \
-    ca-certificates                                                     && \
-
-# On play-with-docker, set local time
-cp /usr/share/zoneinfo/America/New_York /etc/localtime                  && \
-echo "America/New_York" > /etc/timezone                                 && \
-apk del tzdata                                                          && \
+    nano bash git curl wget unzip openssl tar ca-certificates           && \
 
 # On play-with-docker, clean up
-rm -rf /var/cache/apk/* /tmp* && sleep 1                                && \
+rm -rf /var/cache/apk/* /tmp*                                           && \
 
 # On play-with-docker, create Swarm manager
 docker swarm init --advertise-addr $(hostname -i)                       && \
