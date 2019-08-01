@@ -107,32 +107,25 @@ function goto_myscript() {
         fi
 
     echo; echo "Show network...";
-    docker network ls | grep "ntw_";
-    echo; echo; sleep 2;
+    docker network ls | grep "ntw_" && echo && echo && sleep 2;
 
     echo "Start the stacks ...";
 
     # traefik
     chmod 600 ./configs/acme.json
-    docker stack deploy toolproxy -c toolproxy.yml;
-    echo; sleep 1;
+    docker stack deploy toolproxy -c toolproxy.yml && echo; sleep 1;
 
     # webapps
-    docker stack deploy toolwebapp -c toolwebapp.yml;
-    echo; sleep 1;
+    docker stack deploy toolwebapp -c toolwebapp.yml && echo; sleep 1;
 
     # gui
-    docker stack deploy toolgui -c toolportainer.yml;
-    echo; sleep 1;
+    docker stack deploy toolgui -c toolportainer.yml && echo; sleep 1;
 
-    # swarmpit
-    # constraint the db
-    # export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
-    # docker node update --label-add swarmpit.db-data=true $NODE_ID;
-    # echo;
+    # swarmpit / constraint the db
+    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+    docker node update --label-add swarmpit.db-data=true $NODE_ID && echo;
 
-    # docker stack deploy toolswarmpit -c stack-swarmpit.yml;
-    # echo; sleep 1;
+    docker stack deploy toolswarmpit -c stack-swarmpit.yml && echo; sleep 1;
 
     # wordpress
         # the system is path is at ./docker-stack5
@@ -151,13 +144,12 @@ function goto_myscript() {
     MIN="1"
     MAX="10"
     for ACTION in $(seq ${MIN} ${MAX}); do
-    echo
-    echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
-    docker service ls && echo && sleep 2;
+      echo && echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
+      docker service ls && echo && sleep 2;
     done
     echo; echo ; sleep 2
 
-    echo "docker stack ls"; sleep 1;
+    echo "docker stack ls" && sleep 1;
 
     # play-with-docker is ready
     docker run --rm devmtl/figlet:1.0 Your turn; echo;
