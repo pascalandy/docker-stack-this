@@ -70,12 +70,12 @@ services:
       --docker.swarmmode \
       --docker.exposedbydefault=false \
       --docker.swarmModeRefreshSeconds=5 \
-      --docker.domain=traefik \
-      --docker.endpoint=tcp://socat:2375 \
       --debug=true \
       --logLevel=WARN \
       --accessLog \
       --metrics.prometheus \
+      --docker.domain=traefik \
+      --docker.endpoint=tcp://socat:2375
     deploy:
       mode: replicated
       replicas: 1
