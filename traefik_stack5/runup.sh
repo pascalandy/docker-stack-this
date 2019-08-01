@@ -144,7 +144,7 @@ function goto_myscript() {
     #echo; sleep 1;
 
     clear;
-    message_is="Check our services"
+    message_is="Check services"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     MIN="1"
