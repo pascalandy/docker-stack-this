@@ -16,16 +16,10 @@ ENV_MONOREPO="traefik_stack5"
 # On play-with-docker, install common apps
 apk update && apk upgrade && apk add --no-cache               \
     nano bash git curl wget unzip openssl tar ca-certificates && \
-
-# On play-with-docker, clean up
 rm -rf /var/cache/apk/* /tmp*                                 && \
-
-# On play-with-docker, create Swarm manager
 docker swarm init --advertise-addr $(hostname -i)             && \
-
-# On play-with-docker, clone repo
 git clone https://github.com/pascalandy/docker-stack-this.git && \
-cd docker-stack-this && sleep 2                               && \
+cd docker-stack-this                                          && \
 git checkout ${ENV_BRANCH}                                    && \
 cd ${ENV_MONOREPO}                                            && \
 ./runup.sh;
@@ -40,20 +34,13 @@ ENV_MONOREPO="traefik_stack5"
 # On play-with-docker, install common apps
 apk update && apk upgrade && apk add --no-cache               \
     nano bash git curl wget unzip openssl tar ca-certificates && \
-
-# On play-with-docker, clean up
 rm -rf /var/cache/apk/* /tmp*                                 && \
-
-# On play-with-docker, create Swarm manager
 docker swarm init --advertise-addr $(hostname -i)             && \
-
-# On play-with-docker, clone repo
 git clone https://github.com/pascalandy/docker-stack-this.git && \
-cd docker-stack-this && sleep 2                               && \
+cd docker-stack-this                                          && \
 git checkout ${ENV_BRANCH}                                    && \
 cd ${ENV_MONOREPO}                                            && \
 ./runup.sh;
-
 ```
 
 This will run `play-with-docker-setup.sh` and `runup.sh`. These scripts will do the hard of deploying the stacks for us.
