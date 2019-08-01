@@ -14,20 +14,20 @@ ENV_BRANCH="master"
 ENV_MONOREPO="traefik_stack5"
 
 # On play-with-docker, install common apps
-apk update && apk upgrade && apk add --no-cache                         \
-    nano bash git curl wget unzip openssl tar ca-certificates           && \
+apk update && apk upgrade && apk add --no-cache               \
+    nano bash git curl wget unzip openssl tar ca-certificates && \
 
 # On play-with-docker, clean up
-rm -rf /var/cache/apk/* /tmp*                                           && \
+rm -rf /var/cache/apk/* /tmp*                                 && \
 
 # On play-with-docker, create Swarm manager
-docker swarm init --advertise-addr $(hostname -i)                       && \
+docker swarm init --advertise-addr $(hostname -i)             && \
 
 # On play-with-docker, clone repo
-git clone https://github.com/pascalandy/docker-stack-this.git           && \
-cd docker-stack-this && sleep 2 &&                                      && \
-git checkout ${ENV_BRANCH} && \
-cd ${ENV_MONOREPO} && \
+git clone https://github.com/pascalandy/docker-stack-this.git && \
+cd docker-stack-this && sleep 2                               && \
+git checkout ${ENV_BRANCH}                                    && \
+cd ${ENV_MONOREPO}                                            && \
 ./runup.sh;
 ```
 
@@ -38,20 +38,20 @@ ENV_BRANCH="dev"
 ENV_MONOREPO="traefik_stack5"
 
 # On play-with-docker, install common apps
-apk update && apk upgrade && apk add --no-cache                         \
-    nano bash git curl wget unzip openssl tar ca-certificates           && \
+apk update && apk upgrade && apk add --no-cache               \
+    nano bash git curl wget unzip openssl tar ca-certificates && \
 
 # On play-with-docker, clean up
-rm -rf /var/cache/apk/* /tmp*                                           && \
+rm -rf /var/cache/apk/* /tmp*                                 && \
 
 # On play-with-docker, create Swarm manager
-docker swarm init --advertise-addr $(hostname -i)                       && \
+docker swarm init --advertise-addr $(hostname -i)             && \
 
 # On play-with-docker, clone repo
-git clone https://github.com/pascalandy/docker-stack-this.git           && \
-cd docker-stack-this && sleep 2 &&                                      && \
-git checkout ${ENV_BRANCH} && \
-cd ${ENV_MONOREPO} && \
+git clone https://github.com/pascalandy/docker-stack-this.git && \
+cd docker-stack-this && sleep 2                               && \
+git checkout ${ENV_BRANCH}                                    && \
+cd ${ENV_MONOREPO}                                            && \
 ./runup.sh;
 
 ```
