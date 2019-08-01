@@ -11,33 +11,29 @@ This docker stack will run many services (Traefik (with auth), Socat, Portainer,
 
 ```
 echo "CONFIGURE ENV_VAR" && \
-ENV_STABLE_BRANCH="master";
+ENV_BRANCH="master";
 ENV_MONOREPO="traefik_stack5";
 
 echo "Setup the stack" && \
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
 sleep 2 && \
-
-git checkout "$ENV_STABLE_BRANCH" && \
-cd "$ENV_MONOREPO" && \
-
+git checkout ${ENV_BRANCH} && \
+cd ${ENV_MONOREPO} && \
 ./runup.sh;
 ```
 
-#### Edge setup (NOT recommanded)
+#### Edge setup (NOT recommended)
 
 ```
 echo "CONFIGURE ENV_VAR" && \
-ENV_EDGE_BRANCH="2.02";
+ENV_BRANCH="dev";
 ENV_MONOREPO="traefik_stack5";
 
 echo "Setup the stack" && \
 source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
 sleep 2 && \
-
-git checkout "$ENV_EDGE_BRANCH" && \
-cd "$ENV_MONOREPO" && \
-
+git checkout ${ENV_BRANCH} && \
+cd ${ENV_MONOREPO} && \
 ./runup.sh;
 ```
 
