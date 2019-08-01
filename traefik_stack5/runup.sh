@@ -125,7 +125,12 @@ function goto_myscript() {
     docker stack deploy toolgui -c toolportainer.yml;
     echo; sleep 1;
 
-    # gui
+    # swarmpit
+    # constraint the db
+    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+    docker node update --label-add swarmpit.db-data=true $NODE_ID;
+    echo;
+
     docker stack deploy toolswarmpit -c stack-swarmpit.yml;
     echo; sleep 1;
 
