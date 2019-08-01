@@ -127,12 +127,12 @@ function goto_myscript() {
 
     # swarmpit
     # constraint the db
-    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
-    docker node update --label-add swarmpit.db-data=true $NODE_ID;
-    echo;
+    # export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+    # docker node update --label-add swarmpit.db-data=true $NODE_ID;
+    # echo;
 
-    docker stack deploy toolswarmpit -c stack-swarmpit.yml;
-    echo; sleep 1;
+    # docker stack deploy toolswarmpit -c stack-swarmpit.yml;
+    # echo; sleep 1;
 
     # wordpress
         # the system is path is at ./docker-stack5
