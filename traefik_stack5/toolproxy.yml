@@ -71,7 +71,6 @@ services:
       - --docker.watch
       - --docker.exposedbydefault=false
       - --docker.swarmModeRefreshSeconds=5
-      - --consul.endpoint=consul-leader:8500
       - --docker.endpoint=tcp://socat:2375
       - --api
       - --debug=true
