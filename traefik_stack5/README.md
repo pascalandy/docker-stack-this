@@ -30,7 +30,7 @@ ENV_BRANCH="dev";
 ENV_MONOREPO="traefik_stack5";
 
 echo "Setup the stack" && \
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
+source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/${ENV_BRANCH}/${ENV_MONOREPO}/play-with-docker-setup.sh) && \
 sleep 2 && \
 git checkout ${ENV_BRANCH} && \
 cd ${ENV_MONOREPO} && \
