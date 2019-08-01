@@ -41,8 +41,6 @@ services:
         reservations:
           cpus: '0.10'
           memory: 4M
-      labels:
-        - "traefik.enable=false"
 
   traefik:
     <<: *default-opts
@@ -68,15 +66,17 @@ services:
     configs:
       - source: traefik.toml
         target: /etc/traefik/traefik.toml
-    command: >
-      --api
-      --docker \
+    command: --docker \
+      --api \
       --docker.swarmmode \
+      --docker.exposedbydefault=false \
+      --docker.swarmModeRefreshSeconds=5 \
       --docker.domain=traefik \
       --docker.endpoint=tcp://socat:2375 \
       --docker.watch \
       --debug=true \
       --logLevel=WARN \
+      --accessLog \
       --web.metrics.prometheus \
       --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
       --web.address=:8080
