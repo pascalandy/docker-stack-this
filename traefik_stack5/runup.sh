@@ -87,7 +87,7 @@ function goto_myscript() {
 
     clear;
     message_is="If existing, remove stacks: "
-    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+    docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
     ./rundown.sh
 
     clear;
@@ -109,16 +109,17 @@ function goto_myscript() {
         else
             echo "Network: ${this_net} already exist."
         fi
+    sleep 2 && echo;
 
     clear;
     message_is="Show network: "
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
-    docker network ls | grep "ntw_" && echo && echo && sleep 2;
+    docker network ls | grep "ntw_" && echo && sleep 2;
 
     clear;
     message_is="Launch stacks "
-    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+    docker run --rm devmtl/figlet:1.0 ${message_is} sleep 2 && echo;
 
     # traefik
     chmod 600 ./configs/acme.json
@@ -155,16 +156,16 @@ function goto_myscript() {
     done
     echo;
 
-    docker stack ls && sleep 1;
+    docker stack ls && sleep 2;
 
     message_is="Your turn"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # See Traefik logs
     echo "Ideas: "; sleep 1;
-    echo "  docker service ls"; sleep 1;
-    echo "  docker stack ls"; sleep 1;
-    echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
+    echo "  docker service ls";
+    echo "  docker stack ls"; 
+    echo "  docker service logs -f toolproxy_traefik"; echo;
 }
 
 # --- Entrypoint
