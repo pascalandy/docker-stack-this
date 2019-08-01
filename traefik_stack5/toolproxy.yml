@@ -72,11 +72,11 @@ services:
       - --docker.exposedbydefault=false
       - --docker.swarmModeRefreshSeconds=5
       - --docker.endpoint=tcp://socat:2375
+      - --api
       - --debug=true
       - --accessLog
       - --logLevel=WARN
       - --metrics.prometheus
-      - --web.address=:8080
     deploy:
       mode: replicated
       replicas: 1
