@@ -80,7 +80,6 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-echo; echo "Remove stacks ()if exsiting"
 docker stack rm toolproxy || true; sleep 1;
 
 docker stack rm toolweb || true; sleep 1;
