@@ -10,13 +10,22 @@ This docker stack will run many services (Traefik (with auth), Socat, Portainer,
 ## Stable setup (recommended)
 
 ```
-echo "CONFIGURE ENV_VAR" && \
-ENV_BRANCH="master";
-ENV_MONOREPO="traefik_stack5";
+ENV_BRANCH="master"
+ENV_MONOREPO="traefik_stack5"
 
-echo "Setup the stack" && \
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/master/play-with-docker-setup.sh) && \
-sleep 2 && \
+# On play-with-docker, install common apps
+apk update && apk upgrade && apk add --no-cache                         \
+    nano bash git curl wget unzip openssl tar ca-certificates           && \
+
+# On play-with-docker, clean up
+rm -rf /var/cache/apk/* /tmp*                                           && \
+
+# On play-with-docker, create Swarm manager
+docker swarm init --advertise-addr $(hostname -i)                       && \
+
+# On play-with-docker, clone repo
+git clone https://github.com/pascalandy/docker-stack-this.git           && \
+cd docker-stack-this && sleep 2 &&                                      && \
 git checkout ${ENV_BRANCH} && \
 cd ${ENV_MONOREPO} && \
 ./runup.sh;
@@ -25,16 +34,26 @@ cd ${ENV_MONOREPO} && \
 #### Edge setup (NOT recommended)
 
 ```
-echo "CONFIGURE ENV_VAR" && \
-ENV_BRANCH="dev";
-ENV_MONOREPO="traefik_stack5";
+ENV_BRANCH="dev"
+ENV_MONOREPO="traefik_stack5"
 
-echo "Setup the stack" && \
-source <(curl -s https://raw.githubusercontent.com/pascalandy/docker-stack-this/${ENV_BRANCH}/${ENV_MONOREPO}/play-with-docker-setup.sh) && \
-sleep 2 && \
+# On play-with-docker, install common apps
+apk update && apk upgrade && apk add --no-cache                         \
+    nano bash git curl wget unzip openssl tar ca-certificates           && \
+
+# On play-with-docker, clean up
+rm -rf /var/cache/apk/* /tmp*                                           && \
+
+# On play-with-docker, create Swarm manager
+docker swarm init --advertise-addr $(hostname -i)                       && \
+
+# On play-with-docker, clone repo
+git clone https://github.com/pascalandy/docker-stack-this.git           && \
+cd docker-stack-this && sleep 2 &&                                      && \
 git checkout ${ENV_BRANCH} && \
 cd ${ENV_MONOREPO} && \
 ./runup.sh;
+
 ```
 
 This will run `play-with-docker-setup.sh` and `runup.sh`. These scripts will do the hard of deploying the stacks for us.
