@@ -68,7 +68,9 @@ services:
     configs:
       - source: traefik.toml
         target: /etc/traefik/traefik.toml
-    command: --docker \
+    command: >
+      --api
+      --docker \
       --docker.swarmmode \
       --docker.domain=traefik \
       --docker.endpoint=tcp://socat:2375 \
