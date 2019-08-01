@@ -72,7 +72,6 @@ services:
       - --docker.exposedbydefault=false
       - --docker.swarmModeRefreshSeconds=5
       - --docker.endpoint=tcp://socat:2375
-      - --api
       - --debug=true
       - --accessLog
       - --logLevel=WARN
