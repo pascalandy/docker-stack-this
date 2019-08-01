@@ -65,18 +65,19 @@ services:
     configs:
       - source: traefik.toml
         target: /etc/traefik/traefik.toml
-    command:
-      - --docker
-      - --docker.swarmmode
-      - --docker.watch
-      - --docker.exposedbydefault=false
-      - --docker.swarmModeRefreshSeconds=5
-      - --docker.endpoint=tcp://socat:2375
-      - --api
-      - --debug=true
-      - --accessLog
-      - --logLevel=WARN
-      - --metrics.prometheus
+    command: --docker \
+      --docker.watch \
+      --docker.swarmmode \
+      --docker.exposedbydefault=false \
+      --docker.swarmModeRefreshSeconds=5 \
+      --docker.domain=traefik \
+      --docker.endpoint=tcp://socat:2375 \
+      --debug=true \
+      --logLevel=WARN \
+      --accessLog \
+      --web.metrics.prometheus \
+      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0" \
+      --web.address=:8080
     deploy:
       mode: replicated
       replicas: 1
