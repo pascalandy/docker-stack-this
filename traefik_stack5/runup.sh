@@ -109,9 +109,8 @@ function goto_myscript() {
         else
             echo "Network: ${this_net} already exist."
         fi
-    sleep 2 && echo;
+    echo;
 
-    clear;
     message_is="Show network: "
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
