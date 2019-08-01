@@ -80,7 +80,8 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-    # play-with-docker is ready
+    docker pull devmtl/figlet:1.0
+    
     clear;
     message_is="Starting"
     docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
