@@ -81,35 +81,44 @@ function main() {
 function goto_myscript() {
 
     # play-with-docker is ready
-    docker run --rm devmtl/figlet:1.0 Lauching stacks; sleep 2; echo;
+    clear;
+    message_is="Starting"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
 
-    # Stop
-    echo; echo "If existing, remove stacks: "
+    clear;
+    message_is="If existing, remove stacks: "
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
     ./rundown.sh
 
-    # Create Network
-    echo; echo "If not existing, create our network: "
+    clear;
+    message_is="If not existing, create network: "
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
-    NTW_FRONT="ntw_front"
-        if [ ! "$(docker network ls --filter name=${NTW_FRONT} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted "${NTW_FRONT}"
-            echo "Network: ${NTW_FRONT} was created."
+    this_net="ntw_front"
+        if [ ! "$(docker network ls --filter name=${this_net} -q)" ]; then
+            docker network create --driver overlay --attachable --opt encrypted "${this_net}"
+            echo "Network: ${this_net} was created."
         else
-            echo "Network: ${NTW_FRONT} already exist."
+            echo "Network: ${this_net} already exist."
         fi
 
-    NTW_PROXY="ntw_proxy"
-        if [ ! "$(docker network ls --filter name=${NTW_PROXY} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted "${NTW_PROXY}"
-            echo "Network: ${NTW_PROXY} was created."
+    this_net="ntw_proxy"
+        if [ ! "$(docker network ls --filter name=${this_net} -q)" ]; then
+            docker network create --driver overlay --attachable --opt encrypted "${this_net}"
+            echo "Network: ${this_net} was created."
         else
-            echo "Network: ${NTW_PROXY} already exist."
+            echo "Network: ${this_net} already exist."
         fi
 
-    echo; echo "Show network...";
+    clear;
+    message_is="Show network: "
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
     docker network ls | grep "ntw_" && echo && echo && sleep 2;
 
-    echo "Start the stacks ...";
+    clear;
+    message_is="Launch stacks "
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # traefik
     chmod 600 ./configs/acme.json
@@ -133,13 +142,11 @@ function goto_myscript() {
     #mkdir -p "$_MYSQL_DIR"
 
     #docker stack deploy toolwp -c toolwp.yml
-    echo; sleep 1;
+    #echo; sleep 1;
 
-    # List
-    echo; echo;
-    docker service ls && echo && sleep 2;
-
-    # Follow deployment in real time
+    clear;
+    message_is="Check our services"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     MIN="1"
     MAX="10"
@@ -147,18 +154,18 @@ function goto_myscript() {
       echo && echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
       docker service ls && echo && sleep 2;
     done
-    echo; echo ; sleep 2
+    echo;
 
-    echo "docker stack ls" && sleep 1;
+    docker stack ls && sleep 1;
 
-    # play-with-docker is ready
-    docker run --rm devmtl/figlet:1.0 Your turn; echo;
+    message_is="Your turn"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # See Traefik logs
-    echo "Commands ideas: "; sleep 1;
-    echo "docker service ls"; sleep 1;
-    echo "docker stack ls"; sleep 1;
-    echo "docker service logs -f toolproxy_traefik"; echo; sleep 1;
+    echo "Ideas: "; sleep 1;
+    echo "  docker service ls"; sleep 1;
+    echo "  docker stack ls"; sleep 1;
+    echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
 }
 
 # --- Entrypoint
