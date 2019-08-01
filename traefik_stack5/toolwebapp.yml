@@ -14,7 +14,7 @@ services:
 
   home:
     <<: *default-opts
-    image: abiosoft/caddy:0.11.5-no-stats
+    image: devmtl/caddyfire:1.0.1-r1
     networks:
       - ntw_front
     #volumes:
