@@ -157,12 +157,13 @@ function goto_myscript() {
     done
     echo; echo ; sleep 2
 
-    # See Traefik logs
-    echo "To see Traefik logs type: "; sleep 1;
-    echo "  docker service logs -f toolproxy_traefik"; echo; sleep 1;
-
     # play-with-docker is ready
     docker run --rm devmtl/figlet:1.0 Your turn; echo;
+
+    # See Traefik logs
+    echo "To see Traefik logs type: "; sleep 1;
+    echo "docker service ls"; sleep 1;
+    echo "docker service logs -f toolproxy_traefik"; echo; sleep 1;
 
 }
 
