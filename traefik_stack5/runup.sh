@@ -118,7 +118,7 @@ function goto_myscript() {
 
     clear;
     message_is="Launch stacks"
-    docker run --rm devmtl/figlet:1.0 ${message_is} sleep 2 && echo;
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # traefik
     chmod 600 ./configs/acme.json
