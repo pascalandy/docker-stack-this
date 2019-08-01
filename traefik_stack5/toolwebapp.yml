@@ -21,7 +21,7 @@ services:
       #- /localhost/www/home/srv:/srv
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
@@ -30,23 +30,19 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 16M
+          memory: 32M
         reservations:
           cpus: '0.20'
-          memory: 4M
+          memory: 8M
       labels:
       # With a real domain name you would 
       # "traefik.frontend.rule=Host:mydummysite.tk"
-      - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.backend=home"
+      - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.port=2015"
-      - "traefik.weight=10"
       - "traefik.enable=true"
-      - "traefik.passHostHeader=true"
       - "traefik.docker.network=ntw_front"
       - "traefik.frontend.entryPoints=http"
-      - "traefik.backend.loadbalancer.swarm=true"
-      - "traefik.backend.loadbalancer.method=drr"
 
   who1:
     <<: *default-opts
