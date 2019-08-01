@@ -7,7 +7,7 @@ This docker stack will run many services (Traefik (with auth), Socat, Portainer,
 2. Create *one instance*. Wait for the node to provision
 3. Copy-paste:
 
-## Stable setup (recommended)
+#### Stable setup (recommended)
 
 ```
 ENV_BRANCH="master"
@@ -59,7 +59,7 @@ cd ${ENV_MONOREPO}                                            && \
 This will run `play-with-docker-setup.sh` and `runup.sh`. These scripts will do the hard of deploying the stacks for us.
 
 
-#### See your stacks
+## See your stacks
 
 ```
 $ docker stack ls
@@ -71,7 +71,7 @@ toolwebapp          4                   Swarm
 ```
 
 
-#### See your services
+## See your services
 
 ```
 docker service ls
