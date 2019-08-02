@@ -19,7 +19,7 @@ git push --tags && \
 # Find the latest tag
 #
 tag_version="$(
-	git ls-remote --tags ${git_repo} \
+	git ls-remote --tags https://github.com/${user}/${git_repo} \
 		| cut -d$'\t' -f2 \
 		| cut -d/ -f3 \
 		| tail -n1)" && \
