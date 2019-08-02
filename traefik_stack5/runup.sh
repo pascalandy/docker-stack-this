@@ -83,7 +83,7 @@ function goto_myscript() {
     docker pull devmtl/figlet:1.0
     
     clear;
-    message_is="Starting"
+    message_is="docker-stack-this"
     docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
 
     clear;
@@ -123,13 +123,13 @@ function goto_myscript() {
 
     # traefik
     chmod 600 ./configs/acme.json
-    docker stack deploy toolproxy -c toolproxy.yml && echo; sleep 1;
+    docker stack deploy stkproxy -c stack-proxy.yml && echo; sleep 1;
 
     # webapps
-    docker stack deploy toolwebapp -c toolwebapp.yml && echo; sleep 1;
+    docker stack deploy stkwebapp -c stack-webapp.yml && echo; sleep 1;
 
     # gui
-    docker stack deploy toolgui -c toolportainer.yml && echo; sleep 1;
+    docker stack deploy stkgui -c stack-portainer.yml && echo; sleep 1;
 
     # swarmpit / constraint the db
     #export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
@@ -149,23 +149,28 @@ function goto_myscript() {
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     MIN="1"
-    MAX="10"
+    MAX="8"
     for ACTION in $(seq ${MIN} ${MAX}); do
       echo && echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
       docker service ls && echo && sleep 2;
     done
     echo;
 
-    docker stack ls && sleep 2;
+    docker stack ls && echo;
 
     message_is="Your turn"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # See Traefik logs
-    echo "Ideas: "; sleep 1;
+    echo "If you enjoy this project, Give it a Star or Fork :)";
+    echo "  https://github.com/pascalandy/docker-stack-this/" && echo;
+
+    # See Traefik logs
+    echo "Ideas: ";
     echo "  docker service ls";
     echo "  docker stack ls"; 
-    echo "  docker service logs -f toolproxy_traefik"; echo;
+    echo "  docker service logs -f toolproxy_traefik" && echo;
+
 }
 
 # --- Entrypoint

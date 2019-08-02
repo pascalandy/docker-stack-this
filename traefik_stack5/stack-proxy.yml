@@ -18,19 +18,27 @@ configs:
 
 services:
 
-  socat:
+  # this custom haproxy allows us to move traefik to worker nodes
+  # while this container listens on managers and only allows
+  # traefik to connect, read-only, to limited docker api calls
+  # https://github.com/Tecnativa/docker-socket-proxy
+  proxysocket:
     <<: *default-opts
-    image: devmtl/socatproxy:1.2
+    image: devmtl/proxysocket:1.9.9
     networks:
       - ntw_proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NETWORKS: 1
+      SERVICES: 1
+      TASKS: 1
+      # CONTAINERS: 1
+      # SWARM: 1
     deploy:
-      mode: replicated
-      replicas: 1
+      mode: global
       placement:
-        constraints:
-          - node.role == manager
+        constraints: [node.role == manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -41,6 +49,12 @@ services:
           cpus: '0.10'
           memory: 4M
 
+  # this traefik reverse proxy has a bunch of features:
+  # - reverse proxy all 80/443 ingress traffic on a swarm
+  # - dynamic config via each app's swarm service labels
+  # - HA multi-container design for traefik
+  # - runs traefik on host NIC directly, to improve performance
+  #    and capture client IP's
   traefik:
     <<: *default-opts
     image: traefik:1.7.12
@@ -72,7 +86,7 @@ services:
       --docker.exposedbydefault=false \
       --docker.swarmModeRefreshSeconds=5
       --docker.domain=traefik
-      --docker.endpoint=tcp://socat:2375
+      --docker.endpoint=tcp://proxysocket:2375
       --debug=true
       --logLevel=WARN
       --accessLog
@@ -102,3 +116,4 @@ services:
         - "traefik.port=8080"
 
 # https://github.com/pascalandy/docker-stack-this
+# inspired by https://github.com/BretFisher/dogvscat
