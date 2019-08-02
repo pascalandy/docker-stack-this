@@ -10,7 +10,7 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 ## 0.0.0 status template
 ### ⚡️ Updates
-### 🚀 Added (new feat.)
+
 ### 🐛 Fix bug
 ### 🛑 Removed
 ### 🔑 Security
@@ -18,16 +18,28 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 ---
 
 # Releases
-## 2.2.0
+
+## 2.2.2
+### 🐛 Fix bug
+- 99d105bc FIX push_release script
+
+## 2.2.1
 ### ⚡️ Updates
+- 5effe45b Merge branch 'dev'
+- 58038798 cleaner release
+- c2750e83 update changelog
+### 🐛 Fix bug
 - badd1f18 FIX script since I upgraded my hard drive
+
+## 2.2.0
+### 🚀 Added (new feat.)
 - ea604e32 Replace Socat with ProxySocket based on haproxy
 
 ## 2.1.0
 ### ⚡️ Updates
-14814568 Update to caddy 1.0.1
-c717d97f Better UX when script is running
-b9ec040e update to Traefik:1.7.12
+- 14814568 Update to caddy 1.0.1
+- c717d97f Better UX when script is running
+- b9ec040e update to Traefik:1.7.12
 
 ## 2.03
 ### ⚡️ Updates
