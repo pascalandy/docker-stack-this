@@ -80,11 +80,13 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-docker stack rm stkproxy || true; sleep 1;
+docker stack rm toolconsul || true; sleep 1; echo;
 
-docker stack rm stkwebapp || true; sleep 1;
+docker stack rm toolproxy || true; sleep 1; echo;
 
-docker stack rm stkgui || true; sleep 1;
+docker stack rm toolwebapp || true; sleep 1; echo;
+
+docker stack rm toolgui || true; sleep 1; echo;
 
 #echo; echo "Remove network ..."
 #docker network rm ntw_front
@@ -97,5 +99,4 @@ docker stack rm stkgui || true; sleep 1;
 # --- Entrypoint
 main "$@"
 
-# by Pascal Andy | https://pascalandy.com/
-# https://github.com/pascalandy/bash-script-template
+# https://github.com/pascalandy/docker-stack-this

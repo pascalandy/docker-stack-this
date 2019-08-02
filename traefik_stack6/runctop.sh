@@ -80,22 +80,15 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-docker stack rm stkproxy || true; sleep 1;
-
-docker stack rm stkwebapp || true; sleep 1;
-
-docker stack rm stkgui || true; sleep 1;
-
-#echo; echo "Remove network ..."
-#docker network rm ntw_front
-
-#echo; echo "Clean up ..."
-#docker system prune -f
+docker run --rm -ti \
+  --name=ctop \
+  --memory="18m" \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  quay.io/vektorlab/ctop:latest
 
 }
 
 # --- Entrypoint
 main "$@"
 
-# by Pascal Andy | https://pascalandy.com/
-# https://github.com/pascalandy/bash-script-template
+# https://github.com/pascalandy/docker-stack-this
