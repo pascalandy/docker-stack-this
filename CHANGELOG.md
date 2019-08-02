@@ -8,9 +8,9 @@ https://trello.com/b/0fCwwzqc/firepress-public-roadmap
 Based on this template:
 https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
-## 0.0.0 status template
+# STATUS TEMPLATE
 ### ⚡️ Updates
-
+### 🚀 Added (new feat.)
 ### 🐛 Fix bug
 ### 🛑 Removed
 ### 🔑 Security
@@ -18,6 +18,9 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 ---
 
 # Releases
+## 2.2.3
+### 🐛 Fix bug
+- 2a253c82 moved proxysocket at the root of the projet
 
 ## 2.2.2
 ### 🐛 Fix bug
