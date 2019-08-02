@@ -18,7 +18,16 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 ---
 
 # Releases
+## 2.2.0
+### ⚡️ Updates
+- badd1f18 FIX script since I upgraded my hard drive
+- ea604e32 Replace Socat with ProxySocket based on haproxy
 
+## 2.1.0
+### ⚡️ Updates
+14814568 Update to caddy 1.0.1
+c717d97f Better UX when script is running
+b9ec040e update to Traefik:1.7.12
 
 ## 2.03
 ### ⚡️ Updates
