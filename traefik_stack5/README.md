@@ -171,6 +171,3 @@ In the active path, just execute those bash-scripts:
 
 **Bonus!** `./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each container.
 
-## ToDo
- 
-- Use SSL endpoints (ACME)
