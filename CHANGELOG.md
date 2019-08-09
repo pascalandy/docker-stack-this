@@ -18,6 +18,12 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 ---
 
 # Releases
+## 2.3.0
+### ⚡️ Updates
+- 6c559e20 update to traefik:1.7.13
+- various scripts updates
+
+# Releases
 ## 2.2.3
 ### 🐛 Fix bug
 - 2a253c82 moved proxysocket at the root of the projet
