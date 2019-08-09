@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export GITHUB_TOKEN=$(cat /../../../github_token)
+export local_repo="/../../Github/github_pascalandy/docker-stack-this"
