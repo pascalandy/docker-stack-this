@@ -169,7 +169,7 @@ function goto_myscript() {
     echo "Ideas: ";
     echo "  docker service ls";
     echo "  docker stack ls"; 
-    echo "  docker service logs -f toolproxy_traefik" && echo;
+    echo "  docker service logs -f stkproxy_traefik" && echo;
 
 }
 
