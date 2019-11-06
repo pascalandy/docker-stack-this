@@ -57,7 +57,7 @@ services:
   #    and capture client IP's
   traefik:
     <<: *default-opts
-    image: traefik:1.7.14
+    image: traefik:1.7.15
     ports:
     - target: 80
       protocol: tcp
