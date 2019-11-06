@@ -90,8 +90,8 @@ services:
       --debug=true
       --logLevel=WARN
       --accessLog
-      --web.metrics.prometheus
-      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
+      #--web.metrics.prometheus
+      #--web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
       --ping
       #--web.address=:8080
     deploy:
@@ -114,7 +114,7 @@ services:
       labels:
         - "traefik.backend=traefik"
         - "traefik.enable=true"
-        - "traefik.port=8080"
+        #- "traefik.port=8080"
 
 # https://github.com/pascalandy/docker-stack-this
 # inspired by https://github.com/BretFisher/dogvscat
