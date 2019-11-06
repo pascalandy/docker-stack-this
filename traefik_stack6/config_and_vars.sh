@@ -17,7 +17,5 @@ set -o pipefail         # Use last non-zero exit code in a pipeline
 # Define variables for the whole project
 # USE CAPITAL VARS to indicate this VAR comes from outside
 
-# config you var here
+# Not used in docker-compose at the moment
 echo "no vars here";
-
-# https://github.com/pascalandy/docker-stack-this

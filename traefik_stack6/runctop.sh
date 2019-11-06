@@ -91,4 +91,5 @@ docker run --rm -ti \
 # --- Entrypoint
 main "$@"
 
-# https://github.com/pascalandy/docker-stack-this
+# by Pascal Andy | https://pascalandy.com/
+# https://github.com/pascalandy/bash-script-template

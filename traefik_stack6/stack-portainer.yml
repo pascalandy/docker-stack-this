@@ -4,13 +4,13 @@ x-default-opts:
   &default-opts
   logging:
     options:
-      max-size: "50m" 
+      max-size: "10m" 
 
 networks:
   ntw_front:
     external: true
-  ntw_portainer:
-    external: true
+  portainer:
+    driver: overlay
 
 volumes:
   portainer_data:
@@ -28,7 +28,7 @@ services:
       - portainer_data:/data
     networks:
       - ntw_front
-      - ntw_portainer
+      - portainer
     deploy:
       mode: replicated
       replicas: 1
@@ -64,7 +64,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - ntw_portainer
+      - portainer
     deploy:
       mode: global
       restart_policy:

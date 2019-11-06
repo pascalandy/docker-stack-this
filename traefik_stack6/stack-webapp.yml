@@ -4,7 +4,7 @@ x-default-opts:
   &default-opts
   logging:
     options:
-      max-size: "50m" 
+      max-size: "10m" 
 
 networks:
   ntw_front:
@@ -14,14 +14,14 @@ services:
 
   home:
     <<: *default-opts
-    image: abiosoft/caddy:0.11.1-no-stats
+    image: abiosoft/caddy:1.0.1-no-stats
     networks:
       - ntw_front
     #volumes:
       #- /localhost/www/home/srv:/srv
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:
@@ -30,23 +30,19 @@ services:
       resources:
         limits:
           cpus: '0.20'
-          memory: 16M
+          memory: 32M
         reservations:
           cpus: '0.20'
-          memory: 4M
+          memory: 8M
       labels:
       # With a real domain name you would 
       # "traefik.frontend.rule=Host:mydummysite.tk"
-      - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.backend=home"
+      - "traefik.frontend.rule=PathPrefixStrip:/"
       - "traefik.port=2015"
-      - "traefik.weight=10"
       - "traefik.enable=true"
-      - "traefik.passHostHeader=true"
       - "traefik.docker.network=ntw_front"
       - "traefik.frontend.entryPoints=http"
-      - "traefik.backend.loadbalancer.swarm=true"
-      - "traefik.backend.loadbalancer.method=drr"
 
   who1:
     <<: *default-opts
@@ -57,7 +53,7 @@ services:
       #- /localhost/www/who1/srv:/srv
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
       #placement:
       #  constraints: [node.role==manager]
       restart_policy:

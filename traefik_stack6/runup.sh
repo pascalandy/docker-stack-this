@@ -80,138 +80,102 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-# play-with-docker is ready
-    message_is="Ready to have fun?"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-# Set vars
-    #./config_and_vars.sh
-
-# Stop
-    message_is="Remove existing stacks (if any)"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    ./rundown.sh
-    sleep 2;
-
-
-# Create networks
-    message_is="Create networks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    create_net="ntw_front"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_proxy"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_consul"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_portainer"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    sleep 2;
-
-# Show network
-    message_is="Show available networks"
-    echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    docker network ls | grep "ntw_";
-    echo; sleep 2;
-
-# Launch stacks
-    message_is="Launch stacks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    docker stack deploy toolconsul -c stack-consul.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolproxy -c stack-proxy.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolwebapp -c stack-webapp.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolgui -c stack-portainer.yml;
-    echo; sleep 2;
-
-    # constraint the db
-    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
-    docker node update --label-add swarmpit.db-data=true $NODE_ID;
-    echo;
+    docker pull devmtl/figlet:1.0
     
-    docker stack deploy toolswarmpit -c stack-swarmpit.yml;
-    echo; sleep 2;
+    clear;
+    message_is="docker-stack-this"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
+
+    clear;
+    message_is="If existing, remove stacks: "
+    docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo;
+    ./rundown.sh
+
+    clear;
+    message_is="If not existing, create networks"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
+    this_net="ntw_front"
+        if [ ! "$(docker network ls --filter name=${this_net} -q)" ]; then
+            docker network create --driver overlay --attachable --opt encrypted "${this_net}"
+            echo "Network: ${this_net} was created."
+        else
+            echo "Network: ${this_net} already exist."
+        fi
+
+    this_net="ntw_proxy"
+        if [ ! "$(docker network ls --filter name=${this_net} -q)" ]; then
+            docker network create --driver overlay --attachable --opt encrypted "${this_net}"
+            echo "Network: ${this_net} was created."
+        else
+            echo "Network: ${this_net} already exist."
+        fi
+    echo;
+
+    message_is="Show networks"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
+    docker network ls | grep "ntw_" && echo && sleep 2;
+
+    clear;
+    message_is="Launch stacks"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
+
+    # traefik
+    chmod 600 ./configs/acme.json
+    
+    docker stack deploy stkproxy -c stack-proxy.yml && echo; sleep 1;
+
+    # webapps
+    docker stack deploy stkwebapp -c stack-webapp.yml && echo; sleep 1;
+
+    # gui
+    docker stack deploy stkgui -c stack-portainer.yml && echo; sleep 1;
+
+    # swarmpit / constraint the db
+    #export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+    #docker node update --label-add swarmpit.db-data=true $NODE_ID && echo;
+    #docker stack deploy toolswarmpit -c stack-swarmpit.yml && echo; sleep 1;
 
     # wordpress
-    # _MYSQL_DIR="$(pwd)/html/db/mysql"
-    # mkdir -p "$_MYSQL_DIR"
-    # docker stack deploy toolwp -c toolwp.yml
-    # echo; sleep 1;
+        # the system is path is at ./docker-stack5
+    #_MYSQL_DIR="$(pwd)/html/db/mysql"
+    #mkdir -p "$_MYSQL_DIR"
 
-# Show our services
-    message_is="Show services"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
+    #docker stack deploy toolwp -c toolwp.yml
+    #echo; sleep 1;
 
-  # Follow deployment in real time
+    clear;
+    message_is="Check services"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
     MIN="1"
     MAX="8"
     for ACTION in $(seq ${MIN} ${MAX}); do
-    echo
-    echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
-    docker service ls && echo && sleep 2;
+      echo && echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
+      docker service ls && echo && sleep 2;
     done
-    echo; echo ; sleep 2
-
-# Show our stacks
-    message_is="Show stacks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    docker stack ls; echo; sleep 2;
-
-# Your turn
-    message_is="Try this"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    echo "docker service ls";
-    echo "docker service logs -f toolproxy_traefik";
-    
-    echo && echo;
-    echo "You like this?";
-    echo "Like and fork this project at https://github.com/pascalandy/docker-stack-this";
     echo;
+
+    docker stack ls && echo;
+
+    message_is="Your turn"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
+
+    # See Traefik logs
+    echo "If you enjoy this project, Give it a Star or Fork it :)";
+    echo "  https://github.com/pascalandy/docker-stack-this/" && echo;
+
+    # See Traefik logs
+    echo "Command ideas: ";
+    echo "  docker service logs -f stkproxy_traefik";
+    echo "  docker service ls";
+    echo "  docker stack ls"; echo;
 }
 
 # --- Entrypoint
 main "$@"
 
-# https://github.com/pascalandy/docker-stack-this
+# by Pascal Andy | https://pascalandy.com/
+# https://github.com/pascalandy/bash-script-template
