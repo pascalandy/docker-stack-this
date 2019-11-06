@@ -114,7 +114,6 @@ services:
       labels:
         - "traefik.backend=traefik"
         - "traefik.enable=true"
-        - "traefik.port=8080"
 
 # https://github.com/pascalandy/docker-stack-this
 # inspired by https://github.com/BretFisher/dogvscat

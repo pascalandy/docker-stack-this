@@ -4,7 +4,7 @@ This docker stack will run many services (Traefik (with auth), Socat, Portainer,
 
 ## Start here
 1. Go to http://labs.play-with-docker.com/ 
-2. Create *one instance*
+2. Create **one** instance
 3. Copy-paste:
 
 #### Stable setup (recommended)
