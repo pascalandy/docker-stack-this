@@ -49,28 +49,28 @@ services:
           cpus: '0.10'
           memory: 4M
 
-  # running on each node, and using direct host ports
   # this traefik reverse proxy has a bunch of features:
+  # - reverse proxy all 80/443 ingress traffic on a swarm
   # - dynamic config via each app's swarm service labels
   # - HA multi-container design for traefik
   # - runs traefik on host NIC directly, to improve performance
   #    and capture client IP's
   traefik:
     <<: *default-opts
-    image: traefik:1.7.19
+    image: traefik:1.7.13
     ports:
     - target: 80
       protocol: tcp
       published: 80
-      mode: host
+      mode: ingress
     - target: 443
       protocol: tcp
       published: 443
-      mode: host
+      mode: ingress
     - target: 8080
       protocol: tcp
       published: 8080
-      mode: host
+      mode: ingress
     networks:
       - ntw_front
       - ntw_proxy
@@ -90,10 +90,9 @@ services:
       --debug=true
       --logLevel=WARN
       --accessLog
-      #--web.metrics.prometheus
-      #--web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
-      --ping
-      #--web.address=:8080
+      --web.metrics.prometheus
+      --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
+      --web.address=:8080
     deploy:
       mode: replicated
       replicas: 1
@@ -114,7 +113,7 @@ services:
       labels:
         - "traefik.backend=traefik"
         - "traefik.enable=true"
-        #- "traefik.port=8080"
+        - "traefik.port=8080"
 
 # https://github.com/pascalandy/docker-stack-this
 # inspired by https://github.com/BretFisher/dogvscat
