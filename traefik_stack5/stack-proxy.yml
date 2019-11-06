@@ -57,7 +57,7 @@ services:
   #    and capture client IP's
   traefik:
     <<: *default-opts
-    image: traefik:1.7.13
+    image: traefik:1.7.19
     ports:
     - target: 80
       protocol: tcp
@@ -93,7 +93,6 @@ services:
       --web.metrics.prometheus
       --web.metrics.prometheus.buckets="0.1,0.3,1.2,5.0"
       --web.address=:8080
-      --ping
     deploy:
       mode: replicated
       replicas: 1

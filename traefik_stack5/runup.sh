@@ -121,8 +121,10 @@ function goto_myscript() {
     message_is="Launch stacks"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
+
     # traefik
     chmod 600 ./configs/acme.json
+    
     docker stack deploy stkproxy -c stack-proxy.yml && echo; sleep 1;
 
     # webapps

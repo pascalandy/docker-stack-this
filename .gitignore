@@ -1,14 +1,20 @@
-# .gitignore
+# Files
 ############
+.bashcheck.sh
+utility.sh
+test
+.cache
+coverage
+dist
 node_modules
+npm-debug
 .env
+var-config.sh
 
 # Directories
 ############
-
-# Files
-############
-var-config.sh
+/tmp
+/temp
 
 # Compiled source #
 ###################
@@ -98,3 +104,4 @@ TheVolumeSettingsFolder
 .FBCIndex
 .FBCSemaphoreFile
 .FBCLockFolder
+
