@@ -28,7 +28,7 @@ cd ${ENV_MONOREPO}                                            && \
 #### Edge setup (NOT recommended)
 
 ```
-ENV_BRANCH="dev"
+ENV_BRANCH="edge"
 ENV_MONOREPO="traefik_stack5"
 
 # On play-with-docker, install common apps
