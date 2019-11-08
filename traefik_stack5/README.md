@@ -1,11 +1,13 @@
-## Introduction
+## What is this?
 
-This docker stack will run many services (Traefik (with auth), Socat, Portainer, Nginx, Caddy, Whoami) in a straightforward copy-paste command. Please also refer the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
+Using a **one-liner**, this docker stack will run many services (Traefik (with auth), Socat, Portainer, Nginx, Caddy, Whoami) in a straightforward copy-paste command.
+
+You may also refer the [README](https://github.com/pascalandy/docker-stack-this/blob/master/README.md) at the root of this repo.
 
 ## Start here
 1. Go to http://labs.play-with-docker.com/ 
 2. Create **one** instance
-3. Copy-paste:
+3. Copy-paste this one-liner:
 
 #### Stable setup (recommended)
 
@@ -142,9 +144,7 @@ Insert this string in your `.configs/traefik.toml`.
 
 #### Traefik version 
 
-In `toolproxy.yml` look for something like `traefik:1.7.12`.
-
-In some mono-repo, I **my own traefik image**. Feel free to use the official images. It will not break anything.
+In `toolproxy.yml` look for something like `traefik:1.7.19`.
 
 #### Other stuff to know?
 
@@ -167,7 +167,6 @@ In the active path, just execute those bash-scripts:
 
 - `./runup.sh`
 - `./rundown.sh`
-- `./runctop.sh`
 
-**Bonus!** `./runctop.sh` is not a stack but a simple docker run to see the memory consumed by each container.
+**Bonus!** `./runctop.sh` is not a stack but a simple `docker run` to see the memory consumed by each container.
 
