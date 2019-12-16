@@ -19,6 +19,14 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+## 1.7.20
+### ⚡️ Updates
+- a171eac Updated to version: 1.7.20
+- 55e47c4 update traefik:1.7.20
+- 1a12f35 copy updates
+- 36cba80 reset traefik_stack6 directory
+- b3d7e3c Merge branch 'master' into edge
+
 ## 1.7.19
 ### ⚡️ Updates
 ee52e50 Add dockerignore
@@ -51,6 +59,14 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 1.7.20
+### ⚡️ Updates
+a171eac Updated to version: 1.7.20
+55e47c4 update traefik:1.7.20
+1a12f35 copy updates
+36cba80 reset traefik_stack6 directory
+b3d7e3c Merge branch 'master' into edge
 
 ## 1.7.19
 ### ⚡️ Updates
