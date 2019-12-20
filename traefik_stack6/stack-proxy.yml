@@ -1,0 +1,54 @@
+version: '3.7'
+
+x-default-opts: 
+  &default-opts
+  logging:
+    options:
+      max-size: "10m" 
+
+networks:
+  ntw_front:
+    external: true
+  ntw_proxy:
+    external: true
+
+services:
+
+  traefik:
+    <<: *default-opts
+    image: traefik:v2.1
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080" # Exposed for backend access via LAN
+    networks:
+      - ntw_front
+      - ntw_proxy
+    volumes:
+      - ./configs/traefik.yml:/traefik.yml
+      - ./configs/dynamic_conf.yml:/dynamic_conf.yml
+      - ./configs/acme.json:/acme.json
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        delay: 2s
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          cpus: '0.33'
+          memory: 96M
+        reservations:
+          cpus: '0.05'
+          memory: 48M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.backend=dashboard"
+        #- "traefik.frontend.rule=Host:dashboard.traefik.moritzvd.com"
+        - "traefik.port=8080"

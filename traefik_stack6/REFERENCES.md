@@ -1,1 +1,0 @@
-- https://github.com/pascalandy/upgrade-to-traefik2
