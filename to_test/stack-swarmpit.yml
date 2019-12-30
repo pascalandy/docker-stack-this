@@ -1,0 +1,90 @@
+version: '3.7'
+
+# https://lunar.computer/posts/docker-swarm-digitalocean/
+
+version: '3.3'
+
+services:
+  app:
+    image: swarmpit/swarmpit:1.7
+    environment:
+      - SWARMPIT_DB=http://db:5984
+    volumes:
+      - /run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy
+      - net
+    deploy:
+      labels:
+        # traefik v1
+        - traefik.enable=true
+        - traefik.backend=swarmpit
+        - traefik.backend.loadbalancer.swarm=true
+        - traefik.docker.network=proxy
+        - traefik.frontend.rule=Host:swarmpit.example.com
+        - traefik.port=8080
+        - traefik.frontend.headers.SSLRedirect=true
+        - traefik.frontend.headers.STSSeconds=315360000
+        - traefik.frontend.headers.browserXSSFilter=true
+        - traefik.frontend.headers.contentTypeNosniff=true
+        - traefik.frontend.headers.forceSTSHeader=true
+        - traefik.frontend.headers.SSLHost=swarmpit.example.com
+        - traefik.frontend.headers.STSIncludeSubdomains=true
+        - traefik.frontend.headers.STSPreload=true
+        - traefik.frontend.headers.frameDeny=true
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+      placement:
+        constraints:
+          - node.role == manager
+
+  db:
+    image: couchdb:2.3.0
+    volumes:
+      - dbdata:/opt/couchdb/data
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+        reservations:
+          cpus: '0.15'
+          memory: 256M
+
+  agent:
+    image: swarmpit/agent:latest
+    environment:
+      - DOCKER_API_VERSION=1.35
+    volumes:
+      - /run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - net
+    deploy:
+      mode: global
+      labels:
+        swarmpit.agent: 'true'
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 64M
+        reservations:
+          cpus: '0.05'
+          memory: 32M
+
+networks:
+  net:
+    driver: overlay
+    attachable: true
+  proxy:
+    external: true
+
+volumes:
+  dbdata:
+    driver: local

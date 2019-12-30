@@ -60,7 +60,6 @@ function parse_params() {
 # OUTS: None
 function main() {
     # load config and variables for this project
-    source "$(dirname "${BASH_SOURCE[0]}")/config_and_vars.sh"
     source "$(dirname "${BASH_SOURCE[0]}")/shellcheck.sh"
 
     trap script_trap_err ERR
@@ -80,138 +79,103 @@ function main() {
 # --- edit YOUR SCRIPT HERE
 function goto_myscript() {
 
-# play-with-docker is ready
-    message_is="Ready to have fun?"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-# Set vars
-    #./config_and_vars.sh
-
-# Stop
-    message_is="Remove existing stacks (if any)"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    ./rundown.sh
-    sleep 2;
-
-
-# Create networks
-    message_is="Create networks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    create_net="ntw_front"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_proxy"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_consul"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    create_net="ntw_portainer"
-        if [ ! "$(docker network ls --filter name=${create_net} -q)" ]; then
-            docker network create --driver overlay --attachable --opt encrypted ${create_net}
-            echo "Network: ${create_net} was created."
-        else
-            echo "Network: ${create_net} already exist."
-        fi && echo;
-
-    sleep 2;
-
-# Show network
-    message_is="Show available networks"
-    echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    docker network ls | grep "ntw_";
-    echo; sleep 2;
-
-# Launch stacks
-    message_is="Launch stacks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
-
-    docker stack deploy toolconsul -c stack-consul.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolproxy -c stack-proxy.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolwebapp -c stack-webapp.yml;
-    echo; sleep 2;
-
-    docker stack deploy toolgui -c stack-portainer.yml;
-    echo; sleep 2;
-
-    # constraint the db
-    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
-    docker node update --label-add swarmpit.db-data=true $NODE_ID;
-    echo;
+    docker pull devmtl/figlet:1.0
     
-    docker stack deploy toolswarmpit -c stack-swarmpit.yml;
-    echo; sleep 2;
+    clear;
+    message_is="docker"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && \
+    message_is="stack-this"
+    docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo && \
 
-    # wordpress
-    # _MYSQL_DIR="$(pwd)/html/db/mysql"
-    # mkdir -p "$_MYSQL_DIR"
-    # docker stack deploy toolwp -c toolwp.yml
-    # echo; sleep 1;
+    # If existing, remove stacks: "
+    ./rundown.sh && \
 
-# Show our services
-    message_is="Show services"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
+    # If not existing, create networks"
+    # create an overlay networks on docker swarm
+    arr=( "ntw_front" "ntw_proxy" )
 
-  # Follow deployment in real time
-    MIN="1"
-    MAX="8"
-    for ACTION in $(seq ${MIN} ${MAX}); do
-    echo
-    echo "docker service ls | Check ${ACTION}" of ${MAX}; echo;
-    docker service ls && echo && sleep 2;
+    for i in "${arr[@]}"; do
+      if [ ! "$(docker network ls --filter name=${i} -q)" ]; then
+      docker network create --driver overlay --attachable --opt encrypted "${i}"
+      echo "Network: ${i} was created."
+      else
+          echo "Network: ${i} already exist."
+      fi
     done
-    echo; echo ; sleep 2
 
-# Show our stacks
-    message_is="Show stacks"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
+    message_is="Show networks" && docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
+    docker network ls | grep "ntw_" && echo && sleep 2 && \
+    clear;
 
-    docker stack ls; echo; sleep 2;
+    message_is="Launch stacks" && docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
 
-# Your turn
-    message_is="Try this"
-    clear && echo && echo;
-    docker run --rm devmtl/figlet:1.0 ${message_is}; sleep 2; echo;
+    # Set ACME file
+    #mkdir -pv           ~/./configs                   && \
+    #touch               ~/./configs/acme.json         && \
+    #cp dynamic_conf.yml ~/./configs/dynamic_conf.yml  && \
+    #cp traefik.yml      ~/./configs/traefik.yml       && \
+    #chmod 600 ~/./configs/acme.json         && \
+    #chmod 600 ~/./configs/dynamic_conf.yml  && \
+    #chmod 600 ~/./configs/traefik.yml       && \
 
-    echo "docker service ls";
-    echo "docker service logs -f toolproxy_traefik";
-    
-    echo && echo;
-    echo "You like this?";
-    echo "Like and fork this project at https://github.com/pascalandy/docker-stack-this";
-    echo;
+    # deploy apps
+    docker stack deploy stkproxy -c stk_traefik.yml && \
+    docker stack deploy stkwebapp -c stk_web.yml && \
+    docker stack deploy stkgui -c stk_portainer.yml && echo && \
+
+    # deploy swarmpit / constraint the db
+    #export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+    #docker node update --label-add swarmpit.db-data=true $NODE_ID && echo;
+    #docker stack deploy toolswarmpit -c stack-swarmpit.yml && echo; sleep 1;
+
+    # deploy wordpress
+        # the system is path is at ./docker-stack5
+    #_MYSQL_DIR="$(pwd)/html/db/mysql"
+    #mkdir -p "$_MYSQL_DIR"
+
+    #docker stack deploy toolwp -c toolwp.yml
+    #echo; sleep 1;
+
+    FLAG_WAIT="true"
+    while [[ ${FLAG_WAIT} == "true" ]]; do
+
+      # check if apps are running on K8s (or are in progress)
+      IN_PROGRESS=$(docker service ls | awk '{print $4}' | grep "0/" | wc -l)
+
+      if [[ ${IN_PROGRESS} -ne 0 ]]; then
+        docker service ls ;
+        echo "===> Deployment in progress..." && echo && \
+        sleep 2 ;
+      elif [[ ${IN_PROGRESS} -eq 0 ]]; then
+        echo "App deployed!" && echo && \
+        FLAG_WAIT="false" && sleep 2 && \
+        docker service ls ;
+      else
+        echo "Unexpected error (err45)" ;
+      fi
+    done && \
+    echo && \
+
+
+    message_is="Check services" && docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
+    docker service ls && echo && \
+
+    message_is="Your turn" &&docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
+
+    # See Traefik logs
+    echo "If you enjoy this project, Give it a Star or Fork it :)";
+    echo "  https://github.com/pascalandy/docker-stack-this/" && echo && \
+
+    # See Traefik logs
+    echo "Command ideas: " && \
+    echo "  docker service logs -f stkproxy_traefik" && \
+    echo "  docker service ls" && \
+    echo "  docker ps" && \
+    echo "  docker stack ls" && echo;
 }
 
 # --- Entrypoint
 main "$@"
 
-# https://github.com/pascalandy/docker-stack-this
+# by Pascal Andy | https://pascalandy.com/
+# https://github.com/pascalandy/bash-script-template

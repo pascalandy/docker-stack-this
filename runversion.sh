@@ -10,16 +10,19 @@ set -o pipefail         # Use last non-zero exit code in a pipeline
 
 
 ##################################################
-tag_version=$1 && \
+# run the script an pass an ARG like '2.3.0'
+tag_version=$1
+
+# tag and commit our latest commit
 git tag ${tag_version} && \
 git push --tags;
 
-# This is specific to my local set up
+# load secrets
 source .env .
-#GITHUB_TOKEN="3122133122133211233211233211233211322313123"
-#local_repo="$Users/.../docker-stack-this"
+
 user="pascalandy"
 git_repo="docker-stack-this"
+GOPATH=$(go env GOPATH)
 
 # Requires https://github.com/aktau/github-release
 $GOPATH/bin/github-release release \
@@ -30,5 +33,5 @@ $GOPATH/bin/github-release release \
   --description "Refer to [CHANGELOG.md](https://github.com/pascalandy/docker-stack-this/blob/master/CHANGELOG.md) for details about this release."
 
 # Find the latest tag
-#tag_version="$(git tag --sort=-creatordate | head -n1)" && \
-#echo ${tag_version} && \
+# We could add this logic: minor or major. Then the system will manage the SEMVERSION automatically
+# tag_version="$(git tag --sort=-creatordate | head -n1)" && echo ${tag_version}

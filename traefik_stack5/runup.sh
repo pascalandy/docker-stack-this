@@ -121,8 +121,10 @@ function goto_myscript() {
     message_is="Launch stacks"
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
+
     # traefik
     chmod 600 ./configs/acme.json
+    
     docker stack deploy stkproxy -c stack-proxy.yml && echo; sleep 1;
 
     # webapps
@@ -162,15 +164,14 @@ function goto_myscript() {
     docker run --rm devmtl/figlet:1.0 ${message_is} && echo;
 
     # See Traefik logs
-    echo "If you enjoy this project, Give it a Star or Fork :)";
+    echo "If you enjoy this project, Give it a Star or Fork it :)";
     echo "  https://github.com/pascalandy/docker-stack-this/" && echo;
 
     # See Traefik logs
-    echo "Ideas: ";
+    echo "Command ideas: ";
+    echo "  docker service logs -f stkproxy_traefik";
     echo "  docker service ls";
-    echo "  docker stack ls"; 
-    echo "  docker service logs -f toolproxy_traefik" && echo;
-
+    echo "  docker stack ls"; echo;
 }
 
 # --- Entrypoint

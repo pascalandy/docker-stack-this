@@ -18,12 +18,82 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 ---
 
 # Releases
+
+## 1.7.20
+### ⚡️ Updates
+- a171eac Updated to version: 1.7.20
+- 55e47c4 update traefik:1.7.20
+- 1a12f35 copy updates
+- 36cba80 reset traefik_stack6 directory
+- b3d7e3c Merge branch 'master' into edge
+
+## 1.7.19
+### ⚡️ Updates
+ee52e50 Add dockerignore
+e71e452 update to 1.7.19
+703087c update to 1.7.18
+d1bdd91 update to 1.7.17
+31dc46a update to 1.7.16
+2100493 update to 1.7.15
+d813a66 update to 1.7.14
+7f545f8 rollback from 1.7.13
+b2775e3 Testing 1.7.19 /d
+c3d4979 Testing 1.7.19 /c
+334ed02 Testing 1.7.19 /b
+09f154b using branch edge instead of dev when developping
+37d1783 better template for gitognore
+74fedae update to traefik:1.7.19
+c976e59 simple linting
+dc0aa7b rollback to 1.7.12
+ba856bc add ping
+970af4a Better UX
+be60c96 Fix stack’s name
+d4643fd update to traefik 1.7.14
+7af3a62 removed / its part of traefik_stack5
+25306fb remove ToDo as it is managed in github issues
+d78dcea cleaner script
+b21424e Init / env-template
 ## 2.3.0
 ### ⚡️ Updates
 - 6c559e20 update to traefik:1.7.13
 - various scripts updates
 
 # Releases
+
+## 1.7.20
+### ⚡️ Updates
+a171eac Updated to version: 1.7.20
+55e47c4 update traefik:1.7.20
+1a12f35 copy updates
+36cba80 reset traefik_stack6 directory
+b3d7e3c Merge branch 'master' into edge
+
+## 1.7.19
+### ⚡️ Updates
+ee52e50 Add dockerignore
+e71e452 update to 1.7.19
+703087c update to 1.7.18
+d1bdd91 update to 1.7.17
+31dc46a update to 1.7.16
+2100493 update to 1.7.15
+d813a66 update to 1.7.14
+7f545f8 rollback from 1.7.13
+b2775e3 Testing 1.7.19 /d
+c3d4979 Testing 1.7.19 /c
+334ed02 Testing 1.7.19 /b
+09f154b using branch edge instead of dev when developping
+37d1783 better template for gitognore
+74fedae update to traefik:1.7.19
+c976e59 simple linting
+dc0aa7b rollback to 1.7.12
+ba856bc add ping
+970af4a Better UX
+be60c96 Fix stack’s name
+d4643fd update to traefik 1.7.14
+7af3a62 removed / its part of traefik_stack5
+25306fb remove ToDo as it is managed in github issues
+d78dcea cleaner script
+b21424e Init / env-template
 ## 2.2.3
 ### 🐛 Fix bug
 - 2a253c82 moved proxysocket at the root of the projet
@@ -69,13 +139,11 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 - Better gitignore
 - comment about a compose file beeing tested
 
-
 ## 2.00
 ### ⚡️ Updates
 - bump to traefik 1.7.8
 
 p.s. I bump to a major version because in my overall DevOps set up it makes sense. But there is nothing major regarding this particular repo.
-
 
 ## 1.56
 ### ⚡️ Updates
@@ -146,11 +214,9 @@ p.s. I bump to a major version because in my overall DevOps set up it makes sens
 - 2c5bd542 bump to portainer:1.17.1
 - 19a757d0 bump to traefik:1.6.2-alpine
 
-
 ## 1.43
 ### ⚡️ Updates
 could not work under branch 1.43 weird …
-
 
 ## 1.42
 ### ⚡️ Updates
@@ -186,12 +252,10 @@ ac3b2856 minor updates
 - Testing wordpress via traefik_stack6-wip
 - update to portainer 1.16.5
 
-
 ## bump to 1.40
 ### ⚡️ Updates
 - update to nginx 1.13.10-alpine
 - update to caddy 0.10.11
-
 
 ## bump to 1.38
 ### ⚡️ Updates
