@@ -1,0 +1,97 @@
+version: '3.7'
+
+x-default-opts:
+  &default-opts
+  logging:
+    options:
+      max-size: "10m"
+
+services:
+
+  traefik:
+    <<: *default-opts
+    image: traefik:v2.0.6
+    # Enabling the API (--api=true) in production is not recommended, because it will expose
+    # all configuration elements, including sensitive data.
+    command: >
+      --providers.docker.endpoint=tcp://proxysocket:2375
+      --providers.docker.swarmMode=true
+      --providers.docker.exposedbydefault=false
+      --providers.docker.swarmModeRefreshSeconds=5
+      --providers.docker.network=ntw_front
+      --entrypoints.web.address=:80
+      --api.dashboard=true
+      --api.insecure=true
+    #  --api=true
+    #  --api.debug=true
+    #  --accesslog=true
+    #  --tracing.instana.logLevel=info 
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - ntw_front
+      - ntw_proxy
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        max_attempts: 50
+      update_config:
+        delay: 2s
+      placement:
+        constraints: [node.role==manager]
+      resources:
+        limits:
+          cpus: '0.33'
+          memory: 96M
+        reservations:
+          cpus: '0.05'
+          memory: 48M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.api.middlewares=auth"
+           #admin / asdasd
+        - "traefik.http.middlewares.auth.basicauth.users=admin:$$2y$$05$$p9itekIkYY57M8GI11tQYeDfEPpn5ukfHOm33F8l6EuGnBPGzm8bq"
+           #Dummy service for Swarm port detection. The port can be any valid integer value.
+        - "traefik.http.services.dummy-svc.loadbalancer.server.port=57777"
+        #- "traefik.http.routers.api.rule=PathPrefix(`/traefik`)"
+        #- "traefik.http.routers.api.service=api@internal"
+
+  # this custom haproxy allows us to move traefik to worker nodes
+  # while this container listens on managers and only allows
+  # traefik to connect, read-only, to limited docker api calls
+  # https://github.com/Tecnativa/docker-socket-proxy
+  proxysocket:
+    <<: *default-opts
+    image: devmtl/proxysocket:1.9.10
+    networks:
+      - ntw_proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NETWORKS: 1
+      SERVICES: 1
+      TASKS: 1
+      # CONTAINERS: 1
+      # SWARM: 1
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.10'
+          memory: 4M
+
+networks:
+  ntw_front:
+    external: true
+  ntw_proxy:
+    external: true

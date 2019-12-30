@@ -1,0 +1,27 @@
+body {
+	overflow: auto !important;
+}
+
+body:after {
+	display: none !important;
+}
+
+#main > .inner {
+	opacity: 1.0 !important;
+}
+
+#main {
+	opacity: 1.0 !important;
+	-moz-transform: none !important;
+	-webkit-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+	-moz-transition: none !important;
+	-webkit-transition: none !important;
+	-ms-transition: none !important;
+	transition: none !important;
+	-moz-filter: none !important;
+	-webkit-filter: none !important;
+	-ms-filter: none !important;
+	filter: none !important;
+}

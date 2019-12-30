@@ -1,0 +1,86 @@
+version: '3.7'
+
+x-default-opts: 
+  &default-opts
+  logging:
+    options:
+      max-size: "10m" 
+
+networks:
+  ntw_front:
+    external: true
+  agent_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  portainer_data:
+
+services:
+
+  portainer:
+    <<: *default-opts
+    image: portainer/portainer
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    #ports:
+    #  - "9000:9000" #managed by Traefik
+    volumes:
+      - portainer_data:/data
+    networks:
+      - ntw_front
+      - agent_network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 96M
+        reservations:
+          memory: 8M
+      labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=PathPrefix(`/portainer`)"
+      - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      # not working at this point :(
+      # middleware A
+      - "traefik.http.routers.portainer.middlewares=portainer-replace"
+      - "traefik.http.middlewares.portainer-replace.redirectregex.regex=^(.*)/portainer$$"
+      - "traefik.http.middlewares.portainer-replace.redirectregex.replacement=$$1/portainer/"
+      # middleware B
+      - "traefik.http.routers.portainer.middlewares=portainer-replacepathregex"
+      - "traefik.http.middlewares.portainer-replacepathregex.replacepathregex.regex=^/portainer/(.*) /$$1"
+
+      ## Working configs from traefik:v1.7
+      ## Bug fix / https://github.com/containous/traefik/issues/563#issuecomment-421360934
+      #- "traefik.frontend.redirect.regex=^(.*)/portainer$$"
+      #- "traefik.frontend.redirect.replacement=$$1/portainer/"
+      #- "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"
+
+  agent:
+    <<: *default-opts
+    image: portainer/agent
+    environment:
+      AGENT_CLUSTER_ADDR: tasks.agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - agent_network
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 48M
+        reservations:
+          memory: 4M
+
+# https://github.com/pascalandy/docker-stack-this
