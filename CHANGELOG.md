@@ -19,6 +19,10 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+## 3.0.0
+### 🚀 Added (new feat.)
+- acefbd7d Update to Traefik V2 / usiung DIR traefik_stack6 / squashed
+
 ## 2.3.2
 ### ⚡️ Updates
 - a171eac Updated to version: 1.7.20
