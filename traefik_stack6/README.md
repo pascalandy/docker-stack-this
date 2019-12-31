@@ -1,3 +1,11 @@
+## WORK IN PROGRESS
+
+2019-12-31
+
+This README is from https://github.com/pascalandy/docker-stack-this/tree/master/traefik_stack5
+
+---
+
 ## What is this?
 
 Using a **one-liner**, this docker stack will run many services (Traefik (with auth), Socat, Portainer, Nginx, Caddy, Whoami) in a straightforward copy-paste command.
@@ -13,7 +21,7 @@ You may also refer the [README](https://github.com/pascalandy/docker-stack-this/
 
 ```
 ENV_BRANCH="master"
-ENV_MONOREPO="traefik_stack5"
+ENV_MONOREPO="traefik_stack6"
 
 # On play-with-docker, install common apps
 apk update && apk upgrade && apk add --no-cache               \
