@@ -1,5 +1,6 @@
 version: '3.7'
 
+# logs config
 x-default-opts:
   &default-opts
   logging:
@@ -58,37 +59,6 @@ services:
         - "traefik.http.services.dummy-svc.loadbalancer.server.port=57777"
         #- "traefik.http.routers.api.rule=PathPrefix(`/traefik`)"
         #- "traefik.http.routers.api.service=api@internal"
-
-  # this custom haproxy allows us to move traefik to worker nodes
-  # while this container listens on managers and only allows
-  # traefik to connect, read-only, to limited docker api calls
-  # https://github.com/Tecnativa/docker-socket-proxy
-  proxysocket:
-    <<: *default-opts
-    image: devmtl/proxysocket:1.9.10
-    networks:
-      - ntw_proxy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      NETWORKS: 1
-      SERVICES: 1
-      TASKS: 1
-      # CONTAINERS: 1
-      # SWARM: 1
-    deploy:
-      mode: global
-      placement:
-        constraints: [node.role == manager]
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 8M
-        reservations:
-          cpus: '0.10'
-          memory: 4M
 
 networks:
   ntw_front:

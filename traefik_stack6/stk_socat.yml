@@ -1,0 +1,44 @@
+version: '3.7'
+
+x-default-opts:
+  &default-opts
+  logging:
+    options:
+      max-size: "10m"
+
+services:
+
+  # this custom haproxy allows us to move traefik to worker nodes
+  # while this container listens on managers and only allows
+  # traefik to connect, read-only, to limited docker api calls
+  # https://github.com/Tecnativa/docker-socket-proxy
+  proxysocket:
+    <<: *default-opts
+    image: devmtl/proxysocket:1.9.10
+    networks:
+      - ntw_proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NETWORKS: 1
+      SERVICES: 1
+      TASKS: 1
+      # CONTAINERS: 1
+      # SWARM: 1
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.10'
+          memory: 4M
+
+networks:
+  ntw_proxy:
+    external: true
