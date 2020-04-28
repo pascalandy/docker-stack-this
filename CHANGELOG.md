@@ -19,7 +19,7 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
-## 3.1.0 (2020-04-27)
+## 3.1.1 (2020-04-27)
 ### ⚡️ Updates
 - [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
 

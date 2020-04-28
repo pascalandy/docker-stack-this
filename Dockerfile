@@ -4,8 +4,8 @@
 ###################################
 
 ARG APP_NAME="docker-stack-this"
-ARG VERSION="3.1.0"
-ARG RELEASE="3.1.0"
+ARG VERSION="3.1.1"
+ARG RELEASE="3.1.1"
 ARG GITHUB_USER="pascalandy"
 
 ###################################
