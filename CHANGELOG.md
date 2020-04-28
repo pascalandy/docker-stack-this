@@ -19,12 +19,12 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
-- The directory `traefik_stack6` is not stable (Traefik V2). Tests are in progress.
-
 ## 3.1.0 (2020-04-27)
 ### ⚡️ Updates
 - [02eb5f0](https://github.com/pascalandy/docker-stack-this/commit/02eb5f0) 3.1.0
-- [c338fbe](https://github.com/pascalandy/docker-stack-this/commit/c338fbe) Merge branch 'edge'
+- [c338fbe](https://github.com/pascalandy/docker-stack-this/commit/c338fbe) Update to traffic 1.7.24 / Merge branch 'edge'
+
+- The directory `traefik_stack6` is not stable (Traefik V2). Tests are in progress.
 
 ## 3.0.0
 ### 🚀 Added (new feat.)
