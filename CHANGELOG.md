@@ -21,10 +21,11 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 ## 3.1.1 (2020-04-27)
 ### ⚡️ Updates
-- [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
+- [4f4ba93](https://github.com/pascalandy/docker-stack-this/commit/4f4ba93) FIX Changelog
 
-### 🔍 Compare
-- ... with previous release: [ <> 3.1.0](https://github.com/pascalandy/docker-stack-this/compare/...3.1.0)
+## 3.1.1 (2020-04-27)
+### ⚡️ Updates
+- [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
 
 ## 3.1.0 (2020-04-27)
 ### ⚡️ Updates
@@ -77,6 +78,15 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 3.1.1 (2020-04-27)
+### ⚡️ Updates
+- [4f4ba93](https://github.com/pascalandy/docker-stack-this/commit/4f4ba93) FIX Changelog
+- [453ffb8](https://github.com/pascalandy/docker-stack-this/commit/453ffb8) Update changelog
+- [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
+
+### 🔍 Compare
+- ... with previous release: [ <> 3.1.1](https://github.com/pascalandy/docker-stack-this/compare/...3.1.1)
 
 ## 3.1.0 (2020-04-27)
 ### ⚡️ Updates
