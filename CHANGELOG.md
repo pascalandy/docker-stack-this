@@ -21,6 +21,13 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 ## 3.1.0 (2020-04-27)
 ### ⚡️ Updates
+- [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
+
+### 🔍 Compare
+- ... with previous release: [ <> 3.1.0](https://github.com/pascalandy/docker-stack-this/compare/...3.1.0)
+
+## 3.1.0 (2020-04-27)
+### ⚡️ Updates
 - [02eb5f0](https://github.com/pascalandy/docker-stack-this/commit/02eb5f0) 3.1.0
 - [c338fbe](https://github.com/pascalandy/docker-stack-this/commit/c338fbe) Update to traffic 1.7.24 / Merge branch 'edge'
 
@@ -70,6 +77,13 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 3.1.0 (2020-04-27)
+### ⚡️ Updates
+- [b3f4aed](https://github.com/pascalandy/docker-stack-this/commit/b3f4aed) 3.1.1
+
+### 🔍 Compare
+- ... with previous release: [ <> 3.1.0](https://github.com/pascalandy/docker-stack-this/compare/...3.1.0)
 
 ## 3.1.0 (2020-04-27)
 ### ⚡️ Updates
