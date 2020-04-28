@@ -19,14 +19,20 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+- The directory `traefik_stack6` is not stable (Traefik V2). Tests are in progress.
+
+## 3.1.0 (2020-04-27)
+### ⚡️ Updates
+- [02eb5f0](https://github.com/pascalandy/docker-stack-this/commit/02eb5f0) 3.1.0
+- [c338fbe](https://github.com/pascalandy/docker-stack-this/commit/c338fbe) Merge branch 'edge'
+
 ## 3.0.0
 ### 🚀 Added (new feat.)
-- acefbd7d Update to Traefik V2 / usiung DIR traefik_stack6 / squashed
+- acefbd7d Update to Traefik V2 / using DIR traefik_stack6 / squashed
 
 ## 2.3.2
 ### ⚡️ Updates
 - a171eac Updated to version: 1.7.20
-- 55e47c4 update traefik:1.7.20
 - 1a12f35 copy updates
 - 36cba80 reset traefik_stack6 directory
 - b3d7e3c Merge branch 'master' into edge
@@ -64,6 +70,16 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 3.1.0 (2020-04-27)
+### ⚡️ Updates
+- [02eb5f0](https://github.com/pascalandy/docker-stack-this/commit/02eb5f0) 3.1.0
+- [c338fbe](https://github.com/pascalandy/docker-stack-this/commit/c338fbe) Merge branch 'edge'
+- [a6d7cea](https://github.com/pascalandy/docker-stack-this/commit/a6d7cea) README wip
+- [608dbfd](https://github.com/pascalandy/docker-stack-this/commit/608dbfd) Merge branch 'master' into edge
+
+### 🔍 Compare
+- ... with previous release: [ <> 3.1.0](https://github.com/pascalandy/docker-stack-this/compare/...3.1.0)
 
 ## 1.7.20
 ### ⚡️ Updates
