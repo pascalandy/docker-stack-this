@@ -1,0 +1,303 @@
+version: '3.7'
+
+x-default-opts: 
+  &default-opts
+  logging:
+    options:
+      max-size: "10m"
+
+networks:
+  ntw_front:
+    external: true
+
+services:
+
+  firepresslink:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/firepresslink:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:firepress.link
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  firepresslink_foo:
+    <<: *default-opts
+    image: containous/whoami:v1.5.0
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:firepress.link
+      - traefik.frontend.rule=PathPrefixStrip:/foo
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  firepresslink_bar:
+    <<: *default-opts
+    image: containous/whoami:v1.5.0
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:firepress.link
+      - traefik.frontend.rule=PathPrefixStrip:/bar
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  who1firepresslink:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/who1firepresslink:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:who1.firepress.link
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  who2firepresslink:
+    <<: *default-opts
+    #image: abiosoft/caddy:1.0.3-no-stats
+    image: caddy:2.2.1-alpine
+    networks:
+      - ntw_front
+    volumes:
+      #- /root/docker-stack-this/traefik_stack6/www/who2firepresslink:/srv:ro
+      - /root/docker-stack-this/traefik_stack6/www/who2firepresslink:/usr/share/caddy
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 18M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:who2.firepress.link
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  who3firepresslink:
+    <<: *default-opts
+    image: containous/whoami:v1.5.0
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:who3.firepress.link
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  devcerisesite:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/devcerisesite:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:devcerise.site
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  devkiwiclub:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/devkiwiclub:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:devkiwi.club
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  pnddesignca:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/pnddesignca:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:pnddesign.ca
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
+  brotbackencadabra:
+    <<: *default-opts
+    image: nginx:1.19-alpine
+    networks:
+      - ntw_front
+    volumes:
+      - /root/docker-stack-this/traefik_stack6/www/brotbackencadabra:/usr/share/nginx/html
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 16M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:brotbacken.cadabra.blog
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+  
+# https://github.com/pascalandy/docker-stack-this
