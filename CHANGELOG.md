@@ -19,6 +19,13 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+## 4.0.0 (2020-11-18)
+### ⚡️ Updates
+- [144ad01](https://github.com/pascalandy/docker-stack-this/commit/144ad01) Major: Traefik manage certs via ACME
+
+### 🔍 Compare
+- ... with previous release: [3.1.2 <> 4.0.0](https://github.com/pascalandy/docker-stack-this/compare/3.1.2...4.0.0)
+
 ## 3.1.2 (2020-04-27)
 ### ⚡️ Updates
 - [e415fbe](https://github.com/pascalandy/docker-stack-this/commit/e415fbe) Fix changelog
@@ -80,6 +87,13 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 4.0.0 (2020-11-18)
+### ⚡️ Updates
+- [144ad01](https://github.com/pascalandy/docker-stack-this/commit/144ad01) Major: Traefik manage certs via ACME
+
+### 🔍 Compare
+- ... with previous release: [3.1.2 <> 4.0.0](https://github.com/pascalandy/docker-stack-this/compare/3.1.2...4.0.0)
 
 ## 3.1.2 (2020-04-27)
 ### ⚡️ Updates
