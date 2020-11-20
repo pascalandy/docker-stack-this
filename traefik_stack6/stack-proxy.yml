@@ -12,6 +12,11 @@ networks:
   ntw_proxy:
     external: true
 
+# echo "0o0o0o0o0o0passwordo0o0o0o0o0o0o"| docker secret create secret_do_auth_token -
+secrets:
+  secret_do_auth_token:
+    external: true
+
 services:
 
   # this custom haproxy allows us to move traefik to worker nodes (if needed)
@@ -105,10 +110,12 @@ services:
       - --acme.storage=/etc/traefik/acme/acme.json
       - --acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --acme.acmelogging=true
-      - --logLevel=ERROR
+      - --logLevel=INFO
       - --api=true
+    secrets:
+      — secret_do_auth_token
     environment:
-      DO_AUTH_TOKEN: ${DO_AUTH_TOKEN}
+      — DO_AUTH_TOKEN=secret_do_auth_token
     deploy:
       mode: replicated
       replicas: 1
