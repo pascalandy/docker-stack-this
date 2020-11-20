@@ -184,6 +184,33 @@ services:
       - traefik.frontend.redirect.entryPoint=https
       - traefik.frontend.redirect.permanent=true
 
+  stgfirefirepresslink:
+    <<: *default-opts
+    image: containous/whoami:v1.5.0
+    networks:
+      - ntw_front
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 8M
+        reservations:
+          cpus: '0.05'
+          memory: 4M
+      labels:
+      - traefik.frontend.rule=Host:stgfire.firepress.link
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.docker.network=ntw_front
+      - traefik.frontend.entryPoints=http,https
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.frontend.redirect.permanent=true
+
   devcerisesite:
     <<: *default-opts
     image: nginx:1.19-alpine
