@@ -12,11 +12,6 @@ networks:
   ntw_proxy:
     external: true
 
-# echo "0o0o0o0o0o0passwordo0o0o0o0o0o0o"| docker secret create secret_do_auth_token -
-secrets:
-  secret_do_auth_token:
-    external: true
-
 services:
 
   # this custom haproxy allows us to move traefik to worker nodes (if needed)
@@ -90,6 +85,8 @@ services:
     networks:
       - ntw_front
       - ntw_proxy
+    environment:
+      DO_AUTH_TOKEN: ${do_auth_token}
     volumes:
       - /mnt/DeployGRP/tooldata/traefik/traefik_stack6/acme.json:/etc/traefik/acme/acme.json
     command:
@@ -113,10 +110,6 @@ services:
       - --acme.acmelogging=true
       - --logLevel=INFO
       - --api=true
-    secrets:
-      — secret_do_auth_token
-    environment:
-      DO_AUTH_TOKEN: secret_do_auth_token
     deploy:
       mode: replicated
       replicas: 1
