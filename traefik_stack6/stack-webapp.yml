@@ -203,7 +203,7 @@ services:
           cpus: '0.05'
           memory: 4M
       labels:
-      - traefik.frontend.rule=Host:stgfire.firepress.link
+      - traefik.frontend.rule=Host:stgfire.xyz
       - traefik.port=80
       - traefik.enable=true
       - traefik.docker.network=ntw_front
