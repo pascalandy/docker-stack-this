@@ -116,7 +116,7 @@ services:
     secrets:
       — secret_do_auth_token
     environment:
-      — DO_AUTH_TOKEN=secret_do_auth_token
+      DO_AUTH_TOKEN: secret_do_auth_token
     deploy:
       mode: replicated
       replicas: 1
