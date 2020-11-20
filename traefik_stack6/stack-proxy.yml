@@ -69,7 +69,7 @@ services:
       #- --entryPoints=Name:http Address::80                            # don't force HTTPS
       #- --entryPoints=Name:http Address::80 Redirect.EntryPoint:https  # force HTTPS
       #
-      # If not using proxysocket
+      # If not using proxysocket 
       #- --docker.endpoint=unix:///var/run/docker.sock
   traefik:
     <<: *default-opts
