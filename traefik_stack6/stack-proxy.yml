@@ -99,15 +99,16 @@ services:
       - --defaultentrypoints=http,https
       - --acme
       - --acme.email=relations@firepress.org
-      - --acme.httpchallenge
-      - --acme.httpchallenge.entrypoint=http
+      - --acme.dnsChallenge.provider=digitalocean
+      - --acme.domains=*.firepress.link,firepress.link
       - --acme.entryPoint=https
-      - --acme.onhostrule=true
       - --acme.storage=/etc/traefik/acme/acme.json
       - --acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --acme.acmelogging=true
       - --logLevel=ERROR
       - --api=true
+    environment:
+      DO_AUTH_TOKEN: ${DO_AUTH_TOKEN}
     deploy:
       mode: replicated
       replicas: 1
