@@ -104,6 +104,7 @@ services:
       - --defaultentrypoints=http,https
       - --acme
       - --acme.email=relations@firepress.org
+      - --acme.dnsChallenge
       - --acme.dnsChallenge.provider=digitalocean
       - --acme.domains=*.firepress.link,firepress.link
       - --acme.entryPoint=https
