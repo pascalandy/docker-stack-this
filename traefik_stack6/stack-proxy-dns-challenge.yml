@@ -101,14 +101,15 @@ services:
       - --defaultentrypoints=http,https
       - --acme
       - --acme.email=${ACME_EMAIL}
-      - --acme.httpchallenge
-      - --acme.httpchallenge.entrypoint=http
+      - --acme.dnsChallenge
+      - --acme.dnsChallenge.provider=digitalocean
+      - --acme.domains=*.${MAIN_DOMAIN},${MAIN_DOMAIN}
       - --acme.entryPoint=https
       - --acme.onhostrule=true
       - --acme.storage=/etc/traefik/acme/acme.json
       - --acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --acme.acmelogging=true
-      - --logLevel=ERROR
+      - --logLevel=INFO
       - --api=true
     deploy:
       mode: replicated
@@ -134,3 +135,11 @@ services:
         - traefik.port=8080
 
 # https://github.com/pascalandy/docker-stack-this, inspired by https://github.com/BretFisher/dogvscat
+
+
+
+
+
+
+
+
