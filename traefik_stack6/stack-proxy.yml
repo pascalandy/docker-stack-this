@@ -105,6 +105,7 @@ services:
       - --acme.dnsChallenge.provider=digitalocean
       - --acme.domains=*.firepress.link,firepress.link
       - --acme.entryPoint=https
+      - --acme.onhostrule=true
       - --acme.storage=/etc/traefik/acme/acme.json
       - --acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --acme.acmelogging=true
