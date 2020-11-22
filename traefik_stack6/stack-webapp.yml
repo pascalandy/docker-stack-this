@@ -190,7 +190,7 @@ services:
     networks:
       - ntw_front
     volumes:
-      - /root/docker-stack-this/traefik_stack6/www/devcerisesite:/usr/share/nginx/html
+      - /root/docker-stack-this/traefik_stack6/www/stgfirexyz:/usr/share/nginx/html
     deploy:
       mode: replicated
       replicas: 1
