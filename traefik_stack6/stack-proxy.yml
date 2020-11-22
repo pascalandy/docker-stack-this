@@ -1,3 +1,5 @@
+# using http-challenge is simpler but does NOT allow wildcare certs
+
 version: '3.7'
 
 x-default-opts: 

@@ -1,3 +1,5 @@
+# using dns-challenge allows wildcare certs
+
 version: '3.7'
 
 x-default-opts: 
