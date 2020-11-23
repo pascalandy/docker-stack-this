@@ -184,35 +184,6 @@ services:
       - traefik.frontend.redirect.entryPoint=https
       - traefik.frontend.redirect.permanent=true
 
-  stgfirexyz:
-    <<: *default-opts
-    image: nginx:1.19-alpine
-    networks:
-      - ntw_front
-    volumes:
-      - /root/docker-stack-this/traefik_stack6/www/stgfirexyz:/usr/share/nginx/html
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 10
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 16M
-        reservations:
-          cpus: '0.05'
-          memory: 4M
-      labels:
-      - traefik.frontend.rule=Host:stgfire.xyz
-      - traefik.port=80
-      - traefik.enable=true
-      - traefik.docker.network=ntw_front
-      - traefik.frontend.entryPoints=http,https
-      - traefik.frontend.redirect.entryPoint=https
-      - traefik.frontend.redirect.permanent=true
-
   devcerisesite:
     <<: *default-opts
     image: nginx:1.19-alpine
