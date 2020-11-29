@@ -133,7 +133,13 @@ docker run --rm -it devmtl/alpinefire:3.8-D sh -c 'htpasswd -Bbn admin changethi
 This will display:
 
 ``` 
-admin:$2y$05$pAfipn3.brdHMI2eWGnYH.84XYqLozp1sUPi36/l54UAwv.zGLtNC
+admin:$2y$05$F44r3C0UXd5aK/o6Y7KgwObpYXJzUMe/rAfP2q9fxiw1DZfUEdl1S
+```
+
+You need to double the sign `$`. Here is the variable you will use:
+
+``` 
+admin:$$2y$$05$$F44r3C0UXd5aK/o6Y7KgwObpYXJzUMe/rAfP2q9fxiw1DZfUEdl1S
 ```
 
 Insert this string in your `.configs/traefik.toml`.
