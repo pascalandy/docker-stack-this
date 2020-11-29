@@ -131,7 +131,7 @@ services:
           memory: 48M
       labels:
         - traefik.frontend.rule=Host:${DASHBOARD_DOMAIN}
-        - traefik.frontend.auth.basic.users=pascal:$$2y$$05$$jyYdEv/SOqfhRXLmgGhnbuiKTdxHnXE21m4Rctn4iZPqTFAY3BG8W
+        - traefik.frontend.auth.basic.users=${DASHBOARD_USER_PASS}
         - traefik.docker.network=ntw_front
         - traefik.enable=true
         - traefik.port=8080
