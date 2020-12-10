@@ -124,22 +124,28 @@ $ docker ps | grep whoami
 
 This password is encrypted in our configs `.configs/traefik.toml`
 
-To quickly generate yours with htpasswd, use my container:
+#### Generate your user/pass:
+
+Here is a script you can run:
 
 ```
-docker run --rm -it devmtl/alpinefire:3.8-D sh -c 'htpasswd -Bbn admin changethispass'  
-``` 
+command -v docker >/dev/null 2>&1 || { echo >&2 "I require Docker but it's not installed. Aborting."; exit 1; }
 
-This will display:
+echo "Basic auth generator:"
+read -p "User: "  USER
+read -p "Password: "  PW
 
-``` 
-admin:$2y$05$F44r3C0UXd5aK/o6Y7KgwObpYXJzUMe/rAfP2q9fxiw1DZfUEdl1S
-```
+# Generate strings
+clear && echo
 
-You need to double the sign `$`. Here is the variable you will use:
+echo "------- A) Use the result with basicauth.usersfile: --------"
+docker run ctr.run/github.com/firepress-org/alpine:master sh -c \
+    "htpasswd -nbB ${USER} ${PW}"
 
-``` 
-admin:$$2y$$05$$F44r3C0UXd5aK/o6Y7KgwObpYXJzUMe/rAfP2q9fxiw1DZfUEdl1S
+echo "------- B) use the result within your compose file."
+echo "This double the $ sign (else the $ sign is interpreted as a variable: --------"
+docker run ctr.run/github.com/firepress-org/alpine:master sh -c \
+    "htpasswd -nbB ${USER} ${PW}" | sed -e s/\\$/\\$\\$/g
 ```
 
 Insert this string in your `.configs/traefik.toml`.
