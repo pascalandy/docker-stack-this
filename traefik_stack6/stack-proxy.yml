@@ -35,6 +35,7 @@ services:
       SERVICES: 1
       TASKS: 1
       SWARM: 1
+     #NODE: 1
     deploy:
       mode: global
       placement:
