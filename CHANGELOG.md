@@ -19,6 +19,37 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
+## 4.1.0 (2021-04-04)
+### ⚡️ Updates
+- [065c03e](https://github.com/pascalandy/docker-stack-this/commit/065c03e) Update docker-stack-this to version 4.1.0 /Dockerfile
+- [f7cd8ae](https://github.com/pascalandy/docker-stack-this/commit/f7cd8ae) update to traefik:1.7.28
+- [e824b35](https://github.com/pascalandy/docker-stack-this/commit/e824b35) Add FLAG ‘NODE 1’
+- [c9a806b](https://github.com/pascalandy/docker-stack-this/commit/c9a806b) update README
+- [cfc7294](https://github.com/pascalandy/docker-stack-this/commit/cfc7294) basic-auth fix
+- [eaf9353](https://github.com/pascalandy/docker-stack-this/commit/eaf9353) basic-auth VAR does not work
+- [825a51e](https://github.com/pascalandy/docker-stack-this/commit/825a51e) use a VAR basic-auth
+- [5962ad1](https://github.com/pascalandy/docker-stack-this/commit/5962ad1) Improve docs about basic-auth
+- [54b044e](https://github.com/pascalandy/docker-stack-this/commit/54b044e) basic auth new password
+- [dfafeaa](https://github.com/pascalandy/docker-stack-this/commit/dfafeaa) Add auth.basic
+- [591356f](https://github.com/pascalandy/docker-stack-this/commit/591356f) remove stgfirexyz
+- [51f1421](https://github.com/pascalandy/docker-stack-this/commit/51f1421) add comments
+- [2c6129c](https://github.com/pascalandy/docker-stack-this/commit/2c6129c) define sensitive vars
+- [9b72b9a](https://github.com/pascalandy/docker-stack-this/commit/9b72b9a) rollback to acme.httpchallenge
+- [4bf68e6](https://github.com/pascalandy/docker-stack-this/commit/4bf68e6) add --acme.onhostrule=true
+- [5603b8f](https://github.com/pascalandy/docker-stack-this/commit/5603b8f) stgfirexyz wip
+- [6ba5a2b](https://github.com/pascalandy/docker-stack-this/commit/6ba5a2b) Init stgfirexyz as nginx
+- [bb6c51e](https://github.com/pascalandy/docker-stack-this/commit/bb6c51e) add stgfirefirepresslink /b
+- [8fbe8b3](https://github.com/pascalandy/docker-stack-this/commit/8fbe8b3) add stgfirefirepresslink
+- [902c7b9](https://github.com/pascalandy/docker-stack-this/commit/902c7b9) DO_TOKEN via var, not a secret
+- [02d074b](https://github.com/pascalandy/docker-stack-this/commit/02d074b) add traefikdev /c
+- [8fa6bfc](https://github.com/pascalandy/docker-stack-this/commit/8fa6bfc) empty
+- [021efed](https://github.com/pascalandy/docker-stack-this/commit/021efed) dnsChallenge with DO /b
+- [7247191](https://github.com/pascalandy/docker-stack-this/commit/7247191) Add secret for DO token
+- [7a95d2e](https://github.com/pascalandy/docker-stack-this/commit/7a95d2e) dnsChallenge with DO /a
+
+### 🔍 Compare
+- ... with previous release: [4.0.0 <> 4.1.0](https://github.com/pascalandy/docker-stack-this/compare/4.0.0...4.1.0)
+
 ## 4.0.0 (2020-11-18)
 ### ⚡️ Updates
 - [144ad01](https://github.com/pascalandy/docker-stack-this/commit/144ad01) Major: Traefik manage certs via ACME
@@ -87,6 +118,37 @@ b21424e Init / env-template
 - various scripts updates
 
 # Releases
+
+## 4.1.0 (2021-04-04)
+### ⚡️ Updates
+- [065c03e](https://github.com/pascalandy/docker-stack-this/commit/065c03e) Update docker-stack-this to version 4.1.0 /Dockerfile
+- [f7cd8ae](https://github.com/pascalandy/docker-stack-this/commit/f7cd8ae) update to traefik:1.7.28
+- [e824b35](https://github.com/pascalandy/docker-stack-this/commit/e824b35) Add FLAG ‘NODE 1’
+- [c9a806b](https://github.com/pascalandy/docker-stack-this/commit/c9a806b) update README
+- [cfc7294](https://github.com/pascalandy/docker-stack-this/commit/cfc7294) basic-auth fix
+- [eaf9353](https://github.com/pascalandy/docker-stack-this/commit/eaf9353) basic-auth VAR does not work
+- [825a51e](https://github.com/pascalandy/docker-stack-this/commit/825a51e) use a VAR basic-auth
+- [5962ad1](https://github.com/pascalandy/docker-stack-this/commit/5962ad1) Improve docs about basic-auth
+- [54b044e](https://github.com/pascalandy/docker-stack-this/commit/54b044e) basic auth new password
+- [dfafeaa](https://github.com/pascalandy/docker-stack-this/commit/dfafeaa) Add auth.basic
+- [591356f](https://github.com/pascalandy/docker-stack-this/commit/591356f) remove stgfirexyz
+- [51f1421](https://github.com/pascalandy/docker-stack-this/commit/51f1421) add comments
+- [2c6129c](https://github.com/pascalandy/docker-stack-this/commit/2c6129c) define sensitive vars
+- [9b72b9a](https://github.com/pascalandy/docker-stack-this/commit/9b72b9a) rollback to acme.httpchallenge
+- [4bf68e6](https://github.com/pascalandy/docker-stack-this/commit/4bf68e6) add --acme.onhostrule=true
+- [5603b8f](https://github.com/pascalandy/docker-stack-this/commit/5603b8f) stgfirexyz wip
+- [6ba5a2b](https://github.com/pascalandy/docker-stack-this/commit/6ba5a2b) Init stgfirexyz as nginx
+- [bb6c51e](https://github.com/pascalandy/docker-stack-this/commit/bb6c51e) add stgfirefirepresslink /b
+- [8fbe8b3](https://github.com/pascalandy/docker-stack-this/commit/8fbe8b3) add stgfirefirepresslink
+- [902c7b9](https://github.com/pascalandy/docker-stack-this/commit/902c7b9) DO_TOKEN via var, not a secret
+- [02d074b](https://github.com/pascalandy/docker-stack-this/commit/02d074b) add traefikdev /c
+- [8fa6bfc](https://github.com/pascalandy/docker-stack-this/commit/8fa6bfc) empty
+- [021efed](https://github.com/pascalandy/docker-stack-this/commit/021efed) dnsChallenge with DO /b
+- [7247191](https://github.com/pascalandy/docker-stack-this/commit/7247191) Add secret for DO token
+- [7a95d2e](https://github.com/pascalandy/docker-stack-this/commit/7a95d2e) dnsChallenge with DO /a
+
+### 🔍 Compare
+- ... with previous release: [4.0.0 <> 4.1.0](https://github.com/pascalandy/docker-stack-this/compare/4.0.0...4.1.0)
 
 ## 4.0.0 (2020-11-18)
 ### ⚡️ Updates
