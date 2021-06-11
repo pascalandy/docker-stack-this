@@ -19,12 +19,12 @@ https://gist.github.com/pascalandy/af709db02d3fe132a3e6f1c11b934fe4
 
 # Releases
 
-## 4.1.0 (2021-06-11)
+## 4.2.0 (2021-06-11)
 ### ⚡️ Updates
 - [8383f52](https://github.com/pascalandy/docker-stack-this/commit/8383f52) update to traefik:1.7.30-alpine
 
 ### 🔍 Compare
-- ... with previous release: [4.1.0 <> 4.1.0](https://github.com/pascalandy/docker-stack-this/compare/4.1.0...4.1.0)
+- ... with previous release: [4.1.0 <> 4.2.0](https://github.com/pascalandy/docker-stack-this/compare/4.1.0...4.2.0)
 
 ## 4.1.0 (2021-04-04)
 ### ⚡️ Updates
