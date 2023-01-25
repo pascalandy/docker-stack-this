@@ -71,7 +71,7 @@ services:
       #- --docker.endpoint=unix:///var/run/docker.sock
   traefik:
     <<: *default-opts
-    image: traefik:1.7.30-alpine
+    image: traefik:1.7.34-alpine
     ports:
     - target: 80
       protocol: tcp
